@@ -1,0 +1,37 @@
+services:
+  recommender:
+    build:
+      context: .
+      dockerfile: TCPServer/Dockerfile
+    container_name: recommendation_server
+    volumes:
+      - reccomendation_data_base:/usr/src/data
+    networks:
+      - app_network
+    environment:
+      PORT: ${RECOMMENDATION_PORT:-5555} 
+    entrypoint: ["./netflix_server"]
+    command: [$RECOMMENDATION_PORT]
+
+  app:
+    build:
+      context: .
+      dockerfile: WebServer/Dockerfile
+    container_name: app_server
+    ports:
+      - "${APP_PORT:-3000}:${CONTAINER_PORT:-3000}"
+    networks:
+      - app_network
+    environment:
+      CONNECTION_STRING: ${CONNECTION_STRING}
+      RECOMMENDATION_IP: recommendation_server  
+      RECOMMENDATION_PORT: ${RECOMMENDATION_PORT:-5555}
+      PORT: ${CONTAINER_PORT:-3000} 
+    command: ["npm", "start"]
+
+volumes:
+  reccomendation_data_base:
+
+networks:
+  app_network:
+    driver: bridge
