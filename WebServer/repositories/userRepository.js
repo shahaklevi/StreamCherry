@@ -7,7 +7,8 @@ const createUser = async (userData) => {
         mail: userData.mail,
         phone: userData.phone,
         picture: userData.picture,
-        watchList: [] // Explicitly set watchList to an empty array
+        watchList: [], // Explicitly set watchList to an empty array
+        manager: userData.manager,
     });
     return await user.save();
 };

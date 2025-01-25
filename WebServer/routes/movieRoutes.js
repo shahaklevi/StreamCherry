@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const movieController = require('../controllers/movieController');
 const recommendationController = require('../controllers/recommendationController');
-
+console.log('movieRoutes');
 router.get('/search/:query', movieController.search);
 
 router.get('/', movieController.getAll);

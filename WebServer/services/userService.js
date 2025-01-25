@@ -4,6 +4,8 @@ const userRepository = require('../repositories/userRepository');
 const validator = require('../utils/validator');
 const Movie = require('../models/Movie');
 const mongoose = require('mongoose');
+const { generateToken } = require('../controllers/tokensController');
+
 
 const createUser = async (userData) => {
     const requiredFields = ['user_name', 'password', 'mail', 'phone'];
@@ -11,7 +13,6 @@ const createUser = async (userData) => {
     if (missingFields.length > 0) {
     throw new Error(`Validation Error: Missing fields - ${missingFields.join(", ")}`);
 }
-
     validator.validUsername(userData.user_name);
     validator.validPassword(userData.password);
     validator.validEmail(userData.mail);
@@ -28,7 +29,6 @@ const createUser = async (userData) => {
                 }
             }
         }
-    //HI Sahar i added an implemetion to add users to watchedBy array in movie model
     const user = await userRepository.createUser(userData);  
     if (userData.watchList && userData.watchList.length > 0) {
         for (const movieId of userData.watchList) {
@@ -42,8 +42,9 @@ const createUser = async (userData) => {
             }
         }
     }
-
-    return user;
+    // Generate a token for the user
+    const token = generateToken(user);
+    return { user, token };
     };
     const getUser = async (id) => {
         const user = await userRepository.getUser(id);
@@ -54,12 +55,12 @@ const createUser = async (userData) => {
           user_name: user.user_name,
           mail: user.mail,
           phone: user.phone,
-          picture: user.picture
+          picture: user.picture,
+          manager: user.manager,
         }
         return userData;
     };
 
-    // Hi  Sahar i implemented an update user function in order to add movies to user watchlist
     const updateUserWatchlist = async (userId, movieId) => {
         // Validate user exists
         const existingUser = await userRepository.getUser(userId);

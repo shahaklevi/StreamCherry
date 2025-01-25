@@ -1,0 +1,114 @@
+### Create user (optional - add picture: "picture": "<URL adress>"
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "user_name": "<user_name>",
+    "password": "<password>",
+    "mail": "<mail@platform.com>",
+    "phone": "<10digits>"
+}
+
+### Get user deatils by id
+GET http://localhost:3000/api/users/<ID>
+
+### Check if user registerd by user_name and ID
+POST http://127.0.0.1:3000/api/tokens
+Content-Type: application/json
+
+{
+    "user_name": "<user_name>",
+    "password": "<password>"
+}
+
+
+### Create category (add movies is optional)
+POST http://localhost:3000/api/categories
+userId: <ID>
+Content-Type: application/json
+
+    {
+    "name": "Category_name",
+    "movies":["movie_Id_1","movie_Id_2","...movie_Id_n"],
+    "promoted": true
+    }
+
+
+### Get all categories
+GET http://localhost:3000/api/categories
+userId: <ID>
+
+
+### Get category by ID 
+GET http://localhost:3000/api/categories/<Category_id>
+userId: <ID>
+
+
+### Update category with PATCH
+PATCH http://localhost:3000/api/categories/<Category_id>
+userId: <ID>
+Content-Type: application/json
+
+{
+   "name": "Category name",
+   "movies": ["movie_id_2","movie_id_1"],
+   "promoted": false
+}
+
+### Delete category
+DELETE http://localhost:3000/api/categories/<Category_id>
+userId: <ID>
+
+
+### Create movie
+POST http://localhost:3000/api/movies
+userId: <ID>
+Content-Type: application/json
+
+{
+    "title": "title",
+    "description": "description", 
+    "releaseYear": 2005,
+    "duration": 140,
+    "categories": ["category_id_1","category_id_2"] 
+    
+}
+
+### Get movies
+GET http://localhost:3000/api/movies
+userId: <ID>
+
+### Get movie by ID
+GET http://localhost:3000/api/movies/<movie_id>
+userId: <ID>
+
+### Update movie with PUT
+PUT http://localhost:3000/api/movies/<movie_id>
+userId: <ID>
+Content-Type: application/json
+
+{
+   "title": "title",
+    "description": "description", 
+    "releaseYear": 2005,
+    "duration": 140,
+    "categories": ["category_id_1","category_id_2"] 
+}
+
+### delete movie
+DELETE http://localhost:3000/api/movies/<movie_id>
+userId: <ID>
+
+### get recommended movies for user
+GET http://localhost:3000/api/movies/<movie_id>/recommend
+userId: <ID>
+
+### add movie to user watchlist and to the recommended System
+POST http://localhost:3000/api/movies/<movie_id>/recommend
+userId : <ID>
+
+###
+GET http://localhost:3000/api/movies/search/<query>/
+userId: <ID>
+
+

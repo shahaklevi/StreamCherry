@@ -8,8 +8,8 @@ const validator = require('../utils/validator');
 class CategoryController {
     async getAll(req, res) {
         try {
-            //only registerd user can use the function
-            await validator.isUserRegisterd(req);
+            // //only registerd user can use the function
+            // await validator.isUserRegisterd(req);
 
             const categories = await categoryService.getAll();
             res.json(categories);
@@ -27,7 +27,7 @@ class CategoryController {
     }
     async getById(req, res) {
         try {
-            await validator.isUserRegisterd(req);
+            // await validator.isUserRegisterd(req);
             const category = await categoryService.getById(req.params.id);
             res.json(category);
         } catch (error) {
@@ -48,10 +48,10 @@ class CategoryController {
 
     async create(req, res) {
         try {
-            await validator.isUserRegisterd(req);
+            // await validator.isUserRegisterd(req);
 
             const category = await categoryService.create(req.body);
-            res.status(201).location(`/api/categories/${category._id}`).send();
+            res.status(201).json({category});
         } catch (error) {
             if (error.message.includes('E11000 duplicate')) {
                 res.status(400).json({ error: 'Name must be unique' });
@@ -72,7 +72,7 @@ class CategoryController {
     
     async update(req, res) {
         try {
-            await validator.isUserRegisterd(req);
+            // await validator.isUserRegisterd(req);
             await categoryService.update(req.params.id, req.body);
             res.status(204).send();
         } catch (error) {
@@ -97,7 +97,7 @@ class CategoryController {
 
     async delete(req, res) {
         try {
-            await validator.isUserRegisterd(req);
+            // await validator.isUserRegisterd(req);
             await categoryService.delete(req.params.id);
             res.status(204).send();
         } catch (error) {

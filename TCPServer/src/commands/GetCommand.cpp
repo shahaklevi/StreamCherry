@@ -27,21 +27,22 @@ std::string GetCommand::execute(const vector<string> &args)
     }
 
     
-    if (watchList->userWatchedMovie(userId, movieId))
-    {
-        // TODO remove this (debugging)
-        cout << "User has not watched the movie" << endl;
-        result = "200 Ok\n\n";
-        return result;
-    }
+    // if (watchList->userWatchedMovie(userId, movieId))
+    // {
+    //     // TODO remove this (debugging)
+    //     cout << "User has not watched the movie" << endl;
+    //     result = "200 Ok\n\n";
+    //     return result;
+    // }
 
     result = "200 Ok\n\n";
 
     // Get a list of all other users
     auto allUsers = watchList->getAllUsers();
     vector<string> otherUsers;
-    // TODO remove this (debugging)
-    cout << "All users: ";
+    // // TODO remove this (debugging)
+    // cout << "All users: ";
+
     for (string id : allUsers)
     {
         if (id != userId)
@@ -49,11 +50,12 @@ std::string GetCommand::execute(const vector<string> &args)
             otherUsers.push_back(id);
         }
     }
-    // TODO remove this (debugging)
-    for (auto &id : otherUsers)
-    {
-        cout << id << " ";
-    }
+
+    // // TODO remove this (debugging)
+    // for (auto &id : otherUsers)
+    // {
+    //     cout << id << " ";
+    // }
 
     // Get watched movies for each user and count common movies
     unordered_map<string, unordered_set<string>> userToMovies;
@@ -66,8 +68,8 @@ std::string GetCommand::execute(const vector<string> &args)
         int commonCount = 0;
         for (string movie : movies)
         {   
-            // TODO remove this (debugging)
-            cout << "Movie: " << movie << endl;
+            // // TODO remove this (debugging)
+            // cout << "Movie: " << movie << endl;
             if (watchList->userWatchedMovie(userId, movie))
             {
                 ++commonCount;
@@ -90,11 +92,11 @@ std::string GetCommand::execute(const vector<string> &args)
         }
     }
 
-    // TODO remove this (debugging)
-    for (auto &id : relevantUsers)
-    {
-        cout << "Relevant user: " << id << " ";
-    }
+    // // TODO remove this (debugging)
+    // for (auto &id : relevantUsers)
+    // {
+    //     cout << "Relevant user: " << id << " ";
+    // }
 
     // Calculate relevance for all movies
     unordered_map<string, int> movieScores;

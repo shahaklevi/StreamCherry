@@ -1,17 +1,6 @@
-.vscode/
-data/
+WebServer/node_modules/
 node_modules
-/WebServer/config
-api_requests.rest
-# Ignore package-lock.json files
-package-lock.json
-
-# Ignore package.json files
-package.json
-/WebServer/package-lock.json
-/WebServer/package.json
-/WebServer/api_requests.rest
-
+WebServer/uploadsProfilePicture/
 
 
 

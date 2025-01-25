@@ -6,7 +6,7 @@ class RecommendationController {
       const movieId = req.params.id;
       await validator.validId(movieId);
       await validator.isMovieExist(movieId)
-      await validator.isUserRegisterd(req);
+      // await validator.isUserRegisterd(req);
       // Retrieve the user id from the header
       const userId = req.header("userId");
       // Calling the getRecommendations method from the recommendationService with the user id and the id of the movie
@@ -31,7 +31,7 @@ class RecommendationController {
       const movieId = req.params.id;
       await validator.validId(movieId);
       await validator.isMovieExist(movieId)
-      await validator.isUserRegisterd(req);
+      // await validator.isUserRegisterd(req);
       // Retrieve the user id from the header
       const userId = req.header("userId");
       // Calling the addToWatchList method from the recommendationService with the user id and the id of the movie
@@ -52,7 +52,7 @@ class RecommendationController {
 
   async deleteFromWatchList(req, res) {
     try {
-      await validator.isUserRegisterd(req);
+      // await validator.isUserRegisterd(req);
       // Retrieve the user id from the header
       const userId = req.header("userId");
       const movieId = req.params.id;

@@ -6,11 +6,11 @@ const validator = require('../utils/validator');
 class movieController {
     async getAll(req, res) {
         try {
-            await validator.isUserRegisterd(req);
-            const userId = req.headers.userid; // Getting userId from headers
+            // await validator.isUserRegisterd(req);
+            // const userId = req.headers.userid; // Getting userId from headers
             
             const movies = await movieService.getAll(userId); // Passing userId to service
-            res.json(movies);
+            res.json({movies});
         } catch (error) {
              if(error.message == 'Missing userId header - Only an existing user can perform this action'){
                 res.status(400).send(error.message);
@@ -26,7 +26,7 @@ class movieController {
     
     async getById(req, res) {
         try {
-            await validator.isUserRegisterd(req);
+            // await validator.isUserRegisterd(req);
             const movie = await movieService.getById(req.params.id);
             res.json(movie);
         } catch (error) {
@@ -47,10 +47,10 @@ class movieController {
 
     async create(req, res) {
         try {
-            await validator.isUserRegisterd(req);
+            // await validator.isUserRegisterd(req);
             await  validator.validMovie(req.body);
             const movie = await movieService.create(req.body);
-            res.status(201).location(`/api/movies/${movie._id}`).send();
+            res.status(201).json({movie});
         } catch (error) {
             if (error.message.includes('E11000 duplicate')) {
                 res.status(400).json({ error: 'Movie title must be unique' });
@@ -72,7 +72,7 @@ class movieController {
     
     async update(req, res) {
         try {
-            await validator.isUserRegisterd(req);
+            // await validator.isUserRegisterd(req);
             await  validator.validMovie(req.body);
             await movieService.update(req.params.id, req.body);
 
@@ -92,7 +92,7 @@ class movieController {
     }
     async delete(req, res) {
         try {
-            await validator.isUserRegisterd(req);
+            // await validator.isUserRegisterd(req);
             await movieService.delete(req.params.id);
             res.status(204).send();
         } catch (error) {
@@ -110,10 +110,12 @@ class movieController {
     }
     async search(req, res) {
         try {
-            await validator.isUserRegisterd(req);
+            console.log('search');
+            // await validator.isUserRegisterd(req);
             const query = req.params.query;
+            console.log(query); // Getting query from URL
             const movies = await movieService.search(query);
-            res.json(movies);
+            res.json({movies});
         } catch (error) {
             // res.status(500).send(error.message);
             if(error.message == 'Missing userId header - Only an existing user can perform this action'){
@@ -123,9 +125,9 @@ class movieController {
                 res.status(404).send('User not registerd');
             } 
             else {
-                res.status(404).json({ error: error.message });
+                res.status(404).send('No movies found');
             }
-            // res.status(500).send(error.message);
+            res.status(500).send(error.message);
         }
     }
 }
