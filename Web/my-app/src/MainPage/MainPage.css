@@ -46,7 +46,7 @@ body {
 .MainPage .MainContent {
   width: 100%;
   z-index: 2;
-  background-color: black;
+  background-color:var(--background-color); /* Dynamic background */
  }
  
  .MainPage .video-grid {
