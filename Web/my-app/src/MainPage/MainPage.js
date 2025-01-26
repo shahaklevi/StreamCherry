@@ -10,21 +10,25 @@ import useCategories from "../assets/useCategories";
 import trendingMovies from "../assets/TrendingMovies";
 
 function MainPage() {
+
   const categories = useCategories();
-  const { logout, verifyToken } = useUser();
+ 
+
+  const { logout, verifyToken,verifyAdminToken } = useUser();
   const navigate = useNavigate();
 
   const LogOut = () => {
     logout();
     navigate("/");
   };
-
+  const isAdmin = () => {
+    verifyAdminToken();
+  };
   // Perform token verification on component mount
   useEffect(() => {
     const checkToken = async () => {
       const isValid = await verifyToken(); // Assume verifyToken returns a boolean
       if (!isValid) {
-        logout();
         navigate("/login"); // Redirect to login page if token is invalid
       }
     };
@@ -39,7 +43,7 @@ function MainPage() {
         <VideoItem />
       </div>
       <div className="overlay">
-        <TopMenu LogOutSystem={LogOut} />
+        <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} />
       </div>
       {/* Main Content Section */}
       <div className="MainContent">

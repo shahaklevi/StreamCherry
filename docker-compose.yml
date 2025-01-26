@@ -24,6 +24,7 @@ services:
       - app_network
     volumes:
       - profile_pictures:/usr/src/app/uploadsProfilePicture
+      - availlible_movies:/usr/src/app/availableMovies
     environment:
       CONNECTION_STRING: ${CONNECTION_STRING}
       RECOMMENDATION_IP: recommendation_server  
@@ -35,6 +36,7 @@ services:
 volumes:
   reccomendation_data_base:
   profile_pictures:
+  availlible_movies:
 networks:
   app_network:
     driver: bridge

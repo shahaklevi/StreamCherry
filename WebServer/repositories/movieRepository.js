@@ -35,10 +35,9 @@ class movieRepository {
             categories: movieData.categories,
             rating: movieData.rating,
             cast: movieData.cast,
-            image: movieData.image,
-            videoUrl: movieData.videoUrl,
+            movieFile: movieData.movieFile,
             createdAt: movieData.createdAt || Date.now(),
-            watchedBy: [] // Explicitly set to an empty array
+            watchedBy: [] ,// Explicitly set to an empty array
         });
     
         return await movie.save();

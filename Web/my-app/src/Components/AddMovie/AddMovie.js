@@ -3,7 +3,7 @@ import FormInput from "../../Components/SignUpComponents/FormInput";
 import FileInput from "../../Components/SignUpComponents/FileInput";
 import useCategories from "../../assets/useCategories";
 
-function AddMovie({ toggleAddMovieModal, handleAddMovieSubmit }) {
+function AddMovie({ toggleAddMovieModal }) {
   const categories = useCategories(); // Fetch categories using the custom hook
 
   const [formData, setFormData] = useState({
@@ -11,22 +11,19 @@ function AddMovie({ toggleAddMovieModal, handleAddMovieSubmit }) {
     description: "",
     releaseYear: "",
     duration: "",
-    categories: [], // רשימת הקטגוריות שנבחרו
+    categories: [],
     movieFile: null,
     cast: "",
     director: "",
   });
 
-  // פונקציה לעדכון קטגוריות
   const handleCategoryChange = (e) => {
     const { value, checked } = e.target;
 
     setFormData((prevFormData) => {
       const updatedCategories = checked
-        ? [...prevFormData.categories, value] // הוספת קטגוריה
-        : prevFormData.categories.filter((cat) => cat !== value); // הסרת קטגוריה
-
-      console.log("Updated categories:", updatedCategories); // Debug: בדוק את הרשימה המעודכנת
+        ? [...prevFormData.categories, value]
+        : prevFormData.categories.filter((cat) => cat !== value);
       return {
         ...prevFormData,
         categories: updatedCategories,
@@ -36,11 +33,9 @@ function AddMovie({ toggleAddMovieModal, handleAddMovieSubmit }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData({
       ...formData,
-      [name]:
-        name === "releaseYear" || name === "duration" ? Number(value) : value,
+      [name]: name === "releaseYear" || name === "duration" ?  Number(value): value ,
     });
   };
 
@@ -48,39 +43,47 @@ function AddMovie({ toggleAddMovieModal, handleAddMovieSubmit }) {
     const { name, files } = e.target;
     setFormData({
       ...formData,
-      [name]: files[0], // Store the selected file
+      movieFile: files[0],
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Movie metadata
-    const movieJson = {
-      title: formData.title,
-      description: formData.description,
-      releaseYear: formData.releaseYear,
-      duration: formData.duration,
-      categories: formData.categories,
-      cast: formData.cast,
-      director: formData.director,
-    };
+    const formDataObj = new FormData();
 
-    console.log("Submitting movie data:", movieJson); // Debug: בדיקה לפני שליחה
+    // Append all fields to the FormData object
+    formDataObj.append("title", formData.title);
+    formDataObj.append("description", formData.description);
+    formDataObj.append("releaseYear", Number(formData.releaseYear)); // Convert to number
+    formDataObj.append("duration", Number(formData.duration)); // Convert to number
+
+    // Append categories as an array
+    formData.categories.forEach((category) => {
+      formDataObj.append("categories[]", category);
+    });
+
+    formDataObj.append("cast", formData.cast);
+    formDataObj.append("director", formData.director);
+
+    if (formData.movieFile) {
+      formDataObj.append("movieFile", formData.movieFile);
+    }
 
     try {
+      alert("Form data before sending:");
+      for (let pair of formDataObj.entries()) {
+        alert(pair[0] + ": " + pair[1]);
+      }
       const response = await fetch("http://localhost:3000/api/movies", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(movieJson),
+        body: formDataObj,
       });
 
       const data = await response.json();
       if (response.ok) {
         alert("Movie Successfully Added!");
-        toggleAddMovieModal(); // Close the modal
+        toggleAddMovieModal();
       } else {
         alert("Error adding movie: " + (data.error || "Unknown error"));
       }
@@ -121,7 +124,6 @@ function AddMovie({ toggleAddMovieModal, handleAddMovieSubmit }) {
           value={formData.duration}
           onChange={handleChange}
         />
-
         <FileInput
           label="Movie File (MP4)"
           name="movieFile"
@@ -145,7 +147,6 @@ function AddMovie({ toggleAddMovieModal, handleAddMovieSubmit }) {
         <div>
           <label>Categories</label>
           <div>
-            {/* בדיקה אם יש קטגוריות */}
             {Array.isArray(categories) && categories.length > 0 ? (
               categories.map((category) => (
                 <div key={category.id} className="form-check">
@@ -154,8 +155,8 @@ function AddMovie({ toggleAddMovieModal, handleAddMovieSubmit }) {
                     type="checkbox"
                     id={`category-${category.id}`}
                     value={category._id}
-                    checked={formData.categories.includes(category._id)} // בדיקה אם הקטגוריה קיימת
-                    onChange={handleCategoryChange} // קריאה לפונקציית שינוי
+                    checked={formData.categories.includes(category._id)}
+                    onChange={handleCategoryChange}
                   />
                   <label
                     className="form-check-label"

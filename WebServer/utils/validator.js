@@ -6,8 +6,6 @@ const categoryRepository = require('../repositories/categoryRepository');
 const Category = require('../models/Category');
 
 
-
-
 // Validate ObjectId
 const validId = (id) => {
     if (!id) {
@@ -92,8 +90,8 @@ const validMovie = async (movieData) => {
     const requiredFields = {
         title: 'string',
         description: 'string',
-        releaseYear: 'number',
-        duration: 'number',
+        // releaseYear: 'number',
+        // duration: 'number',
         categories: 'array',
     };
 

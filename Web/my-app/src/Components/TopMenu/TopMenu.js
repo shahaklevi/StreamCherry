@@ -6,7 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import "./TopMenu.css";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import ProfileIcon from "../ProfileIcon/ProfileIcon";
-function TopMenu({LogOutSystem}) {
+function TopMenu({LogOutSystem,VerifyAdmin}) {
 
 
   return (
@@ -36,7 +36,7 @@ function TopMenu({LogOutSystem}) {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <TopMenuButton dest="Home" />
               <TopMenuButton dest="Movies" />
-              <TopMenuButton dest="admin-zone" />
+              <TopMenuButton dest="admin-zone" onClick={()=>VerifyAdmin()} />
               <TopMenuButton
                dest="Logout" 
                 onClick={()=>LogOutSystem()}/>

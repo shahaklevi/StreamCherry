@@ -10,7 +10,7 @@ const MovieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  releaseYear: { type: Number, required: true },
+  releaseYear: { type: Number, required: true, },
   duration: {
     type: Number,
     required: true,
@@ -31,6 +31,7 @@ const MovieSchema = new mongoose.Schema({
 
   movieFile: {
     type: String, // File path or URL to the video
+    required: false,
   },
   createdAt: {
     type: Date,
