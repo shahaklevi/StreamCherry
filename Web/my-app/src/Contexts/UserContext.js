@@ -1,5 +1,5 @@
 import tokenVerification from "../tokenVerification/tokenVerification";
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { navigate,createContext, useContext, useState, useEffect } from 'react';
 
 const UserContext = createContext();
 export const UserProvider = ({ children }) => {
@@ -31,12 +31,32 @@ export const UserProvider = ({ children }) => {
             }
         }
     };
+    const verifyAdminToken = async () => {
+        const token = localStorage.getItem('jwtToken');
+        if (token) {
+            const userData = await tokenVerification(token);
+            if (userData) {
+                if (userData.manager){
+                    alert("hey admin");
+                    setCurrentUser(userData);
+                    navigate('/admin-zone');
+                    return true;
+                }
+                else {
+                    alert("Sorry, this option availible for admin only!");
+                    // logout();
+                    return false;
+                }
+            }
+        }
+    }
     return (
         <UserContext.Provider value={{
             currentUser,
             setUser,
             logout,
-            verifyToken
+            verifyToken,
+            verifyAdminToken
         }}>
             {children}
         </UserContext.Provider>

@@ -70,14 +70,16 @@ console.log("Movie data:", comedyMovies[0]);
 comedyMovies.forEach(movie => movie.additionalMovies = trendingMovies);
 
 function MainPage() {
-  const { logout, verifyToken } = useUser();
+  const { logout, verifyToken,verifyAdminToken } = useUser();
   const navigate = useNavigate();
 
   const LogOut = () => {
     logout();
     navigate("/");
   };
-
+  const isAdmin = () => {
+    verifyAdminToken();
+  };
   // Perform token verification on component mount
   useEffect(() => {
     const checkToken = async () => {
@@ -98,7 +100,7 @@ function MainPage() {
         <VideoItem />
       </div>
       <div className="overlay">
-        <TopMenu LogOutSystem={LogOut} />
+        <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} />
       </div>
       {/* Main Content Section */}
       <div className="MainContent">

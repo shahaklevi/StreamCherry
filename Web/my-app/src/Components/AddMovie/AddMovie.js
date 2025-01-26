@@ -11,22 +11,22 @@ function AddMovie({ toggleAddMovieModal, handleAddMovieSubmit }) {
     description: "",
     releaseYear: "",
     duration: "",
-    categories: [], // רשימת הקטגוריות שנבחרו
+    categories: [], 
     movieFile: null,
     cast: "",
     director: "",
   });
 
-  // פונקציה לעדכון קטגוריות
+ 
   const handleCategoryChange = (e) => {
     const { value, checked } = e.target;
 
     setFormData((prevFormData) => {
       const updatedCategories = checked
-        ? [...prevFormData.categories, value] // הוספת קטגוריה
-        : prevFormData.categories.filter((cat) => cat !== value); // הסרת קטגוריה
+        ? [...prevFormData.categories, value] 
+        : prevFormData.categories.filter((cat) => cat !== value); 
 
-      console.log("Updated categories:", updatedCategories); // Debug: בדוק את הרשימה המעודכנת
+      console.log("Updated categories:", updatedCategories); 
       return {
         ...prevFormData,
         categories: updatedCategories,
