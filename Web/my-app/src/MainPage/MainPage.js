@@ -6,70 +6,14 @@ import TopMenu from "../Components/TopMenu/TopMenu";
 import { useUser } from "../Contexts/UserContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-const comedyMovies = [
-  { src: "/media/Animals-trending/dog.mp4", 
-    title: "Pupies Life", 
-    description: "A heartwarming story about puppies.",
-    releaseYear: 2021,
-    rating: 4.5,
-    duration: "1h 30m", 
-    categories: ["Family", "Adventure"], 
-    cast: ["John Doe", "Jane Smith"], 
-    additionalMovies: []  },
-    { src: "/media/Animals-trending/dog.mp4", 
-      title: "Pupies Life", 
-      description: "A heartwarming story about puppies.",
-      releaseYear: 2021,
-      rating: 4.5,
-      duration: "1h 30m", 
-      categories: ["Family", "Adventure"], 
-      cast: ["John Doe", "Jane Smith"], 
-      additionalMovies: []  },
-      { src: "/media/Animals-trending/dog.mp4", 
-        title: "Pupies Life", 
-        description: "A heartwarming story about puppies.",
-        releaseYear: 2021,
-        rating: 4.5,
-        duration: "1h 30m", 
-        categories: ["Family", "Adventure"], 
-        cast: ["John Doe", "Jane Smith"], 
-        additionalMovies: []  }
-];
-
-const trendingMovies = [
-  { src: "/media/Animals-trending/dog.mp4", 
-    title: "Pupies Life", 
-    description: "A heartwarming story about puppies.",
-    releaseYear: 2021,
-    rating: 4.5,
-    duration: "1h 30m", 
-    categories: ["Family", "Adventure"], 
-    cast: ["John Doe", "Jane Smith"], 
-    additionalMovies: []  },
-    { src: "/media/Animals-trending/dog.mp4", 
-      title: "Pupies Life", 
-      description: "A heartwarming story about puppies.",
-      releaseYear: 2021,
-      rating: 4.5,
-      duration: "1h 30m", 
-      categories: ["Family", "Adventure"], 
-      cast: ["John Doe", "Jane Smith"], 
-      additionalMovies: []  },
-      { src: "/media/Animals-trending/dog.mp4", 
-        title: "Pupies Life", 
-        description: "A heartwarming story about puppies.",
-        releaseYear: 2021,
-        rating: 4.5,
-        duration: "1h 30m", 
-        categories: ["Family", "Adventure"], 
-        cast: ["John Doe", "Jane Smith"], 
-        additionalMovies: []  }
-];
-console.log("Movie data:", comedyMovies[0]);
-comedyMovies.forEach(movie => movie.additionalMovies = trendingMovies);
+import useCategories from "../assets/useCategories";
+import trendingMovies from "../assets/TrendingMovies";
 
 function MainPage() {
+
+  const categories = useCategories();
+ 
+
   const { logout, verifyToken,verifyAdminToken } = useUser();
   const navigate = useNavigate();
 
@@ -104,8 +48,17 @@ function MainPage() {
       {/* Main Content Section */}
       <div className="MainContent">
         <NumericSlider title="Trending Now" movies={trendingMovies} />
-        <RowSlider title="Comedy" movies={comedyMovies} />
-
+        {/* Loop through all categories and create a RowSlider for each */}
+        {categories.map(
+          (category) =>
+            category.movies.length > 0 && (
+              <RowSlider
+                key={category.name} // Unique key for each slider
+                title={category.name} // Display the category name as the title
+                movies={category.movies} // Pass the movies specific to the category
+              />
+            )
+        )}
       </div>
     </div>
   );

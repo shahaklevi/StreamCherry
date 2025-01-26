@@ -1,0 +1,44 @@
+h2 {
+  font-size: 24px;
+  color: red;
+  margin-bottom: 20px;
+}
+
+.categories-list {
+  list-style: none;
+  padding: 0;
+}
+
+.category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.category-item span {
+  font-size: 16px;
+}
+
+.btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-danger {
+  background-color: red;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: darkred;
+}
+
+.message {
+  font-size: 18px;
+  margin-top: 20px;
+  color: var(--text-color);
+}

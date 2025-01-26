@@ -1,0 +1,145 @@
+/* Container styling for the edit movie page */
+.edit-movie-page {
+    background-color: #121212; /* Dark Netflix-style background */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 50px auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Page Title */
+  .edit-movie-page h2 {
+    font-size: 32px;
+    color: #e50914; /* Netflix red */
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
+  
+  /* Search box */
+  .edit-movie-page .search-box {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .edit-movie-page .search-box label {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+  
+  .edit-movie-page .search-box input {
+    width: 80%;
+    max-width: 400px;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 1px solid #e50914; /* Netflix red */
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    color: white;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .edit-movie-page .search-box input:focus {
+    border-color: #ff4444;
+    outline: none;
+    background-color: #2b2b2b;
+    box-shadow: 0 0 10px #e50914;
+  }
+  
+  /* Movies list */
+  .edit-movie-page .movies-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .edit-movie-page .movies-list .movie-item {
+    background-color: #1e1e1e;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease-in-out;
+  }
+  
+  .edit-movie-page .movies-list .movie-item:hover {
+    background-color: #2b2b2b;
+    transform: scale(1.02);
+  }
+  
+  /* Movie title */
+  .edit-movie-page .movies-list .movie-item span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  /* Edit button */
+  .edit-movie-page .movies-list .movie-item .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .edit-movie-page .movies-list .movie-item .btn-primary {
+    background-color: #e50914; /* Netflix red */
+    color: white;
+  }
+  
+  .edit-movie-page .movies-list .movie-item .btn-primary:hover {
+    background-color: #cc0000;
+    box-shadow: 0 0 10px #e50914;
+  }
+  
+  /* General styling for buttons */
+  .edit-movie-page .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  
+  .edit-movie-page .btn-primary {
+    background-color: #e50914;
+    color: white;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .edit-movie-page .btn-primary:hover {
+    background-color: #d40d10;
+    box-shadow: 0 0 10px #e50914;
+  }
+
+  .modal-overlay {
+    position: relative;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: #cc0000;
+  }
+  
+  

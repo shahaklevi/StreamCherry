@@ -28,7 +28,7 @@ const MovieSchema = new mongoose.Schema({
   cast: {
     type: [String],
   },
-  
+
   movieFile: {
     type: String, // File path or URL to the video
     required: false,

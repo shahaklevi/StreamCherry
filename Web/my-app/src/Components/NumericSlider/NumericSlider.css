@@ -1,7 +1,7 @@
 .numeric-title {
     font-size: 24px;
     font-weight: bold;
-    color: white;
+    color: var(--text-color);
     margin: 20px 0;
     padding-left: 20px;
     text-align: left;
@@ -27,7 +27,7 @@
     top: 55%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    color: white;
+    color: var(--text-color); /* Dynamic text color */
     border: none;
     border-radius: 50%;
     width: 40px;

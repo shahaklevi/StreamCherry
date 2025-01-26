@@ -1,0 +1,80 @@
+.delete-page .close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.delete-page .close-button:hover {
+  color: red;
+}
+
+.delete-page h2 {
+  font-size: 24px;
+  color: red;
+  margin-bottom: 20px;
+}
+
+.delete-page label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.delete-page input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.delete-page input[type="text"]:focus {
+  outline: none;
+  border-color: red;
+  background-color: #f9f9f9fb;
+}
+
+.delete-page .movies-list {
+  list-style: none;
+  padding: 0;
+}
+
+.delete-page .movies-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.delete-page .movies-list span {
+  font-size: 16px;
+}
+
+.delete-page .btn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-page .btn-danger {
+  background-color: red;
+  color: #fff;
+}
+
+.delete-page .btn-danger:hover {
+  background-color: darkred;
+}
+
+.delete-page p {
+  font-size: 20px;
+  color: var(--text-color);
+  margin-top: 20px;
+}
