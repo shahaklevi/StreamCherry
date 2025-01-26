@@ -85,7 +85,6 @@ function MainPage() {
     const checkToken = async () => {
       const isValid = await verifyToken(); // Assume verifyToken returns a boolean
       if (!isValid) {
-        logout();
         navigate("/login"); // Redirect to login page if token is invalid
       }
     };

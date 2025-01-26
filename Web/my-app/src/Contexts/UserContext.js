@@ -34,7 +34,6 @@ export const UserProvider = ({ children }) => {
                 return false;
             }
         } else {
-            alert("No token found.");
             logout(); // Logout if no token found
             return false;
         }
