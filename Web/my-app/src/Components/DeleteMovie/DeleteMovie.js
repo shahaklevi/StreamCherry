@@ -107,7 +107,7 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
           className="btn btn-secondary"
           onClick={toggleDeleteMovieModal}
         >
-          Cancel
+          Close
         </button>
       </div>
     </div>

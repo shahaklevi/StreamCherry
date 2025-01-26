@@ -3,6 +3,8 @@ import TopMenu from "../Components/TopMenu/TopMenu";
 import AddMovie from "../Components/AddMovie/AddMovie";
 import AddCategory from "../Components/AddCategory/AddCategory";
 import DeleteMovie from "../Components/DeleteMovie/DeleteMovie";
+import DeleteCategory from "../Components/DeleteCategory/DeleteCategory";
+import EditMoviePage from "../Components/EditMovie/EditMoviePage";
 import "./AdminPage.css";
 
 function AdminPage() {
@@ -47,9 +49,13 @@ function AdminPage() {
         {activeModal === "actions" && (
           <ul className="actions-list">
             <li onClick={() => toggleModal("addMovie")}>Add Movie</li>
-            <li>Edit Movie</li>
-            <li onClick={() => toggleModal("addCategory")}>Add Category</li>
+            <li onClick={() => toggleModal("editMovie")}>Edit Movie</li>
             <li onClick={() => toggleModal("deleteMovie")}>Delete Movie</li>
+            <li onClick={() => toggleModal("addCategory")}>Add Category</li>
+            <li onClick={() => toggleModal("editCategory")}>Edit Category</li>
+            <li onClick={() => toggleModal("deleteCategory")}> Delete Category </li>
+           
+            
           </ul>
         )}
       </div>
@@ -80,6 +86,23 @@ function AdminPage() {
           <DeleteMovie
             toggleDeleteMovieModal={() => toggleModal("deleteMovie")}
             handleDeleteMovieSubmit={handleDeleteMovieSubmit}
+          />
+        </div>
+      )}
+
+      {/* Delete Category Modal */}
+      {activeModal === "deleteCategory" && (
+        <div className="modal-overlay">
+          <DeleteCategory
+            toggleDeleteCategoryModal={() => toggleModal("deleteCategory")}
+          />
+        </div>
+      )}
+      {/* Edit Movie Modal */}
+      {activeModal === "editMovie" && (
+        <div className="modal-overlay">
+          <EditMoviePage
+            toggleEditMovieModal={() => toggleModal("editMovie")}
           />
         </div>
       )}
