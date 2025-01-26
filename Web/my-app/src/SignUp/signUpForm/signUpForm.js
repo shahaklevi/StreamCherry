@@ -40,7 +40,6 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // יצירת FormData כדי לשלוח את כל השדות
     const formDataToSend = new FormData();
     formDataToSend.append("user_name", formData.user_name);
     formDataToSend.append("password", formData.password);
