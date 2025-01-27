@@ -43,6 +43,8 @@ function MovieCard({ movie }) {
         return;
       }
 
+      console.log("User ID:", userData._id);
+
       const response = await fetch(
         `http://localhost:3000/api/movies/${movie._id}/recommend/`,
         {
@@ -53,14 +55,6 @@ function MovieCard({ movie }) {
           },
         }
       );
-      console.log("Response:", response);
-      if (!response.ok) {
-        console.error("Failed to recommend movie:", response.statusText);
-        return;
-      }
-
-      const data = await response.json();
-      console.log("Recommendation successful:", data);
     } catch (error) {
       console.error("Error during handlePlay:", error.message);
     }

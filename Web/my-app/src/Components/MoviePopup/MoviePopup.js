@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./MoviePopup.css";
+import SmallMovieInfo from "../SmallMovieInfo/SmallMovieInfo";
+import tokenVerification from "../../tokenVerification/tokenVerification";
 
 const MoviePopup = ({ movie, onClose }) => {
   const [categoryNames, setCategoryNames] = useState([]); // State to hold category names
+  const [recommendedMovies, setRecommendedMovies] = useState([]); // State to store recommended movies
+
 
   useEffect(() => {
     const fetchCategoryNames = async () => {
@@ -28,6 +32,55 @@ const MoviePopup = ({ movie, onClose }) => {
       fetchCategoryNames();
     }
   }, [movie.categories]);
+
+    // GET Request inside useEffect
+    useEffect(() => {
+      const fetchRecommendations = async () => {
+        try {
+          const token = localStorage.getItem("jwtToken");
+          if (!token) {
+            console.error("Token not found.");
+            return;
+          }
+  
+          const userData = await tokenVerification(token);
+          console.log("User Data:", userData);
+          if (!userData) {
+            console.error("User data verification failed.");
+            return;
+          }
+  
+          console.log("User ID:", userData._id);
+  
+          const response = await fetch(
+            `http://localhost:3000/api/movies/${movie._id}/recommend/`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                userId: userData._id,
+              },
+            }
+          );
+  
+          if (!response.ok) {
+            throw new Error(`Failed to fetch recommendations for movie ID: ${movie._id}`);
+          }
+  
+          const data = await response.json();
+          console.log("Recommendations:", data);
+  
+          // Update state with recommended movies
+          setRecommendedMovies(data); // Assuming the API returns an array under `recommendedMovies`
+          console.log("Recommended Movies:", data);
+        } catch (error) {
+          console.error("Error fetching recommendations:", error.message);
+        }
+      };
+  
+      fetchRecommendations();
+    }, [movie._id]);
+  
 
   return ReactDOM.createPortal(
     <div className="popup-overlay" onClick={onClose}>
@@ -82,6 +135,11 @@ const MoviePopup = ({ movie, onClose }) => {
               </p>
             </div>
           </div>
+        </div>
+        {/* Additional Movies Section */}
+        <div className="popup-additional-movies">
+          <h3>More like this</h3>
+          <SmallMovieInfo movies={recommendedMovies} />
         </div>
       </div>
     </div>,
