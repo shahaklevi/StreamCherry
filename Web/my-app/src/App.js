@@ -10,6 +10,7 @@ import SearchPage from "./SearchPage/SearchPage";
 import "./App.css";
 import "./styles/styles.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TopMenu from "./Components/TopMenu/TopMenu";
 
 function App() {
   return (
@@ -19,10 +20,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/main" element={<MainPage />} />
-            <Route path="/home" element={<MainPage />} />
             <Route path="/SignUp" element={<SignUpMessage />} />
             <Route path="/FillDetails" element={<SignUpForm />} />
+            <Route path="/main" element={<MainPage />} />
+            <Route path="/home" element={<MainPage />} />
             <Route path="/movie" element={<MoviePage />} />
             <Route path="/search/:query?" element={<SearchPage />} />
             <Route path="/admin-zone" element={<AdminPage />} />

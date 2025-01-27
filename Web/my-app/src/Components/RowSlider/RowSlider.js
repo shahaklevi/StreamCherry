@@ -9,10 +9,7 @@ function RowSlider({ title, movieIds }) {
   // Function to fetch movie details by ID
   const fetchMovieDetails = async () => {
     try {
-
-
       const moviePromises = movieIds.map(async (id) => {
-
         const response = await fetch(`http://localhost:3000/api/movies/${id}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch movie with ID: ${id}`);
@@ -22,6 +19,7 @@ function RowSlider({ title, movieIds }) {
 
       // Wait for all promises to resolve
       const fetchedMovies = await Promise.all(moviePromises);
+      console.log("Fetched movies:", fetchedMovies); // Log fetched movies
       setMovies(fetchedMovies); // Update state with movie details
     } catch (error) {
       console.error("Error fetching movies:", error);
@@ -32,6 +30,11 @@ function RowSlider({ title, movieIds }) {
   useEffect(() => {
     fetchMovieDetails();
   }, [movieIds]); // Dependency array ensures this runs only when movieIds changes
+
+  // Log movies whenever the state updates
+  useEffect(() => {
+    console.log("Updated movies state:", movies);
+  }, [movies]);
 
   // Scroll Left
   const scrollLeft = () => {
@@ -46,7 +49,7 @@ function RowSlider({ title, movieIds }) {
       sliderRef.current.scrollBy({ left: 320, behavior: "smooth" }); // Adjust scroll distance based on card width
     }
   };
-  
+
   return (
     <div className="row-slider">
       {/* Title */}
@@ -58,13 +61,7 @@ function RowSlider({ title, movieIds }) {
       </button>
       <div className="slider-container" ref={sliderRef}>
         {movies.map((movie, index) => (
-          <MovieCard
-            key={index}
-            src={`http://localhost:3000/movieuploads/${movie.movie.movieFile}`}
-            title={movie.movie.title}
-            duration={movie.movie.duration}
-            movie={movie.movie}
-          />
+          <MovieCard key={index} movie={movie} />
         ))}
       </div>
       <button className="arrow right-arrow" onClick={scrollRight}>

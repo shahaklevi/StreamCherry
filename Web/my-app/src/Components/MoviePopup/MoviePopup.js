@@ -9,7 +9,7 @@ const MoviePopup = ({ movie, onClose }) => {
     const fetchCategoryNames = async () => {
       try {
         const categoryPromises = movie.categories.map(async (categoryId) => {
-          const response = await fetch(`http://localhost:3000/acategories/${categoryId}`);
+          const response = await fetch(`http://localhost:3000/api/categories/${categoryId}`);
           if (!response.ok) {
             throw new Error(`Failed to fetch category with ID: ${categoryId}`);
           }
@@ -62,7 +62,7 @@ const MoviePopup = ({ movie, onClose }) => {
             <div className="popup-cast">
               <p>
                 <span className="cast-title">Cast: </span>
-                {movie.cast.map((actor, index) => (
+                {movie.cast.map((actor, index) => (                  
                   <span key={index} className="actor-name">
                     {actor}
                     {index < movie.cast.length - 1 && ", "}
@@ -83,11 +83,6 @@ const MoviePopup = ({ movie, onClose }) => {
             </div>
           </div>
         </div>
-          {/* Additional Movies Section
-        <div className="popup-additional-movies">
-          <h3>More like this</h3>
-          <SmallMovieInfo movies={additionalMovies} />
-        </div> */}
       </div>
     </div>,
     document.getElementById("popup-root")

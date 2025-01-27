@@ -10,9 +10,8 @@ import useCategories from "../assets/useCategories";
 import trendingMovies from "../assets/TrendingMovies";
 
 function MainPage() {
-
   const categories = useCategories();
-  const { logout, verifyToken,verifyAdminToken } = useUser();
+  const { logout, verifyToken, verifyAdminToken } = useUser();
   const navigate = useNavigate();
 
   const LogOut = () => {

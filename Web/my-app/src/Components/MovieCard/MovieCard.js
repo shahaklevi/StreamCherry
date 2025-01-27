@@ -1,17 +1,16 @@
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./MovieCard.css";
 import MoviePopup from "../MoviePopup/MoviePopup";
+import tokenVerification from "../../tokenVerification/tokenVerification";
 
-function MovieCard({
-  movie
-}) {
+function MovieCard({ movie }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const videoRef = useRef(null);
 
   // Print movie details once when the component is mounted
   useEffect(() => {
-    console.log("Movie Details:", {movie});
+    console.log("Movie Details:", { movie });
   }, []); // Runs only once on component mount
 
   const handleMouseEnter = () => {
@@ -29,9 +28,42 @@ function MovieCard({
     }
   };
 
-  const handlePlay = () => {
-    alert("Play button clicked!");
-    // Add functionality to play the video
+  const handlePlay = async () => {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      if (!token) {
+        console.error("Token not found.");
+        return;
+      }
+
+      const userData = await tokenVerification(token);
+      console.log("User Data:", userData);
+      if (!userData) {
+        console.error("User data verification failed.");
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:3000/api/movies/${movie._id}/recommend/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            userId: userData._id, // Custom header with user ID
+          },
+        }
+      );
+      console.log("Response:", response);
+      if (!response.ok) {
+        console.error("Failed to recommend movie:", response.statusText);
+        return;
+      }
+
+      const data = await response.json();
+      console.log("Recommendation successful:", data);
+    } catch (error) {
+      console.error("Error during handlePlay:", error.message);
+    }
   };
 
   const handleInfo = () => {
@@ -48,7 +80,13 @@ function MovieCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <video ref={videoRef} src={`http://localhost:3000/movieuploads/${movie.movieFile}`} className="card-video-top" muted loop />
+      <video
+        ref={videoRef}
+        src={`http://localhost:3000/movieuploads/${movie.movieFile}`}
+        className="card-video-top"
+        muted
+        loop
+      />
       <div className="card-body">
         <div className="card-text">
           <p className="movie-title"> {movie.title} </p>
@@ -63,15 +101,6 @@ function MovieCard({
       </div>
       {isPopupOpen && (
         <MoviePopup
-          // src={`http://localhost:3000/movieuploads/${movie.movieFile}`}
-          // title={movie.title}
-          // description={description}
-          // duration={duration}
-          // categories={categories}
-          // rating={rating}
-          // releaseYear={releaseYear}
-          // cast={cast}
-          // additionalMovies={additionalMovies}
           movie={movie}
           onClose={handleClosePopup}
           isOpen={isPopupOpen}
