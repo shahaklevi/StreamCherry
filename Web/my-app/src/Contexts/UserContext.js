@@ -24,26 +24,47 @@ export const UserProvider = ({ children }) => {
     const verifyToken = async () => {
         const token = localStorage.getItem("jwtToken");
         if (token) {
-            const userData = await tokenVerification(token);
-            if (userData) {
-                setCurrentUser(userData);
-                return true;
-            } else {
-                alert("Invalid token.");
-                logout(); // Logout if token is invalid
+            try {
+                const userData = await tokenVerification(token);
+                if (userData) {
+                    setCurrentUser(userData);
+                    return true;
+                } else {
+                    alert("Invalid token.");
+                    logout();
+                    return false;
+                }
+            } catch (error) {
+                console.error("Error verifying token:", error);
+                alert("An error occurred while verifying the token.");
+                logout();
                 return false;
             }
         } else {
-            logout(); // Logout if no token found
+            logout();
             return false;
         }
     };
+    
 
-    // Verify admin token and navigate if user is an admin
     const verifyAdminToken = async () => {
         const token = localStorage.getItem("jwtToken");
         if (token) {
-            const userData = await tokenVerification(token);
+            const user = await tokenVerification(token);
+            const response = await fetch(
+                `http://localhost:3000/api/users/${user._id}`, // Use template literal for dynamic URL
+                {
+                    method: "GET", // GET request to the server
+                }
+            );
+
+            if (!response.ok) {
+                alert("Failed to fetch user data.");
+                logout();
+                return false;
+            }
+
+            const userData = await response.json();
             if (userData) {
                 if (userData.manager) {
                     alert("Welcome admin!");
@@ -65,6 +86,7 @@ export const UserProvider = ({ children }) => {
             return false;
         }
     };
+
 
     return (
         <UserContext.Provider

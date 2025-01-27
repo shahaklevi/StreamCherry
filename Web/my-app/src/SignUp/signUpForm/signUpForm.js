@@ -53,7 +53,7 @@ const SignUpForm = () => {
     try {
       const response = await fetch("http://localhost:3000/api/users", {
         method: "POST",
-        body: formDataToSend, // שולח את ה-FormData לשרת
+        body: formDataToSend, 
       });
 
       const data = await response.json();
