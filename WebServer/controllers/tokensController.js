@@ -60,4 +60,4 @@ const verifyUserToken = (req, res) => {
       res.status(401).json({ error: 'Invalid token' });
     }
   };
-module.exports ={autentication,generateToken,verifyUserToken};
+module.exports ={autentication,generateToken,verifyUserToken,verifyToken};

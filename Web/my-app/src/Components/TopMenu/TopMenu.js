@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import NetflixLogo from "../NetflixLogo/NetflixLogo";
 import TopMenuButton from "../TopMenuButton/TopMenuButton";
@@ -6,7 +6,27 @@ import SearchBar from "../SearchBar/SearchBar";
 import "./TopMenu.css";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import ProfileIcon from "../ProfileIcon/ProfileIcon";
-function TopMenu({LogOutSystem,VerifyAdmin}) {
+import tokenVerification from "../../tokenVerification/tokenVerification";
+function TopMenu({ LogOutSystem, VerifyAdmin }) {
+  const [userProfilePic, setUserProfilePic] = useState("/media/squirel.jpeg"); 
+
+  useEffect(() => {
+    const fetchUserProfilePicture = async () => {
+      try {
+        const token = localStorage.getItem("jwtToken");
+        if (token) {
+            const userData = await tokenVerification(token);
+            if (userData) {
+              const pictureUrl = `http://localhost:3000/uploads/${userData.picture.split("/")[1]}`;
+              setUserProfilePic(pictureUrl);
+            }
+          }
+      } catch (error) {
+        console.error("Error fetching profile picture:", error);
+      }
+    };
+    fetchUserProfilePicture();
+  }, []);
 
 
   return (
@@ -36,10 +56,10 @@ function TopMenu({LogOutSystem,VerifyAdmin}) {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <TopMenuButton dest="Home" />
               <TopMenuButton dest="Movies" />
-              <TopMenuButton dest="admin-zone" onClick={()=>VerifyAdmin()} />
+              <TopMenuButton dest="admin-zone" onClick={() => VerifyAdmin()} />
               <TopMenuButton
-               dest="Logout" 
-                onClick={()=>LogOutSystem()}/>
+                dest="Logout"
+                onClick={() => LogOutSystem()} />
             </ul>
 
             {/* Search Bar */}
@@ -47,7 +67,7 @@ function TopMenu({LogOutSystem,VerifyAdmin}) {
 
             {/* Profile Icon */}
             <ProfileIcon
-              imagePath="/media/squirel.jpeg"
+              imagePath={userProfilePic}
               altText="User Profile"
             />
 
