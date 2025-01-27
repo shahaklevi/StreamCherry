@@ -10,6 +10,7 @@ import ThemeToggle from "../../Components/ThemeToggle/ThemeToggle";
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
     user_name: "",
+    nickName: "", // New field for nickname
     password: "",
     confirmPassword: "",
     mail: "",
@@ -55,6 +56,7 @@ const SignUpForm = () => {
 
     const formDataToSend = new FormData();
     formDataToSend.append("user_name", formData.user_name);
+    formDataToSend.append("nickName", formData.nickName); // Append nickName to the request
     formDataToSend.append("password", formData.password);
     formDataToSend.append("mail", formData.mail);
     formDataToSend.append("phone", formData.phone);
@@ -64,10 +66,12 @@ const SignUpForm = () => {
     }
 
     try {
+      alert(formData.nickName);
       const response = await fetch("http://localhost:3000/api/users", {
         method: "POST",
         body: formDataToSend,
       });
+      console.log(response);
 
       const data = await response.json();
 
@@ -97,6 +101,13 @@ const SignUpForm = () => {
             type="text"
             name="user_name"
             value={formData.user_name}
+            onChange={handleChange}
+          />
+          <FormInput
+            label="Nickname" // New field for nickname
+            type="text"
+            name="nickName"
+            value={formData.nickName}
             onChange={handleChange}
           />
           <FormInput

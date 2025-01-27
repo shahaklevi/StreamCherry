@@ -7,6 +7,7 @@ const createUser = async (req, res) => {
     try {
         const userData = {
             user_name: req.body.user_name,
+            nickName: req.body.nickName,
             password: req.body.password,
             mail: req.body.mail,
             phone: req.body.phone,

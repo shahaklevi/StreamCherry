@@ -3,6 +3,7 @@ const User = require('../models/User');
 const createUser = async (userData) => {
     const user = new User({ 
         user_name: userData.user_name,
+        nickName: userData.nickName,
         password: userData.password,
         mail: userData.mail,
         phone: userData.phone,
