@@ -2,13 +2,13 @@ import React from "react";
 import "./LoginForm.css";
 import { Link } from "react-router-dom";
 
-function LoginForm({ onSignIn, onChange, username, password }) {
+function LoginForm({ onSignIn, onChange, username, password, errorMessage }) {
   return (
     <div className="login-overlay">
       <div className="login-container">
         <div className="login-form">
           <h1 className="text-white mb-4">Sign In</h1>
-          {/* Email Input */}
+          {/* Username Input */}
           <div className="form-floating mb-3">
             <input
               type="email"
@@ -34,8 +34,14 @@ function LoginForm({ onSignIn, onChange, username, password }) {
             />
             <label htmlFor="floatingPassword">Password</label>
           </div>
-          {/* Buttons */}
-          <div className="button-container">
+          {/* Error Message */}
+          {errorMessage && (
+            <div className="alert alert-danger mt-2" role="alert">
+              {errorMessage}
+            </div>
+          )}
+          {/* Sign In Button */}
+          <div className="button-container mt-3">
             <button
               type="submit"
               className="btn btn-danger w-100 mb-3"

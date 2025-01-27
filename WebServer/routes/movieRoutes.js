@@ -6,7 +6,6 @@ const recommendationController = require("../controllers/recommendationControlle
 
 const router = express.Router();
 
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "availableMovies/"); 

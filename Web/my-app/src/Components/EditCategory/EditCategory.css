@@ -1,0 +1,72 @@
+.edit-category {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.edit-category h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ff4444; /* צבע אדום בסגנון Netflix */
+}
+
+.edit-category label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.edit-category input,
+.edit-category select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+}
+
+.edit-category input:focus,
+.edit-category select:focus {
+  border-color: #ff4444;
+  outline: none;
+}
+
+.edit-category .modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-category .modal-actions button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-category .modal-actions .btn-primary {
+  background-color: #ff4444;
+  color: white;
+}
+
+.edit-category .modal-actions .btn-primary:hover {
+  background-color: #cc0000;
+}
+
+.edit-category .modal-actions .btn-secondary {
+  background-color: #555;
+  color: white;
+}
+
+.edit-category .modal-actions .btn-secondary:hover {
+  background-color: #333;
+}

@@ -28,7 +28,7 @@ function RowSlider({ title, movies}) {
       </button>
       <div className="slider-container" ref={sliderRef}>
         {movies.map((movie, index) => (
-          <MovieCard key={index} src={movie.src} title={movie.title} duration={movie.duration} />
+          <MovieCard key={index} src={`http://localhost:3000/movieuploads${movie.movieFile}`} title={movie.title} duration={movie.duration} />
         ))}
       </div>
       <button className="arrow right-arrow" onClick={scrollRight}>

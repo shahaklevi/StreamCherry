@@ -10,6 +10,7 @@ function Login() {
     username: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,13 +44,12 @@ function Login() {
       if (response.ok) {
         setUser(data.user);
         localStorage.setItem('jwtToken', data.token);
-        alert('Login successful');
         navigate('/main');
       } else {
-        alert("Registry error: " + (data.error || "Unknown error"));
+        setErrorMessage(data.error || "Incorrect username or password"); // Update error message
       }
     } catch (error) {
-      alert("Server Error: " + error.message);
+      setErrorMessage("Server Error: " + error.message); // Handle server errors
     }
   };
 
@@ -64,6 +64,7 @@ function Login() {
           onChange={handleChange}
           username={formData.username}
           password={formData.password}
+          errorMessage={errorMessage} // Pass error message as prop
         />
       </div>
     </div>
