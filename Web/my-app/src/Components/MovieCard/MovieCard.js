@@ -2,18 +2,18 @@ import React, { useState, useRef, useEffect } from "react";
 import "./MovieCard.css";
 import MoviePopup from "../MoviePopup/MoviePopup";
 import tokenVerification from "../../tokenVerification/tokenVerification";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 function MovieCard({ movie }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const videoRef = useRef(null);
   const navigate = useNavigate();
+
   // Print movie details once when the component is mounted
   useEffect(() => {
     console.log("Movie Details:", { movie });
-  }, []); // Runs only once on component mount
+  }, [movie]);
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -52,6 +52,7 @@ function MovieCard({ movie }) {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
+            userId: userData._id,
           },
           body: JSON.stringify({ userId: userData._id }),
         }

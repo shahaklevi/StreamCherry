@@ -24,7 +24,7 @@ function App() {
             <Route path="/FillDetails" element={<SignUpForm />} />
             <Route path="/main" element={<MainPage />} />
             <Route path="/home" element={<MainPage />} />
-            <Route path="/movie" element={<MoviePage />} />
+            <Route path="/movie/:id" element={<MoviePage />} />
             <Route path="/search/:query?" element={<SearchPage />} />
             <Route path="/admin-zone" element={<AdminPage />} />
           </Routes>
