@@ -1,24 +1,28 @@
-import React from "react";
 import "./SmallMovieInfo.css";
 
-const SmallMovieInfo = ({ movies }) => {
+import React, { useEffect, useRef } from "react";
+
+function SmallMovieInfo({ movie }) {
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+
+    video.addEventListener("loadeddata", () => {
+      // Draw the first frame of the video onto the canvas
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    });
+  }, []);
+
   return (
-    <div className="movie-grid">
-      {movies.map((movie, index) => (
-        <div key={index} className="movie-card">
-          <img
-            src={movie.src}
-            alt={movie.title}
-            className="movie-image"
-            width="230"
-            height="130"
-          />
-          <h4 className="movie-title">{movie.title}</h4>
-          <p className="movie-description">{movie.description}</p>
-        </div>
-      ))}
+    <div>
+      <video ref={videoRef} src={movie.src} style={{ display: "none" }} />
+      <canvas ref={canvasRef} width="320" height="180" />
     </div>
   );
-};
+}
 
 export default SmallMovieInfo;
