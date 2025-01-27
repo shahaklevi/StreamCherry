@@ -6,9 +6,11 @@ import DeleteMovie from "../Components/DeleteMovie/DeleteMovie";
 import DeleteCategory from "../Components/DeleteCategory/DeleteCategory";
 import EditMoviePage from "../Components/EditMovie/EditMoviePage";
 import "./AdminPage.css";
+import { useTopMenu } from "../Components/TopMenu/TopMenuLogic";
 
 function AdminPage() {
   const [activeModal, setActiveModal] = useState(null); // Manage which modal is open
+  const { LogOut, isAdmin } = useTopMenu();
 
   const toggleModal = (modalName) => {
     setActiveModal((prevModal) => (prevModal === modalName ? null : modalName));
@@ -33,7 +35,7 @@ function AdminPage() {
 
   return (
     <div className="admin-page">
-      <TopMenu />
+      <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} />
       <div className="admin-page-header">
         <h1>Admin Zone</h1>
         <p>Welcome to the admin zone! Perform your actions here.</p>
@@ -54,8 +56,8 @@ function AdminPage() {
             <li onClick={() => toggleModal("addCategory")}>Add Category</li>
             <li onClick={() => toggleModal("editCategory")}>Edit Category</li>
             <li onClick={() => toggleModal("deleteCategory")}> Delete Category </li>
-           
-            
+
+
           </ul>
         )}
       </div>

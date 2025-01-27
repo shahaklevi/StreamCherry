@@ -8,22 +8,15 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useCategories from "../assets/useCategories";
 import trendingMovies from "../assets/TrendingMovies";
-
+import { useTopMenu } from "../Components/TopMenu/TopMenuLogic";
 function MainPage() {
 
   const categories = useCategories();
  
-
+  const {LogOut,isAdmin}=useTopMenu();
   const { logout, verifyToken,verifyAdminToken } = useUser();
   const navigate = useNavigate();
 
-  const LogOut = () => {
-    logout();
-    navigate("/");
-  };
-  const isAdmin = () => {
-    verifyAdminToken();
-  };
   // Perform token verification on component mount
   useEffect(() => {
     const checkToken = async () => {

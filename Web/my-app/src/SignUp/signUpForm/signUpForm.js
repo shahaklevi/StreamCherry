@@ -108,7 +108,7 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
           <FileInput label="Profile Picture" onChange={handleFileChange} />
-          <DropdownInput
+          {/* <DropdownInput
             label="Are you a Manager?"
             name="manager"
             value={formData.manager ? "yes" : "no"}
@@ -118,7 +118,7 @@ const SignUpForm = () => {
               { value: "no", label: "No" },
             ]}
             onChange={handleChange}
-          />
+          /> */}
           <button type="submit" className="submit-btn">
             Sign Up
           </button>
