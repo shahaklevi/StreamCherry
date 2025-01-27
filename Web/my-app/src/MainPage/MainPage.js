@@ -12,8 +12,6 @@ import trendingMovies from "../assets/TrendingMovies";
 function MainPage() {
 
   const categories = useCategories();
- 
-
   const { logout, verifyToken,verifyAdminToken } = useUser();
   const navigate = useNavigate();
 
@@ -55,7 +53,7 @@ function MainPage() {
               <RowSlider
                 key={category.name} // Unique key for each slider
                 title={category.name} // Display the category name as the title
-                movies={category.movies} // Pass the movies specific to the category
+                movieIds={category.movies} // Pass the movies specific to the category
               />
             )
         )}

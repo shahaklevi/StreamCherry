@@ -114,7 +114,7 @@ function AddMovie({ toggleAddMovieModal }) {
           onChange={handleChange}
         />
         <FormInput
-          label="Duration"
+          label="Duration (minutes)"
           type="number"
           name="duration"
           value={formData.duration}

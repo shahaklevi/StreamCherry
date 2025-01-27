@@ -56,7 +56,7 @@ class movieService {
 
 
     async getById(id) {
-        validator.validId(id);
+        // validator.validId(id);
         const movie = await movieRepository.getById(id);
         if (!movie) {
             throw new Error('movie not found');
