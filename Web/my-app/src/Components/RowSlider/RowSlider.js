@@ -12,12 +12,11 @@ function RowSlider({ title, movieIds }) {
 
 
       const moviePromises = movieIds.map(async (id) => {
-        console.log(id);
+
         const response = await fetch(`http://localhost:3000/api/movies/${id}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch movie with ID: ${id}`);
         }
-        console.log(response);
         return response.json();
       });
 
@@ -64,6 +63,7 @@ function RowSlider({ title, movieIds }) {
             src={`http://localhost:3000/movieuploads/${movie.movie.movieFile}`}
             title={movie.movie.title}
             duration={movie.movie.duration}
+            movie={movie.movie}
           />
         ))}
       </div>

@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import "./MoviePopup.css";
-import SmallMovieInfo from "../SmallMovieInfo/SmallMovieInfo";
 
-const MoviePopup = ({ src, title, description, releaseYear, rating, duration, categories, cast, additionalMovies, onClose }) => {
+const MoviePopup = ({ movie, onClose }) => {
+  const [categoryNames, setCategoryNames] = useState([]); // State to hold category names
+
+  useEffect(() => {
+    const fetchCategoryNames = async () => {
+      try {
+        const categoryPromises = movie.categories.map(async (categoryId) => {
+          const response = await fetch(`http://localhost:3000/acategories/${categoryId}`);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch category with ID: ${categoryId}`);
+          }
+          const category = await response.json();
+          return category.name; // Return the category name
+        });
+
+        const fetchedCategoryNames = await Promise.all(categoryPromises);
+        setCategoryNames(fetchedCategoryNames); // Update the state with the names
+      } catch (error) {
+        console.error("Error fetching category names:", error);
+      }
+    };
+
+    if (movie.categories && movie.categories.length > 0) {
+      fetchCategoryNames();
+    }
+  }, [movie.categories]);
+
   return ReactDOM.createPortal(
     <div className="popup-overlay" onClick={onClose}>
       <div className="popup-content" onClick={(e) => e.stopPropagation()}>
@@ -11,7 +36,7 @@ const MoviePopup = ({ src, title, description, releaseYear, rating, duration, ca
 
         {/* Video Section */}
         <video className="popup-video" controls>
-          <source src={src} type="video/mp4" />
+          <source src={`http://localhost:3000/movieuploads/${movie.movieFile}`} type="video/mp4" />
         </video>
 
         {/* Details Section */}
@@ -19,20 +44,16 @@ const MoviePopup = ({ src, title, description, releaseYear, rating, duration, ca
 
           {/* Left section */}
           <div className="popup-left">
-            {/* Title Section */}
             <div className="popup-header">
-              <h2>{title}</h2>
+              <h2>{movie.title}</h2>
             </div>
-            {/* Additional info */}
             <div className="popup-additional-info">
-              <p>{releaseYear}</p>
-              <p>{duration}</p>
-              <p className="rating">{rating}</p> {/* Add class to rating */}
+              <p>{movie.releaseYear}</p>
+              <p>{movie.duration}</p>
+              <p className="rating">{movie.rating}</p>
             </div>
-
-            {/* Description Section */}
             <div className="popup-description">
-              <p>{description}</p>
+              <p>{movie.description}</p>
             </div>
           </div>
 
@@ -41,10 +62,10 @@ const MoviePopup = ({ src, title, description, releaseYear, rating, duration, ca
             <div className="popup-cast">
               <p>
                 <span className="cast-title">Cast: </span>
-                {cast.map((actor, index) => (
+                {movie.cast.map((actor, index) => (
                   <span key={index} className="actor-name">
                     {actor}
-                    {index < cast.length - 1 && ", "}
+                    {index < movie.cast.length - 1 && ", "}
                   </span>
                 ))}
               </p>
@@ -52,22 +73,21 @@ const MoviePopup = ({ src, title, description, releaseYear, rating, duration, ca
             <div className="popup-categories">
               <p>
                 <span className="categories-title">Categories: </span>
-                {categories.map((category, index) => (
+                {categoryNames.map((categoryName, index) => (
                   <span key={index} className="category-name">
-                    {category}
-                    {index < categories.length - 1 && ", "}
+                    {categoryName}
+                    {index < categoryNames.length - 1 && ", "}
                   </span>
                 ))}
               </p>
             </div>
           </div>
         </div>
-
-        {/* Additional Movies Section */}
+          {/* Additional Movies Section
         <div className="popup-additional-movies">
           <h3>More like this</h3>
           <SmallMovieInfo movies={additionalMovies} />
-        </div>
+        </div> */}
       </div>
     </div>,
     document.getElementById("popup-root")

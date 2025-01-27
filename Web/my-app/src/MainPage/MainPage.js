@@ -45,7 +45,7 @@ function MainPage() {
       </div>
       {/* Main Content Section */}
       <div className="MainContent">
-        <NumericSlider title="Trending Now" movies={trendingMovies} />
+        {/* <NumericSlider title="Trending Now" movies={trendingMovies} /> */}
         {/* Loop through all categories and create a RowSlider for each */}
         {categories.map(
           (category) =>
