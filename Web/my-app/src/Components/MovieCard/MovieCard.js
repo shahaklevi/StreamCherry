@@ -2,12 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import "./MovieCard.css";
 import MoviePopup from "../MoviePopup/MoviePopup";
 import tokenVerification from "../../tokenVerification/tokenVerification";
+import { useNavigate } from 'react-router-dom';
+
 
 function MovieCard({ movie }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const videoRef = useRef(null);
-
+  const navigate = useNavigate();
   // Print movie details once when the component is mounted
   useEffect(() => {
     console.log("Movie Details:", { movie });
@@ -15,14 +17,14 @@ function MovieCard({ movie }) {
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (videoRef.current) {
+    if (videoRef.current && videoRef.current.paused && !videoRef.current.ended) {
       videoRef.current.play();
     }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    if (videoRef.current) {
+    if (videoRef.current && !videoRef.current.paused) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
@@ -49,18 +51,17 @@ function MovieCard({ movie }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            userId: userData._id, // Custom header with user ID
+            Authorization: `Bearer ${token}`,
           },
+          body: JSON.stringify({ userId: userData._id }),
         }
       );
-      console.log("Response:", response);
-      if (!response.ok) {
-        console.error("Failed to recommend movie:", response.statusText);
-        return;
-      }
 
       const data = await response.json();
       console.log("Recommendation successful:", data);
+
+      // Navigate to MoviePage with movie details
+      navigate(`/movie/${movie._id}`, { state: { movie } });
     } catch (error) {
       console.error("Error during handlePlay:", error.message);
     }
