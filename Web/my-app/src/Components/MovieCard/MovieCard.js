@@ -45,8 +45,6 @@ function MovieCard({ movie }) {
         return;
       }
 
-      console.log("User ID:", userData._id);
-
       const response = await fetch(
         `http://localhost:3000/api/movies/${movie._id}/recommend/`,
         {

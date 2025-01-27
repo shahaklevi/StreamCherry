@@ -59,6 +59,6 @@ const SmallMovieInfo = ({ movies }) => {
       ))}
     </div>
   );
-};
+}
 
 export default SmallMovieInfo;

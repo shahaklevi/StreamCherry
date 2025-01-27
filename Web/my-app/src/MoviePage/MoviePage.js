@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import MovieView from "../Components/MovieView/MovieView";
+
 const MoviePage = () => {
 
   const fetchMovieInfo = async (movieId) => {
