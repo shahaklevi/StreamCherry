@@ -5,19 +5,20 @@ import { useUser } from "../../Contexts/UserContext";
 import FormHeader from "../../Components/SignUpComponents/FormHeader";
 import FileInput from "../../Components/SignUpComponents/FileInput";
 import FormInput from "../../Components/SignUpComponents/FormInput";
-import DropdownInput from "../../Components/SignUpComponents/DropdownInput";
 import ThemeToggle from "../../Components/ThemeToggle/ThemeToggle";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
     user_name: "",
     password: "",
+    confirmPassword: "",
     mail: "",
     phone: "",
     picture: null,
     manager: false,
   });
 
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
   const { setUser } = useUser();
   const navigate = useNavigate();
 
@@ -40,6 +41,18 @@ const SignUpForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if confirmPassword is empty
+    if (!formData.confirmPassword) {
+      setErrorMessage("Confirm Password cannot be empty");
+      return;
+    }
+
+    // Check if password and confirmPassword match
+    if (formData.password !== formData.confirmPassword) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+
     const formDataToSend = new FormData();
     formDataToSend.append("user_name", formData.user_name);
     formDataToSend.append("password", formData.password);
@@ -53,7 +66,7 @@ const SignUpForm = () => {
     try {
       const response = await fetch("http://localhost:3000/api/users", {
         method: "POST",
-        body: formDataToSend, 
+        body: formDataToSend,
       });
 
       const data = await response.json();
@@ -94,6 +107,14 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
           <FormInput
+            label="Confirm Password"
+            type="password"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
+          {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
+          <FormInput
             label="Email"
             type="email"
             name="mail"
@@ -108,17 +129,6 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
           <FileInput label="Profile Picture" onChange={handleFileChange} />
-          {/* <DropdownInput
-            label="Are you a Manager?"
-            name="manager"
-            value={formData.manager ? "yes" : "no"}
-            options={[
-              { value: "", label: "Select an option" },
-              { value: "yes", label: "Yes" },
-              { value: "no", label: "No" },
-            ]}
-            onChange={handleChange}
-          /> */}
           <button type="submit" className="submit-btn">
             Sign Up
           </button>
