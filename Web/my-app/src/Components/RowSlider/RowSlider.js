@@ -13,11 +13,11 @@ function RowSlider({ title, movieIds }) {
 
       const moviePromises = movieIds.map(async (id) => {
         console.log(id);
-        const response = await fetch(`http://localhost:3000/movies/${id}`);
-        console.log(response);
+        const response = await fetch(`http://localhost:3000/api/movies/${id}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch movie with ID: ${id}`);
         }
+        console.log(response);
         return response.json();
       });
 
@@ -47,7 +47,7 @@ function RowSlider({ title, movieIds }) {
       sliderRef.current.scrollBy({ left: 320, behavior: "smooth" }); // Adjust scroll distance based on card width
     }
   };
-
+  
   return (
     <div className="row-slider">
       {/* Title */}
@@ -61,9 +61,9 @@ function RowSlider({ title, movieIds }) {
         {movies.map((movie, index) => (
           <MovieCard
             key={index}
-            src={`http://localhost:3000/movieuploads/${movie.movieFile}`}
-            title={movie.title}
-            duration={movie.duration}
+            src={`http://localhost:3000/movieuploads/${movie.movie.movieFile}`}
+            title={movie.movie.title}
+            duration={movie.movie.duration}
           />
         ))}
       </div>

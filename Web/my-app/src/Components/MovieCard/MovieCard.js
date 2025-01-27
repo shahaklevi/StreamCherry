@@ -3,6 +3,7 @@ import './MovieCard.css';
 import MoviePopup from "../MoviePopup/MoviePopup";
 
 function MovieCard({ src, title, description,releaseYear,rating ,duration, categories, cast, additionalMovies }) {
+  
   const [isHovered, setIsHovered] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const videoRef = useRef(null);
