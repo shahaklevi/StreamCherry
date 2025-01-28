@@ -32,7 +32,7 @@ function MoviesPage() {
 
     checkToken();
   }, [verifyToken, logout, navigate]); // Dependencies for useEffect
-
+  const promotedCategories = categories.filter((category) => category.promoted);
   return (
     <div className="MoviesPage">
       {/* Header */}
@@ -42,8 +42,8 @@ function MoviesPage() {
       </div>
       {/* Main Content Section */}
       <div className="MainContent">
-        {/* Loop through all categories and create a RowSlider for each */}
-        {categories.map(
+        {/* Loop through all promoted categories and create a RowSlider for each */}
+        {promotedCategories.map(
           (category) =>
             category.movies.length > 0 && (
               <RowSlider
