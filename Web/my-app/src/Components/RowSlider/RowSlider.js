@@ -57,16 +57,17 @@ function RowSlider({ title, movieIds }) {
 
       {/* Arrow Controls */}
       <button className="arrow left-arrow" onClick={scrollLeft}>
-        &lt;
-      </button>
+  <img src="/media/Buttons/leftIndicator.svg" alt="left" />
+</button>
       <div className="slider-container" ref={sliderRef}>
         {movies.map((movie, index) => (
           <MovieCard key={index} movie={movie} />
         ))}
-      </div>
-      <button className="arrow right-arrow" onClick={scrollRight}>
-        &gt;
-      </button>
+
+<button className="arrow right-arrow" onClick={scrollRight}>
+  <img src="/media/Buttons/rightIndicator.svg" alt="right" />
+</button>
+    </div>
     </div>
   );
 }
