@@ -14,6 +14,8 @@ import tokenVerification from "../tokenVerification/tokenVerification";
 function MainPage() {
   const categories = useCategories();
   const [recommendations, setRecommendations] = useState([]); // State to store recommended movies
+  const [randomMovieId, setRandomMovieId] = useState(null);
+
   const {LogOut,isAdmin}=useTopMenu();
   const { logout, verifyToken,verifyAdminToken } = useUser();
   const navigate = useNavigate();
@@ -76,12 +78,26 @@ useEffect(() => {
   };
   fetchRecommendations();
 }, []);
+useEffect(() => {
+  if (recommendations.movies) {
+    const allMovieIds = Object.values(recommendations.movies)
+      .flat()
+      .map(movie => movie._id);
+      
+    const newRandomId = allMovieIds.length > 0 
+      ? allMovieIds[Math.floor(Math.random() * allMovieIds.length)]
+      : null;
+      
+    setRandomMovieId(newRandomId);
+  }
+}, [recommendations]);
+
   return (
     <div className="MainPage">
       {/* Video Background Section */}
       <div className="VideoBackground">
-        <VideoItem />
-      </div>
+      <VideoItem movieId={randomMovieId} />
+    </div>
       <div className="overlay">
         <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} />
       </div>
@@ -89,16 +105,17 @@ useEffect(() => {
       <div className="MainContent">
         {/* <NumericSlider title="Trending Now" movies={trendingMovies} /> */}
         {/* Loop through all categories and create a RowSlider for each */}
-        {categories.map(
-          (category) =>
-            category.movies.length > 0 && (
-              <RowSlider
-                key={category.name} // Unique key for each slider
-                title={category.name} // Display the category name as the title
-                movieIds={category.movies} // Pass the movies specific to the category
-              />
-            )
-        )}
+        {Object.entries(recommendations.movies || {}).map(([categoryName, movies]) => {
+  const movieIds = movies.map(movie => movie._id);
+  
+  return movieIds.length > 0 && (
+    <RowSlider
+      key={categoryName}
+      title={categoryName}
+      movieIds={movieIds}
+    />
+  );
+})}
       </div>
     </div>
   );
