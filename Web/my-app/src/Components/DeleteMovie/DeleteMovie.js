@@ -41,13 +41,17 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
     }
   };
 
-  const handleDelete = async (movieId) => {
+  const handleDelete = async (movieId,movieFile) => {
     try {
       // שלח בקשת DELETE לשרת
       const deleteResponse = await fetch(
         `http://localhost:3000/api/movies/${movieId}`,
         {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ movieFile }), // שליחת movieFile ב-body
         }
       );
 
@@ -91,7 +95,7 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
                 <span>{movie.title}</span>
                 <button
                   className="btn btn-danger"
-                  onClick={() => handleDelete(movie._id)}
+                  onClick={() => handleDelete(movie._id,movie.movieFile)}
                 >
                   Delete
                 </button>

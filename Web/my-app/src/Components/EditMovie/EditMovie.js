@@ -96,6 +96,7 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
       categories: formData.categories,
       cast: formData.cast,
       director: formData.director,
+      movieFile: formData.movieFile,
     };
 
     try {
