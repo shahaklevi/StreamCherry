@@ -8,7 +8,6 @@ function EditMoviePage({ toggleEditMovieModal }) {
   const [selectedMovieId, setSelectedMovieId] = useState(null); // ID של הסרט שנבחר לעריכה
   const [isEditing, setIsEditing] = useState(false); // מצב עריכה
 
-  // חיפוש סרטים לפי שם
   const handleSearch = async (e) => {
     const query = e.target.value;
     setSearchQuery(query);
@@ -19,8 +18,21 @@ function EditMoviePage({ toggleEditMovieModal }) {
     }
 
     try {
+      const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+
+      if (!token) {
+        console.error("No token available, skipping request.");
+        return;
+      }
       const response = await fetch(
-        `http://localhost:3000/api/movies/search/${query}`
+        `http://localhost:3000/api/movies/search/${query}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`, 
+            "Content-Type": "application/json",
+          },
+        }
       );
       if (response.ok) {
         const data = await response.json();

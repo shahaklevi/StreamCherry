@@ -6,9 +6,7 @@ const validator = require('../utils/validator');
 class movieController {
     async getAll(req, res) {
         try {
-            // await validator.isUserRegisterd(req);
-            // const userId = req.headers.userid; // Getting userId from headers
-
+            await validator.isValidJWT(req);
             const movies = await movieService.getAll(userId); // Passing userId to service
             res.json({ movies });
         } catch (error) {
@@ -26,7 +24,7 @@ class movieController {
 
     async getById(req, res) {
         try {
-            // await validator.isUserRegisterd(req);
+            await validator.isValidJWT(req);
             const movie = await movieService.getById(req.params.id);
             res.json(movie);
         } catch (error) {
@@ -47,7 +45,7 @@ class movieController {
 
     async create(req, res) {
         try {
-            // await validator.isUserRegisterd(req);
+            await validator.isValidJWT(req);
             await validator.validMovie(req.body);
             const movie = await movieService.create({
                 title: req.body.title,
@@ -81,7 +79,7 @@ class movieController {
 
     async update(req, res) {
         try {
-            // await validator.isUserRegisterd(req);
+            await validator.isValidJWT(req);
             await validator.validMovie(req.body);
             await movieService.update(req.params.id, req.body);
 
@@ -101,7 +99,7 @@ class movieController {
     }
     async delete(req, res) {
         try {
-            // await validator.isUserRegisterd(req);
+            await validator.isValidJWT(req);
             await movieService.delete(req.params.id);
             res.status(204).send();
         } catch (error) {
@@ -120,7 +118,7 @@ class movieController {
     async search(req, res) {
         try {
             console.log('search');
-            // await validator.isUserRegisterd(req);
+            await validator.isValidJWT(req);
             const query = req.params.query;
             console.log(query); // Getting query from URL
             const movies = await movieService.search(query);

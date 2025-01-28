@@ -5,21 +5,35 @@ import SmallMovieInfo from "../SmallMovieInfo/SmallMovieInfo";
 import tokenVerification from "../../tokenVerification/tokenVerification";
 
 const MoviePopup = ({ movie, onClose }) => {
-  
+
   const [categoryNames, setCategoryNames] = useState([]); // State to hold category names
   const [recommendedMovies, setRecommendedMovies] = useState([]); // State to store recommended movies
   useEffect(() => {
-    document.body.classList.add("no-scroll"); 
+    document.body.classList.add("no-scroll");
 
     return () => {
-      document.body.classList.remove("no-scroll"); 
+      document.body.classList.remove("no-scroll");
     };
   }, []);
   useEffect(() => {
     const fetchCategoryNames = async () => {
       try {
         const categoryPromises = movie.categories.map(async (categoryId) => {
-          const response = await fetch(`http://localhost:3000/api/categories/${categoryId}`);
+          const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+          if (!token) {
+            console.error("No token available, skipping request.");
+            return;
+          }
+          const response = await fetch(
+            `http://localhost:3000/api/categories/${categoryId}`,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`, 
+                "Content-Type": "application/json",
+              },
+            }
+          );
           if (!response.ok) {
             throw new Error(`Failed to fetch category with ID: ${categoryId}`);
           }
@@ -57,12 +71,13 @@ const MoviePopup = ({ movie, onClose }) => {
         }
 
         console.log("User ID:", userData._id);
-
+        
         const response = await fetch(
           `http://localhost:3000/api/movies/${movie._id}/recommend/`,
           {
             method: "GET",
             headers: {
+              Authorization: `Bearer ${token}`, 
               "Content-Type": "application/json",
               userId: userData._id,
             },
@@ -87,7 +102,7 @@ const MoviePopup = ({ movie, onClose }) => {
   }, [movie._id]);
 
   return ReactDOM.createPortal(
-    
+
     <div className="popup-overlay" onClick={onClose}>
       <div className="popup-content" onClick={(e) => e.stopPropagation()}>
         <button className="close-btn" onClick={onClose}>X</button>
@@ -120,7 +135,7 @@ const MoviePopup = ({ movie, onClose }) => {
             <div className="popup-cast">
               <p>
                 <span className="cast-title">Cast: </span>
-                {movie.cast.map((actor, index) => (                  
+                {movie.cast.map((actor, index) => (
                   <span key={index} className="actor-name">
                     {actor}
                     {index < movie.cast.length - 1 && ", "}
@@ -145,7 +160,7 @@ const MoviePopup = ({ movie, onClose }) => {
         <div className="popup-additional-movies">
           <h3>More like this</h3>
           <SmallMovieInfo movies={recommendedMovies} />
-        </div> 
+        </div>
       </div>
     </div>,
     document.getElementById("popup-root")

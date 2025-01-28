@@ -21,8 +21,20 @@ function SearchPage() {
       setError(""); // Clear previous errors
 
       try {
+        const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+        if (!token) {
+          console.error("No token available, skipping request.");
+          return;
+        }
         const response = await fetch(
-          `http://localhost:3000/api/movies/search/${query}`
+          `http://localhost:3000/api/movies/search/${query}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`, 
+              "Content-Type": "application/json",
+            },
+          }
         );
 
         // Check if the response is successful

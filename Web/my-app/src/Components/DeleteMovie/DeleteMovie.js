@@ -22,8 +22,20 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
     }
 
     try {
+      const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+      if (!token) {
+        console.error("No token available, skipping request.");
+        return;
+      }
       const response = await fetch(
-        `http://localhost:3000/api/movies/search/${query}`
+        `http://localhost:3000/api/movies/search/${query}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
       );
       if (response.ok) {
         const data = await response.json();
@@ -43,18 +55,25 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
 
   const handleDelete = async (movieId) => {
     try {
-      // שלח בקשת DELETE לשרת
+      const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+      if (!token) {
+        console.error("No token available, skipping request.");
+        return;
+      }
       const deleteResponse = await fetch(
         `http://localhost:3000/api/movies/${movieId}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
+
 
       if (deleteResponse.ok) {
         setMessage("Movie deleted successfully!");
 
-        // עדכון הרשימה המופעלת לאחר מחיקה
         setFilteredMovies((prevFiltered) =>
           prevFiltered.filter((movie) => movie._id !== movieId)
         );
