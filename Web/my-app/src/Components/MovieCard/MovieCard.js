@@ -10,10 +10,7 @@ function MovieCard({ movie }) {
   const videoRef = useRef(null);
   const navigate = useNavigate();
 
-  // Print movie details once when the component is mounted
-  useEffect(() => {
-    console.log("Movie Details:", { movie });
-  }, [movie]);
+
 
   const handleMouseEnter = () => {
     setIsHovered(true);
