@@ -46,6 +46,10 @@ const MovieSchema = new mongoose.Schema({
     ],
     default: [],
   },
+  img: {
+    type: String, // File path or URL to the img
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("Movie", MovieSchema);

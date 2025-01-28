@@ -71,10 +71,6 @@ function AddMovie({ toggleAddMovieModal }) {
     }
 
     try {
-      alert("Form data before sending:");
-      for (let pair of formDataObj.entries()) {
-        alert(pair[0] + ": " + pair[1]);
-      }
       const response = await fetch("http://localhost:3000/api/movies", {
         method: "POST",
         body: formDataObj,
@@ -118,7 +114,7 @@ function AddMovie({ toggleAddMovieModal }) {
           onChange={handleChange}
         />
         <FormInput
-          label="Duration"
+          label="Duration (minutes)"
           type="number"
           name="duration"
           value={formData.duration}

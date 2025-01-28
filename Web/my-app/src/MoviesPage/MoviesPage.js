@@ -1,4 +1,4 @@
-import "./MainPage.css";
+import "./MoviesPage.css";
 import VideoItem from "../Components/VideoItem/VideoItem";
 import RowSlider from "../Components/RowSlider/RowSlider";
 import NumericSlider from "../Components/NumericSlider/NumericSlider";
@@ -8,15 +8,19 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useCategories from "../assets/useCategories";
 import trendingMovies from "../assets/TrendingMovies";
-import { useTopMenu } from "../Components/TopMenu/TopMenuLogic";
-function MainPage() {
-  const categories = useCategories();
 
- 
-  const {LogOut,isAdmin}=useTopMenu();
-  const { logout, verifyToken,verifyAdminToken } = useUser();
+function MoviesPage() {
+  const categories = useCategories();
+  const { logout, verifyToken, verifyAdminToken } = useUser();
   const navigate = useNavigate();
 
+  const LogOut = () => {
+    logout();
+    navigate("/");
+  };
+  const isAdmin = () => {
+    verifyAdminToken();
+  };
   // Perform token verification on component mount
   useEffect(() => {
     const checkToken = async () => {
@@ -28,21 +32,18 @@ function MainPage() {
 
     checkToken();
   }, [verifyToken, logout, navigate]); // Dependencies for useEffect
-
+  const promotedCategories = categories.filter((category) => category.promoted);
   return (
-    <div className="MainPage">
-      {/* Video Background Section */}
-      <div className="VideoBackground">
-        <VideoItem />
-      </div>
+    <div className="MoviesPage">
+      {/* Header */}
+      <div className="header"> Movies</div>
       <div className="overlay">
         <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} />
       </div>
       {/* Main Content Section */}
       <div className="MainContent">
-        {/* <NumericSlider title="Trending Now" movies={trendingMovies} /> */}
-        {/* Loop through all categories and create a RowSlider for each */}
-        {categories.map(
+        {/* Loop through all promoted categories and create a RowSlider for each */}
+        {promotedCategories.map(
           (category) =>
             category.movies.length > 0 && (
               <RowSlider
@@ -57,4 +58,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default MoviesPage;

@@ -4,6 +4,7 @@ import AdminPage from "./AdminPage/AdminPage";
 import SignUpMessage from "./SignUp/SignUpMessage/SignUpMessage";
 import HomePage from "./HomePage/HomePage";
 import SignUpForm from "./SignUp/signUpForm/signUpForm";
+import MoviesPage from "./MoviesPage/MoviesPage";
 import MoviePage from "./MoviePage/MoviePage";
 import { UserProvider } from "./Contexts/UserContext";
 import SearchPage from "./SearchPage/SearchPage";
@@ -11,6 +12,7 @@ import { TopMenuProvider } from "./Components/TopMenu/TopMenuLogic";
 import "./App.css";
 import "./styles/styles.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import TopMenu from "./Components/TopMenu/TopMenu";
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
               <Route path="/home" element={<MainPage />} />
               <Route path="/SignUp" element={<SignUpMessage />} />
               <Route path="/FillDetails" element={<SignUpForm />} />
+              <Route path="/movies" element={<MoviesPage />} />
               <Route path="/movie" element={<MoviePage />} />
               <Route path="/search/:query?" element={<SearchPage />} />
               <Route path="/admin-zone" element={<AdminPage />} />

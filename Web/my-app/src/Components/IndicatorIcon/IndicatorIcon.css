@@ -1,0 +1,32 @@
+/* בסיס הכפתור */
+.indicator-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px; /* רוחב הכפתור */
+    height: 60px; /* גובה הכפתור */
+    background-color: rgba(128, 128, 128, 0.5); /* רקע אפור שקוף */
+    border: none; /* ללא גבול */
+    border-radius: 10px; /* פינות מעוגלות */
+    cursor: pointer; /* סמן לחיצה */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* צל קל */
+  }
+  
+  /* אפקטי אינטראקציה */
+  .indicator-button:hover {
+    background-color: rgba(143, 142, 142, 0.7) !important; /* צבע כהה יותר במעבר עכבר */
+  }
+  
+  .indicator-button:active {
+    transform: scale(0.95); /* הקטנה בלחיצה */
+  }
+  
+  /* עיצוב התמונה */
+  .indicator-button img {
+    max-width: 80%; /* התאמת התמונה לגודל הכפתור */
+    max-height: 80%; /* התאמת התמונה לגובה הכפתור */
+    display: block;
+  }
+  

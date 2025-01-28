@@ -5,6 +5,7 @@ import AddCategory from "../Components/AddCategory/AddCategory";
 import DeleteMovie from "../Components/DeleteMovie/DeleteMovie";
 import DeleteCategory from "../Components/DeleteCategory/DeleteCategory";
 import EditMoviePage from "../Components/EditMovie/EditMoviePage";
+import EditCategoryPage from "../Components/EditCategory/EditCategoryPage";
 import "./AdminPage.css";
 import { useTopMenu } from "../Components/TopMenu/TopMenuLogic";
 
@@ -55,7 +56,11 @@ function AdminPage() {
             <li onClick={() => toggleModal("deleteMovie")}>Delete Movie</li>
             <li onClick={() => toggleModal("addCategory")}>Add Category</li>
             <li onClick={() => toggleModal("editCategory")}>Edit Category</li>
-            <li onClick={() => toggleModal("deleteCategory")}> Delete Category </li>
+
+            <li onClick={() => toggleModal("deleteCategory")}>
+              {" "}
+              Delete Category{" "}
+            </li>
 
 
           </ul>
@@ -105,6 +110,14 @@ function AdminPage() {
         <div className="modal-overlay">
           <EditMoviePage
             toggleEditMovieModal={() => toggleModal("editMovie")}
+          />
+        </div>
+      )}
+      {/* Edit Category Modal */}
+      {activeModal === "editCategory" && (
+        <div className="modal-overlay">
+          <EditCategoryPage
+            toggleEditCategoryModal={() => toggleModal("editCategory")}
           />
         </div>
       )}

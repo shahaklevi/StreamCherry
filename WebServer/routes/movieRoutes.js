@@ -6,33 +6,38 @@ const recommendationController = require("../controllers/recommendationControlle
 
 const router = express.Router();
 
-
+// הגדרת Multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "availableMovies/"); 
+    cb(null, "availableMovies/"); // תיקיית יעד
   },
   filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`); 
+    const sanitizedFilename = `${Date.now()}-${file.originalname.replace(
+      /\s+/g,
+      "-"
+    )}`; // ניקוי רווחים
+    cb(null, sanitizedFilename); // שם קובץ בלבד
   },
 });
 
 const upload = multer({ storage });
 
-router.get("/search/:query", movieController.search);
-
-router.get("/", movieController.getAll);
-router.get("/:id", movieController.getById);
-
-
+// Route להעלאת סרטים
 router.post(
   "/",
-  upload.single("movieFile"), 
+  upload.single("movieFile"),
   (req, res, next) => {
-    req.body.movieFile = req.file ? req.file.path : null; 
+    req.body.movieFile = req.file ? req.file.filename : null; // שם קובץ בלבד
     next();
   },
   movieController.create
 );
+
+
+router.get("/search/:query", movieController.search);
+
+router.get("/", movieController.getAll);
+router.get("/:id", movieController.getById);
 
 router.put("/:id", movieController.update);
 router.delete("/:id", movieController.delete);
