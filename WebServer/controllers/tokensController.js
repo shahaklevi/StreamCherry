@@ -48,17 +48,25 @@ const verifyToken = (token) => {
   
 // Controller method to handle token verification
 const verifyUserToken = (req, res) => {
-    const token = req.body.token;
-    
-    if (typeof token !== 'string') {
-      return res.status(400).json({ error: 'Invalid token format' });
-    }
-  
-    try {
-      const userData = verifyToken(token);
-      res.json(userData);
-    } catch (error) {
-      res.status(401).json({ error: 'Invalid token' });
-    }
-  };
-module.exports ={autentication,generateToken,verifyUserToken};
+  const token = req.body.token; // Extract the token from the request body
+
+  if (typeof token !== 'string') {
+    return res.status(400).json({ error: 'Invalid token format' }); // Validate token format
+  }
+
+  try {
+    // Decode and verify the existing token
+    const userData = verifyToken(token);
+
+    // Generate a new token based on the decoded user data
+    const newToken = generateToken(userData);
+
+    // Send the user data and the new token back to the client
+    res.json({ user: userData, token: newToken });
+  } catch (error) {
+    console.error("Error verifying token:", error); // Log the error for debugging
+    res.status(401).json({ error: 'Invalid token' }); // Send a 401 Unauthorized response
+  }
+};
+
+module.exports ={autentication,generateToken,verifyUserToken,verifyToken};

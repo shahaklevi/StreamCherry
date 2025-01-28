@@ -7,7 +7,6 @@ const users = require('./routes/userRoutes');
 const tokens = require('./routes/tokensRoutes');
 const path = require("path");
 
-
 const categories = require('./routes/categoryRoutes');
 
 require('custom-env').env(process.env.NODE_ENV || 'local', './config');
@@ -27,6 +26,7 @@ app.use('/api/categories', categories);
 app.use('/api/users', users);
 app.use('/api/tokens', tokens);
 app.use("/movieuploads", express.static(path.join(__dirname, "availableMovies")));
+app.use("/uploads", express.static(path.join(__dirname, "uploadsProfilePicture")));
 
 
 app.listen(process.env.PORT, () => {

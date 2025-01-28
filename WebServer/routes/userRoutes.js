@@ -20,14 +20,16 @@ const upload = multer({ storage });
 
 router.post(
   "/",
-  upload.single("picture"), // Middleware לטיפול בקובץ התמונה
+  upload.single("picture"), 
   (req, res, next) => {
-    req.body.picture = req.file ? req.file.path : null; // שמירת נתיב התמונה ב-body
+    req.body.picture = req.file ? req.file.path : null; 
     next();
   },
   userController.createUser
 );
 
 router.get("/:id", userController.getUser);
+
+
 
 module.exports = router;

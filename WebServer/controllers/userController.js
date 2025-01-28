@@ -1,9 +1,13 @@
 const userService = require('../services/userService');
+const jwt = require("jsonwebtoken");
+const tokensController = require("./tokensController");
+
 
 const createUser = async (req, res) => {
     try {
         const userData = {
             user_name: req.body.user_name,
+            nickName: req.body.nickName,
             password: req.body.password,
             mail: req.body.mail,
             phone: req.body.phone,
@@ -12,10 +16,7 @@ const createUser = async (req, res) => {
         };
         const { user, token } = await userService.createUser(userData);
         res.status(201).json({ user, token });
-        // const image= req.file ? req.file.path: null;
-        // const {user,token} = await userService.createUser(req.body.user_name,req.body.password,req.body.mail,req.body.phone,
-        //     image,req.body.watchList, req.body.manager);
-        // res.status(201).location(`/api/users/${user._id}`).json({user,token}).send();
+
     } catch (error) {
         if (error.message.includes('E11000 duplicate key error collection: netflix_db.users index: user_name')) {
             res.status(400).json({ error: 'The user name is already in use' });
@@ -77,4 +78,7 @@ const updateUserWatchlist = async (req, res) => {
         }
     }
 };
+
+
+
 module.exports = { createUser, getUser, updateUserWatchlist }

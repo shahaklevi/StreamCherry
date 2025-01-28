@@ -8,7 +8,7 @@ const { generateToken } = require('../controllers/tokensController');
 
 
 const createUser = async (userData) => {
-    const requiredFields = ['user_name', 'password', 'mail', 'phone'];
+    const requiredFields = ['user_name','nickName', 'password', 'mail', 'phone'];
     const missingFields = requiredFields.filter(field => !userData[field]);
     if (missingFields.length > 0) {
     throw new Error(`Validation Error: Missing fields - ${missingFields.join(", ")}`);
@@ -53,6 +53,7 @@ const createUser = async (userData) => {
         }
         const userData = {
           user_name: user.user_name,
+          nickName: user.nickName,
           mail: user.mail,
           phone: user.phone,
           picture: user.picture,

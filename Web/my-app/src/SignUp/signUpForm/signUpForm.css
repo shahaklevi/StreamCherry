@@ -8,7 +8,14 @@
   margin-top: 80px;
   margin-bottom: 50px;
 }
-
+/* Style for error messages */
+.error-message {
+  color: red; /* Highlight in red */
+  font-size: 14px; /* Slightly smaller font */
+  margin-top: 5px; /* Space above */
+  text-align: left; /* Align to the left */
+  font-weight: bold; /* Make it bold */
+}
 .signup-page .btn-signin {
   position: absolute;
   top: 20px;
