@@ -1,0 +1,37 @@
+.handle {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* גודל הרקע */
+    height: 40px; /* גובה הרקע */
+    background-color: rgba(255, 255, 255, 0.1); /* צבע רקע שקוף */
+    border-radius: 50%; /* פינות מעוגלות */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .handle:hover {
+    background-color: rgba(255, 255, 255, 0.3); /* שינוי צבע רקע במעבר עכבר */
+  }
+  
+  .handle:active {
+    background-color: rgba(255, 255, 255, 0.5); /* שינוי צבע רקע בלחיצה */
+  }
+  
+  .indicator-icon {
+    display: inline-block;
+    width: 10px; /* רוחב החץ */
+    height: 10px; /* גובה החץ */
+    border-right: 2px solid white; /* קו ימין של החץ */
+    border-top: 2px solid white; /* קו עליון של החץ */
+    transform: rotate(45deg); /* סיבוב כדי ליצור חץ */
+  }
+  
+  .icon-rightCaret {
+    transform: rotate(45deg);
+  }
+  
+  .icon-leftCaret {
+    transform: rotate(-135deg);
+  }
+  
