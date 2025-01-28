@@ -15,6 +15,7 @@ function MainPage() {
   const categories = useCategories();
   const [recommendations, setRecommendations] = useState([]); // State to store recommended movies
   const [randomMovieId, setRandomMovieId] = useState(null);
+  const [randomMovies, setRandomMovies] = useState([]);
 
   const {LogOut,isAdmin}=useTopMenu();
   const { logout, verifyToken,verifyAdminToken } = useUser();
@@ -43,13 +44,11 @@ useEffect(() => {
       }
 
       const userData = await tokenVerification(token);
-      console.log("User Data:", userData);
       if (!userData) {
         console.error("User data verification failed.");
         return;
       }
 
-      console.log("User ID:", userData._id);
 
       const response = await fetch(
         `http://localhost:3000/api/movies/`,
@@ -67,17 +66,16 @@ useEffect(() => {
       }
 
       const data = await response.json();
-      console.log("Recommendations:", data);
 
       // Update state with recommended movies
       setRecommendations(data); // Assuming the API returns an array under recommendedMovies
-      console.log("Recommended:", data);
     } catch (error) {
       console.error("Error fetching recommendations:", error.message);
     }
   };
   fetchRecommendations();
 }, []);
+
 useEffect(() => {
   if (recommendations.movies) {
     const allMovieIds = Object.values(recommendations.movies)
@@ -92,6 +90,29 @@ useEffect(() => {
   }
 }, [recommendations]);
 
+useEffect(() => {
+  if (recommendations.movies) {
+    // Get all movie IDs and flatten
+    const allMovieIds = Object.values(recommendations.movies)
+      .flat()
+      .map(movie => movie._id);
+    
+    // Shuffle array using Fisher-Yates algorithm
+    const shuffled = [...allMovieIds];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    
+    // Take first 10 unique IDs (or less if not enough)
+    const uniqueIds = [...new Set(shuffled)];
+    const selectedIds = uniqueIds.slice(0, Math.min(10, uniqueIds.length));
+    
+    setRandomMovies(selectedIds);
+    // Set first movie as background
+    setRandomMovieId(selectedIds[0]);
+  }
+}, [recommendations]);
   return (
     <div className="MainPage">
       {/* Video Background Section */}
@@ -103,7 +124,8 @@ useEffect(() => {
       </div>
       {/* Main Content Section */}
       <div className="MainContent">
-        {/* <NumericSlider title="Trending Now" movies={trendingMovies} /> */}
+        <NumericSlider title="Trending Now" movieIds={randomMovies} />
+
         {/* Loop through all categories and create a RowSlider for each */}
         {Object.entries(recommendations.movies || {}).map(([categoryName, movies]) => {
   const movieIds = movies.map(movie => movie._id);

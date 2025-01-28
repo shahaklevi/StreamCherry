@@ -20,46 +20,19 @@
     scroll-behavior: smooth; /* Smooth scrolling */
     gap: 0;
   }
-  
-  /* Arrow Buttons */
-  .arrow-numeric {
-    position: absolute;
-    top: 55%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-    color: var(--text-color); /* Dynamic text color */
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 10;
-  }
-  
-  .left-arrow-numeric {
-    left: 10px;
-  }
-  
-  .right-arrow-numeric {
-    right: 10px;
-  }
-  
-  .arrow-numeric:hover {
-    background-color: rgba(229, 9, 20, 0.8); /* Netflix red */
-  }
-  
+   
+
   /* Movie Cards */
   .slider-numeric-container .card {
     flex-shrink: 0; /* Prevent cards from shrinking */
-    width: 320px; /* Fixed width for cards */
+    width: 230px; /* Fixed width for cards */
     margin: 0; /* Ensure no margin */
     padding: 0; /* Ensure no padding */
     
   }
   .number-icon {
-    width: 150px;
-    height: 200px;
+    width: 110px;
+    height: 155px;
   }
   .item-container {
     transform: scale(0.9);
