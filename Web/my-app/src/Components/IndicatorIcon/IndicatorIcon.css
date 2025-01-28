@@ -1,37 +1,32 @@
-.handle {
-    display: inline-flex;
+/* בסיס הכפתור */
+.indicator-button {
+    position: relative;
+    display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px; /* גודל הרקע */
-    height: 40px; /* גובה הרקע */
-    background-color: rgba(255, 255, 255, 0.1); /* צבע רקע שקוף */
-    border-radius: 50%; /* פינות מעוגלות */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 160px; /* רוחב הכפתור */
+    height: 60px; /* גובה הכפתור */
+    background-color: rgba(128, 128, 128, 0.5); /* רקע אפור שקוף */
+    border: none; /* ללא גבול */
+    border-radius: 10px; /* פינות מעוגלות */
+    cursor: pointer; /* סמן לחיצה */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* צל קל */
   }
   
-  .handle:hover {
-    background-color: rgba(255, 255, 255, 0.3); /* שינוי צבע רקע במעבר עכבר */
+  /* אפקטי אינטראקציה */
+  .indicator-button:hover {
+    background-color: rgba(143, 142, 142, 0.7) !important; /* צבע כהה יותר במעבר עכבר */
   }
   
-  .handle:active {
-    background-color: rgba(255, 255, 255, 0.5); /* שינוי צבע רקע בלחיצה */
+  .indicator-button:active {
+    transform: scale(0.95); /* הקטנה בלחיצה */
   }
   
-  .indicator-icon {
-    display: inline-block;
-    width: 10px; /* רוחב החץ */
-    height: 10px; /* גובה החץ */
-    border-right: 2px solid white; /* קו ימין של החץ */
-    border-top: 2px solid white; /* קו עליון של החץ */
-    transform: rotate(45deg); /* סיבוב כדי ליצור חץ */
-  }
-  
-  .icon-rightCaret {
-    transform: rotate(45deg);
-  }
-  
-  .icon-leftCaret {
-    transform: rotate(-135deg);
+  /* עיצוב התמונה */
+  .indicator-button img {
+    max-width: 80%; /* התאמת התמונה לגודל הכפתור */
+    max-height: 80%; /* התאמת התמונה לגובה הכפתור */
+    display: block;
   }
   
