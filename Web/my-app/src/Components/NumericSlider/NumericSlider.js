@@ -3,8 +3,6 @@ import MovieCard from "../MovieCard/MovieCard";
 import "./NumericSlider.css";
 import StaticMovieCard from "../StaticMovieCard/StaticMovieCard"; 
 function NumericSlider({ title,movieIds}) {
-  console.log(movieIds);
-
   const sliderRef = useRef(null);
   const [movies, setMovies] = useState([]);
   // Function to fetch movie details by ID
