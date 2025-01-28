@@ -1,10 +1,10 @@
 .numeric-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--text-color);
-    margin: 20px 0;
-    padding-left: 20px;
-    text-align: left;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-color);
+  margin: 20px 0;
+  padding-left: 20px;
+  text-align: left;
   }
   
   /* numeric Slider Container */
@@ -16,30 +16,46 @@
   /* Slider Container */
   .slider-numeric-container {
     display: flex;
+    gap: 0px !important; /* Space between cards */
     overflow: hidden; /* Hide overflowing content */
     scroll-behavior: smooth; /* Smooth scrolling */
-    gap: 0;
+    padding: 20px 0;
+    margin-left: 60px;
+    margin-right: 60px;
   }
    
 
   /* Movie Cards */
   .slider-numeric-container .card {
     flex-shrink: 0; /* Prevent cards from shrinking */
-    width: 230px; /* Fixed width for cards */
-    margin: 0; /* Ensure no margin */
-    padding: 0; /* Ensure no padding */
-    
+    width: 200px; /* Fixed width for cards */
+    height: 300px;    
   }
   .number-icon {
-    width: 110px;
-    height: 155px;
+    width: 150px;
+    height: 200px;
+    margin-bottom: -9px;
   }
-  .item-container {
-    transform: scale(0.9);
+  .numeric-item-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 0px;
     
   }
+  /* Arrow Buttons */
+.numeric-arrow {
+    position: absolute;
+    top: 60%;
+    width : 45px;
+    height: 180px;
+    transform: translateY(-50%);
+    background-color: rgba(244, 239, 239, 0.142); /* Semi-transparent black */
+    color:  var(--text-color);
+    border: none;
+    z-index: 10;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  

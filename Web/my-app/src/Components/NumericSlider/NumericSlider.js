@@ -50,12 +50,12 @@ function NumericSlider({ title,movieIds}) {
       <h2 className="row-title">{title}</h2>
 
       {/* Arrow Controls */}
-      <button className="arrow left-arrow" onClick={scrollLeft}>
+      <button className="numeric-arrow left-arrow" onClick={scrollLeft}>
   <img src="/media/Buttons/leftIndicator.svg" alt="left" />
 </button>
 <div className="slider-numeric-container" ref={sliderRef}>
   {movies.map((movie, index) => (
-    <div className="item-container" key={index}>
+    <div className="numeric-item-container" key={index}>
       <img 
         src={`/media/Numbers/${index + 1}.png`} 
         className="number-icon" 
@@ -65,7 +65,7 @@ function NumericSlider({ title,movieIds}) {
     </div>
   ))}
 </div>
-      <button className="arrow right-arrow" onClick={scrollRight}>
+      <button className="numeric-arrow right-arrow" onClick={scrollRight}>
   <img src="/media/Buttons/rightIndicator.svg" alt="right" />
 </button>
     </div>

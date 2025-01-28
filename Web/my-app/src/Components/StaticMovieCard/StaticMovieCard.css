@@ -1,15 +1,15 @@
 .static-movie-card {
     position: relative;
-    width: 220px;
-    height: 155px;
+    width: 200px;
+    height: 200px;
     transition: transform 0.3s ease;
 }
 
 .static-card-image {
-    width: 110px;
-    height: 155px;
+    width: 180px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 4px;
+    margin-left: -40px;
 }
 
 .static-movie-card:hover {
