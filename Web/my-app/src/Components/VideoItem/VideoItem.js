@@ -3,11 +3,14 @@ import "./VideoItem.css";
 import PlayButton from '../PlayButton/PlayButton';
 import InfoButton from '../InfoButton/InfoButton';
 import MoviePopup from '../MoviePopup/MoviePopup';
+import tokenVerification from "../../tokenVerification/tokenVerification";
+import { useNavigate } from "react-router-dom";
+
 function VideoItem({movieId}){
   const [movie, setMovie] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const videoRef = useRef(null);
-  console.log(movieId); 
+  const navigate = useNavigate();
   const fetchSingleMovie = async (movieId) => {
     try {
       const response = await fetch(`http://localhost:3000/api/movies/${movieId}`);
@@ -31,8 +34,42 @@ function VideoItem({movieId}){
     loadMovie();
   }, [movieId]);
   
-  const handlePlay = () => {
-    console.log('Play clicked', movie);
+  const handlePlay = async () => {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      if (!token) {
+        console.error("Token not found.");
+        return;
+      }
+
+      const userData = await tokenVerification(token);
+      console.log("User Data:", userData);
+      if (!userData) {
+        console.error("User data verification failed.");
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:3000/api/movies/${movie._id}/recommend/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            userId: userData._id,
+          },
+          body: JSON.stringify({ userId: userData._id }),
+        }
+      );
+
+      const data = await response.json();
+      console.log("Recommendation successful:", data);
+
+      // Navigate to MoviePage with movie details
+      navigate(`/movie/${movie._id}`, { state: { movie } });
+    } catch (error) {
+      console.error("Error during handlePlay:", error.message);
+    }
   };
 
   const handleInfo = () => {
