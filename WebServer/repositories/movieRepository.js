@@ -38,6 +38,7 @@ class movieRepository {
             movieFile: movieData.movieFile,
             createdAt: movieData.createdAt || Date.now(),
             watchedBy: [] ,// Explicitly set to an empty array
+            img: movieData.img
         });
     
         return await movie.save();
