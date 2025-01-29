@@ -109,7 +109,7 @@ const MoviePopup = ({ movie, onClose }) => {
 
         {/* Video Section */}
         <video className="popup-video" controls>
-          <source src={`http://localhost:3000/movieuploads/${movie.movieFile}`} type="video/mp4" />
+          <source src={`http://localhost:3000/${movie.movieFile}`} type="video/mp4" />
         </video>
 
         {/* Details Section */}

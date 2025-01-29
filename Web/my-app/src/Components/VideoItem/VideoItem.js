@@ -1,19 +1,33 @@
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./VideoItem.css";
-import PlayButton from '../PlayButton/PlayButton';
-import InfoButton from '../InfoButton/InfoButton';
-import MoviePopup from '../MoviePopup/MoviePopup';
+import PlayButton from "../PlayButton/PlayButton";
+import InfoButton from "../InfoButton/InfoButton";
+import MoviePopup from "../MoviePopup/MoviePopup";
 import tokenVerification from "../../tokenVerification/tokenVerification";
 import { useNavigate } from "react-router-dom";
 
-function VideoItem({movieId}){
+function VideoItem({ movieId }) {
   const [movie, setMovie] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const videoRef = useRef(null);
   const navigate = useNavigate();
   const fetchSingleMovie = async (movieId) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/movies/${movieId}`);
+      const token = localStorage.getItem("jwtToken");
+      if (!token) {
+        console.error("Token not found.");
+        return;
+      }
+      const response = await fetch(
+        `http://localhost:3000/api/movies/${movieId}`,
+
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (!response.ok) {
         throw new Error(`Failed to fetch movie with ID: ${movieId}`);
       }
@@ -33,7 +47,7 @@ function VideoItem({movieId}){
     };
     loadMovie();
   }, [movieId]);
-  
+
   const handlePlay = async () => {
     try {
       const token = localStorage.getItem("jwtToken");
@@ -81,16 +95,13 @@ function VideoItem({movieId}){
   };
 
   if (!movie) return null;
-     return (
+  return (
     <div className="Video-item">
-      <video 
-        ref={videoRef}
-        autoPlay 
-        muted 
-        loop 
-        className="video"
-      >
-        <source src={`http://localhost:3000/movieuploads/${movie.movieFile}`} type="video/mp4" />
+      <video ref={videoRef} autoPlay muted loop className="video">
+        <source
+          src={`http://localhost:3000/${movie.movieFile}`}
+          type="video/mp4"
+        />
       </video>
 
       <div className="video-item-content">

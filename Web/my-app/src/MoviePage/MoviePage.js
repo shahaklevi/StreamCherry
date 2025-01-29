@@ -36,7 +36,7 @@ const MoviePage = () => {
     <div>
       {movie ? (
         <MovieView
-          videoSrc={`http://localhost:3000/movieuploads/${movie.movieFile}`}
+          videoSrc={`http://localhost:3000/${movie.movieFile}`}
           movieTitle={movie.title}
         />
       ) : (
