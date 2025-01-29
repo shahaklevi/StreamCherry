@@ -75,14 +75,14 @@ class movieController {
       // Move uploaded files to their final destinations
       if (tempFiles.movieImage) {
         const ext = path.extname(tempFiles.movieImage);
-        const finalPath = uploads/movieImages/${movie._id}${ext};
+        const finalPath = `uploads/movieImages/${movie._id}${ext}`;
         fs.copyFileSync(tempFiles.movieImage, finalPath);
         fs.unlinkSync(tempFiles.movieImage);
         movie.movieImage = finalPath;
       }
 
       if (tempFiles.movieFile) {
-        const finalPath = uploads/movies/${movie._id}.mp4;
+        const finalPath = `uploads/movies/${movie._id}.mp4`;
         fs.copyFileSync(tempFiles.movieFile, finalPath);
         fs.unlinkSync(tempFiles.movieFile);
         movie.movieFile = finalPath;
@@ -166,7 +166,7 @@ class movieController {
         existingMovie.movieImage = newImagePath;
       }
       if (tempFiles.movieFile) {
-        const newFilePath = uploads/movies/${existingMovie._id}.mp4;
+        const newFilePath = `uploads/movies/${existingMovie._id}.mp4`;
 
         // Delete old movie file if it exists
         if (originalPaths.movieFile && fs.existsSync(originalPaths.movieFile)) {
@@ -228,12 +228,12 @@ class movieController {
       // ✅ Delete associated files (movieImage & movieFile)
       if (filePaths.movieImage && fs.existsSync(filePaths.movieImage)) {
         fs.unlinkSync(filePaths.movieImage);
-        console.log(Deleted movie image: ${filePaths.movieImage});
+       
       }
 
       if (filePaths.movieFile && fs.existsSync(filePaths.movieFile)) {
         fs.unlinkSync(filePaths.movieFile);
-        console.log(Deleted movie file: ${filePaths.movieFile});
+        
       }
 
       res.status(204).send();
