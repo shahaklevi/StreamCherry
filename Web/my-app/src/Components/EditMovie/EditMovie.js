@@ -14,6 +14,7 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
     duration: "",
     categories: [], // Selected categories
     movieFile: null,
+    movieImage: null,
     cast: "",
     director: "",
   });
@@ -34,9 +35,11 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
             duration: movie.duration,
             categories: movie.categories || [],
             movieFile: null, // Don't preload the file
+            movieImage: null, // Don't preload the image
             cast: movie.cast,
             director: movie.director,
           });
+          console.log("Movie Details:", movie);
         } else {
           alert(
             "Error fetching movie details: " + (movie.error || "Unknown error")
@@ -80,51 +83,62 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
     const { name, files } = e.target;
     setFormData({
       ...formData,
-      [name]: files[0], // Store the selected file
+      movieFile: files[0],
+    });
+  };
+
+  const handleImageChange = (e) => {
+    const { files } = e.target;
+    setFormData({
+      ...formData,
+      movieImage: files[0],
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Movie metadata
-    const movieJson = {
-      title: formData.title,
-      description: formData.description,
-      releaseYear: formData.releaseYear,
-      duration: formData.duration,
-      categories: formData.categories,
-      cast: formData.cast,
-      director: formData.director,
-      movieFile: formData.movieFile,
-    };
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("description", formData.description);
+    data.append("releaseYear", formData.releaseYear);
+    data.append("duration", formData.duration);
+    data.append("cast", formData.cast);
+    data.append("director", formData.director);
+
+    // Convert categories array into a JSON string
+    if (formData.categories.length > 0) {
+      data.append("categories", JSON.stringify(formData.categories));
+    }
+
+    // Append files ONLY if they exist
+    if (formData.movieFile) {
+      data.append("movieFile", formData.movieFile);
+    }
+    if (formData.movieImage) {
+      data.append("movieImage", formData.movieImage);
+    }
+
+    // Debugging: Log FormData content
+    for (let [key, value] of data.entries()) {
+      console.log(`${key}:`, value);
+    }
 
     try {
       const response = await fetch(
         `http://localhost:3000/api/movies/${movieId}`,
         {
           method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(movieJson),
+          body: data, // ✅ Send FormData
         }
       );
 
-      // Handle response
-      if (response.status === 204) {
-        alert("Movie Successfully Updated!");
-        toggleEditMovieModal(); // Close the modal
-        return;
-      }
-
-      // Parse JSON for other status codes
-      const data = await response.json();
       if (response.ok) {
         alert("Movie Successfully Updated!");
-        toggleEditMovieModal(); // Close the modal
+        toggleEditMovieModal(); // Close modal
       } else {
-        alert("Error updating movie: " + (data.error || "Unknown error"));
+        const resData = await response.json();
+        alert("Error updating movie: " + (resData.error || "Unknown error"));
       }
     } catch (error) {
       alert("Server Error: " + error.message);
@@ -169,6 +183,12 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
             name="movieFile"
             onChange={handleFileChange}
             accept="video/mp4"
+          />
+          <FileInput
+            label="Movie Image (JPG, PNG, JPEG)"
+            name="movieImage"
+            onChange={handleImageChange}
+            accept="image/jpeg, image/png, image/jpg"
           />
           <FormInput
             label="Cast"

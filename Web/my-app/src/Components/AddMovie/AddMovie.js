@@ -41,15 +41,7 @@ function AddMovie({ toggleAddMovieModal }) {
     });
   };
 
-  // const handleFileChange = (e) => {
-  //   const { name, files } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: files[0], // Use the name dynamically!
-  //   });
-  // };
   const handleFileChange = (e) => {
-    console.log("🎬 Movie File Selected:", e.target.files[0]);
     const { name, files } = e.target;
     setFormData({
       ...formData,

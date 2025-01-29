@@ -9,8 +9,8 @@ function SearchResults({ movies }) {
         <>
           <h1>Search Results</h1>
           <div className="movie-grid">
-            {movies.map((movie, key) => (
-              <MovieCard key={key} movie={movie} />
+            {movies.map((movie, index) => (
+              <MovieCard key={index} movie={movie} />
             ))}
           </div>
         </>

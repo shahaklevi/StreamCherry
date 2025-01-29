@@ -18,7 +18,7 @@ function TopMenu({ LogOutSystem, VerifyAdmin }) {
       const token = localStorage.getItem("jwtToken");
       if (token) {
         const userData = await tokenVerification(token);
-        console.log(userData);
+
         if (userData) {
           const response = await fetch(
             `http://localhost:3000/api/users/${userData._id}`, // Use template literal for dynamic URL
@@ -32,7 +32,7 @@ function TopMenu({ LogOutSystem, VerifyAdmin }) {
           }
 
           const data = await response.json(); // Parse the response JSON
-          console.log(data.profilePicture);
+
           const pictureUrl = `http://localhost:3000/${data.profilePicture}`;
           setUserProfilePic(pictureUrl); // Update profile picture
         }

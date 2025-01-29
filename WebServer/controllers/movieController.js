@@ -132,6 +132,11 @@ class movieController {
   }
 
   async update(req, res) {
+    // Temporary uploaded files
+    const tempFiles = {
+      movieImage: req.files?.movieImage?.[0]?.path || "",
+      movieFile: req.files?.movieFile?.[0]?.path || "",
+    };
     try {
       // Fetch existing movie before updating
       const existingMovie = await Movie.findById(req.params.id);
@@ -139,20 +144,14 @@ class movieController {
         return res.status(404).json({ error: "Movie not found" });
       }
 
-      // Temporary uploaded files
-      const tempFiles = {
-        movieImage: req.files?.movieImage?.[0]?.path || "",
-        movieFile: req.files?.movieFile?.[0]?.path || "",
-      };
-
       // Store original file paths before update
       const originalPaths = {
         movieImage: existingMovie.movieImage,
         movieFile: existingMovie.movieFile,
       };
 
-      // Update movie details in DB
-      await validator.validMovie(req.body);
+      // // Update movie details in DB
+      // await validator.validMovie(req.body);
       await movieService.update(req.params.id, req.body);
 
       // ✅ Handle file replacement logic
