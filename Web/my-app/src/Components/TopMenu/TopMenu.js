@@ -8,8 +8,6 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import ProfileIcon from "../ProfileIcon/ProfileIcon";
 import tokenVerification from "../../tokenVerification/tokenVerification";
 
-
-
 function TopMenu({ LogOutSystem, VerifyAdmin }) {
   const [userProfilePic, setUserProfilePic] = useState("/media/squirel.jpeg");
   const [ifAdmin, setAdmin] = useState(false);
@@ -20,8 +18,22 @@ function TopMenu({ LogOutSystem, VerifyAdmin }) {
       const token = localStorage.getItem("jwtToken");
       if (token) {
         const userData = await tokenVerification(token);
+
         if (userData) {
-          const pictureUrl = `http://localhost:3000/uploads/${userData.picture.split("/")[1]}`;
+          const response = await fetch(
+            `http://localhost:3000/api/users/${userData._id}`, // Use template literal for dynamic URL
+            {
+              method: "GET", // GET request to the server
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch user data from the server.");
+          }
+
+          const data = await response.json(); // Parse the response JSON
+
+          const pictureUrl = `http://localhost:3000/${data.profilePicture}`;
           setUserProfilePic(pictureUrl); // Update profile picture
         }
       }
@@ -47,11 +59,11 @@ function TopMenu({ LogOutSystem, VerifyAdmin }) {
               },
             }
           );
-  
+
           if (!response.ok) {
             throw new Error("Failed to fetch user data from the server.");
           }
-  
+
           const data = await response.json(); // Parse the response JSON
           setAdmin(data.manager); // Update admin mode based on the server response
         }
@@ -60,15 +72,12 @@ function TopMenu({ LogOutSystem, VerifyAdmin }) {
       console.error("Error fetching admin mode:", error); // Log any errors
     }
   };
-  
-
 
   // Polling for user data and admin mode
   useEffect(() => {
     const fetchData = async () => {
       await fetchUserProfile();
       await fetchAdminMode();
-
     };
 
     fetchData(); // Initial fetch
@@ -108,7 +117,10 @@ function TopMenu({ LogOutSystem, VerifyAdmin }) {
               <TopMenuButton dest="Home" />
               <TopMenuButton dest="Movies" />
               {ifAdmin && (
-                <TopMenuButton dest="admin-zone" onClick={() => VerifyAdmin()} />
+                <TopMenuButton
+                  dest="admin-zone"
+                  onClick={() => VerifyAdmin()}
+                />
               )}
               <TopMenuButton dest="Logout" onClick={() => LogOutSystem()} />
             </ul>

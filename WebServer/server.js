@@ -25,8 +25,9 @@ app.use('/api/movies', movies);
 app.use('/api/categories', categories);
 app.use('/api/users', users);
 app.use('/api/tokens', tokens);
-app.use("/movieuploads", express.static(path.join(__dirname, "availableMovies")));
-app.use("/uploads", express.static(path.join(__dirname, "uploadsProfilePicture")));
+app.use("/uploads/usersImages", express.static(path.join(__dirname, "uploads/usersImages")));
+app.use("/uploads/movies", express.static(path.join(__dirname, "uploads/movies")));
+app.use("/uploads/movieImages", express.static(path.join(__dirname, "uploads/movieImages")));
 
 
 app.listen(process.env.PORT, () => {

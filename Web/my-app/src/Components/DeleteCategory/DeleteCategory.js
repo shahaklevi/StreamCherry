@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./DeleteCategory.css";
 import useCategories from "../../assets/useCategories"; // Import the existing hook
 
-function DeleteCategory({toggleDeleteCategoryModal}) {
-  const categories = useCategories(); // Use the hook to fetch categories
+function DeleteCategory({ toggleDeleteCategoryModal }) {
+  const fetchedCategories = useCategories(); // Fetch categories using the hook
+  const [categories, setCategories] = useState([]); // ✅ Start as an empty array
   const [message, setMessage] = useState(""); // Feedback message
 
-  const handleDelete = async (categoryId,categoryName) => {
+  // ✅ Sync state when fetchedCategories changes
+  useEffect(() => {
+    setCategories(fetchedCategories);
+  }, [fetchedCategories]); // Re-run when fetchedCategories updates
+
+  console.log("Fetched Categories:", fetchedCategories.length);
+  console.log("Categories in state:", categories.length);
+
+  const handleDelete = async (categoryId, categoryName) => {
     try {
       const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
 
@@ -28,11 +37,10 @@ function DeleteCategory({toggleDeleteCategoryModal}) {
       if (response.ok) {
         setMessage(`Category "${categoryName}" deleted successfully!`);
 
-        // Remove the deleted category from the local list
-        const updatedCategories = categories.filter(
-          (category) => category._id !== categoryId
+        // ✅ Correctly update the categories state after deletion
+        setCategories((prevCategories) =>
+          prevCategories.filter((category) => category._id !== categoryId)
         );
-        setMessage("Category deleted successfully!");
       } else {
         const data = await response.json();
         setMessage(`Error deleting category: ${data.error}`);
@@ -52,7 +60,7 @@ function DeleteCategory({toggleDeleteCategoryModal}) {
               <span>{category.name}</span>
               <button
                 className="btn btn-danger"
-                onClick={() => handleDelete(category._id, category.title)}
+                onClick={() => handleDelete(category._id, category.name)}
               >
                 Delete
               </button>

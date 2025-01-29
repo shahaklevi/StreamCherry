@@ -54,24 +54,18 @@ class RecommendationService {
       const command = `GET ${userId} ${movieId}`;
       const response = await this.sendCommand(command);
 
-      // //TODO: remove this line (for testing purposes only)
-      // console.log("Raw response from sendCommand:", response);
-
       // Clean and split the response into movie IDs
       const cleanedResponse = response.trim().replace(/\s+/g, " ");
       const rawMovieIds = cleanedResponse.split(" ");
 
 
-      // //TODO: remove this line (for testing purposes only)
-      // console.log("Raw movieIds:", rawMovieIds);
-
+      
       // Validate and filter valid movie IDs
       const validMovieIds = rawMovieIds.filter((id) =>
         mongoose.Types.ObjectId.isValid(id)
       );
 
-      // //TODO: remove this line (for testing purposes only)
-      // console.log("Valid movieIds:", validMovieIds);
+      
 
       // Fetch recommendations by valid movie IDs
       const recommendations = await Promise.all(
@@ -99,19 +93,18 @@ class RecommendationService {
     const command = `POST ${userId} ${movieId}`;
     const response = await this.sendCommand(command);
     if (response === "404 Not Found") {
-      // //TODO: remove this line (for testing purposes only)
-      // console.log("Post already done patching instead\n");
+     
       await this.updateWatchList(userId, movieId);
     } else {
       recommendationRepository.addToWatchList(userId, movieId);
-      console.log(`Movie successfully added: ${response}`);
+     
     }
   }
   async updateWatchList(userId, movieId) {
     const command = `PATCH ${userId} ${movieId}`;
     const response = await this.sendCommand(command);
     recommendationRepository.addToWatchList(userId, movieId);
-    console.log(`Movie successfully added: ${response}`);
+    
   }
 
   async deleteFromWatchList(userId, movieId) {
@@ -119,7 +112,6 @@ class RecommendationService {
     validator.validId(userId);
     const command = `DELETE ${userId} ${movieId}`;
     const response = await this.sendCommand(command);
-    console.log(`Movie successfully deleted: ${response}`);
   }
 }
 module.exports = new RecommendationService();

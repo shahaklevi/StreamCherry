@@ -53,7 +53,7 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
     }
   };
 
-  const handleDelete = async (movieId) => {
+  const handleDelete = async (movieId,movieFile) => {
     try {
       const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
       if (!token) {
@@ -110,7 +110,7 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
                 <span>{movie.title}</span>
                 <button
                   className="btn btn-danger"
-                  onClick={() => handleDelete(movie._id)}
+                  onClick={() => handleDelete(movie._id,movie.movieFile)}
                 >
                   Delete
                 </button>

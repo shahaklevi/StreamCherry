@@ -56,7 +56,7 @@ const createUser = async (userData) => {
           nickName: user.nickName,
           mail: user.mail,
           phone: user.phone,
-          picture: user.picture,
+          profilePicture: user.profilePicture,
           manager: user.manager,
         }
         return userData;

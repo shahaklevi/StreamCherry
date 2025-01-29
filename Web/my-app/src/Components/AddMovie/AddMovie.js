@@ -12,6 +12,7 @@ function AddMovie({ toggleAddMovieModal }) {
     duration: "",
     categories: [],
     movieFile: null,
+    movieImage: null,
     cast: "",
     director: "",
   });
@@ -34,7 +35,9 @@ function AddMovie({ toggleAddMovieModal }) {
     const { name, value } = e.target;
     setFormData({
       ...formData,
+
       [name]: name === "releaseYear" || name === "duration" ? Number(value) : value,
+
     });
   };
 
@@ -43,6 +46,14 @@ function AddMovie({ toggleAddMovieModal }) {
     setFormData({
       ...formData,
       movieFile: files[0],
+    });
+  };
+
+  const handleImageChange = (e) => {
+    const {files} = e.target;
+    setFormData({
+      ...formData,
+      movieImage: files[0],
     });
   };
 
@@ -56,17 +67,27 @@ function AddMovie({ toggleAddMovieModal }) {
     formDataObj.append("description", formData.description);
     formDataObj.append("releaseYear", Number(formData.releaseYear)); // Convert to number
     formDataObj.append("duration", Number(formData.duration)); // Convert to number
+    formDataObj.append("cast", formData.cast);
+    formDataObj.append("director", formData.director);
 
     // Append categories as an array
     formData.categories.forEach((category) => {
       formDataObj.append("categories[]", category);
     });
 
-    formDataObj.append("cast", formData.cast);
-    formDataObj.append("director", formData.director);
-
+    // ✅ Ensure files are appended correctly
     if (formData.movieFile) {
+      console.log("🎬 Adding movieFile:", formData.movieFile);
       formDataObj.append("movieFile", formData.movieFile);
+    } else {
+      console.log("❌ No movieFile provided!");
+    }
+
+    if (formData.movieImage) {
+      console.log("🖼️ Adding movieImage:", formData.movieImage);
+      formDataObj.append("movieImage", formData.movieImage);
+    } else {
+      console.log("❌ No movieImage provided!");
     }
 
     try {
@@ -133,6 +154,12 @@ function AddMovie({ toggleAddMovieModal }) {
           name="movieFile"
           onChange={handleFileChange}
           accept="video/mp4"
+        />
+        <FileInput
+          label="Movie Image (JPG, PNG, JPEG)"
+          name="movieImage"
+          onChange={handleImageChange}
+          accept="image/jpeg, image/png, image/jpg"
         />
         <FormInput
           label="Cast"
