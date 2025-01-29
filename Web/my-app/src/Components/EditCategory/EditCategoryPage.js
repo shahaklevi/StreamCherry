@@ -3,7 +3,7 @@ import "./EditCategory.css"; // יצירת קובץ CSS ייעודי
 import useCategories from "../../assets/useCategories"; // שימוש ב-hook הקיים
 import EditCategory from "./EditCategory"; // רכיב לעריכת קטגוריה
 
-function EditCategoryPage({ toggleEditCategoryPage }) {
+function EditCategoryPage({ toggleEditCategoryModal }) {
   const categories = useCategories(); // שימוש ב-hook להורדת קטגוריות
   const [selectedCategory, setSelectedCategory] = useState(null); // הקטגוריה שנבחרה לעריכה
   const [isEditing, setIsEditing] = useState(false); // האם במצב עריכה או לא
@@ -49,7 +49,7 @@ function EditCategoryPage({ toggleEditCategoryPage }) {
       <button
         type="button"
         className="btn btn-secondary"
-        onClick={toggleEditCategoryPage}
+        onClick={toggleEditCategoryModal}
       >
         Close
       </button>

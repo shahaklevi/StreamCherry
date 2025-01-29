@@ -7,9 +7,9 @@ class categoryRepository {
 
     async getById(id) {
         try {
-            console.log('Trying to find category with id:', id);
+           
             const category = await Category.findById(id).exec();
-            console.log('Found category:', category);
+           
             return category;
         } catch (error) {
             console.error('Error in getById:', error);

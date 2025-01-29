@@ -18,14 +18,12 @@ function MovieCard({ movie }) {
   const handleMouseEnter = () => {
     setIsHovered(true);
     if (videoRef.current && videoRef.current.paused && !videoRef.current.ended) {
-    if (videoRef.current && videoRef.current.paused && !videoRef.current.ended) {
       videoRef.current.play();
     }
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    if (videoRef.current && !videoRef.current.paused) {
     if (videoRef.current && !videoRef.current.paused) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
@@ -53,19 +51,15 @@ function MovieCard({ movie }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            // Authorization: `Bearer ${token}`,
             userId: userData._id,
           },
-          body: JSON.stringify({ userId: userData._id }),
           body: JSON.stringify({ userId: userData._id }),
         }
       );
 
       const data = await response.json();
       console.log("Recommendation successful:", data);
-
-      // Navigate to MoviePage with movie details
-      navigate(`/movie/${movie._id}`, { state: { movie } });
 
       // Navigate to MoviePage with movie details
       navigate(`/movie/${movie._id}`, { state: { movie } });

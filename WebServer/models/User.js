@@ -1,7 +1,8 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const User = new Schema({
+  type: { type: String, default: "user" },
   user_name: {
     type: String,
     required: true,
@@ -33,16 +34,16 @@ const User = new Schema({
     type: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Movie',
+        ref: "Movie",
       },
     ],
     required: false,
     default: [],
   },
   manager: {
-    type: Boolean,  
-    default: false, 
+    type: Boolean,
+    default: false,
   },
 });
 
-module.exports = mongoose.model('User', User);
+module.exports = mongoose.model("User", User);

@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import "./MoviePopup.css";
 import SmallMovieInfo from "../SmallMovieInfo/SmallMovieInfo";
 import tokenVerification from "../../tokenVerification/tokenVerification";
-import SmallMovieInfo from "../SmallMovieInfo/SmallMovieInfo";
-import tokenVerification from "../../tokenVerification/tokenVerification";
 
 const MoviePopup = ({ movie, onClose }) => {
   

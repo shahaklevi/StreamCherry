@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const MovieSchema = new mongoose.Schema({
+  type: { type: String, default: "movie" },
   title: {
     type: String,
     required: true,
@@ -10,7 +11,7 @@ const MovieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  releaseYear: { type: Number, required: true, },
+  releaseYear: { type: Number, required: true },
   duration: {
     type: Number,
     required: true,
@@ -33,6 +34,11 @@ const MovieSchema = new mongoose.Schema({
     type: String, // File path or URL to the video
     required: false,
   },
+  movieImage: {
+    type: String, // File path or URL to the Image
+    required: false,
+  },
+
   createdAt: {
     type: Date,
     default: Date.now,
@@ -46,10 +52,7 @@ const MovieSchema = new mongoose.Schema({
     ],
     default: [],
   },
-  img: {
-    type: String, // File path or URL to the img
-    required: false,
-  },
+
 });
 
 module.exports = mongoose.model("Movie", MovieSchema);

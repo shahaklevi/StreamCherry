@@ -21,7 +21,7 @@ function EditCategory({ category, onClose }) {
       const response = await fetch(
         `http://localhost:3000/api/categories/${category._id}`,
         {
-          method: "PUT",
+          method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },

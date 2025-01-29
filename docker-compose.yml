@@ -5,7 +5,7 @@ services:
       dockerfile: TCPServer/Dockerfile
     container_name: recommendation_server
     volumes:
-      - reccomendation_data_base:/usr/src/data
+      - recommendation_database:/usr/src/data
     networks:
       - app_network
     environment:
@@ -23,8 +23,10 @@ services:
     networks:
       - app_network
     volumes:
-      - profile_pictures:/usr/src/app/uploadsProfilePicture
-      - availlible_movies:/usr/src/app/availableMovies
+      - temp_uploads:/usr/src/app/uploads/temp           # Temporary file uploads
+      - user_images:/usr/src/app/uploads/usersImages    # User profile pictures
+      - movie_files:/usr/src/app/uploads/movies         # Uploaded movie files
+      - movie_main_images:/usr/src/app/uploads/movieImages  # Main movie images
     environment:
       CONNECTION_STRING: ${CONNECTION_STRING}
       RECOMMENDATION_IP: recommendation_server  
@@ -34,9 +36,11 @@ services:
     command: ["npm", "start"]
 
 volumes:
-  reccomendation_data_base:
-  profile_pictures:
-  availlible_movies:
+  recommendation_database:  # Persistent database for recommendation server
+  temp_uploads:             # Volume for temporary file uploads
+  user_images:              # Volume for user profile pictures
+  movie_files:              # Volume for uploaded movie files
+  movie_main_images:        # Volume for main movie images
 networks:
   app_network:
     driver: bridge
