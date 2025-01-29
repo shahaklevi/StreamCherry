@@ -8,7 +8,7 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import ProfileIcon from "../ProfileIcon/ProfileIcon";
 import tokenVerification from "../../tokenVerification/tokenVerification";
 
-function TopMenu({ LogOutSystem, VerifyAdmin }) {
+function TopMenu({ LogOutSystem, VerifyAdmin, isTop }) {
   const [userProfilePic, setUserProfilePic] = useState("/media/squirel.jpeg");
   const [ifAdmin, setAdmin] = useState(false);
 
@@ -94,8 +94,18 @@ function TopMenu({ LogOutSystem, VerifyAdmin }) {
   }, []);
 
   return (
-    <div className="top-menu">
-      <nav className="navbar navbar-expand-lg navbar-dark">
+    <div className={`top-menu ${isTop ? "transparent" : "solid"}`}>
+      <nav
+        className="navbar navbar-expand-lg navbar-light"
+        style={
+          isTop
+            ? {
+                backgroundColor: "transparent",
+                transition: "background-color 0.3s ease-in-out",
+              }
+            : {}
+        }
+      >
         <div className="container-fluid">
           {/* Netflix Logo */}
           <Link to="/main" className="navbar-brand">

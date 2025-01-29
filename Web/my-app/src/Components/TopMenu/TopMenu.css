@@ -8,7 +8,8 @@
   padding: 10px 20px;
   background-color: var(--background-color); /* Dynamic background color for the navbar */
   color: var(--text-color); /* Dynamic text color for the navbar */
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth transitions */
+  transition: background-color 0.3s ease-in-out,
+  color 0.3s ease-in-out; /* Smooth transitions */
 }
 
 .top-menu .navbar .container-fluid {
@@ -81,7 +82,8 @@
   border: 1px solid #ccc; /* Optional: Add a border to the input */
   background-color: var(--background-color); /* Dynamic input background */
   color: var(--text-color); /* Dynamic input text color */
-  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 }
 
 .top-menu .form-control:focus {
@@ -122,7 +124,3 @@
   text-decoration: none; /* Ensure no underline on hover */
   color: #e50914; /* Netflix red on hover */
 }
-
-
-
-
