@@ -6,7 +6,9 @@ const validator = require('../utils/validator');
 class movieController {
     async getAll(req, res) {
         try {
+
             await validator.isValidJWT(req);
+            const userId = req.headers.userid; // Getting userId from headers
             const movies = await movieService.getAll(userId); // Passing userId to service
             res.json({ movies });
         } catch (error) {
