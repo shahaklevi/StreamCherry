@@ -1,27 +1,39 @@
+.edit-category-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Centers the modal vertically */
+  background: rgba(0, 0, 0, 0.6); /* Dark overlay for focus effect */
+  padding: 20px;
+}
+
 .edit-category {
-  background-color: #1a1a1a;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--text-color);
   padding: 30px;
   border-radius: 10px;
-  width: 80%;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 90%;
+  max-width: 500px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
+/* Header Styling */
 .edit-category h2 {
-  font-size: 28px;
+  font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
-  color: #ff4444; /* צבע אדום בסגנון Netflix */
+  color: #ff4444;
 }
 
+/* Label Styling */
 .edit-category label {
   font-size: 16px;
+  font-weight: bold;
   margin-bottom: 8px;
   display: block;
 }
 
+/* Input Fields */
 .edit-category input,
 .edit-category select {
   width: 100%;
@@ -30,43 +42,54 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
-  background-color: #333;
-  color: white;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
+/* Focus State for Inputs */
 .edit-category input:focus,
 .edit-category select:focus {
   border-color: #ff4444;
   outline: none;
 }
 
+/* Button Container */
 .edit-category .modal-actions {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
-.edit-category .modal-actions button {
-  padding: 10px 20px;
+/* General Button Styling */
+.edit-category .btn {
+  flex: 1;
+  padding: 12px;
   font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.edit-category .modal-actions .btn-primary {
-  background-color: #ff4444;
+  transition: 0.3s ease;
   color: white;
+  text-align: center;
 }
 
-.edit-category .modal-actions .btn-primary:hover {
+/* Save Button */
+.edit-category .btn-save {
+  background-color: #ff4444;
+  margin-right: 10px;
+}
+
+.edit-category .btn-save:hover {
   background-color: #cc0000;
 }
 
-.edit-category .modal-actions .btn-secondary {
-  background-color: #555;
-  color: white;
+/* Cancel Button */
+.edit-category .btn-cancel {
+  background-color: #666;
 }
 
-.edit-category .modal-actions .btn-secondary:hover {
-  background-color: #333;
+.edit-category .btn-cancel:hover {
+  background-color: #444;
 }
