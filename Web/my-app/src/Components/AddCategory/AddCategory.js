@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import FormInput from "../../Components/SignUpComponents/FormInput";
 import "./AddCategory.css";
-
 function AddCategory({ toggleAddCategoryModal, handleAddCategorySubmit }) {
   const [formData, setFormData] = useState({
     name: "",
     promoted: true,
     movies: [], // Default empty array
   });
+
 
   const [isSubmitting, setIsSubmitting] = useState(false); // To manage submission state
 
@@ -39,10 +39,17 @@ function AddCategory({ toggleAddCategoryModal, handleAddCategorySubmit }) {
     };
 
     try {
+      const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+
+      if (!token) {
+        console.error("No token available, skipping request.");
+        return;
+      }
       const response = await fetch("http://localhost:3000/api/categories", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Add Authorization header
         },
         body: JSON.stringify(categoryData),
       });
@@ -55,7 +62,7 @@ function AddCategory({ toggleAddCategoryModal, handleAddCategorySubmit }) {
         alert("Error adding category: " + (data.error || "Unknown error"));
       }
     } catch (error) {
-    
+
       alert("Server Error: " + error.message);
     } finally {
       setIsSubmitting(false); // Re-enable the form

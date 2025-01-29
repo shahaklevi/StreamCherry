@@ -45,7 +45,7 @@ export const UserProvider = ({ children }) => {
             return false;
         }
     };
-    
+
 
     const verifyAdminToken = async () => {
         const token = localStorage.getItem("jwtToken");
@@ -54,9 +54,13 @@ export const UserProvider = ({ children }) => {
             const response = await fetch(
                 `http://localhost:3000/api/users/${user._id}`, // Use template literal for dynamic URL
                 {
-                    method: "GET", // GET request to the server
+                  method: "GET", // GET request to the server
+                  headers: {
+                    Authorization: `Bearer ${token}`, 
+                    "Content-Type": "application/json",
+                  },
                 }
-            );
+              );
 
             if (!response.ok) {
                 alert("Failed to fetch user data.");
@@ -86,7 +90,16 @@ export const UserProvider = ({ children }) => {
             return false;
         }
     };
+    const getToken = async () => {
+        const token = await localStorage.getItem("jwtToken");
 
+        if (!token) {
+            console.error("Token not found in localStorage.");
+            alert("Token is missing.");
+            return;
+        }
+        return token
+    }
 
     return (
         <UserContext.Provider
@@ -96,6 +109,7 @@ export const UserProvider = ({ children }) => {
                 logout,
                 verifyToken,
                 verifyAdminToken,
+                getToken,
             }}
         >
             {children}

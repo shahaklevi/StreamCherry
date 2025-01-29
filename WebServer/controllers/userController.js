@@ -1,6 +1,7 @@
 const userService = require('../services/userService');
 const jwt = require("jsonwebtoken");
 const tokensController = require("./tokensController");
+const validator=require("../utils/validator");
 
 
 const createUser = async (req, res) => {
@@ -37,6 +38,7 @@ const createUser = async (req, res) => {
 };
 const getUser = async (req, res) => {
     try {
+        validator.isValidJWT(req);
         const user = await userService.getUser(req.params.id);
         res.status(200).json(user);
     } catch (error) {
@@ -55,7 +57,6 @@ const getUser = async (req, res) => {
     }
 };
 
-// Hi  Sahar i implemented an update user function in order to add movies to user watchlist
 const updateUserWatchlist = async (req, res) => {
     try {
         const userId = req.params.id;

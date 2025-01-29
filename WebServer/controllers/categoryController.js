@@ -8,9 +8,7 @@ const validator = require('../utils/validator');
 class CategoryController {
     async getAll(req, res) {
         try {
-            // //only registerd user can use the function
-            // await validator.isUserRegisterd(req);
-
+            await validator.isValidJWT(req);
             const categories = await categoryService.getAll();
             res.json(categories);
         } catch (error) {
@@ -27,7 +25,7 @@ class CategoryController {
     }
     async getById(req, res) {
         try {
-            // await validator.isUserRegisterd(req);
+            await validator.isValidJWT(req);
             const category = await categoryService.getById(req.params.id);
             res.json(category);
         } catch (error) {
@@ -48,8 +46,7 @@ class CategoryController {
 
     async create(req, res) {
         try {
-            // await validator.isUserRegisterd(req);
-
+            await validator.isValidJWT(req);
             const category = await categoryService.create(req.body);
             res.status(201).json({category});
         } catch (error) {
@@ -72,7 +69,7 @@ class CategoryController {
     
     async update(req, res) {
         try {
-            // await validator.isUserRegisterd(req);
+            await validator.isValidJWT(req);
             await categoryService.update(req.params.id, req.body);
             res.status(204).send();
         } catch (error) {
@@ -96,8 +93,8 @@ class CategoryController {
     }
 
     async delete(req, res) {
-        try {
-            // await validator.isUserRegisterd(req);
+        try {   
+            await validator.isValidJWT(req);
             await categoryService.delete(req.params.id);
             res.status(204).send();
         } catch (error) {

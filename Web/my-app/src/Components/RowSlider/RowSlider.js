@@ -10,7 +10,18 @@ function RowSlider({ title, movieIds }) {
   const fetchMovieDetails = async () => {
     try {
       const moviePromises = movieIds.map(async (id) => {
-        const response = await fetch(`http://localhost:3000/api/movies/${id}`);
+        const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+          if (!token) {
+            console.error("No token available, skipping request.");
+            return;
+          }
+          const response = await fetch(`http://localhost:3000/api/movies/${id}`, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`, 
+              "Content-Type": "application/json",
+            },
+          });
         if (!response.ok) {
           throw new Error(`Failed to fetch movie with ID: ${id}`);
         }
