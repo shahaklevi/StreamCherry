@@ -19,7 +19,6 @@ function RowSlider({ title, movieIds }) {
 
       // Wait for all promises to resolve
       const fetchedMovies = await Promise.all(moviePromises);
-      console.log("Fetched movies:", fetchedMovies); // Log fetched movies
       setMovies(fetchedMovies); // Update state with movie details
     } catch (error) {
       console.error("Error fetching movies:", error);
@@ -30,11 +29,6 @@ function RowSlider({ title, movieIds }) {
   useEffect(() => {
     fetchMovieDetails();
   }, [movieIds]); // Dependency array ensures this runs only when movieIds changes
-
-  // Log movies whenever the state updates
-  useEffect(() => {
-    console.log("Updated movies state:", movies);
-  }, [movies]);
 
   // Scroll Left
   const scrollLeft = () => {

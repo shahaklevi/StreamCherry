@@ -7,7 +7,7 @@ class movieController {
     async getAll(req, res) {
         try {
             // await validator.isUserRegisterd(req);
-            // const userId = req.headers.userid; // Getting userId from headers
+            const userId = req.headers.userid; // Getting userId from headers
 
             const movies = await movieService.getAll(userId); // Passing userId to service
             res.json({ movies });
