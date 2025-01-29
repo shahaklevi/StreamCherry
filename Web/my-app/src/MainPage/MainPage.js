@@ -54,6 +54,7 @@ function MainPage() {
             headers: {
               "Content-Type": "application/json",
               userId: userData._id,
+              Authorization: `Bearer ${token}`,
             },
           }
         );

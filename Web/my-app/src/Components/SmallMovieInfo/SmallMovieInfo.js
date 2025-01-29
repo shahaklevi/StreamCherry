@@ -42,7 +42,7 @@ const SmallMovieInfo = ({ movies }) => {
           {/* רכיב וידאו חבוי */}
           <video
             ref={(el) => (videoRefs.current[index] = el)}
-            src={`http://localhost:3000/movieuploads/${movie.movieFile}`}
+            src={`http://localhost:3000/${movie.movieFile}`}
             style={{ display: "none" }} // הסתרת הווידאו
             preload="metadata" // טוען רק את המידע של הסרטון
           />

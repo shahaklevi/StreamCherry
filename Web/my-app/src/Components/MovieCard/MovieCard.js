@@ -52,7 +52,7 @@ function MovieCard({ movie }) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
             userId: userData._id,
           },
           body: JSON.stringify({ userId: userData._id }),
@@ -78,7 +78,6 @@ function MovieCard({ movie }) {
   };
 
   return (
-    <div className="movie-card search-movie-card">
       <div
         className="card"
         onMouseEnter={handleMouseEnter}
@@ -86,7 +85,7 @@ function MovieCard({ movie }) {
       >
         <video
           ref={videoRef}
-          src={`http://localhost:3000/movieuploads/${movie.movieFile}`}
+          src={`http://localhost:3000/${movie.movieFile}`}
           className="card-video-top"
           muted
           loop
@@ -111,7 +110,7 @@ function MovieCard({ movie }) {
           />
         )}
       </div>
-    </div>
+    
   );
 }
 

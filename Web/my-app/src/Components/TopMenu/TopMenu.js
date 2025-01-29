@@ -24,6 +24,10 @@ function TopMenu({ LogOutSystem, VerifyAdmin }) {
             `http://localhost:3000/api/users/${userData._id}`, // Use template literal for dynamic URL
             {
               method: "GET", // GET request to the server
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
             }
           );
 
@@ -54,7 +58,7 @@ function TopMenu({ LogOutSystem, VerifyAdmin }) {
             {
               method: "GET", // GET request to the server
               headers: {
-                Authorization: `Bearer ${token}`, 
+                Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
               },
             }
