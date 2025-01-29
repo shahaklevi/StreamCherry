@@ -7,7 +7,7 @@ const createUser = async (userData) => {
         password: userData.password,
         mail: userData.mail,
         phone: userData.phone,
-        picture: userData.picture,
+        profilePicture: userData.profilePicture,
         watchList: [], // Explicitly set watchList to an empty array
         manager: userData.manager,
     });

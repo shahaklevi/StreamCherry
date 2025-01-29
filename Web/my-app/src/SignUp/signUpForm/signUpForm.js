@@ -15,7 +15,7 @@ const SignUpForm = () => {
     confirmPassword: "",
     mail: "",
     phone: "",
-    picture: null,
+    profilePicture: null,
     manager: false,
   });
 
@@ -35,7 +35,7 @@ const SignUpForm = () => {
     const file = e.target.files[0];
     setFormData({
       ...formData,
-      picture: file,
+      profilePicture: file,
     });
   };
 
@@ -61,12 +61,11 @@ const SignUpForm = () => {
     formDataToSend.append("mail", formData.mail);
     formDataToSend.append("phone", formData.phone);
     formDataToSend.append("manager", formData.manager);
-    if (formData.picture) {
-      formDataToSend.append("picture", formData.picture);
+    if (formData.profilePicture) {
+      formDataToSend.append("profilePicture", formData.profilePicture);
     }
 
     try {
-      alert(formData.nickName);
       const response = await fetch("http://localhost:3000/api/users", {
         method: "POST",
         body: formDataToSend,
@@ -139,7 +138,7 @@ const SignUpForm = () => {
             value={formData.phone}
             onChange={handleChange}
           />
-          <FileInput label="Profile Picture" onChange={handleFileChange} />
+          <FileInput label="Profile picture" onChange={handleFileChange} />
           <button type="submit" className="submit-btn">
             Sign Up
           </button>

@@ -26,7 +26,7 @@ const User = new Schema({
     required: true,
     unique: true,
   },
-  picture: {
+  profilePicture: {
     type: String, // URL address
     required: false,
   },
