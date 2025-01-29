@@ -4,6 +4,7 @@ const Movie = require('../models/Movie');
 const movieRepository = require('../repositories/movieRepository');
 const categoryRepository = require('../repositories/categoryRepository');
 const Category = require('../models/Category');
+const tokensController = require("../controllers/tokensController");
 
 
 // Validate ObjectId
@@ -139,6 +140,33 @@ const isMovieExist = async (movieId) => {
         throw new Error ("Movie not found");
     }
 };
+const isValidJWT = async (req) => {
+    try {
+        console.log("Headers received on backend:", req.headers); // Log headers
+        const authHeader = req.header("Authorization");
+        
+        if (!authHeader) {
+            throw new Error("Server Error: Authorization header not provided");
+        }
+
+        const token = authHeader.split(" ")[1];
+        if (!token) {
+            throw new Error("Server Error: Token not provided");
+        }
+
+        const user = await tokensController.verifyToken(token);
+        if (!user) {
+            throw new Error("Server Error: Invalid token");
+        }
+
+        return user;
+    } catch (error) {
+        console.error("Error in isValidJWT:", error.message);
+        throw error;
+    }
+};
+
+  
 
 
 
@@ -154,5 +182,6 @@ module.exports = {
     validPassword,
     isUserRegisterd,
     validMovie,
-    isMovieExist
+    isMovieExist,
+    isValidJWT
 };

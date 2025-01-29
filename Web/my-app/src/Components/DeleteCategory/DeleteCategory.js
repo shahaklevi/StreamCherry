@@ -17,10 +17,20 @@ function DeleteCategory({ toggleDeleteCategoryModal }) {
 
   const handleDelete = async (categoryId, categoryName) => {
     try {
+      const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+
+      if (!token) {
+        console.error("No token available, skipping request.");
+        return;
+      }
       const response = await fetch(
         `http://localhost:3000/api/categories/${categoryId}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Added Authorization header
+            "Content-Type": "application/json",
+          },
         }
       );
 

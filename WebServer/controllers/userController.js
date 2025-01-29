@@ -1,8 +1,13 @@
 const userService = require("../services/userService");
 const jwt = require("jsonwebtoken");
 const tokensController = require("./tokensController");
+
 const path = require("path");
 const fs = require("fs");
+
+const validator=require("../utils/validator");
+
+
 
 const createUser = async (req, res) => {
   const tempFiles = {
@@ -65,23 +70,26 @@ const createUser = async (req, res) => {
   }
 };
 const getUser = async (req, res) => {
-  try {
-    const user = await userService.getUser(req.params.id);
-    res.status(200).json(user);
-  } catch (error) {
-    if (error.message.includes("User not found")) {
-      res.status(404).json({ error: error.message });
-    } else if (error.message.includes("[object Object")) {
-      res.status(404).json({ error: "User not found" });
-    } else if (error.message.includes("Cast to ObjectId failed for value")) {
-      res.status(404).json({ error: "User not found" });
-    } else {
-      res.status(400).json({ error: error.message });
+    try {
+        validator.isValidJWT(req);
+        const user = await userService.getUser(req.params.id);
+        res.status(200).json(user);
+    } catch (error) {
+        if (error.message.includes('User not found')) {
+            res.status(404).json({ error: error.message });
+        }
+        else if (error.message.includes('[object Object')) {
+            res.status(404).json({ error: 'User not found' });
+        }
+        else if (error.message.includes('Cast to ObjectId failed for value')) {
+            res.status(404).json({ error: 'User not found' });
+        }
+        else {
+            res.status(400).json({ error: error.message });
+        }
     }
-  }
 };
 
-// Hi  Sahar i implemented an update user function in order to add movies to user watchlist
 const updateUserWatchlist = async (req, res) => {
   try {
     const userId = req.params.id;

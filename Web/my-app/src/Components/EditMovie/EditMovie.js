@@ -21,10 +21,23 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
 
   // Fetch movie details by ID when the component mounts
   useEffect(() => {
+    const token =  localStorage.getItem("jwtToken"); // Retrieve token from context
+
+      if (!token) {
+        console.error("No token available, skipping request.");
+        return;
+      }
     const fetchMovieDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/movies/${movieId}`
+          `http://localhost:3000/api/movies/${movieId}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`, 
+              "Content-Type": "application/json",
+            },
+          }
         );
         const movie = await response.json();
         if (response.ok) {
@@ -125,11 +138,21 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
     }
 
     try {
+      const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+
+      if (!token) {
+        console.error("No token available, skipping request.");
+        return;
+      }
       const response = await fetch(
         `http://localhost:3000/api/movies/${movieId}`,
         {
           method: "PUT",
-          body: data, // ✅ Send FormData
+          headers: {
+            Authorization: `Bearer ${token}`, 
+            "Content-Type": "application/json",
+          },
+          body: data,
         }
       );
 

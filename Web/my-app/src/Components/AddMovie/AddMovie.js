@@ -5,7 +5,6 @@ import useCategories from "../../assets/useCategories";
 
 function AddMovie({ toggleAddMovieModal }) {
   const categories = useCategories(); // Fetch categories using the custom hook
-
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -36,8 +35,9 @@ function AddMovie({ toggleAddMovieModal }) {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]:
-        name === "releaseYear" || name === "duration" ? Number(value) : value,
+
+      [name]: name === "releaseYear" || name === "duration" ? Number(value) : value,
+
     });
   };
 
@@ -91,10 +91,18 @@ function AddMovie({ toggleAddMovieModal }) {
     }
 
     try {
+      const token = await localStorage.getItem("jwtToken");
+
+      if (!token) {
+        console.error("No token available, skipping request.");
+        return;
+      }
       const response = await fetch("http://localhost:3000/api/movies", {
         method: "POST",
-        body: formDataObj,
-        type: "movie",
+        headers: {
+          Authorization: `Bearer ${token}`, //  Added Authorization header
+        },
+        body: formDataObj, //  Sending form data
       });
 
       const data = await response.json();

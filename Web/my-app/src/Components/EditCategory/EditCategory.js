@@ -18,11 +18,18 @@ function EditCategory({ category, onClose }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+
+      if (!token) {
+        console.error("No token available, skipping request.");
+        return;
+      }
       const response = await fetch(
         `http://localhost:3000/api/categories/${category._id}`,
         {
           method: "PATCH",
           headers: {
+            Authorization: `Bearer ${token}`, 
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
@@ -31,7 +38,9 @@ function EditCategory({ category, onClose }) {
 
       if (response.ok) {
         alert("Category updated successfully!");
-        onClose();
+
+        onClose(); 
+
       } else {
         const data = await response.json();
         alert("Error updating category: " + data.error);

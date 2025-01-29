@@ -10,7 +10,18 @@ function RowSlider({ title, movieIds }) {
   const fetchMovieDetails = async () => {
     try {
       const moviePromises = movieIds.map(async (id) => {
-        const response = await fetch(`http://localhost:3000/api/movies/${id}`);
+        const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
+          if (!token) {
+            console.error("No token available, skipping request.");
+            return;
+          }
+          const response = await fetch(`http://localhost:3000/api/movies/${id}`, {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`, 
+              "Content-Type": "application/json",
+            },
+          });
         if (!response.ok) {
           throw new Error(`Failed to fetch movie with ID: ${id}`);
         }
@@ -19,7 +30,6 @@ function RowSlider({ title, movieIds }) {
 
       // Wait for all promises to resolve
       const fetchedMovies = await Promise.all(moviePromises);
-      console.log("Fetched movies:", fetchedMovies); // Log fetched movies
       setMovies(fetchedMovies); // Update state with movie details
     } catch (error) {
       console.error("Error fetching movies:", error);
@@ -30,11 +40,6 @@ function RowSlider({ title, movieIds }) {
   useEffect(() => {
     fetchMovieDetails();
   }, [movieIds]); // Dependency array ensures this runs only when movieIds changes
-
-  // Log movies whenever the state updates
-  useEffect(() => {
-    console.log("Updated movies state:", movies);
-  }, [movies]);
 
   // Scroll Left
   const scrollLeft = () => {
