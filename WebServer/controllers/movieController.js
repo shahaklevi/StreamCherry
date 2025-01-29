@@ -6,49 +6,55 @@ const fs = require("fs");
 const Movie = require("../models/Movie");
 
 class movieController {
-    async getAll(req, res) {
-        try {
-
-            await validator.isValidJWT(req);
-            const userId = req.headers.userid; // Getting userId from headers
-            const movies = await movieService.getAll(userId); // Passing userId to service
-            res.json({ movies });
-        } catch (error) {
-            if (error.message == 'Missing userId header - Only an existing user can perform this action') {
-                res.status(400).send(error.message);
-            }
-            else if (error.message == 'User not registerd' || error.message.includes('Cast to ObjectId failed for value')) {
-                res.status(404).send('User not registerd');
-            }
-            else {
-                res.status(500).send(error.message);
-            }
-        }
+  async getAll(req, res) {
+    try {
+      await validator.isValidJWT(req);
+      const userId = req.headers.userid; // Getting userId from headers
+      const movies = await movieService.getAll(userId); // Passing userId to service
+      res.json({ movies });
+    } catch (error) {
+      if (
+        error.message ==
+        "Missing userId header - Only an existing user can perform this action"
+      ) {
+        res.status(400).send(error.message);
+      } else if (
+        error.message == "User not registerd" ||
+        error.message.includes("Cast to ObjectId failed for value")
+      ) {
+        res.status(404).send("User not registerd");
+      } else {
+        res.status(500).send(error.message);
+      }
     }
- 
+  }
 
-
-    async getById(req, res) {
-        try {
-            await validator.isValidJWT(req);
-            const movie = await movieService.getById(req.params.id);
-            res.json(movie);
-        } catch (error) {
-            if (error.message === 'Id is required' || error.message === 'Invalid id format') {
-                res.status(400).json({ error: error.message });
-            }
-            else if (error.message == 'Missing userId header - Only an existing user can perform this action') {
-                res.status(400).send(error.message);
-            }
-            else if (error.message == 'User not registerd' || error.message.includes('Cast to ObjectId failed for value')) {
-                res.status(404).send('User not registerd');
-            }
-            else {
-                res.status(404).json({ error: error.message });
-            }
-        }
+  async getById(req, res) {
+    try {
+      await validator.isValidJWT(req);
+      const movie = await movieService.getById(req.params.id);
+      res.json(movie);
+    } catch (error) {
+      if (
+        error.message === "Id is required" ||
+        error.message === "Invalid id format"
+      ) {
+        res.status(400).json({ error: error.message });
+      } else if (
+        error.message ==
+        "Missing userId header - Only an existing user can perform this action"
+      ) {
+        res.status(400).send(error.message);
+      } else if (
+        error.message == "User not registerd" ||
+        error.message.includes("Cast to ObjectId failed for value")
+      ) {
+        res.status(404).send("User not registerd");
+      } else {
+        res.status(404).json({ error: error.message });
+      }
     }
-
+  }
 
   async create(req, res) {
     // Define temp files
@@ -131,7 +137,7 @@ class movieController {
       movieFile: req.files?.movieFile?.[0]?.path || "",
     };
     try {
-       await validator.isValidJWT(req);
+      await validator.isValidJWT(req);
       const existingMovie = await Movie.findById(req.params.id);
       if (!existingMovie) {
         return res.status(404).json({ error: "Movie not found" });
@@ -144,10 +150,9 @@ class movieController {
       };
 
       // // Update movie details in DB
-      // await validator.validMovie(req.body);
       await movieService.update(req.params.id, req.body);
 
-      // ✅ Handle file replacement logic
+      // ✅ Handle File Replacement for Movie Image
       if (tempFiles.movieImage) {
         const newImagePath = `uploads/movieImages/${
           existingMovie._id
@@ -161,10 +166,13 @@ class movieController {
           fs.unlinkSync(originalPaths.movieImage);
         }
 
-        // Move new image to correct location
-        fs.renameSync(tempFiles.movieImage, newImagePath);
+        // ✅ Copy instead of rename (Fixes EXDEV Error)
+        fs.copyFileSync(tempFiles.movieImage, newImagePath);
+        fs.unlinkSync(tempFiles.movieImage); // Remove temporary file
         existingMovie.movieImage = newImagePath;
       }
+
+      // ✅ Handle File Replacement for Movie File
       if (tempFiles.movieFile) {
         const newFilePath = `uploads/movies/${existingMovie._id}.mp4`;
 
@@ -173,13 +181,16 @@ class movieController {
           fs.unlinkSync(originalPaths.movieFile);
         }
 
-        // Move new file to correct location
-        fs.renameSync(tempFiles.movieFile, newFilePath);
+        // ✅ Copy instead of rename (Fixes EXDEV Error)
+        fs.copyFileSync(tempFiles.movieFile, newFilePath);
+        fs.unlinkSync(tempFiles.movieFile); // Remove temporary file
         existingMovie.movieFile = newFilePath;
       }
 
       // ✅ Save updated movie with new file paths
       await existingMovie.save();
+      console.log(existingMovie);
+      console.log("Movie updated successfully");
       res.status(204).send();
     } catch (error) {
       // Clean up temp files if they exist
@@ -228,12 +239,10 @@ class movieController {
       // ✅ Delete associated files (movieImage & movieFile)
       if (filePaths.movieImage && fs.existsSync(filePaths.movieImage)) {
         fs.unlinkSync(filePaths.movieImage);
-       
       }
 
       if (filePaths.movieFile && fs.existsSync(filePaths.movieFile)) {
         fs.unlinkSync(filePaths.movieFile);
-        
       }
 
       res.status(204).send();

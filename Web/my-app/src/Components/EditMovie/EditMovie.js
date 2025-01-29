@@ -21,12 +21,12 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
 
   // Fetch movie details by ID when the component mounts
   useEffect(() => {
-    const token =  localStorage.getItem("jwtToken"); // Retrieve token from context
+    const token = localStorage.getItem("jwtToken"); // Retrieve token from context
 
-      if (!token) {
-        console.error("No token available, skipping request.");
-        return;
-      }
+    if (!token) {
+      console.error("No token available, skipping request.");
+      return;
+    }
     const fetchMovieDetails = async () => {
       try {
         const response = await fetch(
@@ -34,7 +34,7 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
           {
             method: "GET",
             headers: {
-              Authorization: `Bearer ${token}`, 
+              Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
           }
@@ -119,12 +119,12 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
     data.append("cast", formData.cast);
     data.append("director", formData.director);
 
-    // Convert categories array into a JSON string
-    if (formData.categories.length > 0) {
-      data.append("categories", JSON.stringify(formData.categories));
-    }
+    // ✅ Append categories properly as an array (DO NOT STRINGIFY)
+    formData.categories.forEach((category) => {
+      data.append("categories", category);
+    });
 
-    // Append files ONLY if they exist
+    // ✅ Append files ONLY if they exist
     if (formData.movieFile) {
       data.append("movieFile", formData.movieFile);
     }
@@ -132,33 +132,32 @@ function EditMovie({ toggleEditMovieModal, movieId }) {
       data.append("movieImage", formData.movieImage);
     }
 
-    // Debugging: Log FormData content
+    // ✅ Debugging: Log FormData contents before sending
     for (let [key, value] of data.entries()) {
       console.log(`${key}:`, value);
     }
 
     try {
-      const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
-
+      const token = localStorage.getItem("jwtToken");
       if (!token) {
         console.error("No token available, skipping request.");
         return;
       }
+      
       const response = await fetch(
         `http://localhost:3000/api/movies/${movieId}`,
         {
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${token}`, 
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // ✅ ONLY INCLUDE AUTHORIZATION
           },
-          body: data,
+          body: data, // ✅ SEND FormData DIRECTLY (DO NOT JSON.stringify)
         }
       );
 
       if (response.ok) {
         alert("Movie Successfully Updated!");
-        toggleEditMovieModal(); // Close modal
+        toggleEditMovieModal();
       } else {
         const resData = await response.json();
         alert("Error updating movie: " + (resData.error || "Unknown error"));

@@ -142,7 +142,7 @@ const isMovieExist = async (movieId) => {
 };
 const isValidJWT = async (req) => {
     try {
-        console.log("Headers received on backend:", req.headers); // Log headers
+        
         const authHeader = req.header("Authorization");
         
         if (!authHeader) {
