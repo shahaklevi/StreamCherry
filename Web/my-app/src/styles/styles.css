@@ -4,6 +4,9 @@
   --text-color: black;
   --card-background: #f9f9f9;
   --card-border: #ddd;
+
+  /* Semi-transparent colors */
+  --semi-transparent: rgba(255, 255, 255, 0.6);
 }
 
 body.dark-mode {
@@ -11,6 +14,9 @@ body.dark-mode {
   --text-color: white;
   --card-background: #1e1e1e;
   --card-border: #444;
+
+  /* Optionally tweak for dark mode */
+  --semi-transparent: rgba(0, 0, 0, 0.8);
 }
 
 body.light-mode {
@@ -18,6 +24,10 @@ body.light-mode {
   --text-color: black;
   --card-background: #f9f9f9;
   --card-border: #ddd;
+
+  /* Optionally tweak for light mode */
+  
+  --semi-transparent: rgba(255, 255, 255, 0.6);
 }
 
 /* Global Styles */

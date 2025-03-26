@@ -70,6 +70,7 @@ function AddCategory({ toggleAddCategoryModal, handleAddCategorySubmit }) {
   };
 
   return (
+    <div className="add-category">
     <div className="modal">
       <h2>Add New Category</h2>
       <form onSubmit={handleSubmit}>
@@ -119,6 +120,7 @@ function AddCategory({ toggleAddCategoryModal, handleAddCategorySubmit }) {
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 }

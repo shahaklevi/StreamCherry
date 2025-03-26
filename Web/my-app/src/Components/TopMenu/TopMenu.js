@@ -88,7 +88,7 @@ function TopMenu({ LogOutSystem, VerifyAdmin, isTop }) {
 
     const interval = setInterval(() => {
       fetchData(); // Fetch periodically
-    }, 1000); // Poll every second
+    }, 10000000); // Poll every second
 
     return () => clearInterval(interval); // Clean up on unmount
   }, []);
@@ -107,10 +107,12 @@ function TopMenu({ LogOutSystem, VerifyAdmin, isTop }) {
         }
       >
         <div className="container-fluid">
+          <div className="stream-logo">
           {/* Netflix Logo */}
           <Link to="/main" className="navbar-brand">
             <NetflixLogo />
           </Link>
+          </div>
 
           {/* Toggler button for small screens */}
           <button

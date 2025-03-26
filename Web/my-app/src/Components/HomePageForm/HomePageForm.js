@@ -1,38 +1,32 @@
 import {  Link } from 'react-router-dom';
+import { useState } from 'react';
 import NetflixLogo from '../NetflixLogo/NetflixLogo';
 
 function HomePageForm() {
+    const [email, setEmail] = useState("");
     return (
         <div>
             <div className="homepage">
             <div className="overlay">
                 <NetflixLogo/>
                 <div className="container">
-                    <h1>Unlimited movies, TV shows, and more</h1>
-                    <p>Starts at ₪1,000,000 Cancel anytime.</p>
-                    <p>Ready to watch? Enter your email to create or restart your membership.</p>
+                    <h1>Welcome To StreamCherry</h1>
+                    <p>Ready to watch? Enter your email to create an Account</p>
                     <div className="form">
-                        <input type="email" placeholder="Email address" className="email-input" />
-                        <Link to="/SignUp">
+                        <input type="email" placeholder="Email address" className="email-input" 
+                        value={email}
+                        onChange={(e)=>setEmail(e.target.value)}/>
+                        <Link to="/SignUp"
+                        state = {{email}}>
                         <button className="button">Get Started</button>
                         </Link>
                     </div>
                 </div>
             </div>
-            <div className="dropdown">
-                <a className="btn english-button dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    English
-                </a>
 
-                <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">Hebrew</a></li>
-                    <li><a className="dropdown-item" href="#">Uk</a></li>
-                    <li><a className="dropdown-item" href="#">Binary</a></li>
-                </ul>
-            </div>
             <div>
                 <Link to="/login">
-                    <button type="button" className="btn btn-signin">Sign in</button>
+                    <button type="button" className="btn btn-signin" style={{ color: 'white' }}>Sign in</button>
                 </Link>
             </div>
 
@@ -42,3 +36,5 @@ function HomePageForm() {
     )
 }
 export default HomePageForm;
+
+

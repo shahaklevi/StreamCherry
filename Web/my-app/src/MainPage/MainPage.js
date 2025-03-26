@@ -29,7 +29,7 @@ function MainPage() {
     };
 
     checkToken();
-  }, [verifyToken, logout, navigate]); // Dependencies for useEffect
+  }, []); // Dependencies for useEffect
 
   // GET Request inside useEffect
   useEffect(() => {

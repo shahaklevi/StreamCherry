@@ -107,12 +107,6 @@
   background-color: #f6121d; /* Slightly brighter red on hover */
 }
 
-/* Netflix Logo */
-.top-menu .netflix-logo {
-  width: 95px; /* Size of the logo */
-  height: auto;
-  margin-left: 20px;
-}
 
 /* Remove the underline for all Link elements in the navbar */
 .top-menu .navbar .navbar-nav a {
@@ -123,4 +117,11 @@
 .top-menu .navbar .navbar-nav a:hover {
   text-decoration: none; /* Ensure no underline on hover */
   color: #e50914; /* Netflix red on hover */
+}
+
+.top-menu .stream-logo{
+  width: 50px;
+  height: auto;
+  margin-left: 75px;
+  margin-top: 0px;
 }
