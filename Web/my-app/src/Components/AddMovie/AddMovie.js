@@ -36,8 +36,8 @@ function AddMovie({ toggleAddMovieModal }) {
     setFormData({
       ...formData,
 
-      [name]: name === "releaseYear" || name === "duration" ? Number(value) : value,
-
+      [name]:
+        name === "releaseYear" || name === "duration" ? Number(value) : value,
     });
   };
 
@@ -50,7 +50,7 @@ function AddMovie({ toggleAddMovieModal }) {
   };
 
   const handleImageChange = (e) => {
-    const {files} = e.target;
+    const { files } = e.target;
     setFormData({
       ...formData,
       movieImage: files[0],
@@ -118,103 +118,105 @@ function AddMovie({ toggleAddMovieModal }) {
   };
 
   return (
-    <div className="modal">
-      <h2>Add New Movie</h2>
-      <form onSubmit={handleSubmit}>
-        <FormInput
-          label="Movie Title"
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-        />
-        <FormInput
-          label="Description"
-          type="textarea"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-        <FormInput
-          label="Release Year"
-          type="number"
-          name="releaseYear"
-          value={formData.releaseYear}
-          onChange={handleChange}
-        />
-        <FormInput
-          label="Duration (minutes)"
-          type="number"
-          name="duration"
-          value={formData.duration}
-          onChange={handleChange}
-        />
-        <FileInput
-          label="Movie File (MP4)"
-          name="movieFile"
-          onChange={handleFileChange}
-          accept="video/mp4"
-        />
-        <FileInput
-          label="Movie Image (JPG, PNG, JPEG)"
-          name="movieImage"
-          onChange={handleImageChange}
-          accept="image/jpeg, image/png, image/jpg"
-        />
-        <FormInput
-          label="Cast"
-          type="text"
-          name="cast"
-          value={formData.cast}
-          onChange={handleChange}
-        />
-        <FormInput
-          label="Director"
-          type="text"
-          name="director"
-          value={formData.director}
-          onChange={handleChange}
-        />
-        <div>
-          <label>Categories</label>
+    <div className="add-movie">
+      <div className="modal">
+        <h2>Add New Movie</h2>
+        <form onSubmit={handleSubmit}>
+          <FormInput
+            label="Movie Title"
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+          />
+          <FormInput
+            label="Description"
+            type="textarea"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+          <FormInput
+            label="Release Year"
+            type="number"
+            name="releaseYear"
+            value={formData.releaseYear}
+            onChange={handleChange}
+          />
+          <FormInput
+            label="Duration (minutes)"
+            type="number"
+            name="duration"
+            value={formData.duration}
+            onChange={handleChange}
+          />
+          <FileInput
+            label="Movie File (MP4)"
+            name="movieFile"
+            onChange={handleFileChange}
+            accept="video/mp4"
+          />
+          <FileInput
+            label="Movie Image (JPG, PNG, JPEG)"
+            name="movieImage"
+            onChange={handleImageChange}
+            accept="image/jpeg, image/png, image/jpg"
+          />
+          <FormInput
+            label="Cast"
+            type="text"
+            name="cast"
+            value={formData.cast}
+            onChange={handleChange}
+          />
+          <FormInput
+            label="Director"
+            type="text"
+            name="director"
+            value={formData.director}
+            onChange={handleChange}
+          />
           <div>
-            {Array.isArray(categories) && categories.length > 0 ? (
-              categories.map((category) => (
-                <div key={category.id} className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    id={`category-${category.id}`}
-                    value={category._id}
-                    checked={formData.categories.includes(category._id)}
-                    onChange={handleCategoryChange}
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor={`category-${category.id}`}
-                  >
-                    {category.name}
-                  </label>
-                </div>
-              ))
-            ) : (
-              <p>No categories available.</p>
-            )}
+            <label>Categories</label>
+            <div>
+              {Array.isArray(categories) && categories.length > 0 ? (
+                categories.map((category) => (
+                  <div key={category.id} className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id={`category-${category.id}`}
+                      value={category._id}
+                      checked={formData.categories.includes(category._id)}
+                      onChange={handleCategoryChange}
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor={`category-${category.id}`}
+                    >
+                      {category.name}
+                    </label>
+                  </div>
+                ))
+              ) : (
+                <p>No categories available.</p>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="modal-actions">
-          <button type="submit" className="btn btn-primary">
-            Add Movie
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={toggleAddMovieModal}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
+          <div className="modal-actions">
+            <button type="submit" className="btn btn-primary">
+              Add Movie
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={toggleAddMovieModal}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

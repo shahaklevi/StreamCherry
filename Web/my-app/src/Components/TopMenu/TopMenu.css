@@ -8,7 +8,8 @@
   padding: 10px 20px;
   background-color: var(--background-color); /* Dynamic background color for the navbar */
   color: var(--text-color); /* Dynamic text color for the navbar */
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth transitions */
+  transition: background-color 0.3s ease-in-out,
+  color 0.3s ease-in-out; /* Smooth transitions */
 }
 
 .top-menu .navbar .container-fluid {
@@ -81,7 +82,8 @@
   border: 1px solid #ccc; /* Optional: Add a border to the input */
   background-color: var(--background-color); /* Dynamic input background */
   color: var(--text-color); /* Dynamic input text color */
-  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
 }
 
 .top-menu .form-control:focus {
@@ -105,12 +107,6 @@
   background-color: #f6121d; /* Slightly brighter red on hover */
 }
 
-/* Netflix Logo */
-.top-menu .netflix-logo {
-  width: 95px; /* Size of the logo */
-  height: auto;
-  margin-left: 20px;
-}
 
 /* Remove the underline for all Link elements in the navbar */
 .top-menu .navbar .navbar-nav a {
@@ -123,6 +119,9 @@
   color: #e50914; /* Netflix red on hover */
 }
 
-
-
-
+.top-menu .stream-logo{
+  width: 50px;
+  height: auto;
+  margin-left: 75px;
+  margin-top: 0px;
+}

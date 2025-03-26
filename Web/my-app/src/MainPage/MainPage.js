@@ -13,6 +13,7 @@ function MainPage() {
   const [recommendations, setRecommendations] = useState([]); // State to store recommended movies
   const [randomMovieId, setRandomMovieId] = useState(null);
   const [randomMovies, setRandomMovies] = useState([]);
+  const [isTop, setIsTop] = useState(true);  // New state to track scroll position
 
   const { LogOut, isAdmin } = useTopMenu();
   const { logout, verifyToken, verifyAdminToken } = useUser();
@@ -28,7 +29,7 @@ function MainPage() {
     };
 
     checkToken();
-  }, [verifyToken, logout, navigate]); // Dependencies for useEffect
+  }, []); // Dependencies for useEffect
 
   // GET Request inside useEffect
   useEffect(() => {
@@ -46,18 +47,14 @@ function MainPage() {
           return;
         }
 
-
-        const response = await fetch(
-          `http://localhost:3000/api/movies/`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              userId: userData._id,
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response = await fetch(`http://localhost:3000/api/movies/`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            userId: userData._id,
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (!response.ok) {
           throw new Error(`Failed to fetch recommendations`);
@@ -81,12 +78,13 @@ function MainPage() {
 
     const allMovieIds = Object.values(recommendations.movies)
       .flat()
-      .map(movie => movie._id);
+      .map((movie) => movie._id);
 
-    const newRandomId = allMovieIds.length > 0
-      ? allMovieIds[Math.floor(Math.random() * allMovieIds.length)]
-      : null;
-    
+    const newRandomId =
+      allMovieIds.length > 0
+        ? allMovieIds[Math.floor(Math.random() * allMovieIds.length)]
+        : null;
+
     setRandomMovieId(newRandomId);
     console.log(`Settings random movie ID: ${newRandomId}`);
   }, [recommendations]);
@@ -96,7 +94,7 @@ function MainPage() {
       // Get all movie IDs and flatten
       const allMovieIds = Object.values(recommendations.movies)
         .flat()
-        .map(movie => movie._id);
+        .map((movie) => movie._id);
 
       // Shuffle array using Fisher-Yates algorithm
       const shuffled = [...allMovieIds];
@@ -113,6 +111,22 @@ function MainPage() {
     }
   }, [recommendations]);
 
+  // Add scroll event listener to update the background transparency
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        setIsTop(true);
+      } else {
+        setIsTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="MainPage">
       {/* Video Background Section */}
@@ -120,24 +134,28 @@ function MainPage() {
         <VideoItem movieId={randomMovieId} />
       </div>
       <div className="overlay">
-        <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} />
+        <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} isTop={isTop} />
       </div>
       {/* Main Content Section */}
       <div className="MainContent">
         {/* <NumericSlider title="Trending Now" movieIds={randomMovies} /> */}
 
         {/* Loop through all categories and create a RowSlider for each */}
-        {Object.entries(recommendations.movies || {}).map(([categoryName, movies]) => {
-          const movieIds = movies.map(movie => movie._id);
+        {Object.entries(recommendations.movies || {}).map(
+          ([categoryName, movies]) => {
+            const movieIds = movies.map((movie) => movie._id);
 
-          return movieIds.length > 0 && (
-            <RowSlider
-              key={categoryName}
-              title={categoryName}
-              movieIds={movieIds}
-            />
-          );
-        })}
+            return (
+              movieIds.length > 0 && (
+                <RowSlider
+                  key={categoryName}
+                  title={categoryName}
+                  movieIds={movieIds}
+                />
+              )
+            );
+          }
+        )}
       </div>
     </div>
   );

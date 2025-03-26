@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import "./signUpForm.css";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../Contexts/UserContext";
+import { useLocation } from "react-router-dom";
 import FormHeader from "../../Components/SignUpComponents/FormHeader";
 import FileInput from "../../Components/SignUpComponents/FileInput";
 import FormInput from "../../Components/SignUpComponents/FormInput";
 import ThemeToggle from "../../Components/ThemeToggle/ThemeToggle";
 
 const SignUpForm = () => {
+  const location = useLocation();
+  const { email } = location.state || {};
   const [formData, setFormData] = useState({
     user_name: "",
     nickName: "", // New field for nickname
     password: "",
     confirmPassword: "",
-    mail: "",
+    mail: email || "",
     phone: "",
     profilePicture: null,
     manager: false,
@@ -90,11 +93,21 @@ const SignUpForm = () => {
 
   return (
     <div className="signup-page">
+      <div className="signup-overlay">
       <FormHeader />
-      <ThemeToggle />
+      <div className="signup-toggle-wrapper">
+        <ThemeToggle />
+      </div>
       <div className="signup-form-container">
         <h2>Create an Account</h2>
         <form onSubmit={handleSubmit}>
+          <FormInput
+            label="Email"
+            type="email"
+            name="mail"
+            value={formData.mail}
+            onChange={handleChange}
+          />
           <FormInput
             label="Username"
             type="text"
@@ -123,26 +136,14 @@ const SignUpForm = () => {
             value={formData.confirmPassword}
             onChange={handleChange}
           />
-          {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
-          <FormInput
-            label="Email"
-            type="email"
-            name="mail"
-            value={formData.mail}
-            onChange={handleChange}
-          />
-          <FormInput
-            label="Phone Number"
-            type="text"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-          />
+          {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
+          {/* Display error message */}
           <FileInput label="Profile picture" onChange={handleFileChange} />
           <button type="submit" className="submit-btn">
             Sign Up
           </button>
         </form>
+      </div>
       </div>
     </div>
   );

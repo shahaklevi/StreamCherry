@@ -6,7 +6,7 @@
 }
 
 .homepage {
-    background-image: url("../images/netflix-background-image.jpg");
+    background-image: url("../images/StreamCherry_signup.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -83,24 +83,6 @@
 
 .homepage .button:hover {
     background-color: darkred;
-}
-
-.homepage .english-button {
-    position: fixed;
-    top: 20px;
-    right: 140px; 
-    background-color: black !important; 
-    color: white !important; 
-    border: 2px solid gray !important;
-    padding: 8px 15px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.homepage .english-button:hover {
-    border-color: white !important; 
 }
 
 .homepage .btn-signin {

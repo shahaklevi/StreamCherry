@@ -53,7 +53,7 @@ function LoginForm({ onSignIn, onChange, username, password, errorMessage }) {
           {/* Sign Up Section */}
           <div className="mt-4 new-to-netflix text-center">
             <span className="text-white">
-              New to Netflix?{" "}
+              New to StreamCherry?{" "}
               <Link to="/SignUp">
                 <a href="#" className="text-decoration-none text-danger">
                   Sign up now.

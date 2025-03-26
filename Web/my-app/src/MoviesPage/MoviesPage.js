@@ -31,7 +31,7 @@ function MoviesPage() {
     };
 
     checkToken();
-  }, [verifyToken, logout, navigate]); // Dependencies for useEffect
+  }, []); // Dependencies for useEffect
   const promotedCategories = categories.filter((category) => category.promoted);
   return (
     <div className="MoviesPage">
