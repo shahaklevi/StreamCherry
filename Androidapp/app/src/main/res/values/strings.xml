@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Android app</string>
+    <string name="Get_Started">Get Started</string>
+    <string name="password">password</string>
+    <string name="Signinbtn">Sign In</string>
+    <string name="LoginNewToNetflix">new to netflix?</string>
+    <string name="LoginSignUp">sign up</string>
+</resources>
