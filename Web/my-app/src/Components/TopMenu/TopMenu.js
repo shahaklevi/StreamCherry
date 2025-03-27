@@ -37,7 +37,8 @@ function TopMenu({ LogOutSystem, VerifyAdmin, isTop }) {
 
           const data = await response.json(); // Parse the response JSON
 
-          const pictureUrl = `http://localhost:3000/${data.profilePicture}`;
+          // const pictureUrl = `http://localhost:3000/${data.profilePicture}`;
+          const pictureUrl = data.profilePicture
           setUserProfilePic(pictureUrl); // Update profile picture
         }
       }
