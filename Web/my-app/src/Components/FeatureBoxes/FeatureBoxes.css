@@ -1,0 +1,49 @@
+/* Container for the three boxes */
+.feature-boxes {
+    position: fixed;        /* Pin to the viewport */
+    bottom: 0;              /* Align to bottom */
+    left: 0;                /* Align to left edge */
+    right: 0;               /* Align to right edge */
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10%;      /* Adjust padding as needed */
+    color: white;
+    z-index: 9999;          /* Ensures it’s on top if needed */
+  }
+  
+
+/* Individual box styling */
+.feature-box {
+  flex: 1; /* Each box grows/shrinks equally */
+  text-align: center;
+  padding: 20px;
+  margin: 0 15px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect */
+.feature-box:hover {
+  transform: translateY(-10px);
+}
+
+
+/* Icon styling */
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+/* Title styling */
+.feature-box h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Paragraph styling */
+.feature-box p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}

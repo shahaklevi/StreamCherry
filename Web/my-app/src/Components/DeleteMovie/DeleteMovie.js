@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./DeleteMovie.css";
 
-function DeleteMovie({ toggleDeleteMovieModal }) {
+function DeleteMovie({ closePanel }) {
   const [movieName, setMovieName] = useState(""); // User-entered movie name
   const [filteredMovies, setFilteredMovies] = useState([]); // Filtered movies based on query
   const [message, setMessage] = useState(""); // Message to the user
@@ -53,7 +53,7 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
     }
   };
 
-  const handleDelete = async (movieId,movieFile) => {
+  const handleDelete = async (movieId, movieFile) => {
     try {
       const token = await localStorage.getItem("jwtToken"); // Retrieve token from context
       if (!token) {
@@ -69,7 +69,6 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
           },
         }
       );
-
 
       if (deleteResponse.ok) {
         setMessage("Movie deleted successfully!");
@@ -88,46 +87,48 @@ function DeleteMovie({ toggleDeleteMovieModal }) {
 
   return (
     <div className="delete-page">
-      <div className="modal">
-        <h2>Delete Movie</h2>
-        <div>
-          <label htmlFor="movieName">Search Movie by Title:</label>
-          <input
-            type="text"
-            id="movieName"
-            name="movieName"
-            value={movieName}
-            onChange={handleSearch} // בצע חיפוש בעת שינוי הערך
-            placeholder="Enter movie title"
-          />
+      <div className="side-panel">
+        <div className="delete-movie">
+          <h2>Delete Movie</h2>
+          <div>
+            <label htmlFor="movieName">Search Movie by Title:</label>
+            <input
+              type="text"
+              id="movieName"
+              name="movieName"
+              value={movieName}
+              onChange={handleSearch} // בצע חיפוש בעת שינוי הערך
+              placeholder="Enter movie title"
+            />
+          </div>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : filteredMovies.length > 0 ? (
+            <ul className="movies-list">
+              {filteredMovies.map((movie) => (
+                <li key={movie._id}>          
+                  <span>{movie.title}</span>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(movie._id, movie.movieFile)}
+                  >
+                    Delete
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            movieName.trim() && <p>No matching movies found.</p>
+          )}
+          {message && <p>{message}</p>} {/* הצגת הודעות */}
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={closePanel}
+          >
+            Close
+          </button>
         </div>
-        {isLoading ? (
-          <p>Loading...</p>
-        ) : filteredMovies.length > 0 ? (
-          <ul className="movies-list">
-            {filteredMovies.map((movie) => (
-              <li key={movie._id}>
-                <span>{movie.title}</span>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleDelete(movie._id,movie.movieFile)}
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          movieName.trim() && <p>No matching movies found.</p>
-        )}
-        {message && <p>{message}</p>} {/* הצגת הודעות */}
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={toggleDeleteMovieModal}
-        >
-          Close
-        </button>
       </div>
     </div>
   );

@@ -108,6 +108,7 @@ const SignUpForm = () => {
             value={formData.mail}
             onChange={handleChange}
           />
+  
           <FormInput
             label="Username"
             type="text"
