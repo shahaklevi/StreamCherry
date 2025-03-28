@@ -10,117 +10,89 @@ import "./AdminPage.css";
 import { useTopMenu } from "../Components/TopMenu/TopMenuLogic";
 
 function AdminPage() {
-  const [activeModal, setActiveModal] = useState(null); // Manage which modal is open
   const { LogOut, isAdmin } = useTopMenu();
+  const [activePanel, setActivePanel] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
 
   const toggleModal = (modalName) => {
     setActiveModal((prevModal) => (prevModal === modalName ? null : modalName));
   };
 
-  const handleAddMovieSubmit = (e) => {
-    e.preventDefault();
-    alert("Movie added!");
-    setActiveModal(null); // Close modal after submission
-  };
-
-  const handleAddCategorySubmit = (e) => {
-    e.preventDefault();
-    alert("Category added!");
-    setActiveModal(null); // Close modal after submission
-  };
-
-  const handleDeleteMovieSubmit = (movieId) => {
-    alert(`Movie with ID ${movieId} deleted!`);
-    setActiveModal(null); // סגור מודל לאחר השליחה
+  const togglePanel = (panelName) => {
+    setActivePanel((prevPanel) =>
+      prevPanel === panelName ? false : panelName
+    );
   };
 
   return (
     <div className="admin-page">
-      <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} />
-      <div className="admin-page-header">
-        <h1>Admin Zone</h1>
-        <p>Welcome to the admin zone! Perform your actions here.</p>
+      {/* Top menu stays at the top */}
+      <div className="top-menu">
+        <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} />
       </div>
+      <div className="admin-container">
+        {/* Left: Admin Panels */}
+        <div className="admin-panels">
+          {activePanel === "addMovie" && (
+            <AddMovie closePanel={() => togglePanel("addMovie")} />
+          )}
+          {activePanel === "editMovie" && (
+            <EditMoviePage closePanel={() => togglePanel("editMovie")} />
+          )}
+          {activePanel === "deleteMovie" && (
+            <DeleteMovie closePanel={() => togglePanel("deleteMovie")} />
+          )}
+          {activePanel === "addCategory" && (
+            <AddCategory closePanel={() => togglePanel("addCategory")} />
+          )}
+          {activePanel === "editCategory" && (
+            <EditCategoryPage
+              closePanel={() => togglePanel("editCategory")}
+              toggleEditMovieModal={() => toggleModal("editMovie")}
+            />
+          )}
+          {activePanel === "deleteCategory" && (
+            <DeleteCategory closePanel={() => togglePanel("deleteCategory")} />
+          )}
+        </div>
 
-      <div className="admin-actions">
-        <button
-          className="toggle-actions-btn"
-          onClick={() => toggleModal("actions")}
-        >
-          {activeModal === "actions" ? "Hide Actions" : "Show Actions"}
-        </button>
-        {activeModal === "actions" && (
-          <ul className="actions-list">
-            <li onClick={() => toggleModal("addMovie")}>Add Movie</li>
-            <li onClick={() => toggleModal("editMovie")}>Edit Movie</li>
-            <li onClick={() => toggleModal("deleteMovie")}>Delete Movie</li>
-            <li onClick={() => toggleModal("addCategory")}>Add Category</li>
-            <li onClick={() => toggleModal("editCategory")}>Edit Category</li>
+        {/* Right: Admin content (header + actions) */}
+        <div className="admin-content">
+          <div className="admin-page-header">
+            <img
+              src="media/Svgs/admin.svg"
+              alt="admin"
+              className="admin-icon"
+            />
+            <h1>Admin Zone</h1>
+            <p>Welcome to the admin zone! Perform your actions here.</p>
+          </div>
 
-            <li onClick={() => toggleModal("deleteCategory")}>
-              {" "}
-              Delete Category{" "}
-            </li>
+          <div className="admin-actions">
+            <button
+              className="toggle-actions-btn"
+              onClick={() => toggleModal("actions")}
+            >
+              {activeModal === "actions" ? "Hide Actions" : "Show Actions"}
+            </button>
 
-
-          </ul>
-        )}
+            {activeModal === "actions" && (
+              <ul className="actions-list">
+                <li onClick={() => togglePanel("addMovie")}>Add Movie</li>
+                <li onClick={() => togglePanel("editMovie")}>Edit Movie</li>
+                <li onClick={() => togglePanel("deleteMovie")}>Delete Movie</li>
+                <li onClick={() => togglePanel("addCategory")}>Add Category</li>
+                <li onClick={() => togglePanel("editCategory")}>
+                  Edit Category
+                </li>
+                <li onClick={() => togglePanel("deleteCategory")}>
+                  Delete Category
+                </li>
+              </ul>
+            )}
+          </div>
+        </div>
       </div>
-
-      {/* Add Movie Modal */}
-      {activeModal === "addMovie" && (
-        <div className="modal-overlay">
-          <AddMovie
-            toggleAddMovieModal={() => toggleModal("addMovie")}
-            handleAddMovieSubmit={handleAddMovieSubmit}
-          />
-        </div>
-      )}
-
-      {/* Add Category Modal */}
-      {activeModal === "addCategory" && (
-        <div className="modal-overlay">
-          <AddCategory
-            toggleAddCategoryModal={() => toggleModal("addCategory")}
-            handleAddCategorySubmit={handleAddCategorySubmit}
-          />
-        </div>
-      )}
-
-      {/* Delete Movie Modal */}
-      {activeModal === "deleteMovie" && (
-        <div className="modal-overlay">
-          <DeleteMovie
-            toggleDeleteMovieModal={() => toggleModal("deleteMovie")}
-            handleDeleteMovieSubmit={handleDeleteMovieSubmit}
-          />
-        </div>
-      )}
-
-      {/* Delete Category Modal */}
-      {activeModal === "deleteCategory" && (
-        <div className="modal-overlay">
-          <DeleteCategory
-            toggleDeleteCategoryModal={() => toggleModal("deleteCategory")}
-          />
-        </div>
-      )}
-      {/* Edit Movie Modal */}
-      {activeModal === "editMovie" && (
-        <div className="modal-overlay">
-          <EditMoviePage
-            toggleEditMovieModal={() => toggleModal("editMovie")}
-          />
-        </div>
-      )}
-      {/* Edit Category Modal */}
-      {activeModal === "editCategory" && (
-        <div className="modal-overlay">
-          <EditCategoryPage
-            toggleEditCategoryModal={() => toggleModal("editCategory")}
-          />
-        </div>
-      )}
     </div>
   );
 }

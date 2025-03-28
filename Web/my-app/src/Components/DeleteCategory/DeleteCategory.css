@@ -42,3 +42,12 @@ h2 {
   margin-top: 20px;
   color: var(--text-color);
 }
+
+.side-panel .delete-category{
+  margin-top: 70px;
+  padding: 2rem;
+  border-style:solid;
+  border-color:var(--text-color);
+  border-radius: 10px;
+  background-color: var(--semi-transparent);
+}

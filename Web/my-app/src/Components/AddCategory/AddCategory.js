@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import FormInput from "../../Components/SignUpComponents/FormInput";
 import "./AddCategory.css";
-function AddCategory({ toggleAddCategoryModal, handleAddCategorySubmit }) {
+function AddCategory({ closePanel, handleAddCategorySubmit }) {
   const [formData, setFormData] = useState({
     name: "",
     promoted: true,
     movies: [], // Default empty array
   });
-
 
   const [isSubmitting, setIsSubmitting] = useState(false); // To manage submission state
 
@@ -57,12 +56,11 @@ function AddCategory({ toggleAddCategoryModal, handleAddCategorySubmit }) {
       const data = await response.json();
       if (response.ok) {
         alert("Category Successfully Added!");
-        toggleAddCategoryModal(); // Close the modal
+        closePanel(); // Close the modal
       } else {
         alert("Error adding category: " + (data.error || "Unknown error"));
       }
     } catch (error) {
-
       alert("Server Error: " + error.message);
     } finally {
       setIsSubmitting(false); // Re-enable the form
@@ -70,57 +68,49 @@ function AddCategory({ toggleAddCategoryModal, handleAddCategorySubmit }) {
   };
 
   return (
-    <div className="add-category">
-    <div className="modal">
-      <h2>Add New Category</h2>
-      <form onSubmit={handleSubmit}>
-        <FormInput
-          label="Category Name"
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        {/* Dropdown for Promoted Field */}
-        <div className="form-group">
-          <label htmlFor="promoted">Promoted:</label>
-          <select
-            id="promoted"
-            name="promoted"
-            value={formData.promoted ? "true" : "false"}
+    <div className="side-panel">
+      <div className="add-category">
+        <h2>Add New Category</h2>
+        <form onSubmit={handleSubmit}>
+          <FormInput
+            label="Category Name"
+            type="text"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
-          >
-            <option value="true">True</option>
-            <option value="false">False</option>
-          </select>
-        </div>
-        {/* Movies Field */}
-        <FormInput
-          label="Movie IDs (comma-separated)"
-          type="text"
-          name="movies"
-          value={formData.movies.join(", ")}
-          onChange={handleMoviesChange}
-        />
-        <div className="modal-actions">
-          <button
-            type="submit"
-            className="btn btn-primary"
-            disabled={isSubmitting} // Disable the button while submitting
-          >
-            {isSubmitting ? "Adding..." : "Add Category"}
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={toggleAddCategoryModal}
-          >
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
+            required
+          />
+          {/* Dropdown for Promoted Field */}
+          <div className="form-group">
+            <label htmlFor="promoted">Promoted:</label>
+            <select
+              id="promoted"
+              name="promoted"
+              value={formData.promoted ? "true" : "false"}
+              onChange={handleChange}
+            >
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+          </div>
+          <div className="modal-actions">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={isSubmitting} // Disable the button while submitting
+            >
+              {isSubmitting ? "Adding..." : "Add Category"}
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={closePanel}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

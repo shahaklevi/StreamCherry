@@ -1,12 +1,15 @@
 import React from "react";
 import "./HomePage.css";
 import HomePageForm from "../Components/HomePageForm/HomePageForm";
+import FeatureBoxes from "../Components/FeatureBoxes/FeatureBoxes"; // Import the new component
 
 const HomePage = () => {
-    return (
-
-        <HomePageForm/>
-    );
+  return (
+    <div className="homepage">
+      <HomePageForm />
+      <FeatureBoxes />
+    </div>
+  );
 };
 
 export default HomePage;

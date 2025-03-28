@@ -1,11 +1,3 @@
-.edit-category-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; /* Centers the modal vertically */
-  background: rgba(0, 0, 0, 0.6); /* Dark overlay for focus effect */
-  padding: 20px;
-}
 
 .edit-category {
   background-color: var(--background-color);
@@ -33,18 +25,6 @@
   display: block;
 }
 
-/* Input Fields */
-.edit-category input,
-.edit-category select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
 
 /* Focus State for Inputs */
 .edit-category input:focus,
@@ -53,18 +33,13 @@
   outline: none;
 }
 
-/* Button Container */
-.edit-category .modal-actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
+
 
 /* General Button Styling */
 .edit-category .btn {
   flex: 1;
   padding: 12px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
   border: none;

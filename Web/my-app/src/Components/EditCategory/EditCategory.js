@@ -29,7 +29,7 @@ function EditCategory({ category, onClose }) {
         {
           method: "PATCH",
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
@@ -39,8 +39,7 @@ function EditCategory({ category, onClose }) {
       if (response.ok) {
         alert("Category updated successfully!");
 
-        onClose(); 
-
+        onClose();
       } else {
         const data = await response.json();
         alert("Error updating category: " + data.error);
@@ -51,9 +50,7 @@ function EditCategory({ category, onClose }) {
   };
 
   return (
-    <div className="edit-category">
-      <div className="edit-category-modal">
-        <h2 className="glowing-title">Edit Category</h2>
+      <div className="edit-category">
         <form onSubmit={handleSubmit} className="edit-form">
           <div className="input-group">
             <label htmlFor="name">Category Name:</label>
@@ -87,7 +84,6 @@ function EditCategory({ category, onClose }) {
           </div>
         </form>
       </div>
-    </div>
   );
 }
 
