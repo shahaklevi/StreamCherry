@@ -42,6 +42,8 @@ public class UserApi {
             @Override
             public void onFailure(Call<LoginResponse> call, Throwable t) {
                 Log.e("UserApi","Error: connection failed");
+                t.printStackTrace();
+
             }
         });
     }

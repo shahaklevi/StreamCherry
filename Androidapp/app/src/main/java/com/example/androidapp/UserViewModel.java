@@ -9,7 +9,6 @@ import java.util.List;
 public class UserViewModel extends ViewModel {
 
     private UserRepository repository;
-    private LiveData<List<User>> movies;
     public UserViewModel() {
         repository = new UserRepository();
     }

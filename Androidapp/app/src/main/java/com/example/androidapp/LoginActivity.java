@@ -4,16 +4,20 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.example.androidapp.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
+    private UserViewModel userViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         // Set an OnClickListener for the Start button to navigate to LoginActivity
         binding.btnBack.setOnClickListener(v -> {
@@ -26,6 +30,9 @@ public class LoginActivity extends AppCompatActivity {
             String password = binding.editPassword.getText().toString();
             if (!username.isEmpty() && !password.isEmpty()) {
                 User user = new User(username, password);
+                userViewModel.login(user);
+
+
 //                UserApi userApi = new UserApi();
 //                userApi.loginUser(user);
             }

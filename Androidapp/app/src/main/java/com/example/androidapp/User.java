@@ -2,7 +2,7 @@ package com.example.androidapp;
 
 public class User {
 
-    private String username;
+    private String user_name;
     private String password;
     private String confirmPassword;
     private String nickname;
@@ -10,11 +10,11 @@ public class User {
 
 
     public String getUsername() {
-        return username;
+        return user_name;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.user_name = username;
     }
 
     public String getPassword() {
@@ -50,18 +50,18 @@ public class User {
     }
 
     public User(String username, String password, String nickname) {
-        this.username = username;
+        this.user_name = username;
         this.password = password;
         this.nickname = nickname;
     }
     public User(String username, String password, String nickname, String photo) {
-        this.username = username;
+        this.user_name = username;
         this.password = password;
         this.nickname = nickname;
         this.photo = photo;
     }
     public User(String username, String password) {
-        this.username = username;
+        this.user_name = username;
         this.password = password;
     }
     public User() {
