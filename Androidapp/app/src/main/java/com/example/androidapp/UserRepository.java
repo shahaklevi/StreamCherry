@@ -7,4 +7,12 @@ public class UserRepository {
     public UserRepository() {
         api = new UserApi();
     }
+
+    public void add(User user) {
+
+    }
+
+    public void login(User user) {
+        api.login(user);
+    }
 }

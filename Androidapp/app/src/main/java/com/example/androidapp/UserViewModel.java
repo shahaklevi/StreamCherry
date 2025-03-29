@@ -1,7 +1,7 @@
 package com.example.androidapp;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.androidapp.repositories.UserRepository;
+import com.example.androidapp.UserRepository;
 
 import java.io.File;
 import java.util.List;
