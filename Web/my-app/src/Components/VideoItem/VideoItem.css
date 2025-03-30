@@ -5,34 +5,36 @@
     width: 100%;
     height: 100%;
     font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
   }
   .video {
-    width: 100%;
-    height: 100%;
+    width: 100% !important;
+    height: 100% !important;
     object-fit: cover;
   }
   
   .video-item-content {
-    width : 600px;
+    width : 50%;
+    height: 60%;
     position: absolute;
-    bottom: 10%;
+    bottom: -20%;
+    left: 0%;
     color: white;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-    z-index: 2;
-    font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+    flex-direction: column;
+
   }
   .video-item-content p.movie-title {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 700;
-    margin-bottom: 10px;
-    margin-left: -130px;
+    text-align: left;
+    margin-left: 30px !important;
   } 
+  
   .video-item-content p.movie-description {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    margin-left: -170px;
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: left;  
+    margin-left: 30px !important;
   } 
   .video-item-content p {
     font-size: 1.2rem;
@@ -42,5 +44,5 @@
   .button-container {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 20px;
 }

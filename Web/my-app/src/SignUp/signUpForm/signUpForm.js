@@ -130,6 +130,13 @@ const SignUpForm = () => {
             onChange={handleChange}
           />
           <FormInput
+            label="Phone Number"
+            type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+          />
+          <FormInput
             label="Confirm Password"
             type="password"
             name="confirmPassword"

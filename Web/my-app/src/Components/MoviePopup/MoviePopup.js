@@ -134,7 +134,7 @@ const MoviePopup = ({ movie, onClose }) => {
           <div className="popup-right">
             <div className="popup-cast">
               <p>
-                <span className="cast-title">Cast: </span>
+                <span className="cast-title">Cast </span>
                 {movie.cast.map((actor, index) => (
                   <span key={index} className="actor-name">
                     {actor}
@@ -145,7 +145,7 @@ const MoviePopup = ({ movie, onClose }) => {
             </div>
             <div className="popup-categories">
               <p>
-                <span className="categories-title">Categories: </span>
+                <span className="categories-title">Categories </span>
                 {categoryNames.map((categoryName, index) => (
                   <span key={index} className="category-name">
                     {categoryName}

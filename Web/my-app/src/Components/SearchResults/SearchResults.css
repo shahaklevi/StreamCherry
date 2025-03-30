@@ -37,17 +37,16 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
-  position: relative; /* Helps align child elements properly */
-  height: 100%; /* Ensures proper stretching */
+  position: relative; 
+  height: 100%; 
 }
 
 /* Movie Poster */
 .movie-poster {
-  width: 100%;
-  height: 116.825px; /* Enforces correct size */
+  width: 120%;
   object-fit: cover;
   display: block;
-  flex-shrink: 0; /* Prevents squishing */
+  flex-shrink: 0;
 }
 
 /* Movie Info Overlay */

@@ -1,6 +1,6 @@
 import "./MainPage.css";
 import VideoItem from "../Components/VideoItem/VideoItem";
-import RowSlider from "../Components/RowSlider/RowSlider";
+import RowSlider from "../Components/Common/RowSlider/RowSlider";
 import NumericSlider from "../Components/NumericSlider/NumericSlider";
 import TopMenu from "../Components/TopMenu/TopMenu";
 import { useUser } from "../Contexts/UserContext";
