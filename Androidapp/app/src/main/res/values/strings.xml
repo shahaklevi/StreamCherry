@@ -6,4 +6,13 @@
     <string name="LoginNewToNetflix">new to netflix?</string>
     <string name="LoginSignUp">sign up</string>
     <string name="BaseUrl">http://10.0.2.2:3000/api/</string>
+    <string name="Email">Email\n</string>
+    <string name="Username">Username\n</string>
+    <string name="Nickname">Nickname\n</string>
+    <string name="Confirm_Password">Password</string>
+    <string name="Password">Password\n</string>
+    <string name="choose_pic">choose picture\n</string>
+    <string name="login_backbuttom">backbtn</string>
+    <string name="btn_sign_in">btnsignin</string>
+    <string name="Phone">Phone</string>
 </resources>

@@ -5,6 +5,164 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".RegisterActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/Email"
+            android:layout_width="278dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="#6B6868"
+            android:ems="10"
+            android:hint="@string/Email"
+            android:padding="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0" />
+        <EditText
+            android:id="@+id/UserName"
+            android:layout_width="278dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="#6B6868"
+            android:ems="10"
+            android:hint="@string/Username"
+            android:padding="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0" />
+
+
+        <EditText
+            android:id="@+id/Nickname"
+            android:layout_width="279dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="#6B6868"
+            android:ems="10"
+            android:hint="@string/Nickname"
+            android:padding="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            tools:layout_editor_absoluteX="57dp"
+            tools:layout_editor_absoluteY="281dp" />
+        <EditText
+            android:id="@+id/Password"
+            android:layout_width="279dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="#6B6868"
+            android:ems="10"
+            android:hint="@string/Password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            tools:layout_editor_absoluteX="57dp"
+            tools:layout_editor_absoluteY="281dp" />
+
+        <EditText
+            android:id="@+id/Confirm"
+            android:layout_width="279dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="#6B6868"
+            android:ems="10"
+            android:hint="@string/Confirm_Password"
+            android:inputType="textPassword"
+            android:padding="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            tools:layout_editor_absoluteX="57dp"
+            tools:layout_editor_absoluteY="281dp" />
+
+        <EditText
+            android:id="@+id/Phone"
+            android:layout_width="279dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:backgroundTint="#6B6868"
+            android:ems="10"
+            android:hint="@string/Phone"
+            android:padding="16dp"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            tools:layout_editor_absoluteX="57dp"
+            tools:layout_editor_absoluteY="281dp" />
+
+
+        <ImageView
+            android:id="@+id/imageViewProfilePic"
+            android:layout_width="94dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Profile Picture" />
+
+        <Button
+            android:id="@+id/btnChooseImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:text="@string/choose_pic"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:padding="0dp"
+            android:focusable="false"
+            android:clickable="true" />
+
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back"
+        android:contentDescription="@string/login_backbuttom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btnSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#A91616"
+        android:text="@string/btn_sign_in"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/netflixLogo"-->
+<!--        android:layout0_width="250dp"-->
+<!--        android:layout_height="76dp"-->
+<!--        android:layout_marginStart="-10dp"-->
+<!--        android:adjustViewBounds="true"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:src="@drawable/netfilm_logo"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.529"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.076" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

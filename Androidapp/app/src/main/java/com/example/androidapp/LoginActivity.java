@@ -17,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
 
         // Set an OnClickListener for the Start button to navigate to LoginActivity
@@ -31,10 +32,6 @@ public class LoginActivity extends AppCompatActivity {
             if (!username.isEmpty() && !password.isEmpty()) {
                 User user = new User(username, password);
                 userViewModel.login(user);
-
-
-//                UserApi userApi = new UserApi();
-//                userApi.loginUser(user);
             }
             else {
                 Toast.makeText(LoginActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();

@@ -5,16 +5,51 @@ public class User {
     private String user_name;
     private String password;
     private String confirmPassword;
-    private String nickname;
-    private String photo;
+
+    private String nickName;
+    private String profilePicture;
+    private String mail;
+    private String phone;
 
 
-    public String getUsername() {
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getUser_name() {
         return user_name;
     }
 
-    public void setUsername(String username) {
-        this.user_name = username;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {
@@ -33,37 +68,15 @@ public class User {
         this.confirmPassword = confirmPassword;
     }
 
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public User(String username, String password, String nickname) {
-        this.user_name = username;
+    public User(String mail,String user_name, String password, String nickname, String phone) {
+        this.user_name = user_name;
         this.password = password;
-        this.nickname = nickname;
+        this.nickName = nickname;
+        this.mail = mail;
+        this.phone = phone;
     }
-    public User(String username, String password, String nickname, String photo) {
-        this.user_name = username;
+    public User(String user_name, String password) {
+        this.user_name = user_name;
         this.password = password;
-        this.nickname = nickname;
-        this.photo = photo;
-    }
-    public User(String username, String password) {
-        this.user_name = username;
-        this.password = password;
-    }
-    public User() {
     }
 }

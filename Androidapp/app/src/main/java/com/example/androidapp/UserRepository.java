@@ -1,5 +1,9 @@
 package com.example.androidapp;
 
+import android.net.Uri;
+
+import java.io.File;
+
 public class UserRepository {
     private UserApi api;
 
@@ -8,10 +12,14 @@ public class UserRepository {
         api = new UserApi();
     }
 
-    public void add(User user) {
-
+//    public void add(User user, File imagefile) {
+//
+//        api.add(user,imagefile);
+//
+//    }
+    public void add(User user, Uri imageUri) {
+        api.add(user, imageUri);
     }
-
     public void login(User user) {
         api.login(user);
     }
