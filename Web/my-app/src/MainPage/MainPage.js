@@ -138,7 +138,6 @@ function MainPage() {
       </div>
       {/* Main Content Section */}
       <div className="MainContent">
-        {/* <NumericSlider title="Trending Now" movieIds={randomMovies} /> */}
 
         {/* Loop through all categories and create a RowSlider for each */}
         {Object.entries(recommendations.movies || {}).map(

@@ -39,13 +39,13 @@ function RowSlider({ title, movieIds }) {
 
   const scrollLeft = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -320, behavior: "smooth" }); // Adjust scroll distance based on card width
+      sliderRef.current.scrollBy({ left: -320, behavior: "smooth" }); // Scroll left by 320px
     }
   };
 
   const scrollRight = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 320, behavior: "smooth" }); // Adjust scroll distance based on card width
+      sliderRef.current.scrollBy({ left: 320, behavior: "smooth" }); // Scroll right by 320px
     }
   };
 
@@ -53,15 +53,21 @@ function RowSlider({ title, movieIds }) {
     <div className="row-slider">
       <h2 className="row-title">{title}</h2>
       <div className="slider-container" ref={sliderRef}>
+        <div className="slider-side">
         <button className="arrow left-arrow" onClick={scrollLeft}>
           <img src="/media/Buttons/leftIndicator.svg" alt="left" />
         </button>
+        </div>
+        <div className="slider-center">
           {movies.map((movie, index) => (
             <MovieCard key={index} movie={movie} />
           ))}
+          </div>
+        <div className="slider-side">
         <button className="arrow right-arrow" onClick={scrollRight}>
           <img src="/media/Buttons/rightIndicator.svg" alt="right" />
         </button>
+        </div>
       </div>
     </div>
   );

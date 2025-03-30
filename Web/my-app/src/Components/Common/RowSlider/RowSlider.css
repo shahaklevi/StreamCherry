@@ -1,61 +1,67 @@
 /* Row Title */
 .row-title {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--text-color);
-    margin: 10px 0px !important;
-    padding-left: 20px;
-    text-align: left;
-  }
-  
-  /* Row Slider Container */
-  .row-slider {
-    position: relative;
-    margin: 10px 0;
-  }
-  
-  /* Slider Container */
-  .slider-container {
-    margin: 1vw 20px;
-    position: relative;
-    display: flex;
-    gap: 10px; /* Space between cards */
-    overflow: hidden; /* Hide overflowing content */
-    scroll-behavior: smooth; /* Smooth scrolling */
-  }
-  
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-color);
+  margin: 10px 0px !important;
+  padding-left: 20px;
+  text-align: left;
+}
 
-    /* Arrow Buttons */
-  .arrow {
-    flex-direction: row;
-    position: absolute;
-    top: 56% ;
-    width : 20px !;
-    height: 260px ;
-    transform: translateY(-50%);
-    background-color: rgba(244, 239, 239, 0.142); /* Semi-transparent black */
-    color:  var(--text-color);
-    border: none;
-    z-index: 10;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  .arrow img {
-    width: 30px;  /* Increase size */
-    height: 30px;
-    filter: brightness(0) invert(1);  /* Make white */
-  }
+/* Row Slider Container */
+.row-slider {
+  margin: 10px 10px;
+}
 
-  .left-arrow {
-    left: 0px;
-  }
-  
-  .right-arrow {
-    right: 0px;
-  }
-  
-  .arrow:hover {
-    background-color: rgba(224, 215, 215, 0.513); /* Netflix red */
-  }
-  
-  
+/* Slider Container */
+.slider-container {
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: row !important;
+  width: 100%;
+  gap: 10px; /* Space between cards */
+  overflow: hidden; /* Hide overflowing content */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+  /* Arrow Buttons */
+.arrow {
+  width : 30px !important;
+  height: 220px ;
+  background-color: rgba(244, 239, 239, 0.142); /* Semi-transparent black */
+  color:  var(--text-color);
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+.slider-center{
+  flex:1;
+  display: flex;
+  text-align: center;
+  flex-direction: row !important;
+  gap: 20px; /* Space between cards */
+  overflow: hidden; /* Hide overflowing content */
+  scroll-behavior: smooth; /* Enable smooth scrolling */
+
+}
+.slider-side{
+  flex-shrink: 0;
+}
+.arrow img {
+  filter: brightness(0) invert(1);
+  width: 100%;
+  height: 100%;
+}
+
+.left-arrow {
+  left: 0px;
+}
+
+.right-arrow {
+  right: 0px;
+}
+
+.arrow:hover {
+  background-color: rgba(224, 215, 215, 0.513); /* Netflix red */
+}
+

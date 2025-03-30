@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';  // Add useEffect
+import React, { useState, useEffect } from 'react';
 import './MovieCard.css';
 import { useNavigate } from 'react-router-dom';
-import MoviePopup from '../../MoviePopup/MoviePopup';  // Add MoviePopup import
-import tokenVerification from '../../../tokenVerification/tokenVerification';  // Add tokenVerification import
-
+import MoviePopup from '../../MoviePopup/MoviePopup';
+import tokenVerification from '../../../tokenVerification/tokenVerification';
 
 function MovieCard({ movie }) {
   const [imageError, setImageError] = useState(false);
@@ -14,13 +13,14 @@ function MovieCard({ movie }) {
   const defaultImage = "/netflix.png";
   const navigate = useNavigate();
 
-
   const getImageUrl = () => {
     if (!movie.movieImage || imageError) {
       return defaultImage;
     }
     return `http://localhost:3000/${movie.movieImage}`;
   };
+
+  // Cleanup hover timer on component unmount
   useEffect(() => {
     return () => {
       if (hoverTimer) {
@@ -29,23 +29,24 @@ function MovieCard({ movie }) {
     };
   }, [hoverTimer]);
 
+  // Handle mouse enter with a delay
   const handleMouseEnter = () => {
-    setIsHovered(true);
     const timer = setTimeout(() => {
+      setIsHovered(true);
       setIsPopupOpen(true);
-    }, 2000);
+    }, 1000); // Wait for 1 second before triggering
     setHoverTimer(timer);
   };
 
+  // Handle mouse leave and clear the timer
   const handleMouseLeave = () => {
-    setIsHovered(false);
     if (hoverTimer) {
-      clearTimeout(hoverTimer);
-      setHoverTimer(null);
+      clearTimeout(hoverTimer); // Clear the timer if the mouse leaves before 1 second
     }
-    setIsPopupOpen(false);
+    setIsHovered(false);
   };
 
+  // Handle play button click
   const handlePlay = async () => {
     try {
       const token = localStorage.getItem("jwtToken");
@@ -55,7 +56,6 @@ function MovieCard({ movie }) {
       }
 
       const userData = await tokenVerification(token);
-      console.log("User Data:", userData);
       if (!userData) {
         console.error("User data verification failed.");
         return;
@@ -75,53 +75,45 @@ function MovieCard({ movie }) {
       );
 
       const data = await response.json();
-      console.log("Recommendation successful:", data);
-
       navigate(`/movie/${movie._id}`, { state: { movie } });
     } catch (error) {
       console.error("Error during handlePlay:", error.message);
     }
   };
 
-  const handleInfo = () => {
-    setIsPopupOpen(true);
-  };
-
+  // Close the popup
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
 
   return (
-    <div 
-    className={`movie-card-poster ${isHovered ? 'hovered' : ''}`}
-    onClick={handlePlay}
-    onMouseEnter={handleMouseEnter}
-    onMouseLeave={handleMouseLeave}
-  >
-    <div className="image-container">
-      <img
-        src={getImageUrl()}
-        className={`card-img-top ${isLoading ? 'loading' : ''}`}
-        alt={movie.title}
-        onError={() => {
-          console.log('Image failed to load:', movie.movieImage);
-          setImageError(true);
-          setIsLoading(false);
-        }}
-        onLoad={() => setIsLoading(false)}
-      />
+    <div
+      className={`movie-card-poster ${isHovered ? 'hovered' : ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave} // Ensure the timer is cleared on mouse leave
+    >
+      <div className="image-container">
+        <img
+          src={getImageUrl()}
+          className={`card-img-top ${isLoading ? 'loading' : ''}`}
+          alt={movie.title}
+          onError={() => {
+            setImageError(true);
+            setIsLoading(false);
+          }}
+          onLoad={() => setIsLoading(false)}
+        />
+      </div>
+      <div className="gradient-overlay" />
+      <div className={`hover-overlay ${isHovered ? 'visible' : ''}`} />
+      {isPopupOpen && (
+        <MoviePopup
+          movie={movie}
+          onClose={handleClosePopup}
+          isOpen={isPopupOpen}
+        />
+      )}
     </div>
-    <div className="gradient-overlay" />
-    <div className={`hover-overlay ${isHovered ? 'visible' : ''}`} />
-    {isPopupOpen && (
-      <MoviePopup
-        movie={movie}
-        onClose={() => setIsPopupOpen(false)}
-        isOpen={isPopupOpen}
-      />
-    )}
-  </div>
-    
   );
 }
 
