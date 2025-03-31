@@ -1,145 +1,244 @@
 /* Container styling for the edit movie page */
 .edit-movie-page {
-    background-color: #121212; /* Dark Netflix-style background */
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 800px;
-    margin: 50px auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Page Title */
-  .edit-movie-page h2 {
-    font-size: 32px;
-    color: #e50914; /* Netflix red */
-    margin-bottom: 30px;
-    text-transform: uppercase;
-  }
-  
-  /* Search box */
-  .edit-movie-page .search-box {
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .edit-movie-page .search-box label {
-    font-size: 18px;
-    color: #ffffff;
-    margin-bottom: 10px;
-  }
-  
-  .edit-movie-page .search-box input {
-    width: 80%;
-    max-width: 400px;
-    padding: 12px 16px;
-    font-size: 16px;
-    border: 1px solid #e50914; /* Netflix red */
-    border-radius: 5px;
-    background-color: #1e1e1e;
-    color: white;
-    transition: 0.3s ease-in-out;
-  }
-  
-  .edit-movie-page .search-box input:focus {
-    border-color: #ff4444;
-    outline: none;
-    background-color: #2b2b2b;
-    box-shadow: 0 0 10px #e50914;
-  }
-  
-  /* Movies list */
-  .edit-movie-page .movies-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .edit-movie-page .movies-list .movie-item {
-    background-color: #1e1e1e;
-    margin-bottom: 15px;
-    padding: 15px 20px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    transition: 0.3s ease-in-out;
-  }
-  
-  .edit-movie-page .movies-list .movie-item:hover {
-    background-color: #2b2b2b;
-    transform: scale(1.02);
-  }
-  
-  /* Movie title */
-  .edit-movie-page .movies-list .movie-item span {
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffffff;
-  }
-  
-  /* Edit button */
-  .edit-movie-page .movies-list .movie-item .btn {
-    padding: 10px 20px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-  }
-  
-  .edit-movie-page .movies-list .movie-item .btn-primary {
-    background-color: #e50914; /* Netflix red */
-    color: white;
-  }
-  
-  .edit-movie-page .movies-list .movie-item .btn-primary:hover {
-    background-color: #cc0000;
-    box-shadow: 0 0 10px #e50914;
-  }
-  
-  /* General styling for buttons */
-  .edit-movie-page .btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-  }
-  
-  .edit-movie-page .btn-primary {
-    background-color: #e50914;
-    color: white;
-    transition: 0.3s ease-in-out;
-  }
-  
-  .edit-movie-page .btn-primary:hover {
-    background-color: #d40d10;
-    box-shadow: 0 0 10px #e50914;
-  }
+  background-color:var(--semi-transparent); /* Dark Netflix-style background */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 50px auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  margin-top: 75px;
+  border: solid;
+  border-color:var(--text-color);
+  overflow-y: auto;
+  width: 442px;
+}
+/* Page Title */
+.edit-movie-page h2 {
+  font-size: 32px;
+  color: #e50914; /* Netflix red */
+  margin-bottom: 30px;
+  text-transform: uppercase;
+}
 
-  .modal-overlay {
-    position: relative;
-  }
+/* Search box */
+.edit-movie-page .search-box {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-movie-page .search-box label {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.edit-movie-page .search-box input {
+  width: 80%;
+  max-width: 400px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #e50914; /* Netflix red */
+  border-radius: 5px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: 0.3s ease-in-out;
+}
+
+.edit-movie-page .search-box input:focus {
+  border-color: #ff4444;
+  outline: none;
   
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    background: none;
-    border: none;
-    color: #ff4444;
-    cursor: pointer;
-  }
-  
-  .close-btn:hover {
-    color: #cc0000;
-  }
-  
-  
+  background-color: var(--background-color);
+  box-shadow: 0 0 10px #e50914;
+}
+
+/* Movies list */
+.edit-movie-page .movies-list {
+  list-style: none;
+  padding: 0;
+}
+
+.edit-movie-page .movies-list .movie-item {
+  background-color: var(--background-color);
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: 0.3s ease-in-out;
+}
+
+.edit-movie-page .movies-list .movie-item:hover {
+  background-color: var(--semi-transparent);
+  transform: scale(1.02);
+}
+
+/* Movie title */
+.edit-movie-page .movies-list .movie-item span {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* Edit button */
+.edit-movie-page .movies-list .movie-item .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.edit-movie-page .movies-list .movie-item .btn-primary {
+  background-color: #e50914; /* Netflix red */
+  color: white;
+}
+
+.edit-movie-page .movies-list .movie-item .btn-primary:hover {
+  background-color: #cc0000;
+  box-shadow: 0 0 10px #e50914;
+}
+
+/* General styling for buttons */
+.edit-movie-page .btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.edit-movie-page .btn-primary {
+  background-color: #e50914;
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+
+.edit-movie-page .btn-primary:hover {
+  background-color: #d40d10;
+  box-shadow: 0 0 10px #e50914;
+}
+
+.modal-overlay {
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: #ff4444;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #cc0000;
+}
+
+.edit-movie-page .list-close-btn{
+  background-color: #e50914; /* Netflix red */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.edit-movie-page .list-close-btn:hover {
+  background-color: #cc0000;
+  box-shadow: 0 0 10px #e50914;
+}
+
+/* The full-screen overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* on top of everything */
+}
+
+/* The container for the actual modal content (EditMovie form) */
+.modal-content {
+  background: #1b1b1b; /* or #fff if you prefer a light modal */
+  color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 600px;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Close button inside the modal (top-right corner) */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  color: #fff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* The overlay that darkens the background and covers the entire screen */
+.modal-overlay {
+  position: fixed;             /* Stays in the same place even if you scroll */
+  top: 0;                      /* Cover the entire viewport */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);  /* Semi-transparent black overlay */
+  z-index: 9999;               /* High z-index so it sits above all other elements */
+
+  /* Center your content (the EditMovie component) */
+  display: flex;               /* Flex container to center the content */
+  justify-content: center;     /* Horizontally center */
+  align-items: center;         /* Vertically center */
+}
+
+/* The container inside the overlay that holds your actual modal content */
+.modal-overlay > div {
+  position: relative;          /* Allows for absolute positioning of the close button */
+  background: #1b1b1b;         /* Example dark background, use #fff for light theme */
+  color: #fff;                 /* White text for dark background */
+  padding: 2rem;               /* Space around your form or content */
+  border-radius: 8px;          /* Rounded corners */
+  max-width: 600px;            /* Constrain width on large screens */
+  width: 90%;                  /* A more fluid width on smaller screens */
+  max-height: 80vh;            /* Prevent the modal from exceeding the viewport height */
+  overflow-y: auto;            /* Scroll if content is too tall */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Subtle shadow */
+}
+
+/* The close button in the top-right corner */
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #fff;                 /* Contrast against a dark background */
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+

@@ -1,20 +1,4 @@
 
-  .modal h2 {
-    color: #e50914; /* Netflix red */
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: left; /* Align title to the left */
-  }
-  .add-category .modal {
-    position: fixed;
-    top: 50%;
-    left: 25%;
-    right: 50%;
-    transform: translate(-50%, -50%);
-    height: 50vh;
-    /* You can keep or adjust other properties as needed */
-  }
-  
   .form-group {
     margin-bottom: 15px;
     display: flex;
@@ -47,37 +31,20 @@
     cursor: pointer; /* Change cursor to pointer for dropdown */
   }
   
-  .modal-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .modal-actions .btn {
-    padding: 10px 20px;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .modal-actions .btn-primary {
-    background-color: #e50914; /* Netflix red */
-    color: white;
-    border: none;
-  }
-  
-  .modal-actions .btn-secondary {
-    background-color: #555;
-    color: white;
-    border: none;
-  }
-  
-  .modal-actions .btn:hover {
-    opacity: 0.9; /* Slight hover effect */
-  }
-  
   /* Align the form content to the left */
   form {
     text-align: left;
+  }
+
+  .side-panel .add-category
+  {
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 70px;
+    background-color: var(--semi-transparent);
+    padding: 2rem;
+    border-style: solid;
+    border-color: var(--text-color);
+    border-radius: 10px;
   }
   

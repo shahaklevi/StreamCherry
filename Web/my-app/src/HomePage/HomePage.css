@@ -86,7 +86,7 @@
 }
 
 .homepage .btn-signin {
-    position: absolute;
+    position: fixed;
     top: 22px;
     right: 40px; 
     background-color: red;
@@ -96,3 +96,5 @@
     background-color: darkred;
     color: white;
 }
+
+

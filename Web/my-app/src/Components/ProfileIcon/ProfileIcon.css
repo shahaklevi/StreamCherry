@@ -9,9 +9,8 @@
 
 /* Profile Image Styling */
 .profile-img {
-  width: 35px;
-  height: 35px;
+  width: 55px;
+  height: 50px;
   border-radius: 50%;
-  border: 2px solid var(--text-color); /* Dynamic border color */
   object-fit: cover;
 }

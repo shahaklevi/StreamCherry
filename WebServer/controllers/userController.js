@@ -5,15 +5,13 @@ const tokensController = require("./tokensController");
 const path = require("path");
 const fs = require("fs");
 
-const validator=require("../utils/validator");
-
-
+const validator = require("../utils/validator");
 
 const createUser = async (req, res) => {
-  const tempFiles = {
-    profilePicture: req.files?.profilePicture?.[0]?.path || "",
-  };
-
+  // const tempFiles = {
+  //   profilePicture: req.files?.profilePicture?.[0]?.path || req.body.profilePicture,
+  // };
+  console.log("User Data:", req.body);
   try {
     const userData = {
       user_name: req.body.user_name,
@@ -21,23 +19,24 @@ const createUser = async (req, res) => {
       password: req.body.password,
       mail: req.body.mail,
       phone: req.body.phone,
-      profilePicture: tempFiles.profilePicture,
+      profilePicture: req.body.profilePicture,
       manager: req.body.manager,
     };
+
     const { user, token } = await userService.createUser(userData);
 
-    if (tempFiles.profilePicture) {
-      const ext = path.extname(tempFiles.profilePicture);
-      const finalPath = `uploads/usersImages/${user._id}${ext}`;
-      console.log("Final Pathhh:", finalPath);
+    // if (tempFiles.profilePicture) {
+    //   const ext = path.extname(tempFiles.profilePicture);
+    //   const finalPath = `uploads/usersImages/${user._id}${ext}`;
+    //   console.log("Final Pathhh:", finalPath);
 
-      fs.copyFileSync(tempFiles.profilePicture, finalPath);
-      fs.unlinkSync(tempFiles.profilePicture);
+    //   fs.copyFileSync(tempFiles.profilePicture, finalPath);
+    //   fs.unlinkSync(tempFiles.profilePicture);
 
-      // Update and save the user
-      user.profilePicture = finalPath;
-      await user.save(); // Ensure changes are saved in MongoDB
-    }
+    //   // Update and save the user
+    //   user.profilePicture = finalPath;
+    //   await user.save(); // Ensure changes are saved in MongoDB
+    // }
 
     res.status(201).json({ user, token });
   } catch (error) {
@@ -70,24 +69,21 @@ const createUser = async (req, res) => {
   }
 };
 const getUser = async (req, res) => {
-    try {
-        validator.isValidJWT(req);
-        const user = await userService.getUser(req.params.id);
-        res.status(200).json(user);
-    } catch (error) {
-        if (error.message.includes('User not found')) {
-            res.status(404).json({ error: error.message });
-        }
-        else if (error.message.includes('[object Object')) {
-            res.status(404).json({ error: 'User not found' });
-        }
-        else if (error.message.includes('Cast to ObjectId failed for value')) {
-            res.status(404).json({ error: 'User not found' });
-        }
-        else {
-            res.status(400).json({ error: error.message });
-        }
+  try {
+    validator.isValidJWT(req);
+    const user = await userService.getUser(req.params.id);
+    res.status(200).json(user);
+  } catch (error) {
+    if (error.message.includes("User not found")) {
+      res.status(404).json({ error: error.message });
+    } else if (error.message.includes("[object Object")) {
+      res.status(404).json({ error: "User not found" });
+    } else if (error.message.includes("Cast to ObjectId failed for value")) {
+      res.status(404).json({ error: "User not found" });
+    } else {
+      res.status(400).json({ error: error.message });
     }
+  }
 };
 
 const updateUserWatchlist = async (req, res) => {

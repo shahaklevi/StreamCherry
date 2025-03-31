@@ -1,6 +1,6 @@
 /* Theme Variables */
 :root {
-  --background-color: white;
+  --background-color: rgba(255, 255, 255, 0.51);
   --text-color: black;
   --card-background: #f9f9f9;
   --card-border: #ddd;
@@ -10,7 +10,7 @@
 }
 
 body.dark-mode {
-  --background-color: #121212;
+  --background-color: #121212b9;
   --text-color: white;
   --card-background: #1e1e1e;
   --card-border: #444;
@@ -20,7 +20,7 @@ body.dark-mode {
 }
 
 body.light-mode {
-  --background-color: white;
+  --background-color: rgba(255, 255, 255, 0.3);
   --text-color: black;
   --card-background: #f9f9f9;
   --card-border: #ddd;

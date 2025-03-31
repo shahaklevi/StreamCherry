@@ -1,9 +1,49 @@
-.add-movie .modal {
-  position: fixed;
-  top: 50%;
-  left: 25%;
-  right: 50%;
-  transform: translate(-50%, -50%);
-  height: 50vh;
-  /* You can keep or adjust other properties as needed */
+
+/* במידה ואתה רוצה שהפאנל יהיה מוסתר מהצד עד להקלקה, תוכל להוסיף למשל: */
+.side-panel.closed {
+  transform: translateX(-100%);
 }
+
+/* כאשר הפאנל פתוח */
+.side-panel.open {
+  transform: translateX(0);
+}
+
+.add-movie-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30rem;
+  background-color: var(--semi-transparent);
+  padding: 1rem;
+  border-style: solid;
+  margin-top: 70px;
+  border-color: var(--text-color);
+  border-radius: 10px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns of equal width */
+  gap: 1rem;                           /* fixed space between grid items */
+}
+
+/* Responsive adjustment: stack inputs on small screens */
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;  /* Single column layout for smaller screens */
+  }
+}
+
+.panel-actions-container {
+  display: flex; /* Change from grid to flex */
+  justify-content: flex-start; /* Align buttons at the start */
+  gap: 10px; /* Space between buttons */
+  margin-top: 1rem;
+}
+.btn-primary{
+  width: fit-content;
+  margin: 0;
+}
+
