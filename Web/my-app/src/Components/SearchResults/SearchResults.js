@@ -1,5 +1,5 @@
 import React from "react";
-import MovieCard from "../MovieCard/MovieCard";
+import MovieCard from "../Common/MovieCard/MovieCard";
 import "./SearchResults.css";
 
 function SearchResults({ movies }) {

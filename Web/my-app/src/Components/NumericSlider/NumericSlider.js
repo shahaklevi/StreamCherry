@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
-import MovieCard from "../MovieCard/MovieCard";
+import MovieCard from "../Common/MovieCard/MovieCard";
 import "./NumericSlider.css";
-import StaticMovieCard from "../StaticMovieCard/StaticMovieCard"; 
 function NumericSlider({ title,movieIds}) {
   const sliderRef = useRef(null);
   const [movies, setMovies] = useState([]);
@@ -59,7 +58,7 @@ function NumericSlider({ title,movieIds}) {
         className="number-icon" 
         alt={`Number ${index + 1}`} 
       />
-      <StaticMovieCard key={index} movie={movie} />
+      <MovieCard key={index} movie={movie} />
     </div>
   ))}
 </div>

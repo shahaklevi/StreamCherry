@@ -3,11 +3,15 @@ import ReactDOM from "react-dom";
 import "./MoviePopup.css";
 import SmallMovieInfo from "../SmallMovieInfo/SmallMovieInfo";
 import tokenVerification from "../../tokenVerification/tokenVerification";
+import PlayButton from "../PlayButton/PlayButton";
+import { useNavigate } from "react-router-dom";
 
 const MoviePopup = ({ movie, onClose }) => {
 
   const [categoryNames, setCategoryNames] = useState([]); // State to hold category names
   const [recommendedMovies, setRecommendedMovies] = useState([]); // State to store recommended movies
+  const navigate = useNavigate();
+  
   useEffect(() => {
     document.body.classList.add("no-scroll");
 
@@ -52,7 +56,43 @@ const MoviePopup = ({ movie, onClose }) => {
       fetchCategoryNames();
     }
   }, [movie.categories]);
+  const handlePlay = async () => {
+    try {
+      const token = localStorage.getItem("jwtToken");
+      if (!token) {
+        console.error("Token not found.");
+        return;
+      }
 
+      const userData = await tokenVerification(token);
+      console.log("User Data:", userData);
+      if (!userData) {
+        console.error("User data verification failed.");
+        return;
+      }
+
+      const response = await fetch(
+        `http://localhost:3000/api/movies/${movie._id}/recommend/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+            userId: userData._id,
+          },
+          body: JSON.stringify({ userId: userData._id }),
+        }
+      );
+
+      const data = await response.json();
+      console.log("Recommendation successful:", data);
+
+      // Navigate to MoviePage with movie details
+      navigate(`/movie/${movie._id}`, { state: { movie } });
+    } catch (error) {
+      console.error("Error during handlePlay:", error.message);
+    }
+  };
   // GET Request inside useEffect
   useEffect(() => {
     const fetchRecommendations = async () => {
@@ -119,11 +159,12 @@ const MoviePopup = ({ movie, onClose }) => {
           <div className="popup-left">
             <div className="popup-header">
               <h2>{movie.title}</h2>
+              
+              <PlayButton onClick={handlePlay} />
             </div>
             <div className="popup-additional-info">
               <p>{movie.releaseYear}</p>
-              <p>{movie.duration}</p>
-              <p className="rating">{movie.rating}</p>
+              <p>{Math.floor(movie.duration / 60)}h {movie.duration % 60}m</p>              <p className="rating"> 10 ⭐️</p>
             </div>
             <div className="popup-description">
               <p>{movie.description}</p>
@@ -134,7 +175,7 @@ const MoviePopup = ({ movie, onClose }) => {
           <div className="popup-right">
             <div className="popup-cast">
               <p>
-                <span className="cast-title">Cast: </span>
+                <span className="cast-title">Cast </span>
                 {movie.cast.map((actor, index) => (
                   <span key={index} className="actor-name">
                     {actor}
@@ -145,7 +186,7 @@ const MoviePopup = ({ movie, onClose }) => {
             </div>
             <div className="popup-categories">
               <p>
-                <span className="categories-title">Categories: </span>
+                <span className="categories-title">Categories </span>
                 {categoryNames.map((categoryName, index) => (
                   <span key={index} className="category-name">
                     {categoryName}

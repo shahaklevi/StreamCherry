@@ -5,6 +5,12 @@ body {
   color: var(--text-color); /* Dynamic text color */
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth transition between themes */
 }
+html, body {
+  font-family: 'Netflix Sans', 'Helvetica Neue', 'Segoe UI', Roboto, Ubuntu, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .MainPage {
   display: flex;

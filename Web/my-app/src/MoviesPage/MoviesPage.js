@@ -1,10 +1,10 @@
 import "./MoviesPage.css";
 import VideoItem from "../Components/VideoItem/VideoItem";
-import RowSlider from "../Components/RowSlider/RowSlider";
+import RowSlider from "../Components/Common/RowSlider/RowSlider";
 import NumericSlider from "../Components/NumericSlider/NumericSlider";
 import TopMenu from "../Components/TopMenu/TopMenu";
 import { useUser } from "../Contexts/UserContext";
-import { useEffect } from "react";
+import { use, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useCategories from "../assets/useCategories";
 import trendingMovies from "../assets/TrendingMovies";
@@ -32,6 +32,7 @@ function MoviesPage() {
 
     checkToken();
   }, []); // Dependencies for useEffect
+
   const promotedCategories = categories.filter((category) => category.promoted);
   return (
     <div className="MoviesPage">

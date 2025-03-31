@@ -3,10 +3,9 @@
     height: 40px;
     position: relative;
     left: 40px;
-    background-color: white;
-    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.79);
+    border-radius: 3px;
     border: none;
-    padding: 1.2em;
     display: flex;
     align-items: center;
     justify-content: center; 
@@ -16,6 +15,5 @@
     background-color: rgba(255, 255, 255, 0.9); 
 }
 .play-icon {
-    width: 60px;
-    height: 30px; 
+    width: 90%;
 }
