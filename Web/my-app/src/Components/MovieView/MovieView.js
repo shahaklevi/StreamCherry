@@ -1,275 +1,138 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import Player from '../Player/Player'
-import './MovieView.css';
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
-const MovieView = ({ }) => {
-    const navigate = useNavigate();
-    const [isFullscreen, setIsFullscreen] = useState(false);
-    const [showSpeedMenu, setShowSpeedMenu] = useState(false);
-    const [playbackSpeed, setPlaybackSpeed] = useState(1);
-    const [isPlaying, setIsPlaying] = useState(true);
-    const [isMuted, setIsMuted] = useState(true);
-    const [volume, setVolume] = useState(100);
-    const containerRef = useRef(null);
-    const videoRef = useRef(null);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [duration, setDuration] = useState(0);
-    const location = useLocation()
-    const queryParams = new URLSearchParams(location.search);
-    const src = queryParams.get('extraParam');
-    const movieId = queryParams.get('movieId')
-    const speedOptions = [
-        { value: 0.25, label: "0.25x" },
-        { value: 0.5, label: "0.5x" },
-        { value: 0.75, label: "0.75x" },
-        { value: 1, label: "Normal" },
-        { value: 1.25, label: "1.25x" },
-        { value: 1.5, label: "1.5x" },
-        { value: 1.75, label: "1.75x" },
-        { value: 2, label: "2x" }
-    ];
+import React, { useRef, useState, useEffect } from "react";
 
-    useEffect(() => {
-        const videoElement = containerRef.current?.querySelector('video');
-        if (videoElement) {
-            const handleTimeUpdate = () => {
-                setCurrentTime(videoElement.currentTime);
-            };
+import "./MovieView.css";
+import { useNavigate } from "react-router-dom";
 
-            const handleLoadedMetadata = () => {
-                setDuration(videoElement.duration);
-            };
+const MovieView = ({ videoSrc, movieTitle }) => {
+  const navigate = useNavigate();
 
-            videoElement.addEventListener('timeupdate', handleTimeUpdate);
-            videoElement.addEventListener('loadedmetadata', handleLoadedMetadata);
+  const videoRef = useRef(null);
+  const progressRef = useRef(null);
+  const handleRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [controlsVisible, setControlsVisible] = useState(true);
+  const hideControlsTimeout = useRef(null);
 
-            return () => {
-                videoElement.removeEventListener('timeupdate', handleTimeUpdate);
-                videoElement.removeEventListener('loadedmetadata', handleLoadedMetadata);
-            };
-        }
-    }, []);
+  useEffect(() => {
+    const updateProgress = () => {
+      if (videoRef.current && progressRef.current && handleRef.current) {
+        const { currentTime, duration } = videoRef.current;
+        const progressPercentage = (currentTime / duration) * 100;
+        progressRef.current.style.width = `${progressPercentage}%`;
+        handleRef.current.style.left = `${progressPercentage}%`;
+      }
+    };
 
-    useEffect(() => {
-        const handleFullscreenChange = () => {
-            setIsFullscreen(!!document.fullscreenElement);
-        };
+    const video = videoRef.current;
+    video.addEventListener("timeupdate", updateProgress);
 
+    return () => {
+      video.removeEventListener("timeupdate", updateProgress);
+    };
+  }, []);
 
-        document.addEventListener('fullscreenchange', handleFullscreenChange);
-        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
-        document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-        document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      videoRef.current.pause();
+    } else {
+      videoRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
-        return () => {
-            document.removeEventListener('fullscreenchange', handleFullscreenChange);
-            document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
-            document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
-            document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
-        };
-    }, []);
+  const handleSkip = (time) => {
+    videoRef.current.currentTime += time;
+  };
 
-    useEffect(() => {
-        const initializeVideo = async () => {
-            if (videoRef.current) {
-                try {
-                    await videoRef.current.play();
-                    setIsPlaying(true);
-                } catch (err) {
-                    console.error("Auto-play failed:", err);
-                    setIsPlaying(false);
-                }
+  const handleFullscreen = () => {
+    if (videoRef.current.requestFullscreen) {
+      videoRef.current.requestFullscreen();
+    } else if (videoRef.current.webkitRequestFullscreen) {
+      videoRef.current.webkitRequestFullscreen();
+    } else if (videoRef.current.msRequestFullscreen) {
+      videoRef.current.msRequestFullscreen();
+    }
+  };
+
+  const showControls = () => {
+    setControlsVisible(true);
+    clearTimeout(hideControlsTimeout.current);
+    hideControlsTimeout.current = setTimeout(() => {
+      setControlsVisible(false);
+    }, 5000); // 5 seconds
+  };
+
+  useEffect(() => {
+    const handleMouseMove = () => {
+      showControls();
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  return (
+    <div className="movie-view" onMouseMove={showControls}>
+<button
+  onClick={() => navigate(-1)}
+  className="movie-view-back-button"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    className="bi bi-arrow-left"
+    viewBox="0 0 16 16"
+  >
+    <path
+      fillRule="evenodd"
+      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+    />
+  </svg>
+</button>
+      <video
+        ref={videoRef}
+        className="movie-video"
+        src={videoSrc}
+        controls={false}
+        onClick={handlePlayPause}
+      />
+      <div
+        className={`progress-container ${controlsVisible ? "visible" : "hidden"}`}
+      >
+        <div className="progress-filled" ref={progressRef}></div>
+        <div className="progress-handle" ref={handleRef}></div>
+      </div>
+      <div
+        className={`movie-controls ${controlsVisible ? "visible" : "hidden"}`}
+      >
+        <button className="control-button" onClick={() => handleSkip(-10)}>
+          <img src="/media/Buttons/Replay10.svg" alt="Replay 10 seconds" />
+        </button>
+        <button className="control-button play-button" onClick={handlePlayPause}>
+          <img
+            src={
+              isPlaying
+                ? "/media/Buttons/Pause.svg"
+                : "/media/Buttons/Play.svg"
             }
-        };
-
-        initializeVideo();
-    }, []);
-
-    const handlePlayPause = () => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
-
-    const handleProgressBarClick = (e) => {
-        const progressBar = e.currentTarget;
-        const rect = progressBar.getBoundingClientRect();
-        const clickPosition = (e.clientX - rect.left) / rect.width;
-
-        if (videoRef.current) {
-            const videoElement = containerRef.current.querySelector('video');
-            if (videoElement && duration) {
-                const newTime = Math.max(0, Math.min(clickPosition * duration, duration));
-                videoElement.currentTime = newTime;
-                setCurrentTime(newTime);
-            }
-        }
-    };
-
-    const handleVolumeChange = (e) => {
-        const newVolume = parseInt(e.target.value) / 100;
-        setVolume(e.target.value);
-        if (videoRef.current) {
-            videoRef.current.setVolume(newVolume);
-        }
-    };
-
-    const handleMuteToggle = () => {
-        if (videoRef.current) {
-            if (isMuted) {
-                videoRef.current.unmute();
-            } else {
-                videoRef.current.mute();
-            }
-            setIsMuted(!isMuted);
-        }
-    };
-
-    const handleFullscreenToggle = async () => {
-        try {
-            if (!isFullscreen) {
-                const element = containerRef.current;
-                if (element.requestFullscreen) {
-                    await element.requestFullscreen();
-                } else if (element.webkitRequestFullscreen) {
-                    await element.webkitRequestFullscreen();
-                } else if (element.mozRequestFullScreen) {
-                    await element.mozRequestFullScreen();
-                } else if (element.msRequestFullscreen) {
-                    await element.msRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    await document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) {
-                    await document.webkitExitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    await document.mozCancelFullScreen();
-                } else if (document.msExitFullscreen) {
-                    await document.msExitFullscreen();
-                }
-            }
-        } catch (error) {
-            console.error('Fullscreen error:', error);
-        }
-    };
-
-
-
-    const handleSpeedChange = (speed) => {
-        setPlaybackSpeed(speed);
-        setShowSpeedMenu(false);
-        if (videoRef.current) {
-            const videoElement = containerRef.current.querySelector('video');
-            if (videoElement) {
-                videoElement.playbackRate = speed;
-
-                const currentTime = videoElement.currentTime;
-
-                videoElement.playbackRate = speed;
-
-                videoElement.currentTime = currentTime;
-            }
-        }
-    };
-
-    const handleHomeClick = () => {
-        navigate('/movies/browse');
-    };
-
-
-    return (
-        <div className="player-screen" ref={containerRef}>
-            <button className="home-button" onClick={handleHomeClick}>
-                Home →
-            </button>
-
-            <Player
-                videoUrl={src}
-                ref={videoRef}
-
-            />
-
-            <div className="player-controls">
-                <div
-                    className="progress-bar-container"
-                    onClick={handleProgressBarClick}
-                >
-                    <div className="progress-bar">
-                        <div
-                            className="progress-bar-filled"
-                            style={{ width: `${(currentTime / duration) * 100}%` }}
-                        />
-                    </div>
-                </div>
-
-                <div className="controls-row">
-                    <div className="controls-left">
-                        <button className="control-button" onClick={handlePlayPause}>
-                            {isPlaying ? '⏸' : '▶'}
-                        </button>
-
-                        <div className="volume-control">
-                            <button className="control-button" onClick={handleMuteToggle}>
-                                {isMuted ? '🔇' : '🔊'}
-                            </button>
-                            <input
-                                type="range"
-                                min="0"
-                                max="100"
-                                value={volume}
-                                onChange={handleVolumeChange}
-                                className="volume-slider"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="controls-right">
-                        <div className="speed-control">
-                            <button
-                                className="control-button"
-                                onClick={() => {
-                                    setShowSpeedMenu(!showSpeedMenu);
-                                }}
-                            >
-                                {playbackSpeed}x
-                            </button>
-
-                            {showSpeedMenu && (
-                                <div className="control-menu">
-                                    {speedOptions.map((option) => (
-                                        <button
-                                            key={option.value}
-                                            className={`menu-option ${playbackSpeed === option.value ? 'active' : ''}`}
-                                            onClick={() => handleSpeedChange(option.value)}
-                                        >
-                                            {option.label}
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-
-
-
-                        <button
-                            className="control-button"
-                            onClick={handleFullscreenToggle}
-                            title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-                        >
-                            {isFullscreen ? '⊠' : '⊞'}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+            alt={isPlaying ? "Pause" : "Play"}
+          />
+        </button>
+        <button className="control-button" onClick={() => handleSkip(10)}>
+          <img src="/media/Buttons/Forward10.svg" alt="Forward 10 seconds" />
+        </button>
+        <p className="movie-title">{movieTitle}</p>
+        <button className="control-button" onClick={handleFullscreen}>
+          <img src="/media/Buttons/FullScreen.svg" alt="Fullscreen" />
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default MovieView;

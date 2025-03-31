@@ -38,11 +38,10 @@
   flex:1;
   display: flex;
   text-align: center;
-  flex-direction: row !important;
+  flex-direction: row;
   gap: 20px; /* Space between cards */
-  overflow: hidden; /* Hide overflowing content */
+  overflow-x: hidden;
   scroll-behavior: smooth; /* Enable smooth scrolling */
-
 }
 .slider-side{
   flex-shrink: 0;

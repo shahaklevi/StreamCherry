@@ -92,20 +92,16 @@ function MovieCard({ movie }) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave} // Ensure the timer is cleared on mouse leave
     >
-      <div className="image-container">
-        <img
-          src={getImageUrl()}
-          className={`card-img-top ${isLoading ? 'loading' : ''}`}
-          alt={movie.title}
-          onError={() => {
-            setImageError(true);
-            setIsLoading(false);
-          }}
-          onLoad={() => setIsLoading(false)}
-        />
-      </div>
-      <div className="gradient-overlay" />
-      <div className={`hover-overlay ${isHovered ? 'visible' : ''}`} />
+      <img
+        src={getImageUrl()}
+        className={`card-img-top ${isLoading ? 'loading' : ''}`}
+        alt={movie.title}
+        onError={() => {
+          setImageError(true);
+          setIsLoading(false);
+        }}
+        onLoad={() => setIsLoading(false)}
+      />
       {isPopupOpen && (
         <MoviePopup
           movie={movie}

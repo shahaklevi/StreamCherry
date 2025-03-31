@@ -50,8 +50,8 @@
   cursor: pointer;
   transition: transform 0.2s ease;
   margin-right: 15px;
-  width: 3vw;
-  height: 3vw;
+  width: 50px;
+  height: 50px;
 }
 
 .control-button img {
@@ -105,21 +105,31 @@
   top: -5px;
   transform: translateX(-50%);
 }
-.return-button {
+
+.movie-view-back-button {
   position: absolute;
-  left: 20px;
   top: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-  padding: 8px;
-  width: 4vw;
-  height: 4vw;
-  display: flex;
+  left: 20px;
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer; 
+  padding: 10px; 
+  display: flex; 
   align-items: center;
   justify-content: center;
 }
 
-.return-button:hover {
-  background: rgba(0, 0, 0, 0.7);
-  transform: scale(1.1);
+.movie-view-back-button svg {
+  fill: white; 
+  width: 40px; 
+  height: 30px; 
+}
+
+.movie-view-back-button.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.movie-view-back-button.visible {
+  opacity: 1;
 }

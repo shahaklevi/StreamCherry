@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import "./RowSlider.css";
 
@@ -6,7 +6,11 @@ function RowSlider({ title, movieIds }) {
   const sliderRef = useRef(null);
   const [movies, setMovies] = useState([]);
 
-  const fetchMovieDetails = async () => {
+  useEffect(() => {
+    console.log(movies);
+  }, [movies])
+
+  const fetchMovieDetails = useCallback(async () => {
     try {
       const moviePromises = movieIds.map(async (id) => {
         const token = await localStorage.getItem("jwtToken");
@@ -31,42 +35,42 @@ function RowSlider({ title, movieIds }) {
     } catch (error) {
       console.error("Error fetching movies:", error);
     }
-  };
-
+  }, [movieIds]);
+  
   useEffect(() => {
     fetchMovieDetails();
-  }, [movieIds]); // Dependency array ensures this runs only when movieIds changes
+  }, [movieIds, fetchMovieDetails]); // Dependency array ensures this runs only when movieIds changes
 
   const scrollLeft = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: -320, behavior: "smooth" }); // Scroll left by 320px
+      sliderRef.current.scrollLeft -= 320;
     }
   };
 
   const scrollRight = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 320, behavior: "smooth" }); // Scroll right by 320px
+      sliderRef.current.scrollLeft += 320;
     }
   };
 
   return (
     <div className="row-slider">
       <h2 className="row-title">{title}</h2>
-      <div className="slider-container" ref={sliderRef}>
+      <div className="slider-container">
         <div className="slider-side">
-        <button className="arrow left-arrow" onClick={scrollLeft}>
-          <img src="/media/Buttons/leftIndicator.svg" alt="left" />
-        </button>
+          <button className="arrow left-arrow" onClick={scrollLeft}>
+            <img src="/media/Buttons/leftIndicator.svg" alt="left" />
+          </button> 
         </div>
-        <div className="slider-center">
+        <div className="slider-center" ref={sliderRef}>
           {movies.map((movie, index) => (
             <MovieCard key={index} movie={movie} />
           ))}
-          </div>
+        </div>
         <div className="slider-side">
-        <button className="arrow right-arrow" onClick={scrollRight}>
-          <img src="/media/Buttons/rightIndicator.svg" alt="right" />
-        </button>
+          <button className="arrow right-arrow" onClick={scrollRight}>
+            <img src="/media/Buttons/rightIndicator.svg" alt="right" />
+          </button>
         </div>
       </div>
     </div>
