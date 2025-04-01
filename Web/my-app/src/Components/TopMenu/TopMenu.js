@@ -8,7 +8,7 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import ProfileIcon from "../ProfileIcon/ProfileIcon";
 import tokenVerification from "../../tokenVerification/tokenVerification";
 
-function TopMenu({ LogOutSystem, VerifyAdmin, isTop }) {
+function TopMenu({ LogOutSystem, VerifyAdmin = () => {}, isTop }) {
   const [userProfilePic, setUserProfilePic] = useState("/media/squirel.jpeg");
   const [ifAdmin, setAdmin] = useState(false);
 
@@ -38,7 +38,7 @@ function TopMenu({ LogOutSystem, VerifyAdmin, isTop }) {
           const data = await response.json(); // Parse the response JSON
 
           // const pictureUrl = `http://localhost:3000/${data.profilePicture}`;
-          const pictureUrl = data.profilePicture
+          const pictureUrl = data.profilePicture;
           setUserProfilePic(pictureUrl); // Update profile picture
         }
       }
@@ -109,10 +109,10 @@ function TopMenu({ LogOutSystem, VerifyAdmin, isTop }) {
       >
         <div className="container-fluid">
           <div className="stream-logo">
-          {/* Netflix Logo */}
-          <Link to="/main" className="navbar-brand">
-            <NetflixLogo />
-          </Link>
+            {/* Netflix Logo */}
+            <Link to="/main" className="navbar-brand">
+              <NetflixLogo />
+            </Link>
           </div>
 
           {/* Toggler button for small screens */}

@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // Hook to access route params
 import SearchResults from "../Components/SearchResults/SearchResults";
 import TopMenu from "../Components/TopMenu/TopMenu";
+import { useTopMenu } from "../Components/TopMenu/TopMenuLogic";
 
 function SearchPage() {
   const { query } = useParams(); // Get the query parameter from the URL
   const [movieList, setMovieList] = useState([]); // State to hold fetched movies
   const [loading, setLoading] = useState(false); // State for loading
   const [error, setError] = useState(""); // State for error messages
+  const { LogOut, isAdmin } = useTopMenu();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -67,7 +69,7 @@ function SearchPage() {
 
   return (
     <div className="search-page">
-      <TopMenu />
+      <TopMenu LogOutSystem={LogOut} VerifyAdmin={isAdmin} isTop={false} />
       <SearchResults movies={movieList} />
     </div>
   );
