@@ -135,7 +135,7 @@ function TopMenu({ LogOutSystem, VerifyAdmin, isTop }) {
               <TopMenuButton dest="Movies" />
               {ifAdmin && (
                 <TopMenuButton
-                  dest="admin-zone"
+                  dest="Admin"
                   onClick={() => VerifyAdmin()}
                 />
               )}

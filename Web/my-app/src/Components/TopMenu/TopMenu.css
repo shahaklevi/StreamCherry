@@ -1,4 +1,8 @@
 /* TopMenu styling */
+.top-menu {
+  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+
+}
 .top-menu .navbar {
   position: fixed; /* Ensure the navbar stays at the top */
   top: 0;

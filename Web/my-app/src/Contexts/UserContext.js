@@ -73,7 +73,7 @@ export const UserProvider = ({ children }) => {
                 if (userData.manager) {
                     alert("Welcome admin!");
                     setCurrentUser(userData);
-                    navigate("/admin-zone"); // Navigate to admin zone
+                    navigate("/Admin"); // Navigate to admin zone
                     return true;
                 } else {
                     alert("Access restricted: Admins only.");
