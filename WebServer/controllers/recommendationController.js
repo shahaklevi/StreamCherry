@@ -35,7 +35,7 @@ class RecommendationController {
       const userId = req.header("userId");
       // Calling the addToWatchList method from the recommendationService with the user id and the id of the movie
       await recommendationService.addToWatchList(userId, movieId);
-      res.status(204).send();
+      res.status(204).send({});
     } catch (error) {
       if (error.message == 'Missing userId header - Only an existing user can perform this action') {
         res.status(400).send(error.message);

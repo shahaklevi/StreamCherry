@@ -9,6 +9,12 @@ activity = "1.10.1"
 constraintlayout = "2.2.1"
 retrofit = "2.9.0"
 okhttp = "4.12.0"
+exoplayer = "2.19.1"
+roomCommon = "2.6.1"
+media3Ui = "1.5.1"
+roomRuntime = "2.6.1"
+roomCompiler = "2.6.1"
+adapters = "3.2.0-alpha11"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -21,6 +27,12 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3Ui" }
+exoplayer = { module = "com.google.android.exoplayer2:exoplayer", version.ref = "exoplayer" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "roomRuntime" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
+
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

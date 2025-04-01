@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.provider.OpenableColumns;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 import okhttp3.MediaType;
@@ -18,6 +19,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import android.net.Uri;
+
+import org.json.JSONObject;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -36,8 +39,8 @@ public class UserApi {
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:3000/api/")
-//                .baseUrl(MyApplication.getAppContext().getString(R.string.BaseUrl))
+//                .baseUrl("http://10.0.2.2:3000/api/")
+                .baseUrl(MyApplication.getAppContext().getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -54,6 +57,18 @@ public class UserApi {
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     String token = response.body().getToken();
+                    myApplication.setToken(token);
+                    extractDataFromToken(token);
+                    Intent intent= new Intent(myApplication.getApplicationContext() , MovieActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("id", "67ec563f225d30ac3a072025");
+                    intent.putExtra("name", "movie");
+                    intent.putExtra("movie_time", "125");
+                    intent.putExtra("image", "uploads/movieImages/67ec4f6d225d30ac3a071ffd.png");
+                    intent.putExtra("year", "2000");
+                    intent.putExtra("description", "lior");
+                    intent.putExtra("video", "uploads/movies/67ec4f6d225d30ac3a071ffd.mp4");
+                    myApplication.getApplicationContext().startActivity(intent);
                     Log.d("UserApi","connection successful");
 
                 } else {
@@ -68,53 +83,29 @@ public class UserApi {
             }
         });
     }
+    public void extractDataFromToken(String token) {
+        try {
+            String[] parts = token.split("\\.");
 
-//    public void add(User user, File imagefile) {
-//        RequestBody username = RequestBody.create(user.getUser_name(), MediaType.parse("text/plain"));
-//        RequestBody password = RequestBody.create(user.getPassword(), MediaType.parse("text/plain"));
-//        RequestBody nickname = RequestBody.create(user.getNickName(), MediaType.parse("text/plain"));
-//        RequestBody mail = RequestBody.create(user.getMail(), MediaType.parse("text/plain"));
-//
-//        RequestBody requestFile = RequestBody.create(imagefile,MediaType.parse("image/*"));
-//        MultipartBody.Part imagePart = MultipartBody.Part.createFormData("profilePicture", imagefile.getName(), requestFile);
-//
-//        Call<User> call = apiService.post(mail,username, password, nickname, imagePart);
-//        call.enqueue(new Callback<User>() {
-//
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//
-//                if (response.isSuccessful()) {
-//                    if (response.code() == 201) {
-//                        Intent i = new Intent(MyApplication.getAppContext(), LoginActivity.class);
-//                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        MyApplication.getAppContext().startActivity(i);
-//                    } else {
-//                        if (response.body() != null) {
-//                            Toast.makeText(MyApplication.getAppContext(), response.body().getUser_name(), Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//                } else {
-//
-//                    try {
-//                        if (response.errorBody() != null) {
-//                            String errorMessage = response.errorBody().string();  // לקרוא את הגוף של השגיאה
-//                            Log.e("UserApi", "Error: " + errorMessage);
-//                        }
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                        Log.e("UserApi", "An error occurred");
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//                Log.e("UserApi", "Registration failed with error: " + t.getMessage());
-//                // Logging the error
-//                t.printStackTrace();
-//            }
-//        });
-//    }
+            String payload = parts[1];
+
+            String decodedPayload = new String(Base64.decode(payload, Base64.URL_SAFE));
+
+            JSONObject jsonPayload = new JSONObject(decodedPayload);
+
+            myApplication.setGlobalUserId(jsonPayload.getString("id"));
+            myApplication.setAdmin(jsonPayload.getBoolean("isAdmin"));
+            String userId = jsonPayload.getString("id");
+            boolean isAdmin = jsonPayload.getBoolean("isAdmin");
+
+            System.out.println("User ID: " + userId);
+            System.out.println("isAdmin: " + isAdmin);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 public void add(User user, Uri imageUri) {
     ContentResolver contentResolver = MyApplication.getAppContext().getContentResolver();
 
@@ -128,7 +119,6 @@ public void add(User user, Uri imageUri) {
 
     if (imageUri != null) {
         try {
-            // קבלת סוג הקובץ (image/jpeg למשל)
             String mimeType = contentResolver.getType(imageUri);
             if (mimeType == null || !mimeType.startsWith("image/")) {
                 Toast.makeText(MyApplication.getAppContext(), "Invalid image type", Toast.LENGTH_SHORT).show();
@@ -205,4 +195,21 @@ public void add(User user, Uri imageUri) {
         return result != null ? result : "image.jpg";
     }
 
+    public void addMovieToWatchList(String movieId) {
+        Call<User> call = apiService.addToWatchList(userId,movieId);
+        call.enqueue(new Callback<User>() {
+            public void onResponse(Call<User> call, Response<User> response) {
+
+                if (response.isSuccessful()) {
+                    Log.d("UserApi", "add movie to watchList: " + response.body());
+                }  else {
+                    Log.d("UserApi", "Failed add movie to watchList" + response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Log.d("UserApi", "Failed add movie to watchList 1" + t);
+            }
+        });
+    }
 }

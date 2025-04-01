@@ -7,6 +7,8 @@ public class MyApplication extends Application {
     private String globalUserId;
     private boolean isAdmin;
 
+    private String token;
+
     private static Context context;
 
 
@@ -39,4 +41,12 @@ public class MyApplication extends Application {
     public static Context getAppContext() {
         return context;
     }
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }
+

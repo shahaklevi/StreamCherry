@@ -24,4 +24,9 @@ public class UserViewModel extends ViewModel {
     public void login(User user){
         repository.login(user);
     }
+
+
+    public void addMovieToWatchList(String movieId) {
+        repository.addMovieToWatchList(movieId);
+    }
 }

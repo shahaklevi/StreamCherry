@@ -23,4 +23,8 @@ public class UserRepository {
     public void login(User user) {
         api.login(user);
     }
+
+    public void addMovieToWatchList(String movieId) {
+        api.addMovieToWatchList(movieId);
+    }
 }
