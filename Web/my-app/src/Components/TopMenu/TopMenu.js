@@ -135,12 +135,8 @@ function TopMenu({ LogOutSystem, VerifyAdmin = () => {}, isTop }) {
               <TopMenuButton dest="Movies" />
               {ifAdmin && (
                 <TopMenuButton
-                  dest="admin-zone"
-                  onClick={() => {
-                    if (typeof VerifyAdmin === "function") {
-                      VerifyAdmin();
-                    }
-                  }}
+                  dest="Admin"
+                  onClick={() => VerifyAdmin()}
                 />
               )}
               <TopMenuButton dest="Logout" onClick={() => LogOutSystem()} />

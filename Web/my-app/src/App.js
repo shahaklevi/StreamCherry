@@ -31,7 +31,7 @@ function App() {
               <Route path="/movies" element={<MoviesPage />} />
               <Route path="/movie/:id" element={<MoviePage />} />
               <Route path="/search/:query?" element={<SearchPage />} />
-              <Route path="/admin-zone" element={<AdminPage />} />
+              <Route path="/Admin" element={<AdminPage />} />
             </Routes>
           </div>
         </TopMenuProvider>
