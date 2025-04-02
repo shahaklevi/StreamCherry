@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.activities;
 
 import android.net.Uri;
 import android.os.Bundle;

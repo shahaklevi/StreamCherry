@@ -1,4 +1,8 @@
-package com.example.androidapp;
+package com.example.androidapp.api;
+
+import com.example.androidapp.LoginResponse;
+import com.example.androidapp.entities.Movie;
+import com.example.androidapp.entities.User;
 
 import java.util.List;
 
@@ -31,6 +35,6 @@ public interface ApiService {
     Call<User> addToWatchList(@Header("Authorization") String authHeader,@Header("userId") String userId, @Path("id") String movieId);
 
     @GET("movies/{id}/recommend/")
-    Call<List<Movie>> getRecommendation ( @Header("Authorization") String authHeader,
-                                             @Header("userId") String userId, @Path("id") String movieId);
+    Call<List<Movie>> getRecommendation (@Header("Authorization") String authHeader,
+                                         @Header("userId") String userId, @Path("id") String movieId);
 }

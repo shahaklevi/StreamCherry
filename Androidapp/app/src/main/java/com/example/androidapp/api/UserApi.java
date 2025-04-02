@@ -1,11 +1,10 @@
-package com.example.androidapp;
+package com.example.androidapp.api;
 
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.provider.OpenableColumns;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 import okhttp3.MediaType;
@@ -15,14 +14,18 @@ import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import android.net.Uri;
 
-import org.json.JSONObject;
+import com.example.androidapp.InputStreamRequestBody;
+import com.example.androidapp.LoginResponse;
+import com.example.androidapp.MyApplication;
+import com.example.androidapp.R;
+import com.example.androidapp.entities.User;
+import com.example.androidapp.activities.LoginActivity;
+import com.example.androidapp.activities.MovieActivity;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,16 +63,18 @@ public class UserApi {
                     myApplication.setToken(token);
                     User userData = response.body().getUser();
                     extractDataFromUser(userData);
-                    Intent intent= new Intent(myApplication.getApplicationContext() , MovieActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("id", "67ecf49106dd12caa32dda62");
-                    intent.putExtra("name", "movie");
-                    intent.putExtra("movie_time", "125");
-                    intent.putExtra("image", "uploads/movieImages/67ecf49106dd12caa32dda62.png");
-                    intent.putExtra("year", "2000");
-                    intent.putExtra("description", "lior");
-                    intent.putExtra("video", "uploads/movies/67ecf49106dd12caa32dda62.mp4");
-                    myApplication.getApplicationContext().startActivity(intent);
+
+                    //test- later i have to change the intent of this screen to main activity
+//                    Intent intent= new Intent(myApplication.getApplicationContext() , MovieActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    intent.putExtra("id", "67ecf49106dd12caa32dda62");
+//                    intent.putExtra("name", "movie");
+//                    intent.putExtra("movie_time", "125");
+//                    intent.putExtra("image", "uploads/movieImages/67ecf49106dd12caa32dda62.png");
+//                    intent.putExtra("year", "2000");
+//                    intent.putExtra("description", "sahar");
+//                    intent.putExtra("video", "uploads/movies/67ecf49106dd12caa32dda62.mp4");
+//                    myApplication.getApplicationContext().startActivity(intent);
                     Log.d("UserApi","connection successful");
 
                 } else {

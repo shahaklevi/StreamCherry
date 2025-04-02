@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,18 +6,17 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.media3.common.MediaItem;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.ui.PlayerView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidapp.databinding.ActivityLoginBinding;
+import com.example.androidapp.entities.Movie;
+import com.example.androidapp.adapters.MovieAdapter;
+import com.example.androidapp.api.MovieApi;
+import com.example.androidapp.viewmodels.UserViewModel;
 import com.example.androidapp.databinding.ActivityMovieBinding;
 
 import java.util.ArrayList;

@@ -1,7 +1,8 @@
-package com.example.androidapp;
+package com.example.androidapp.repositories;
 
 import android.net.Uri;
 
+import com.example.androidapp.entities.User;
 import com.example.androidapp.api.UserApi;
 
 public class UserRepository {

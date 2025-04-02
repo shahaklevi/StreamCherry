@@ -1,4 +1,8 @@
-package com.example.androidapp;
+package com.example.androidapp.api;
+import com.example.androidapp.entities.Movie;
+import com.example.androidapp.MyApplication;
+import com.example.androidapp.R;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -8,7 +12,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MovieApi {
-    private MovieDao dao;
 
     Retrofit retrofit;
     ApiService apiService;

@@ -1,8 +1,10 @@
-package com.example.androidapp;
+package com.example.androidapp.viewmodels;
 import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.androidapp.entities.User;
 import com.example.androidapp.repositories.UserRepository;
 
 import java.util.List;

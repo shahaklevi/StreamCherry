@@ -1,9 +1,8 @@
-package com.example.androidapp;
+package com.example.androidapp.entities;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
 
 import java.util.Date;
 import java.util.List;
