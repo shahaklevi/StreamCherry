@@ -47,7 +47,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         Movie movie = movies.get(position);
         if (movies != null && !movies.isEmpty()) {
             Glide.with(holder.itemView.getContext())
-                    .load("http://10.0.2.2:3000/api/" + movie.getMovieImage())
+                    .load("http://10.0.2.2:3000/" + movie.getMovieImage())
                     .centerCrop()
                     .into(holder.moviePoster);
 

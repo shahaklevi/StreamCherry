@@ -1,5 +1,7 @@
 package com.example.androidapp;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
 
     private String user_name;
@@ -10,6 +12,19 @@ public class User {
     private String profilePicture;
     private String mail;
     private String phone;
+    @SerializedName("_id")
+    private String id;
+
+    @SerializedName("manager")
+    private boolean manager;
+
+    public String getId() {
+        return id;
+    }
+
+    public boolean isManager() {
+        return manager;
+    }
 
 
     public String getPhone() {

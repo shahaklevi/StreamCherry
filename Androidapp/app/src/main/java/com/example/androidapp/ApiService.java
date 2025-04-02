@@ -28,7 +28,7 @@ public interface ApiService {
     Call<LoginResponse> login(@Body User user);
 
     @POST("movies/{id}/recommend")
-    Call<User> addToWatchList(@Header("userId") String userId, @Path("id") String movieId);
+    Call<User> addToWatchList(@Header("Authorization") String authHeader,@Header("userId") String userId, @Path("id") String movieId);
 
     @GET("movies/{id}/recommend/")
     Call<List<Movie>> getRecommendation ( @Header("Authorization") String authHeader,

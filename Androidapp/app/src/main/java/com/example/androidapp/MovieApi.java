@@ -24,7 +24,8 @@ public class MovieApi {
     MyApplication myApplication = MyApplication.getInstance();
 
     String userId = myApplication.getGlobalUserId();
-    String token= "Bearer "+ myApplication.getToken();
+//    String token= "Bearer "+ myApplication.getToken();
+    String token= myApplication.getToken();
     public void recommend(String movieId, final Callback<List<Movie>> callback) {
         Call<List<Movie>> call = apiService.getRecommendation(token,userId, movieId);
         call.enqueue(new Callback<List<Movie>>() {

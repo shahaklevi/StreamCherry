@@ -87,13 +87,13 @@ public class MovieActivity extends AppCompatActivity {
         } else {
             Log.e("MovieActivity", "Video URL is null or empty");
         }
-        String trailerUrl = "http://10.0.2.2:3000/api/" + intent.getStringExtra("trailer");
         btnPlay.setOnClickListener(v -> {
+            UserViewModel userViewModel=new UserViewModel();
+            userViewModel.addMovieToWatchList(movieId);
             Intent i = new Intent(this, VideoActivity.class);
             i.putExtra("videoUrl", videoUrl);
             startActivity(i);
-            UserViewModel userViewModel=new UserViewModel();
-            userViewModel.addMovieToWatchList(movieId);
+
         });
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));

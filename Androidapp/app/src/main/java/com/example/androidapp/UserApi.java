@@ -56,18 +56,19 @@ public class UserApi {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    String token = response.body().getToken();
+                    String token = "Bearer "+ response.body().getToken();
                     myApplication.setToken(token);
-                    extractDataFromToken(token);
+                    User userData = response.body().getUser();
+                    extractDataFromUser(userData);
                     Intent intent= new Intent(myApplication.getApplicationContext() , MovieActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("id", "67ec563f225d30ac3a072025");
+                    intent.putExtra("id", "67ecf49106dd12caa32dda62");
                     intent.putExtra("name", "movie");
                     intent.putExtra("movie_time", "125");
-                    intent.putExtra("image", "uploads/movieImages/67ec4f6d225d30ac3a071ffd.png");
+                    intent.putExtra("image", "uploads/movieImages/67ecf49106dd12caa32dda62.png");
                     intent.putExtra("year", "2000");
                     intent.putExtra("description", "lior");
-                    intent.putExtra("video", "uploads/movies/67ec4f6d225d30ac3a071ffd.mp4");
+                    intent.putExtra("video", "uploads/movies/67ecf49106dd12caa32dda62.mp4");
                     myApplication.getApplicationContext().startActivity(intent);
                     Log.d("UserApi","connection successful");
 
@@ -83,28 +84,40 @@ public class UserApi {
             }
         });
     }
-    public void extractDataFromToken(String token) {
-        try {
-            String[] parts = token.split("\\.");
+    public void extractDataFromUser(User user) {
+        if (user == null) return;
 
-            String payload = parts[1];
+        String userId = user.getId();
+        boolean isAdmin = user.isManager();
 
-            String decodedPayload = new String(Base64.decode(payload, Base64.URL_SAFE));
+        myApplication.setGlobalUserId(userId);
+        myApplication.setAdmin(isAdmin);
 
-            JSONObject jsonPayload = new JSONObject(decodedPayload);
-
-            myApplication.setGlobalUserId(jsonPayload.getString("id"));
-            myApplication.setAdmin(jsonPayload.getBoolean("isAdmin"));
-            String userId = jsonPayload.getString("id");
-            boolean isAdmin = jsonPayload.getBoolean("isAdmin");
-
-            System.out.println("User ID: " + userId);
-            System.out.println("isAdmin: " + isAdmin);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Log.d("UserApi", "User ID: " + userId);
+        Log.d("UserApi", "Is Admin: " + isAdmin);
     }
+//    public void extractDataFromToken(String token) {
+//        try {
+//            String[] parts = token.split("\\.");
+//
+//            String payload = parts[1];
+//
+//            String decodedPayload = new String(Base64.decode(payload, Base64.URL_SAFE));
+//
+//            JSONObject jsonPayload = new JSONObject(decodedPayload);
+//
+//            myApplication.setGlobalUserId(jsonPayload.getString("id"));
+//            myApplication.setAdmin(jsonPayload.getBoolean("isAdmin"));
+//            String userId = jsonPayload.getString("id");
+//            boolean isAdmin = jsonPayload.getBoolean("isAdmin");
+//
+//            System.out.println("User ID: " + userId);
+//            System.out.println("isAdmin: " + isAdmin);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 public void add(User user, Uri imageUri) {
     ContentResolver contentResolver = MyApplication.getAppContext().getContentResolver();
@@ -196,15 +209,24 @@ public void add(User user, Uri imageUri) {
     }
 
     public void addMovieToWatchList(String movieId) {
-        Call<User> call = apiService.addToWatchList(userId,movieId);
+        Call<User> call = apiService.addToWatchList(myApplication.getToken(),userId,movieId);
         call.enqueue(new Callback<User>() {
             public void onResponse(Call<User> call, Response<User> response) {
 
                 if (response.isSuccessful()) {
                     Log.d("UserApi", "add movie to watchList: " + response.body());
                 }  else {
-                    Log.d("UserApi", "Failed add movie to watchList" + response.body());
-                }
+                    try {
+                        if (response.errorBody() != null) {
+                            String error = response.errorBody().string();
+                            Log.d("UserApi", "Failed add movie to watchList: " + error);
+                        } else {
+                            Log.d("UserApi", "Failed add movie to watchList: unknown error");
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Log.e("UserApi", "Error reading errorBody: " + e.getMessage());
+                    }                }
             }
             @Override
             public void onFailure(Call<User> call, Throwable t) {
