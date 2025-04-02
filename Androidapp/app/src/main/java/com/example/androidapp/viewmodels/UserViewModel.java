@@ -3,9 +3,8 @@ import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.androidapp.UserRepository;
+import com.example.androidapp.repositories.UserRepository;
 
-import java.io.File;
 import java.util.List;
 
 public class UserViewModel extends ViewModel {

@@ -2,7 +2,7 @@ package com.example.androidapp;
 
 import android.net.Uri;
 
-import java.io.File;
+import com.example.androidapp.api.UserApi;
 
 public class UserRepository {
     private UserApi api;
