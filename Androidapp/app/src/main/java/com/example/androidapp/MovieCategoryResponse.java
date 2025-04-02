@@ -1,5 +1,7 @@
 package com.example.androidapp;
 
+import com.example.androidapp.entities.Movie;
+
 import java.util.List;
 import java.util.Map;
 

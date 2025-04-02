@@ -1,5 +1,7 @@
 package com.example.androidapp;
 
+import com.example.androidapp.entities.User;
+
 public class LoginResponse {
     private User user;
     private String token;

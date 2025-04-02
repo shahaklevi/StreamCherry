@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.activities;
 
 import android.os.Bundle;
 import android.webkit.WebSettings;
@@ -6,6 +6,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.androidapp.R;
 
 public class PlayerActivity extends AppCompatActivity {
     private WebView webView;

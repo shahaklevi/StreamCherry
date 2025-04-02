@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.activities;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.androidapp.viewmodels.MainViewModel;
+import com.example.androidapp.entities.Movie;
+import com.example.androidapp.R;
+import com.example.androidapp.entities.Section;
+import com.example.androidapp.adapters.SectionAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,7 @@
-package com.example.androidapp;
+package com.example.androidapp.api;
+
+import com.example.androidapp.entities.Category;
+import com.example.androidapp.MovieCategoryResponse;
 
 import java.util.List;
 

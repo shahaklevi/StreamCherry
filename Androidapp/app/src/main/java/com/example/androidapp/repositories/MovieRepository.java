@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.repositories;
 
 import android.app.Application;
 import android.content.Context;
@@ -6,6 +6,14 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.androidapp.ApiClient;
+import com.example.androidapp.AppDatabase;
+import com.example.androidapp.entities.Category;
+import com.example.androidapp.MovieCategoryResponse;
+import com.example.androidapp.MovieDao;
+import com.example.androidapp.api.MovieApiService;
+import com.example.androidapp.entities.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +52,7 @@ public class MovieRepository {
     public void fetchMoviesFromApi() {
         // Get userId from shared prefs
         SharedPreferences prefs = application.getSharedPreferences("auth", Context.MODE_PRIVATE);
-        String userId = prefs.getString("user_id", "67ec4cca52b62ef1333ed3f9");
+        String userId = prefs.getString("user_id", "67ec63feaad418a657bd02da");
         // how to get userId from token
 
         if (userId == null) {

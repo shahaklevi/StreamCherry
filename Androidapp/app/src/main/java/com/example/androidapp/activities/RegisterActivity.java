@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.activities;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,9 +13,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.androidapp.entities.User;
+import com.example.androidapp.viewmodels.UserViewModel;
 import com.example.androidapp.databinding.ActivityRegisterBinding;
-
-import java.io.File;
 
 public class RegisterActivity extends AppCompatActivity {
     private ActivityRegisterBinding binding;

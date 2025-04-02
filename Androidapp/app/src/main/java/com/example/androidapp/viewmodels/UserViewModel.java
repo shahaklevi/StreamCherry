@@ -1,11 +1,12 @@
-package com.example.androidapp;
+package com.example.androidapp.viewmodels;
 import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.androidapp.UserRepository;
 
-import java.io.File;
+import com.example.androidapp.entities.User;
+import com.example.androidapp.repositories.UserRepository;
+
 import java.util.List;
 
 public class UserViewModel extends ViewModel {
@@ -15,7 +16,7 @@ public class UserViewModel extends ViewModel {
     public UserViewModel() {
         repository = new UserRepository();
     }
-//    public void add(User user,File imagefile) {
+    //    public void add(User user,File imagefile) {
 //        repository.add(user, imagefile);
 //    }
     public void add(User user, Uri imageUri) {
@@ -23,5 +24,10 @@ public class UserViewModel extends ViewModel {
     }
     public void login(User user){
         repository.login(user);
+    }
+
+
+    public void addMovieToWatchList(String movieId) {
+        repository.addMovieToWatchList(movieId);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.viewmodels;
 
 import android.app.Application;
 import android.content.Context;
@@ -8,6 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.androidapp.entities.Category;
+import com.example.androidapp.MovieCategoryResponse;
+import com.example.androidapp.entities.Movie;
+import com.example.androidapp.repositories.MovieRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;

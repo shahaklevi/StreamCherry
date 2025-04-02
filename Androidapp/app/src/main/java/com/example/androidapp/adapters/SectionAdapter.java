@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.androidapp.R;
+import com.example.androidapp.entities.Section;
+import com.example.androidapp.activities.PlayerActivity;
 
 import java.util.List;
 import java.util.Random;

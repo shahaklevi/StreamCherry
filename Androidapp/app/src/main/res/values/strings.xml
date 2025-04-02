@@ -13,6 +13,13 @@
     <string name="Password">Password\n</string>
     <string name="choose_pic">choose picture\n</string>
     <string name="login_backbuttom">backbtn</string>
-    <string name="btn_sign_in">btnsignin</string>
+    <string name="btn_sign_in">sign in</string>
     <string name="Phone">Phone</string>
+    <string name="movie_title">Movie title</string>
+    <string name="movie_year">Movie year\n</string>
+    <string name="age">Age</string>
+    <string name="movie_time">Duration\n</string>
+    <string name="movie_play">Play</string>
+    <string name="trailer">Trailer</string>
+    <string name="more_like_this">more like this</string>
 </resources>

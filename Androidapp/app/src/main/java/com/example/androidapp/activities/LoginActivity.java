@@ -1,4 +1,4 @@
-package com.example.androidapp;
+package com.example.androidapp.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -6,6 +6,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.androidapp.entities.User;
+import com.example.androidapp.viewmodels.UserViewModel;
 import com.example.androidapp.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {

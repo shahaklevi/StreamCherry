@@ -1,8 +1,9 @@
-package com.example.androidapp;
+package com.example.androidapp.repositories;
 
 import android.net.Uri;
 
-import java.io.File;
+import com.example.androidapp.entities.User;
+import com.example.androidapp.api.UserApi;
 
 public class UserRepository {
     private UserApi api;
@@ -12,7 +13,7 @@ public class UserRepository {
         api = new UserApi();
     }
 
-//    public void add(User user, File imagefile) {
+    //    public void add(User user, File imagefile) {
 //
 //        api.add(user,imagefile);
 //
@@ -22,5 +23,9 @@ public class UserRepository {
     }
     public void login(User user) {
         api.login(user);
+    }
+
+    public void addMovieToWatchList(String movieId) {
+        api.addMovieToWatchList(movieId);
     }
 }
