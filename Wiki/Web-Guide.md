@@ -28,23 +28,23 @@
 2. Run:
 
 ```powershell
-$env:WEB_PORT="4000"; $env:RECOMMEND_PORT="7000"; docker-compose up --build
+docker-compose --env-file ./WebServer/config/.env.local up --build
 ```
-
-🖼️ **Screenshot idea:** Terminal showing Docker successfully building and running the containers.
 
 ---
 
 ## 🌐 Running the Web Client
 
-1. Go to the `web-client` folder.  
+1. Go to the `Web/my-app` folder.
+   
+```bash
+cd Web/my-app
+```
 2. Run:
 
 ```bash
 npm start
 ```
-
-🖼️ **Screenshot idea:** Web app landing page open in the browser.
 
 ---
 
