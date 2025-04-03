@@ -10,11 +10,11 @@ function MovieCard({ movie }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [hoverTimer, setHoverTimer] = useState(null);
-  const defaultImage = "/netflix.png";
+  const defaultImage = "/images/avatars/avatar1.webp"; // Default image path
   const navigate = useNavigate();
 
   const getImageUrl = () => {
-    if (!movie.movieImage || imageError) {
+    if (!movie || !movie.movieImage || imageError) {
       return defaultImage;
     }
     return `${API_BASE_URL}/${movie.movieImage}`;
@@ -95,7 +95,7 @@ function MovieCard({ movie }) {
       <img
         src={getImageUrl()}
         className={`card-img-top ${isLoading ? 'loading' : ''}`}
-        alt={movie.title}
+        alt={movie?.title}
         onError={() => {
           setImageError(true);
           setIsLoading(false);
