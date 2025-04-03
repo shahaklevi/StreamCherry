@@ -108,7 +108,7 @@ npm start
 ![image](https://github.com/user-attachments/assets/bdf0a44d-c83a-42cd-9c16-143e28aaaf2e)
 
 2. Open **MongoDB Compass**.  
-3. Edit the `isAdmin` field of the new user to `true`.  
+3. Edit the `manager` field of the new user to `true`.  
 
 <img width="1506" alt="image" src="https://github.com/user-attachments/assets/90094fa1-3ec3-4852-be6c-09c59aa3c93b" />
 
