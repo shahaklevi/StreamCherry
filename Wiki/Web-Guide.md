@@ -105,13 +105,16 @@ npm start
 
 1. Sign out.  
 
-<img width="794" alt="image" src="https://github.com/user-attachments/assets/71d8d2d1-d660-41a7-98e4-b00e90c3c8fa" />
+![image](https://github.com/user-attachments/assets/bdf0a44d-c83a-42cd-9c16-143e28aaaf2e)
 
 2. Open **MongoDB Compass**.  
 3. Edit the `isAdmin` field of the new user to `true`.  
+
+<img width="1506" alt="image" src="https://github.com/user-attachments/assets/90094fa1-3ec3-4852-be6c-09c59aa3c93b" />
+
+
 4. Sign in again – the **Admin** button should now appear.
 
-🖼️ **Screenshot idea:** User document in MongoDB with `isAdmin: true`.
 
 ---
 
