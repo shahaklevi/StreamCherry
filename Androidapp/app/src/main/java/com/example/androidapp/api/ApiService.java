@@ -19,6 +19,7 @@ import retrofit2.http.Path;
 
 public interface ApiService {
     @Multipart
+    //req
     @POST("users")
     Call<User> post(
             @Part("mail") RequestBody mail,
