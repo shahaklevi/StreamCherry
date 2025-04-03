@@ -4,72 +4,121 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.VideoView;
 import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.androidapp.entities.Movie;
+import com.example.androidapp.MyApplication;
 import com.example.androidapp.R;
-
+import java.util.ArrayList;
+import com.example.androidapp.R;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private final Context context;
-    private final List<Movie> movies;
+    private List<Movie> movies;
+    private List<String> selectedMovieIds = new ArrayList<>();
     private final OnMovieClickListener listener;
 
-    public interface OnMovieClickListener {
+
+    private  Movie choiceMovie;
+    private Context context;
+    private boolean isSingleChoice;
+  
+  public interface OnMovieClickListener {
         void onMovieClick(Movie movie);
     }
-
-    public MovieAdapter(Context context, List<Movie> movies, OnMovieClickListener listener) {
+  
+  public MovieAdapter(Context context, List<Movie> movies, OnMovieClickListener listener) {
         this.context = context;
         this.movies = movies;
         this.listener = listener;
     }
 
-    public static class MovieViewHolder extends RecyclerView.ViewHolder {
-        ImageView movieImage;
 
-        public MovieViewHolder(View itemView) {
-            super(itemView);
-            movieImage = itemView.findViewById(R.id.movieImage);
-        }
+    // Constructor to initialize the adapter with context and a list of movies
+    public MovieAdapter(Context context,List<Movie> movies, boolean isSingleChoice) {
+
+        this.movies = movies;
+        this.context = context;
+        this.isSingleChoice = isSingleChoice;
     }
 
-    @NonNull
+    // Create a new ViewHolder for the RecyclerView item (called when a new item view is needed)
     @Override
-    public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
-        return new MovieViewHolder(view);
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(this.context)
+                .inflate(R.layout.movie_layout, parent, false);
+        return new MovieViewHolder(itemView);
     }
 
+    // Bind the data (movie) to the corresponding ViewHolder
     @Override
-    public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
+    public void onBindViewHolder(MovieViewHolder holder, int position) {
         Movie movie = movies.get(position);
-        String image = movie.getMovieImage();
+        if (movies != null && !movies.isEmpty()) {
+            Glide.with(holder.itemView.getContext())
+                    .load("http://10.0.2.2:3000/" + movie.getMovieImage())
+                    .centerCrop()
+                    .into(holder.moviePoster);
 
-        holder.movieImage.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onMovieClick(movie);
+        } else {
+            Toast.makeText(MyApplication.getAppContext(), "No movies available or response is null", Toast.LENGTH_SHORT).show();
+        }
+
+        holder.moviePoster.setOnClickListener(v -> {
+            String movieId = movie.get_id();
+            if (isSingleChoice) {
+                selectedMovieIds.clear();
+                selectedMovieIds.add(movieId);
+            } else {
+                if (selectedMovieIds.contains(movieId)) {
+                    selectedMovieIds.remove(movieId);
+                    choiceMovie = movie;
+                } else {
+                    selectedMovieIds.add(movieId);
+                }
             }
         });
-        if (image != null && !image.isEmpty()) {
-            if (image.startsWith("http")) {
-                // 🔁 Load image from URL using Glide
-                Glide.with(context).load(image).into(holder.movieImage);
-            } else {
-                String imageUrl = "http://10.0.2.2:3000/" + image;
-                Glide.with(context).load(imageUrl).into(holder.movieImage);
-            }
-        }
     }
 
-    @Override
     public int getItemCount() {
         return movies.size();
     }
-}
+
+    public List<String> getSelectedMovieIds() {
+        return selectedMovieIds;
+    }
+
+    public Movie getChoiceMovie(){
+        return choiceMovie;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+        notifyDataSetChanged();
+    }
+
+
+    static class MovieViewHolder extends RecyclerView.ViewHolder {
+        TextView tvName, tvYear,tvTime, tvDescription;
+        ImageButton moviePoster;
+        VideoView videoView;
+
+        public MovieViewHolder(View itemView) {
+            super(itemView);
+            tvName = itemView.findViewById(R.id.movieTitle);
+            tvYear = itemView.findViewById(R.id.year);
+            tvDescription = itemView.findViewById(R.id.movieDescription);
+            tvTime = itemView.findViewById(R.id.movieTime);
+//            videoView = itemView.findViewById(R.id.vid;
+            moviePoster = itemView.findViewById(R.id.imageBtnMovie);
+        }
+    }
+    

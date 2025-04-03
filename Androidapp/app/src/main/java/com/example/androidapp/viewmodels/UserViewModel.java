@@ -16,7 +16,7 @@ public class UserViewModel extends ViewModel {
     public UserViewModel() {
         repository = new UserRepository();
     }
-    //    public void add(User user,File imagefile) {
+//    public void add(User user,File imagefile) {
 //        repository.add(user, imagefile);
 //    }
     public void add(User user, Uri imageUri) {

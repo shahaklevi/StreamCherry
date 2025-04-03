@@ -1,5 +1,7 @@
 package com.example.androidapp.entities;
+
 import com.google.gson.annotations.SerializedName;
+
 public class User {
 
     private String user_name;
@@ -23,6 +25,7 @@ public class User {
     public boolean isManager() {
         return manager;
     }
+
 
     public String getPhone() {
         return phone;

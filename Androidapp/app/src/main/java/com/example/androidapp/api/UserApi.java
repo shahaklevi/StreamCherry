@@ -124,66 +124,66 @@ public class UserApi {
 //        }
 //    }
 
-    public void add(User user, Uri imageUri) {
-        ContentResolver contentResolver = MyApplication.getAppContext().getContentResolver();
+public void add(User user, Uri imageUri) {
+    ContentResolver contentResolver = MyApplication.getAppContext().getContentResolver();
 
-        RequestBody username = RequestBody.create(user.getUser_name(), MediaType.parse("text/plain"));
-        RequestBody password = RequestBody.create(user.getPassword(), MediaType.parse("text/plain"));
-        RequestBody nickname = RequestBody.create(user.getNickName(), MediaType.parse("text/plain"));
-        RequestBody mail = RequestBody.create(user.getMail(), MediaType.parse("text/plain"));
-        RequestBody phone = RequestBody.create(user.getPhone(), MediaType.parse("text/plain"));
+    RequestBody username = RequestBody.create(user.getUser_name(), MediaType.parse("text/plain"));
+    RequestBody password = RequestBody.create(user.getPassword(), MediaType.parse("text/plain"));
+    RequestBody nickname = RequestBody.create(user.getNickName(), MediaType.parse("text/plain"));
+    RequestBody mail = RequestBody.create(user.getMail(), MediaType.parse("text/plain"));
+    RequestBody phone = RequestBody.create(user.getPhone(), MediaType.parse("text/plain"));
 
-        MultipartBody.Part imagePart = null;
+    MultipartBody.Part imagePart = null;
 
-        if (imageUri != null) {
-            try {
-                String mimeType = contentResolver.getType(imageUri);
-                if (mimeType == null || !mimeType.startsWith("image/")) {
-                    Toast.makeText(MyApplication.getAppContext(), "Invalid image type", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                InputStream inputStream = contentResolver.openInputStream(imageUri);
-                String fileName = getFileName(MyApplication.getAppContext(), imageUri);
-
-                RequestBody requestFile = new InputStreamRequestBody(MediaType.parse(mimeType), inputStream);
-                imagePart = MultipartBody.Part.createFormData("profilePicture", fileName, requestFile);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(MyApplication.getAppContext(), "Failed to read image", Toast.LENGTH_SHORT).show();
+    if (imageUri != null) {
+        try {
+            String mimeType = contentResolver.getType(imageUri);
+            if (mimeType == null || !mimeType.startsWith("image/")) {
+                Toast.makeText(MyApplication.getAppContext(), "Invalid image type", Toast.LENGTH_SHORT).show();
                 return;
+            }
+
+            InputStream inputStream = contentResolver.openInputStream(imageUri);
+            String fileName = getFileName(MyApplication.getAppContext(), imageUri);
+
+            RequestBody requestFile = new InputStreamRequestBody(MediaType.parse(mimeType), inputStream);
+            imagePart = MultipartBody.Part.createFormData("profilePicture", fileName, requestFile);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(MyApplication.getAppContext(), "Failed to read image", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
+
+    Call<User> call = apiService.post(mail, username, password, nickname,phone, imagePart);
+    call.enqueue(new Callback<User>() {
+        @Override
+        public void onResponse(Call<User> call, Response<User> response) {
+            if (response.isSuccessful() && response.code() == 201) {
+                Intent i = new Intent(MyApplication.getAppContext(), LoginActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                MyApplication.getAppContext().startActivity(i);
+            } else {
+                try {
+                    if (response.errorBody() != null) {
+                        String errorMessage = response.errorBody().string();
+                        Log.e("UserApi", "Error: " + errorMessage);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
-        Call<User> call = apiService.post(mail, username, password, nickname,phone, imagePart);
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if (response.isSuccessful() && response.code() == 201) {
-                    Intent i = new Intent(MyApplication.getAppContext(), LoginActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    MyApplication.getAppContext().startActivity(i);
-                } else {
-                    try {
-                        if (response.errorBody() != null) {
-                            String errorMessage = response.errorBody().string();
-                            Log.e("UserApi", "Error: " + errorMessage);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.e("UserApi", "Registration failed with error: " + t.getMessage());
-            }
-        });
+        @Override
+        public void onFailure(Call<User> call, Throwable t) {
+            Log.e("UserApi", "Registration failed with error: " + t.getMessage());
+        }
+    });
 
 
-    }
+}
 
     private byte[] getBytesFromInputStream(InputStream inputStream) throws IOException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
