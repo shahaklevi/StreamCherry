@@ -56,9 +56,7 @@ public class MovieActivity extends AppCompatActivity {
         tvName.setText(intent.getStringExtra("name"));
         tvYear.setText(intent.getStringExtra("year"));
         tvDescription.setText(intent.getStringExtra("description"));
-
         String movieId = intent.getStringExtra("id");
-
         String movieTime = intent.getStringExtra("movie_time");
 
         int totalMinutes = 0;

@@ -24,18 +24,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     private final Context context;
     private List<Movie> movies;
     private List<String> selectedMovieIds = new ArrayList<>();
-    private final OnMovieClickListener listener;
-
+    private OnMovieClickListener listener;
 
     private  Movie choiceMovie;
-    private Context context;
     private boolean isSingleChoice;
-  
-  public interface OnMovieClickListener {
+
+    public interface OnMovieClickListener {
         void onMovieClick(Movie movie);
     }
-  
-  public MovieAdapter(Context context, List<Movie> movies, OnMovieClickListener listener) {
+
+    public MovieAdapter(Context context, List<Movie> movies, OnMovieClickListener listener) {
         this.context = context;
         this.movies = movies;
         this.listener = listener;
@@ -121,4 +119,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             moviePoster = itemView.findViewById(R.id.imageBtnMovie);
         }
     }
-    
+
+}
+

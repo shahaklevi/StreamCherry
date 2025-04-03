@@ -22,6 +22,7 @@ import com.example.androidapp.InputStreamRequestBody;
 import com.example.androidapp.LoginResponse;
 import com.example.androidapp.MyApplication;
 import com.example.androidapp.R;
+import com.example.androidapp.activities.MoviesActivity;
 import com.example.androidapp.entities.User;
 import com.example.androidapp.activities.LoginActivity;
 import com.example.androidapp.activities.MovieActivity;
@@ -63,6 +64,10 @@ public class UserApi {
                     myApplication.setToken(token);
                     User userData = response.body().getUser();
                     extractDataFromUser(userData);
+
+                    Intent intent= new Intent(myApplication.getApplicationContext(), MoviesActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    myApplication.getApplicationContext().startActivity(intent);
 
                     //test- later i have to change the intent of this screen to main activity
 //                    Intent intent= new Intent(myApplication.getApplicationContext() , MovieActivity.class);

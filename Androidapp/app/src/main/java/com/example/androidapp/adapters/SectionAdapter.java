@@ -64,6 +64,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
             Intent intent = new Intent(context, PlayerActivity.class);
             String fileUrl = "http://10.0.2.2:3000/" + movie.getMovieFile();
             intent.putExtra("VIDEO_URL",fileUrl);
+
             context.startActivity(intent);
         });        holder.moviesRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.moviesRecyclerView.setAdapter(movieAdapter);
