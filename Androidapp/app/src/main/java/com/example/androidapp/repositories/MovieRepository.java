@@ -12,14 +12,21 @@ import com.example.androidapp.AppDatabase;
 import com.example.androidapp.MyApplication;
 import com.example.androidapp.entities.Category;
 import com.example.androidapp.MovieCategoryResponse;
-import com.example.androidapp.MovieDao;
+import com.example.androidapp.db.MovieDao;
 import com.example.androidapp.api.MovieApiService;
 import com.example.androidapp.entities.Movie;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -84,6 +91,7 @@ public class MovieRepository {
         });
     }
 
+
     public void fetchAllCategories(Callback<List<Category>> callback) {
         apiService.getAllCategories().enqueue(callback);
     }
@@ -95,4 +103,71 @@ public class MovieRepository {
     private void insertMovies(List<Movie> movies) {
         AsyncTask.execute(() -> movieDao.insertMovies(movies));
     }
+
+    public void addMovie(Movie movie, Callback<ResponseBody> callback) {
+
+        RequestBody titleBody = RequestBody.create(movie.getTitle(), MediaType.parse("text/plain"));
+        RequestBody descriptionBody = RequestBody.create(movie.getDescription(), MediaType.parse("text/plain"));
+        RequestBody releaseYearBody = RequestBody.create(String.valueOf(movie.getReleaseYear()), MediaType.parse("text/plain"));
+        RequestBody durationBody = RequestBody.create(String.valueOf(movie.getDuration()), MediaType.parse("text/plain"));
+        RequestBody castBody = RequestBody.create(String.join(",", movie.getCast()), MediaType.parse("text/plain"));
+        List<MultipartBody.Part> categoryParts = new ArrayList<>();
+
+        for (String catId : movie.getCategories()) {
+            RequestBody catBody = RequestBody.create(catId, MediaType.parse("text/plain"));
+            MultipartBody.Part part = MultipartBody.Part.createFormData("categories[]", null, catBody);
+            categoryParts.add(part);
+        }
+
+        MultipartBody.Part movieFilePart = null;
+        if (movie.getMovieFile() != null) {
+            File movieFile = new File(movie.getMovieFile());
+            RequestBody fileBody = RequestBody.create(movieFile, MediaType.parse("video/mp4"));
+            movieFilePart = MultipartBody.Part.createFormData("movieFile", movieFile.getName(), fileBody);
+        }
+        MultipartBody.Part movieImagePart = null;
+        if (movie.getMovieImage() != null) {
+            File imageFile = new File(movie.getMovieImage());
+            RequestBody imageBody = RequestBody.create(imageFile, MediaType.parse("image/*"));
+            movieImagePart = MultipartBody.Part.createFormData("movieImage", imageFile.getName(), imageBody);
+        }
+
+        Call<ResponseBody> call = apiService.addMovie(
+                titleBody,
+                descriptionBody,
+                releaseYearBody,
+                durationBody,
+                castBody,
+                categoryParts,
+                movieFilePart,
+                movieImagePart
+        );
+
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    // לפני הכנסת הסרט ל־Room, אתחל את ה־_id אם הוא null
+                    if (movie.get_id() == null || movie.get_id().isEmpty()) {
+                        movie.set_id(UUID.randomUUID().toString());
+                    }
+                    AsyncTask.execute(() -> {
+                        movieDao.insertMovies(Collections.singletonList(movie));
+                    });
+                }
+                callback.onResponse(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                callback.onFailure(call, t);
+            }
+        });
+    }
+
+    public void deleteMovie(Movie movie) {
+        AsyncTask.execute(() -> movieDao.deleteMovie(movie.get_id()));
+    }
 }
+

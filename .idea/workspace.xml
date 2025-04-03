@@ -4,12 +4,101 @@
     <shared>
       <config />
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_category.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_movie.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_admin.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_category_management.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_delete_movie.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_category.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_movie.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/category_item.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/checkbox_category_item.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc104d85-cc38-4e57-8384-b7adb864c304" name="Changes" comment="category room deletion" />
+    <list default="true" id="dc104d85-cc38-4e57-8384-b7adb864c304" name="Changes" comment="category room deletion">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/migrations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AddCategoryActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AddMovieActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AdminActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/CategoryManagementActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/DeleteMovieActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/EditCategoryActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/EditMovieActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/adapters/CategoriesListAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/CategoryApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/AppDB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/CategoryDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/CategoryViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MovieViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/drawable/ic_admin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_category.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_movie.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_admin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_category_management.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_delete_movie.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_category.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_movie.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/category_item.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/checkbox_category_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/AppDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/AppDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/MovieDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/MovieDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/ApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/MovieApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/MovieApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/MovieRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MainViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/themes.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -65,8 +154,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -90,6 +180,12 @@
     &quot;accountId&quot;: &quot;d02a0bd8-4dff-4ebe-b498-2e66d6b81c99&quot;
   }
 }</component>
+  <component name="KotlinScriptingSettings">
+    <scriptDefinition className="org.jetbrains.kotlin.scripting.resolve.KotlinScriptDefinitionFromAnnotatedTemplate" definitionName="KotlinBuildScript">
+      <order>2147483647</order>
+      <autoReloadConfigurations>true</autoReloadConfigurations>
+    </scriptDefinition>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -112,13 +208,24 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
     "git-widget-placeholder": "shahak-android-copy-2",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/shaha/AndroidStudioProjects/Neetflix/Androidapp/settings.gradle.kts",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="android.template.-2049009045">
+      <recent name="com.example.androidapp.activities" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.androidapp.db" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Android_app.app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="Android_app.app" />
@@ -193,6 +300,14 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StandaloneScriptsStorage">
+    <option name="files">
+      <set>
+        <option value="$PROJECT_DIR$/Androidapp/app/build.gradle.kts" />
+        <option value="$PROJECT_DIR$/Androidapp/build.gradle.kts" />
+      </set>
+    </option>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="dc104d85-cc38-4e57-8384-b7adb864c304" name="Changes" comment="" />
@@ -266,12 +381,12 @@
       <map>
         <entry key="com.example.androidapp">
           <value>
-            <CheckInfo lastCheckTimestamp="1743580860187" />
+            <CheckInfo lastCheckTimestamp="1743695385769" />
           </value>
         </entry>
         <entry key="com.example.androidapp.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1743580860187" />
+            <CheckInfo lastCheckTimestamp="1743695385769" />
           </value>
         </entry>
       </map>

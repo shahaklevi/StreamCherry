@@ -7,6 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.androidapp.db.MovieDao;
 import com.example.androidapp.entities.Movie;
 
 @Database(entities = {Movie.class}, version = 1)

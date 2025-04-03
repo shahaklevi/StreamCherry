@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/netflix_background"
+    >
+
+    <!-- Title using Netflix red for emphasis -->
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/edit_category"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textColor="@color/categories_title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <EditText
+        android:id="@+id/etCategoryName"
+        style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:autofillHints=""
+        android:background="@color/netflix_card_background"
+        android:hint="@string/category_name"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:outlineProvider="bounds"
+        android:textColor="@color/netflix_light_text"
+        android:textColorHint="@color/hint_text_color"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvPromotedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/promoted"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/netflix_light_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etCategoryName" />
+
+    <CheckBox
+        android:id="@+id/spinnerPromoted"
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@color/netflix_background"
+        android:textColor="@color/netflix_light_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toEndOf="@+id/tvPromotedLabel"
+        app:layout_constraintTop_toBottomOf="@+id/etCategoryName" />
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/spinnerPromoted"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="24dp">
+
+        <!-- Add Category Button -->
+        <Button
+            android:id="@+id/btnEditCategorySave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/netflix_red"
+            android:text="@string/save_changes"
+            android:textColor="@color/netflix_light_text"
+            tools:ignore="TextContrastCheck" />
+
+        <!-- Cancel Button -->
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

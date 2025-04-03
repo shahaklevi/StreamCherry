@@ -57,7 +57,7 @@ public class MainViewModel extends AndroidViewModel {
                 if (response.isSuccessful() && response.body() != null) {
                     Map<String, String> categoryIdNameMap = new HashMap<>();
                     for (Category cat : response.body()) {
-                        categoryIdNameMap.put(cat.get_id(), cat.getName());
+                        categoryIdNameMap.put(cat.getServerId(), cat.getName());
                     }
                     fetchAndMapMovies(categoryIdNameMap);
                 }

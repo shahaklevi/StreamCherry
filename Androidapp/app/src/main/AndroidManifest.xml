@@ -19,6 +19,29 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".activities.EditMovieActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EditCategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.DeleteMovieActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CategoryManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddMovieActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddCategoryActivity"
+            android:exported="false"
+            android:label="@string/title_activity_add_category"
+            android:theme="@style/Theme.AndroidApp" />
+        <activity
             android:name=".activities.MoviesActivity"
             android:exported="false" />
         <activity
@@ -29,7 +52,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.MovieActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".activities.RegisterActivity"
             android:exported="false" />
