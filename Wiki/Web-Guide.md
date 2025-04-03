@@ -115,7 +115,9 @@ npm start
 
 4. Sign in again – the **Admin** button should now appear.
 
-<img width="414" alt="image" src="https://github.com/user-attachments/assets/6ed8f584-557d-4374-80f7-d91772522903" />
+
+<img width="695" alt="image" src="https://github.com/user-attachments/assets/2d18675f-d911-4c93-a5cc-67fdd8270ddd" />
+
 5. Click `Admin` to open the admin dashboard where you can manage categories and movies.
 
 ---
