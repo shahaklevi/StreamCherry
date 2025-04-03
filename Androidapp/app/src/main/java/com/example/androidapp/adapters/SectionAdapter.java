@@ -1,7 +1,6 @@
 package com.example.androidapp.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidapp.R;
-import com.example.androidapp.activities.MovieActivity;
 import com.example.androidapp.entities.Section;
 
 import java.util.List;
@@ -60,19 +58,8 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.SectionV
         Section section = sections.get(position);
         holder.sectionTitle.setText(section.getTitle());
 
-        MovieAdapter movieAdapter = new MovieAdapter(context, section.getMovies(), movie -> {
-//            Intent intent = new Intent(context, PlayerActivity.class);
-//            String fileUrl = "http://10.0.2.2:3000/" + movie.getMovieFile();
-//            intent.putExtra("VIDEO_URL",fileUrl);
-            Intent intent = new Intent(context, MovieActivity.class);
-            intent.putExtra("name", movie.getTitle());
-            intent.putExtra("year", movie.getReleaseYear() + "");
-            intent.putExtra("description", movie.getDescription());
-            intent.putExtra("id", movie.get_id());
-            intent.putExtra("movie_time", movie.getDuration() + "");
+        MovieAdapter movieAdapter = new MovieAdapter(context, section.getMovies());
 
-            context.startActivity(intent);
-        });
         holder.moviesRecyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.moviesRecyclerView.setAdapter(movieAdapter);
     }

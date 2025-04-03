@@ -94,7 +94,7 @@ public class MovieActivity extends AppCompatActivity {
         });
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        movieAdapter = new MovieAdapter(this, new ArrayList<>(), true);
+        movieAdapter = new MovieAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(movieAdapter);
 
         MovieApi movieApi = new MovieApi();
