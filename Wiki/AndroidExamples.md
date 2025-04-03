@@ -9,7 +9,7 @@ This document presents a visual walkthrough of the Android application's main sc
 The app opens with a vibrant and playful welcome screen.  
 Pressing **"Get Started"** leads the user to the login screen.
 
-![Opening Screen](AndroidImages/1 open.png)
+![Opening Screen](AndroidImages/1open.png)
 
 ---
 
@@ -18,7 +18,7 @@ Pressing **"Get Started"** leads the user to the login screen.
 The login screen allows existing users to enter their **username** and **password**.  
 A **"sign up"** button is provided for new users at the bottom.
 
-![Sign In Screen](AndroidImages/2 sign in.png)
+![Sign In Screen](AndroidImages/2signin.png)
 
 ---
 
@@ -26,7 +26,7 @@ A **"sign up"** button is provided for new users at the bottom.
 
 New users can register by entering their email, username, nickname, password (twice), phone number, and selecting a profile picture.
 
-![Sign Up Screen](AndroidImages/3 sign up.png)
+![Sign Up Screen](AndroidImages/3signup.png)
 
 ---
 
@@ -34,7 +34,7 @@ New users can register by entering their email, username, nickname, password (tw
 
 After logging in, users are taken to the main movie screen, where they can explore categories visually.
 
-![Main Page](AndroidImages/4 main page.png)
+![Main Page](AndroidImages/4mainpage.png)
 
 ---
 
@@ -42,7 +42,7 @@ After logging in, users are taken to the main movie screen, where they can explo
 
 Users can filter movies by categories using the search bar at the top.
 
-![Search Page](AndroidImages/5 search.png)
+![Search Page](AndroidImages/5search.png)
 
 ---
 
@@ -50,7 +50,7 @@ Users can filter movies by categories using the search bar at the top.
 
 Clicking on a movie displays its full details, including title, year, duration, description, and related content.
 
-![Movie Details](AndroidImages/6 click on movie.png)
+![Movie Details](AndroidImages/6clickonmovie.png)
 
 ---
 
@@ -58,7 +58,7 @@ Clicking on a movie displays its full details, including title, year, duration, 
 
 Users can watch full movies with a built-in video player interface.
 
-![Movie Player](AndroidImages/7 watch movie.png)
+![Movie Player](AndroidImages/7watchmovie.png)
 
 ---
 
@@ -66,7 +66,7 @@ Users can watch full movies with a built-in video player interface.
 
 If the logged-in user is an admin, they gain access to this special screen, allowing management actions.
 
-![Admin Zone](AndroidImages/8 admin-zone.png)
+![Admin Zone](AndroidImages/8adminzone.png)
 
 ---
 
@@ -74,7 +74,7 @@ If the logged-in user is an admin, they gain access to this special screen, allo
 
 Upon clicking "Show Actions", the admin can choose between **Add Movie**, **Edit Movie**, **Delete Movie**, and **Manage Categories**.
 
-![Admin Options](AndroidImages/9 admin-zone-Options.png)
+![Admin Options](AndroidImages/9adminzoneoptions.png)
 
 ---
 
@@ -82,7 +82,7 @@ Upon clicking "Show Actions", the admin can choose between **Add Movie**, **Edit
 
 This screen allows admins to create a new movie category by name. The "Promoted" checkbox can be selected to give the category special visibility.
 
-![Add Category](AndroidImages/10 CategoryManagment-AddCategory.png)
+![Add Category](AndroidImages/10categorymanagmentaddcategory.png)
 
 ---
 
@@ -90,7 +90,7 @@ This screen allows admins to create a new movie category by name. The "Promoted"
 
 Admins can modify existing categories. Here, the **"Promoted"** status can be toggled and saved.
 
-![Edit Category](AndroidImages/11 CategoryManagment-EditCategory.png)
+![Edit Category](AndroidImages/11categorymanagmenteditcategory.png)
 
 ---
 
@@ -98,7 +98,7 @@ Admins can modify existing categories. Here, the **"Promoted"** status can be to
 
 From the admin zone, this screen allows uploading a new movie with fields for title, description, year, duration, cast, and category selection. Admins can also upload a video file and an image.
 
-![Add Movie](AndroidImages/12 admin-zone-AddMovie.png)
+![Add Movie](AndroidImages/12adminzoneaddmovie.png)
 
 ---
 
@@ -107,7 +107,7 @@ From the admin zone, this screen allows uploading a new movie with fields for ti
 This admin interface lists all existing categories with buttons to **edit** or **delete** each one.  
 Admins can also add new categories using the **+** button.
 
-![Manage Categories](AndroidImages/13 admin-zone-CategoryManagment.png)
+![Manage Categories](AndroidImages/13adminzonecategorymanagment.png)
 
 ---
 
@@ -116,7 +116,7 @@ Admins can also add new categories using the **+** button.
 This screen allows admins to edit a movie’s information and update its media files (video and image).  
 Fields include title, description, release year, duration, cast, director, and categories.
 
-![Edit Movie](AndroidImages/14 admin-zone-EditMovie.png)
+![Edit Movie](AndroidImages/14adminzoneeditmovie.png)
 
 ---
 
@@ -124,8 +124,7 @@ Fields include title, description, release year, duration, cast, director, and c
 
 This screen allows admins to search and delete movies from the database.
 
-![Delete Movie](AndroidImages/15 admin-zone-MovieDeletion.png)
+![Delete Movie](AndroidImages/15adminzonemoviedelete.png)
 
 ---
 
-✅ The Android admin interface offers full content management capabilities, including movie and category control, all in a clean dark mode design.
