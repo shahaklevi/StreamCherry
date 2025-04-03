@@ -56,7 +56,7 @@ npm start
 
 
 <img width="1502" alt="image" src="https://github.com/user-attachments/assets/23631b37-142f-44bb-8c9a-3cbe4a1fc4b3" />
-1. Click **Get Started**. <br>
+1. Click **Get Started**. 
 
 <img width="1490" alt="image" src="https://github.com/user-attachments/assets/421c5105-c674-4be0-a083-a9ce27e2bd79" />
 
@@ -67,13 +67,10 @@ npm start
 
 ### 🔓 Login & Logout
 <img width="1503" alt="image" src="https://github.com/user-attachments/assets/68f812e7-0b8a-4119-961c-8a4ebe547db6" />
-
 1. To log in, use your registered email and password.  
 
 
-
 ![image](https://github.com/user-attachments/assets/512e4cef-043e-478d-9240-c503c2aab5d3)
-
 2. To log out, click the avatar icon → **LogOut**.  
 3. You can then register a new user or sign in again.
 
@@ -107,6 +104,9 @@ npm start
 ## 🔑 Granting Admin Privileges
 
 1. Sign out.  
+
+<img width="794" alt="image" src="https://github.com/user-attachments/assets/71d8d2d1-d660-41a7-98e4-b00e90c3c8fa" />
+
 2. Open **MongoDB Compass**.  
 3. Edit the `isAdmin` field of the new user to `true`.  
 4. Sign in again – the **Admin** button should now appear.
