@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.androidapp.MyApplication;
 import com.example.androidapp.entities.Category;
 import com.example.androidapp.MovieCategoryResponse;
 import com.example.androidapp.entities.Movie;
@@ -71,7 +72,7 @@ public class MainViewModel extends AndroidViewModel {
 
     private void fetchAndMapMovies(Map<String, String> categoryMap) {
         SharedPreferences prefs = application.getSharedPreferences("auth", Context.MODE_PRIVATE);
-        String userId = prefs.getString("user_id", "67ec0c2aa5ffed27f896b648");
+        String userId = prefs.getString("user_id", MyApplication.getInstance().getGlobalUserId());
 
         repository.getApiService().getAllMovies(userId).enqueue(new Callback<>() {
             @Override

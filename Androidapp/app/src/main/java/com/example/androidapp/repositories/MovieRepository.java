@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.androidapp.ApiClient;
 import com.example.androidapp.AppDatabase;
+import com.example.androidapp.MyApplication;
 import com.example.androidapp.entities.Category;
 import com.example.androidapp.MovieCategoryResponse;
 import com.example.androidapp.MovieDao;
@@ -37,7 +38,7 @@ public class MovieRepository {
 
         // Get JWT token from SharedPreferences
         SharedPreferences prefs = application.getSharedPreferences("auth", Context.MODE_PRIVATE);
-        String token = prefs.getString("jwt_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2VjNGNjYTUyYjYyZWYxMzMzZWQzZjkiLCJ1c2VyX25hbWUiOiJoaWkiLCJtYWlsIjoiaGlpQGdtYWlsLmNvbSIsInBob25lIjoiMDU4NjU1MjAwNCIsInByb2ZpbGVQaWN0dXJlIjoiL2ltYWdlcy9hdmF0YXJzL2F2YXRhcjEud2VicCIsIm1hbmFnZXIiOmZhbHNlLCJpYXQiOjE3NDM1Mzk0MDUsImV4cCI6MTc0MzYyNTgwNX0.zzc7dFSmPtMlPx3PK0GdUQRV1PEoH0rdqlPm-Nr0JPM");
+        String token = prefs.getString("jwt_token", MyApplication.getInstance().getToken());
         //saved token after login , if not valid token then use default token
 
 
@@ -52,7 +53,7 @@ public class MovieRepository {
     public void fetchMoviesFromApi() {
         // Get userId from shared prefs
         SharedPreferences prefs = application.getSharedPreferences("auth", Context.MODE_PRIVATE);
-        String userId = prefs.getString("user_id", "67ec63feaad418a657bd02da");
+        String userId = prefs.getString("user_id", MyApplication.getInstance().getGlobalUserId());
         // how to get userId from token
 
         if (userId == null) {

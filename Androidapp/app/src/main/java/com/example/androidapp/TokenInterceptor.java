@@ -11,14 +11,17 @@ public class TokenInterceptor implements Interceptor {
     private final String token;
 
     public TokenInterceptor(String token) {
-        this.token = token;
+        if (token.startsWith("Bearer")) {
+            this.token = token;
+        } else this.token = "Bearer" + token;
     }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request original = chain.request();
+
         Request.Builder builder = original.newBuilder()
-                .header("Authorization", "Bearer " + token);
+                .header("Authorization", token);
         Request request = builder.build();
         return chain.proceed(request);
     }

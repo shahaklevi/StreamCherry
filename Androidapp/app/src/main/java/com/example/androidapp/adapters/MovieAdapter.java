@@ -1,6 +1,7 @@
 package com.example.androidapp.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
 
     // Constructor to initialize the adapter with context and a list of movies
     public MovieAdapter(Context context,List<Movie> movies, boolean isSingleChoice) {
-
+        this.listener = null;
         this.movies = movies;
         this.context = context;
         this.isSingleChoice = isSingleChoice;
