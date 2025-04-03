@@ -29,7 +29,7 @@ To run the Android version of the app:
 Just like the web version, open a terminal and run:
 
 ```bash
-make lunch-app
+make StreamCherryServer
 ```
 
 This will start the backend server on `http://localhost:3000`.
