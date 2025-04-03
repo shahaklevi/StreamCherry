@@ -73,6 +73,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             intent.putExtra("description", movie.getDescription());
             intent.putExtra("id", movie.get_id());
             intent.putExtra("movie_time", movie.getDuration() + "");
+            intent.putExtra("video", movie.getMovieFile());
 
             context.startActivity(intent);
         });
