@@ -99,7 +99,7 @@ npm start
 
 ---
 
-# 🔐 Admin Features
+# 🔐 Admin Zone
 
 ## 🔑 Granting Admin Privileges
 
@@ -110,22 +110,28 @@ npm start
 2. Open **MongoDB Compass**.  
 3. Edit the `manager` field of the new user to `true`.  
 
-<img width="1506" alt="image" src="https://github.com/user-attachments/assets/90094fa1-3ec3-4852-be6c-09c59aa3c93b" />
 
+![image](https://github.com/user-attachments/assets/967d9a18-8af8-413a-bffb-68adf1d6c676)
 
 4. Sign in again – the **Admin** button should now appear.
 
+<img width="414" alt="image" src="https://github.com/user-attachments/assets/6ed8f584-557d-4374-80f7-d91772522903" />
+5. Click `Admin` to open the admin dashboard where you can manage categories and movies.
 
 ---
 
 ## 🗂 Managing Categories
 
-1. Click **Admin**.  
-2. Choose **Add New Category**.  
-3. Enter a name and description.  
-4. Edit or delete categories if needed.
+<img width="1220" alt="image" src="https://github.com/user-attachments/assets/a71d98ec-8abb-4f94-9a0b-b3aa0d378346" />
 
-🖼️ **Screenshot idea:** Category management screen with Edit/Delete buttons.
+1. In **Admin-Zone**  
+2. Choose **Add Category**.  
+3. Enter a name and description.  
+
+
+<img width="934" alt="image" src="https://github.com/user-attachments/assets/70806482-e620-4cf1-bc5b-9d6452bd7e0e" />
+
+4. Edit or delete categories if needed.
 
 ---
 
