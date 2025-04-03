@@ -146,13 +146,13 @@ const isValidJWT = async (req) => {
         if (!authHeader) {
             authHeader = req.header("authorization");
         }
-        console.log('authHeader: ', authHeader);
+        // console.log('authHeader: ', authHeader);
         
         if (!authHeader) {
             throw new Error("Server Error: Authorization header not provided");
         }
         const token = authHeader.split(" ")[1]?.trim();
-        console.log('token:', token);
+        // console.log('token:', token);
         if (!token) {
             throw new Error("Server Error: Token not provided");
         }

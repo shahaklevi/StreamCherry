@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import MovieCard from "../Common/MovieCard/MovieCard";
 import "./NumericSlider.css";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function NumericSlider({ title,movieIds}) {
   const sliderRef = useRef(null);
   const [movies, setMovies] = useState([]);
@@ -8,7 +9,7 @@ function NumericSlider({ title,movieIds}) {
    const fetchMovieDetails = async () => {
      try {
        const moviePromises = movieIds.map(async (id) => {
-         const response = await fetch(`http://localhost:3000/api/movies/${id}`);
+         const response = await fetch(`${API_BASE_URL}/api/movies/${id}`);
          if (!response.ok) {
            throw new Error(`Failed to fetch movie with ID: ${id}`);
          }

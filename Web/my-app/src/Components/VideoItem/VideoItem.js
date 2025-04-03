@@ -5,7 +5,7 @@ import InfoButton from "../InfoButton/InfoButton";
 import MoviePopup from "../MoviePopup/MoviePopup";
 import tokenVerification from "../../tokenVerification/tokenVerification";
 import { useNavigate } from "react-router-dom";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function VideoItem({ movieId }) {
   const [movie, setMovie] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -19,7 +19,7 @@ function VideoItem({ movieId }) {
         return;
       }
       const response = await fetch(
-        `http://localhost:3000/api/movies/${movieId}`,
+        `${API_BASE_URL}/api/movies/${movieId}`,
 
         {
           headers: {
@@ -64,7 +64,7 @@ function VideoItem({ movieId }) {
       }
 
       const response = await fetch(
-        `http://localhost:3000/api/movies/${movie._id}/recommend/`,
+        `${API_BASE_URL}/api/movies/${movie._id}/recommend/`,
         {
           method: "POST",
           headers: {
@@ -99,7 +99,7 @@ function VideoItem({ movieId }) {
     <div className="Video-item">
       <video ref={videoRef} autoPlay muted loop className="video">
         <source
-          src={`http://localhost:3000/${movie.movieFile}`}
+          src={`${API_BASE_URL}/${movie.movieFile}`}
           type="video/mp4"
         />
       </video>

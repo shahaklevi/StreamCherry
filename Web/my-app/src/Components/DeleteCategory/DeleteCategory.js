@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./DeleteCategory.css";
 import useCategories from "../../assets/useCategories"; // Import the existing hook
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function DeleteCategory({ closePanel }) {
   const fetchedCategories = useCategories(); // Fetch categories using the hook
   const [categories, setCategories] = useState([]); // ✅ Start as an empty array
@@ -24,7 +24,7 @@ function DeleteCategory({ closePanel }) {
         return;
       }
       const response = await fetch(
-        `http://localhost:3000/api/categories/${categoryId}`,
+        `${API_BASE_URL}/api/categories/${categoryId}`,
         {
           method: "DELETE",
           headers: {

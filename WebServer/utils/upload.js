@@ -29,7 +29,7 @@ const upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 1024 }, // Increased to 100MB for videos
     fileFilter: (req, file, cb) => {
-        console.log("from fileFilter",file);
+        // console.log("from fileFilter",file);
         if (file.fieldname === 'profilePicture' || 
             file.fieldname === 'movieImage') {
 

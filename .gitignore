@@ -1,6 +1,6 @@
 WebServer/node_modules/
 node_modules
 WebServer/uploadsProfilePicture/
-
+.env
 
 

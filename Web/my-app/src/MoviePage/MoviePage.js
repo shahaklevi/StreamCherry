@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import MovieView from "../Components/MovieView/MovieView";
 
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 const MoviePage = () => {
 
   const location = useLocation();
@@ -13,7 +13,7 @@ const MoviePage = () => {
     <div>
       {movie ? (
         <MovieView
-          videoSrc={`http://localhost:3000/${movie.movieFile}`}
+          videoSrc={`${API_BASE_URL}/${movie.movieFile}`}
           movieTitle={movie.title}
         />
       ) : (

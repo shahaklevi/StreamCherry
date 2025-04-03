@@ -3,7 +3,7 @@ import FormInput from "../SignUpComponents/FormInput";
 import FileInput from "../SignUpComponents/FileInput";
 import useCategories from "../../assets/useCategories";
 import "./EditMoviePage.css";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function EditMoviePage({ closePanel }) {
   // States for search and editing
   const [movies, setMovies] = useState([]);
@@ -44,7 +44,7 @@ function EditMoviePage({ closePanel }) {
         return;
       }
       const response = await fetch(
-        `http://localhost:3000/api/movies/search/${query}`,
+        `${API_BASE_URL}/api/movies/search/${query}`,
         {
           method: "GET",
           headers: {
@@ -83,7 +83,7 @@ function EditMoviePage({ closePanel }) {
         }
         try {
           const response = await fetch(
-            `http://localhost:3000/api/movies/${selectedMovieId}`,
+            `${API_BASE_URL}/api/movies/${selectedMovieId}`,
             {
               method: "GET",
               headers: {
@@ -169,7 +169,7 @@ function EditMoviePage({ closePanel }) {
         return;
       }
       const response = await fetch(
-        `http://localhost:3000/api/movies/${selectedMovieId}`,
+        `${API_BASE_URL}/api/movies/${selectedMovieId}`,
         {
           method: "PUT",
           headers: {

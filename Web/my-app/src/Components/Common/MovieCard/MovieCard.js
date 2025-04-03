@@ -3,7 +3,7 @@ import './MovieCard.css';
 import { useNavigate } from 'react-router-dom';
 import MoviePopup from '../../MoviePopup/MoviePopup';
 import tokenVerification from '../../../tokenVerification/tokenVerification';
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function MovieCard({ movie }) {
   const [imageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +17,7 @@ function MovieCard({ movie }) {
     if (!movie.movieImage || imageError) {
       return defaultImage;
     }
-    return `http://localhost:3000/${movie.movieImage}`;
+    return `${API_BASE_URL}/${movie.movieImage}`;
   };
 
   // Cleanup hover timer on component unmount
@@ -62,7 +62,7 @@ function MovieCard({ movie }) {
       }
 
       const response = await fetch(
-        `http://localhost:3000/api/movies/${movie._id}/recommend/`,
+        `${API_BASE_URL}/api/movies/${movie._id}/recommend/`,
         {
           method: "POST",
           headers: {

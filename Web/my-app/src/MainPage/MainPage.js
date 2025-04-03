@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTopMenu } from "../Components/TopMenu/TopMenuLogic";
 import tokenVerification from "../tokenVerification/tokenVerification";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function MainPage() {
   const [recommendations, setRecommendations] = useState([]); // State to store recommended movies
   const [randomMovieId, setRandomMovieId] = useState(null);
@@ -40,13 +40,15 @@ function MainPage() {
           return;
         }
 
+        console.log("Token found:", token);
+
         const userData = await tokenVerification(token);
         if (!userData) {
           console.error("User data verification failed.");
           return;
         }
 
-        const response = await fetch(`http://localhost:3000/api/movies/`, {
+        const response = await fetch(`${API_BASE_URL}/api/movies/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -60,6 +62,7 @@ function MainPage() {
         }
 
         const data = await response.json();
+        console.log("Fetched recommendations:", data);
 
         // Update state with recommended movies
         setRecommendations(data); // Assuming the API returns an array under recommendedMovies

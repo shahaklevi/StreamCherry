@@ -4,7 +4,7 @@ import LoginForm from "../Components/LoginForm/LoginForm";
 import NetflixLogo from "../Components/NetflixLogo/NetflixLogo";
 import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../Contexts/UserContext";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function Login() {
   const [formData, setFormData] = useState({
     username: "",
@@ -31,7 +31,7 @@ function Login() {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/tokens", {
+      const response = await fetch(`${API_BASE_URL}/api/tokens`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

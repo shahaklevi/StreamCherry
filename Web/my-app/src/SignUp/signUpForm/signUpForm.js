@@ -7,7 +7,7 @@ import FormHeader from "../../Components/SignUpComponents/FormHeader";
 import FileInput from "../../Components/SignUpComponents/FileInput";
 import FormInput from "../../Components/SignUpComponents/FormInput";
 import ThemeToggle from "../../Components/ThemeToggle/ThemeToggle";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 const defaultAvatars = [
   "/images/avatars/avatar1.webp",
   "/images/avatars/avatar2.webp",
@@ -84,7 +84,7 @@ const SignUpForm = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/users", {
+      const response = await fetch(`${API_BASE_URL}/api/users`, {
         method: "POST",
         body: formDataToSend,
       });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./DeleteMovie.css";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function DeleteMovie({ closePanel }) {
   const [movieName, setMovieName] = useState(""); // User-entered movie name
   const [filteredMovies, setFilteredMovies] = useState([]); // Filtered movies based on query
@@ -28,7 +28,7 @@ function DeleteMovie({ closePanel }) {
         return;
       }
       const response = await fetch(
-        `http://localhost:3000/api/movies/search/${query}`,
+        `${API_BASE_URL}/api/movies/search/${query}`,
         {
           method: "GET",
           headers: {
@@ -61,7 +61,7 @@ function DeleteMovie({ closePanel }) {
         return;
       }
       const deleteResponse = await fetch(
-        `http://localhost:3000/api/movies/${movieId}`,
+        `${API_BASE_URL}/api/movies/${movieId}`,
         {
           method: "DELETE",
           headers: {

@@ -5,7 +5,7 @@ import SmallMovieInfo from "../SmallMovieInfo/SmallMovieInfo";
 import tokenVerification from "../../tokenVerification/tokenVerification";
 import PlayButton from "../PlayButton/PlayButton";
 import { useNavigate } from "react-router-dom";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 const MoviePopup = ({ movie, onClose }) => {
 
   const [categoryNames, setCategoryNames] = useState([]); // State to hold category names
@@ -29,7 +29,7 @@ const MoviePopup = ({ movie, onClose }) => {
             return;
           }
           const response = await fetch(
-            `http://localhost:3000/api/categories/${categoryId}`,
+            `${API_BASE_URL}/api/categories/${categoryId}`,
             {
               method: "GET",
               headers: {
@@ -72,7 +72,7 @@ const MoviePopup = ({ movie, onClose }) => {
       }
 
       const response = await fetch(
-        `http://localhost:3000/api/movies/${movie._id}/recommend/`,
+        `${API_BASE_URL}/api/movies/${movie._id}/recommend/`,
         {
           method: "POST",
           headers: {
@@ -113,7 +113,7 @@ const MoviePopup = ({ movie, onClose }) => {
         console.log("User ID:", userData._id);
         
         const response = await fetch(
-          `http://localhost:3000/api/movies/${movie._id}/recommend/`,
+          `${API_BASE_URL}/api/movies/${movie._id}/recommend/`,
           {
             method: "GET",
             headers: {
@@ -149,7 +149,7 @@ const MoviePopup = ({ movie, onClose }) => {
 
         {/* Video Section */}
         <video className="popup-video" controls>
-          <source src={`http://localhost:3000/${movie.movieFile}`} type="video/mp4" />
+          <source src={`${API_BASE_URL}/${movie.movieFile}`} type="video/mp4" />
         </video>
 
         {/* Details Section */}
