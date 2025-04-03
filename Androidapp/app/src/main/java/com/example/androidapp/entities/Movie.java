@@ -124,4 +124,3 @@ public class Movie {
         this.watchedBy = watchedBy;
     }
 }
-

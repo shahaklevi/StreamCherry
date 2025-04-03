@@ -8,25 +8,39 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-
+import android.widget.ImageView;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.androidapp.entities.Movie;
 import com.example.androidapp.MyApplication;
 import com.example.androidapp.R;
-
 import java.util.ArrayList;
+import com.example.androidapp.R;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
+    private final Context context;
     private List<Movie> movies;
     private List<String> selectedMovieIds = new ArrayList<>();
+    private final OnMovieClickListener listener;
+
 
     private  Movie choiceMovie;
     private Context context;
     private boolean isSingleChoice;
+  
+  public interface OnMovieClickListener {
+        void onMovieClick(Movie movie);
+    }
+  
+  public MovieAdapter(Context context, List<Movie> movies, OnMovieClickListener listener) {
+        this.context = context;
+        this.movies = movies;
+        this.listener = listener;
+    }
+
 
     // Constructor to initialize the adapter with context and a list of movies
     public MovieAdapter(Context context,List<Movie> movies, boolean isSingleChoice) {
@@ -107,4 +121,4 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             moviePoster = itemView.findViewById(R.id.imageBtnMovie);
         }
     }
-    }
+    
