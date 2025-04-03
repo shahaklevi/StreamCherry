@@ -70,7 +70,7 @@ npm start
 
 1. To log in, use your registered email and password.  
 
-<img width="1495" alt="image" src="https://github.com/user-attachments/assets/f19a21cd-c3cc-41e7-9e16-2b9ad6f05431" />
+![image](https://github.com/user-attachments/assets/512e4cef-043e-478d-9240-c503c2aab5d3)
 
 
 2. To log out, click the avatar icon → **LogOut**.  
