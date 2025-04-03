@@ -60,8 +60,6 @@ npm start
 
 1. Click **Get Started**.
 
-
-   
 <img width="1490" alt="image" src="https://github.com/user-attachments/assets/421c5105-c674-4be0-a083-a9ce27e2bd79" />
 
 3. Fill in the form and choose an avatar.  
