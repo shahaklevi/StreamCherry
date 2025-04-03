@@ -66,12 +66,15 @@ npm start
 
 
 ### 🔓 Login & Logout
+<img width="1503" alt="image" src="https://github.com/user-attachments/assets/68f812e7-0b8a-4119-961c-8a4ebe547db6" />
 
 1. To log in, use your registered email and password.  
-2. To log out, click the avatar icon → **Sign Out**.  
-3. You can then register a new user or sign in again.
 
-🖼️ **Screenshot idea:** Sign in form and logout option in avatar menu.
+<img width="1495" alt="image" src="https://github.com/user-attachments/assets/f19a21cd-c3cc-41e7-9e16-2b9ad6f05431" />
+
+
+2. To log out, click the avatar icon → **LogOut**.  
+3. You can then register a new user or sign in again.
 
 ---
 
