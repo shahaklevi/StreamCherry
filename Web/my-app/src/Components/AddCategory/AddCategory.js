@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FormInput from "../../Components/SignUpComponents/FormInput";
 import "./AddCategory.css";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function AddCategory({ closePanel, handleAddCategorySubmit }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -44,7 +45,7 @@ function AddCategory({ closePanel, handleAddCategorySubmit }) {
         console.error("No token available, skipping request.");
         return;
       }
-      const response = await fetch("http://localhost:3000/api/categories", {
+      const response = await fetch(`${API_BASE_URL}/api/categories`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

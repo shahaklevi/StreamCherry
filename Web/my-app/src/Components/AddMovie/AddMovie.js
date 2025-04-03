@@ -3,7 +3,7 @@ import FormInput from "../../Components/SignUpComponents/FormInput";
 import FileInput from "../../Components/SignUpComponents/FileInput";
 import useCategories from "../../assets/useCategories";
 import "./AddMovie.css";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function AddMovie({ closePanel }) {
   const categories = useCategories();
   const [formData, setFormData] = useState({
@@ -72,7 +72,7 @@ function AddMovie({ closePanel }) {
       const token = await localStorage.getItem("jwtToken");
       if (!token) return;
 
-      const response = await fetch("http://localhost:3000/api/movies", {
+      const response = await fetch(`${API_BASE_URL}/api/movies`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

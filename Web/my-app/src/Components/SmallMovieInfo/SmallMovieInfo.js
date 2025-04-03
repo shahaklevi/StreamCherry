@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./SmallMovieInfo.css";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 const SmallMovieInfo = ({ movies }) => {
   const videoRefs = useRef([]);
   const canvasRefs = useRef([]);
@@ -42,7 +42,7 @@ const SmallMovieInfo = ({ movies }) => {
           {/* רכיב וידאו חבוי */}
           <video
             ref={(el) => (videoRefs.current[index] = el)}
-            src={`http://localhost:3000/${movie.movieFile}`}
+            src={`${API_BASE_URL}/${movie.movieFile}`}
             style={{ display: "none" }} // הסתרת הווידאו
             preload="metadata" // טוען רק את המידע של הסרטון
           />

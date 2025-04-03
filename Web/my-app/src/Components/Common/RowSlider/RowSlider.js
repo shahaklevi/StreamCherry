@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import "./RowSlider.css";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function RowSlider({ title, movieIds }) {
   const sliderRef = useRef(null);
   const [movies, setMovies] = useState([]);
@@ -18,7 +18,7 @@ function RowSlider({ title, movieIds }) {
           console.error("No token available, skipping request.");
           return;
         }
-        const response = await fetch(`http://localhost:3000/api/movies/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/api/movies/${id}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

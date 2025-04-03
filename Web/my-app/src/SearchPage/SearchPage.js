@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"; // Hook to access route params
 import SearchResults from "../Components/SearchResults/SearchResults";
 import TopMenu from "../Components/TopMenu/TopMenu";
 import { useTopMenu } from "../Components/TopMenu/TopMenuLogic";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function SearchPage() {
   const { query } = useParams(); // Get the query parameter from the URL
   const [movieList, setMovieList] = useState([]); // State to hold fetched movies
@@ -29,7 +29,7 @@ function SearchPage() {
           return;
         }
         const response = await fetch(
-          `http://localhost:3000/api/movies/search/${query}`,
+          `${API_BASE_URL}/api/movies/search/${query}`,
           {
             method: "GET",
             headers: {

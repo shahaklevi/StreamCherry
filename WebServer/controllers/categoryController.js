@@ -7,11 +7,14 @@ const validator = require('../utils/validator');
 
 class CategoryController {
     async getAll(req, res) {
+        
         try {
+            
             await validator.isValidJWT(req);
             const categories = await categoryService.getAll();
             res.json(categories);
         } catch (error) {
+            
             if(error.message == 'Missing userId header - Only an existing user can perform this action'){
                 res.status(400).send(error.message);
             }

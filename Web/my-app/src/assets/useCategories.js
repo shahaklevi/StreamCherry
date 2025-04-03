@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 const useCategories = () => {
   const [categories, setCategories] = useState([]);
 
@@ -14,7 +14,7 @@ const useCategories = () => {
           return;
         }
 
-        const response = await fetch("http://localhost:3000/api/categories", {
+        const response = await fetch(`${API_BASE_URL}/api/categories`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

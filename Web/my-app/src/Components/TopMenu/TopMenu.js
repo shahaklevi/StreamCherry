@@ -7,7 +7,7 @@ import "./TopMenu.css";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import ProfileIcon from "../ProfileIcon/ProfileIcon";
 import tokenVerification from "../../tokenVerification/tokenVerification";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function TopMenu({ LogOutSystem, VerifyAdmin = () => {}, isTop }) {
   const [userProfilePic, setUserProfilePic] = useState("/media/squirel.jpeg");
   const [ifAdmin, setAdmin] = useState(false);
@@ -21,7 +21,7 @@ function TopMenu({ LogOutSystem, VerifyAdmin = () => {}, isTop }) {
 
         if (userData) {
           const response = await fetch(
-            `http://localhost:3000/api/users/${userData._id}`, // Use template literal for dynamic URL
+            `${API_BASE_URL}/api/users/${userData._id}`, // Use template literal for dynamic URL
             {
               method: "GET", // GET request to the server
               headers: {
@@ -37,7 +37,7 @@ function TopMenu({ LogOutSystem, VerifyAdmin = () => {}, isTop }) {
 
           const data = await response.json(); // Parse the response JSON
 
-          // const pictureUrl = `http://localhost:3000/${data.profilePicture}`;
+          // const pictureUrl = `${API_BASE_URL}/${data.profilePicture}`;
           const pictureUrl = data.profilePicture;
           setUserProfilePic(pictureUrl); // Update profile picture
         }
@@ -55,7 +55,7 @@ function TopMenu({ LogOutSystem, VerifyAdmin = () => {}, isTop }) {
         const userData = await tokenVerification(token); // Verify the token and get user data
         if (userData) {
           const response = await fetch(
-            `http://localhost:3000/api/users/${userData._id}`, // Use template literal for dynamic URL
+            `${API_BASE_URL}/api/users/${userData._id}`, // Use template literal for dynamic URL
             {
               method: "GET", // GET request to the server
               headers: {
