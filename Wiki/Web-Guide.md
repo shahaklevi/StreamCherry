@@ -53,10 +53,13 @@ npm start
 ## 🧑‍💻 Registering and Logging In
 
 ### 📝 Register
+
+
 <img width="1502" alt="image" src="https://github.com/user-attachments/assets/23631b37-142f-44bb-8c9a-3cbe4a1fc4b3" />
 
 
 1. Click **Get Started**.
+
 
    
 <img width="1490" alt="image" src="https://github.com/user-attachments/assets/421c5105-c674-4be0-a083-a9ce27e2bd79" />
@@ -65,13 +68,15 @@ npm start
 4. Click **Sign Up**.
 
 
+
 ### 🔓 Login & Logout
 <img width="1503" alt="image" src="https://github.com/user-attachments/assets/68f812e7-0b8a-4119-961c-8a4ebe547db6" />
 
 1. To log in, use your registered email and password.  
 
-![image](https://github.com/user-attachments/assets/512e4cef-043e-478d-9240-c503c2aab5d3)
 
+
+![image](https://github.com/user-attachments/assets/512e4cef-043e-478d-9240-c503c2aab5d3)
 
 2. To log out, click the avatar icon → **LogOut**.  
 3. You can then register a new user or sign in again.
