@@ -30,7 +30,7 @@ public class MainViewModel extends AndroidViewModel {
     private final MovieRepository repository;
     private final MutableLiveData<List<Movie>> mockMovies = new MutableLiveData<>();
     private final MutableLiveData<List<Movie>> allMovies = new MutableLiveData<>();
-    private final boolean USE_MOCK_DATA = false;
+    private final boolean USE_MOCK_DATA = true;
     private final Application application;
 
     public MainViewModel(@NonNull Application application) {

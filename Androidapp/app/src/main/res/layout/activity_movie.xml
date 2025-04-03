@@ -108,6 +108,27 @@
         android:inputType="text"
         android:drawableStart="@android:drawable/ic_menu_search"
         android:padding="10dp" />
+    <TextView
+        android:id="@+id/categoryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categories"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:paddingStart="12dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="4dp" />
+
+    <Spinner
+        android:id="@+id/categoryFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="#1e1e1e"
+        android:textColorHint="#FFFFFF"
+        android:textAlignment="center"
+        android:layout_marginBottom="6dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
     <!-- Main Content -->
     <androidx.recyclerview.widget.RecyclerView

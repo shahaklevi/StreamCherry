@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,19 +25,23 @@ import com.example.androidapp.adapters.SectionAdapter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MovieActivity extends AppCompatActivity {
 
     private RecyclerView sectionRecyclerView;
     private EditText searchBar;
     private ImageView menuSearch;
+    private Spinner categoryFilter;
     private SectionAdapter sectionAdapter;
     private MainViewModel viewModel;
 
-    private List<Movie> allMovies = new ArrayList<>(); // full list
-    private List<Section> originalSections = new ArrayList<>(); // sectioned layout
+    private List<Movie> allMovies = new ArrayList<>();
+    private List<Section> originalSections = new ArrayList<>();
+    private Set<String> allCategories = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,7 @@ public class MovieActivity extends AppCompatActivity {
         sectionRecyclerView = findViewById(R.id.sectionRecyclerView);
         searchBar = findViewById(R.id.searchBar);
         menuSearch = findViewById(R.id.menuSearch);
+        categoryFilter = findViewById(R.id.categoryFilter);
 
         sectionRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -53,6 +61,7 @@ public class MovieActivity extends AppCompatActivity {
             this.allMovies = movies;
             originalSections = groupMoviesByCategory(movies);
             updateRecyclerWithSections(originalSections);
+            extractCategories(movies);
         });
 
         menuSearch.setOnClickListener(v -> {
@@ -74,6 +83,21 @@ public class MovieActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 filterMovies(s.toString());
             }
+        });
+
+        categoryFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedCategory = parent.getItemAtPosition(position).toString();
+                if (selectedCategory.equals("All Categories")) {
+                    updateRecyclerWithSections(originalSections);
+                } else {
+                    filterByCategory(selectedCategory);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         setupMenuClicks();
@@ -117,6 +141,35 @@ public class MovieActivity extends AppCompatActivity {
         updateRecyclerWithMovies(filtered, "Search Results");
     }
 
+    private void filterByCategory(String category) {
+        List<Movie> filtered = new ArrayList<>();
+        for (Movie movie : allMovies) {
+            if (movie.getCategories() != null && movie.getCategories().contains(category)) {
+                filtered.add(movie);
+            }
+        }
+        updateRecyclerWithMovies(filtered, category);
+    }
+
+    private void extractCategories(List<Movie> movies) {
+        allCategories.clear();
+        for (Movie movie : movies) {
+            if (movie.getCategories() != null) {
+                allCategories.addAll(movie.getCategories());
+            }
+        }
+        List<String> categoryList = new ArrayList<>(allCategories);
+        Collections.sort(categoryList);
+        categoryList.add(0, "All Categories");
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                categoryList
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categoryFilter.setAdapter(adapter);
+    }
+
     private void updateRecyclerWithSections(List<Section> sections) {
         sectionAdapter = new SectionAdapter(this, sections);
         sectionRecyclerView.setAdapter(sectionAdapter);
@@ -133,10 +186,7 @@ public class MovieActivity extends AppCompatActivity {
         for (Movie movie : movies) {
             if (movie.getCategories() != null) {
                 for (String category : movie.getCategories()) {
-                    if (!categoryMap.containsKey(category)) {
-                        categoryMap.put(category, new ArrayList<>());
-                    }
-                    categoryMap.get(category).add(movie);
+                    categoryMap.computeIfAbsent(category, k -> new ArrayList<>()).add(movie);
                 }
             }
         }
