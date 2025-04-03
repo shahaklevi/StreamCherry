@@ -1,23 +1,49 @@
 # 🚀 Running the Application
 
-This guide explains how to run both the **Web** and **Android** clients, start the backend server, and enable admin access using MongoDB.
+This guide explains how to run the backend server using Docker, start the Web and Android clients, and enable admin access via MongoDB.
+
+---
+
+## 🐳 Starting the Server (Docker)
+
+Before running any client, you need to start the backend server and recommendation system via Docker.
+
+1. Open a terminal in the project’s root directory.
+2. Run the following commands:
+
+```bash
+docker-compose --env-file .\WebServer\config\.env.local up --no-start
+docker-compose start app
+docker-compose start recommender
+```
+
+These commands will initialize the containers for the web server (`app`) and the movie recommender.
 
 ---
 
 ## 🌐 Running the Web Client
 
-To run the web version of the application:
+After starting the backend server:
 
-1. Open your terminal.
-2. Navigate to the project’s root directory.
-3. Run the following command:
+1. Navigate to the React client folder:
 
 ```bash
-make lunch-app
+cd .\Web\my-app
 ```
 
-This command starts the backend server and the React web client together.
+2. Install dependencies:
 
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm start
+```
+
+This will launch the React app at `http://localhost:3000`.
 
 ---
 
@@ -25,16 +51,8 @@ This command starts the backend server and the React web client together.
 
 To run the Android version of the app:
 
-### Step 1: Start the backend server
-Just like the web version, open a terminal and run:
-
-```bash
-make StreamCherryServer
-```
-
-This will start the backend server on `http://localhost:3000`.
-
-> Android emulators access localhost using `http://10.0.2.2` by default.
+### Step 1: Make sure the server is running
+As explained above, the server must be running via Docker.
 
 ### Step 2: Open Android Studio
 - Open the Android project in Android Studio.
@@ -63,4 +81,4 @@ To promote a regular user to an admin, follow these steps:
 
 ---
 
-✅ That’s it! You're ready to explore the platform on both web and mobile.
+
