@@ -20,6 +20,7 @@ The **frontend** includes:
 Both platforms include support for **Dark and Light themes**, with user preferences stored persistently.
 
 ![streamcherry_slider](https://github.com/user-attachments/assets/d984f34e-8fd2-46a2-8370-e01f96bb457b)
+![streamcherry_mobile](https://github.com/user-attachments/assets/d20ea808-2dbf-4beb-bb4f-6e990d5f4268)
 
 ---
 
