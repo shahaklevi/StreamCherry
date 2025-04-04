@@ -26,26 +26,26 @@
 1. Open a terminal in the server directory.  
 2. Run:
 
-```bash
+bash
 docker-compose up
-```
+
 
 ---
 
 ## 🌐 Running the Web Client
 
-1. Go to the `Web/my-app` folder:
+1. Go to the Web/my-app folder:
 
-```bash
+bash
 cd Web/my-app
-```
+
 
 2. Run:
 
-```bash
+bash
 npm install
 npm start
-```
+
 
 ---
 
@@ -55,23 +55,23 @@ npm start
 
 ### 📝 Register
 
-<img width="900" alt="register-step-1" src="Wiki/Assets/430138107-23631b37-142f-44bb-8c9a-3cbe4a1fc4b3.png" />
+<img width="900" alt="register-step-1" src="https://github.com/user-attachments/assets/23631b37-142f-44bb-8c9a-3cbe4a1fc4b3" />
 
 1. Click **Get Started**.
 
-<img width="900" alt="register-step-2" src="Wiki/Assets/430139902-421c5105-c674-4be0-a083-a9ce27e2bd79.png" />
+<img width="900" alt="register-step-2" src="https://github.com/user-attachments/assets/421c5105-c674-4be0-a083-a9ce27e2bd79" />
 
 2. Fill in the form and choose an avatar.  
 3. Click **Sign Up**.
 
 ### 🔓 Login & Logout
 
-<img width="900" alt="login" src="Wiki/Assets/login.png" />
+<img width="900" alt="login" src="https://github.com/user-attachments/assets/68f812e7-0b8a-4119-961c-8a4ebe547db6" />
 
 1. Enter your email and password to log in.  
 2. To log out, click the avatar icon → **LogOut**.
 
-<img width="900" alt="logout" src="Wiki/Assets/logout.png" />
+<img width="900" alt="logout" src="https://github.com/user-attachments/assets/512e4cef-043e-478d-9240-c503c2aab5d3" />
 
 ---
 
@@ -79,19 +79,19 @@ npm start
 
 ### Home Page
 
-<img width="900" alt="home" src="Wiki/Assets/430179018-b353ec8c-bc48-4ac6-a513-0a8f0862da92.png" />
+<img width="900" alt="home" src="https://github.com/user-attachments/assets/b353ec8c-bc48-4ac6-a513-0a8f0862da92" />
 
 ### Browse Movies by Category
 
-<img width="900" alt="movies-page" src="Wiki/Assets/430180943-18383e34-ff36-4f71-b5f4-9d4bd6348dca.png" />
+<img width="900" alt="movies-page" src="https://github.com/user-attachments/assets/18383e34-ff36-4f71-b5f4-9d4bd6348dca" />
 
 ### View Movie Details
 
-<img width="400" alt="movie-details" src="Wiki/Assets/movie-details.png" />
+<img width="400" alt="movie-details" src="https://github.com/user-attachments/assets/57192e8f-e29c-469e-a237-e9710cef6aa1" />
 
 ### Watch a Movie
 
-<img width="900" alt="movie-play" src="Wiki/Assets/430181445-07834871-4985-48db-a5ad-e0b5ab976dc7.png" />
+<img width="900" alt="movie-play" src="https://github.com/user-attachments/assets/07834871-4985-48db-a5ad-e0b5ab976dc7" />
 
 ---
 
@@ -99,19 +99,19 @@ npm start
 
 ### Light/Dark Mode Toggle ☀️🌙
 
-<img width="900" alt="dark-mode" src="Wiki/Assets/dark-mode.png" />
+<img width="900" alt="dark-mode" src="https://github.com/user-attachments/assets/d8980499-ef8f-46e4-83a2-5ace20bd5df3" />
 
 ### Smart Search 🔍
 
-<img width="900" alt="search" src="Wiki/Assets/search.png" />
+<img width="900" alt="search" src="https://github.com/user-attachments/assets/812d93f4-22ad-4fb4-a8d0-90b992a43bf6" />
 
 ### Personalized Recommendations 🤖
 
-<img width="300" alt="recommendation" src="Wiki/Assets/recommendation.png" />
+<img width="300" alt="recommendation" src="https://github.com/user-attachments/assets/040060cc-aae2-4636-b01f-e68b6a273466" />
 
 ### Recently Watched 🕒
 
-<img width="900" alt="recently-watched" src="Wiki/Assets/recently-watched.png" />
+<img width="900" alt="recently-watched" src="https://github.com/user-attachments/assets/f309501e-3231-41cf-b12c-2b801d25ada4" />
 
 ---
 
@@ -121,28 +121,28 @@ npm start
 
 1. Sign out.
 
-<img width="700" alt="signout" src="Wiki/Assets/signout.png" />
+<img width="700" alt="signout" src="https://github.com/user-attachments/assets/bdf0a44d-c83a-42cd-9c16-143e28aaaf2e" />
 
 2. Open **MongoDB Compass**.  
-3. Change the `manager` field of your user to `true`.
+3. Change the manager field of your user to true.
 
-<img width="700" alt="mongodb-admin" src="Wiki/Assets/mongodb-admin.png" />
+<img width="700" alt="mongodb-admin" src="https://github.com/user-attachments/assets/967d9a18-8af8-413a-bffb-68adf1d6c676" />
 
 4. Sign in again – the **Admin** button should now be visible.
 
-<img width="600" alt="admin-button" src="Wiki/Assets/430150002-2d18675f-d911-4c93-a5cc-67fdd8270ddd.png" />
+<img width="600" alt="admin-button" src="https://github.com/user-attachments/assets/2d18675f-d911-4c93-a5cc-67fdd8270ddd" />
 
 ---
 
 ## 🗂 Category Management
 
-<img width="900" alt="categories" src="Wiki/Assets/categories.png" />
+<img width="900" alt="categories" src="https://github.com/user-attachments/assets/a71d98ec-8abb-4f94-9a0b-b3aa0d378346" />
 
 1. Go to **Admin Zone** → **Add Category**.  
 2. Fill in name and description.  
 3. You can also edit or delete categories.
 
-<img width="700" alt="add-category" src="Wiki/Assets/add-category.png" />
+<img width="700" alt="add-category" src="https://github.com/user-attachments/assets/70806482-e620-4cf1-bc5b-9d6452bd7e0e" />
 
 ---
 
@@ -153,4 +153,4 @@ npm start
 3. Upload a poster, trailer, and movie file.  
 4. You can also edit or delete movies.
 
-<img width="800" alt="add-movie" src="Wiki/Assets/add-movie.png" />
+<img width="800" alt="add-movie" src="https://github.com/user-attachments/assets/7ed27e4a-b63d-482c-b308-d0c2c5eae866" />
