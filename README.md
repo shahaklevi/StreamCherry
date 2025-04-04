@@ -101,7 +101,8 @@ Instructions for running and deploying the application (both server and clients)
 👉 [`RunningApp.md`](RunningApp.md)
 ## 📦 **Docomentation Web & Android**
 
-Instructions for running and deploying the application (both server and clients) can be found in the 
+Instructions for running and deploying the application (both server and clients) can be found in the
 👉 [`Web-Guide.md`](Web-Guide.md)
 👉 [`Android-Guide.md`](Android-Guide.md)
+
 ---
