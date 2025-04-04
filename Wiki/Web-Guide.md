@@ -129,8 +129,6 @@ npm start
 1. In **Admin-Zone**  
 2. Choose **Add Category**.  
 3. Enter a name and description.  
-
-**Edit & Delete Categories**
 <img width="934" alt="image" src="https://github.com/user-attachments/assets/70806482-e620-4cf1-bc5b-9d6452bd7e0e" />
 4. Edit or delete categories if needed.
 
