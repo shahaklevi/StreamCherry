@@ -9,7 +9,7 @@ services:
     networks:
       - app_network
     environment:
-      PORT: ${RECOMMENDATION_PORT:-5555}
+      PORT: ${RECOMMENDATION_PORT:-5555} 
     entrypoint: ["./netflix_server"]
     command: ["${RECOMMENDATION_PORT:-5555}"]
 
@@ -23,37 +23,24 @@ services:
     networks:
       - app_network
     volumes:
-      - temp_uploads:/usr/src/app/uploads/temp
-      - user_images:/usr/src/app/uploads/usersImages
-      - movie_files:/usr/src/app/uploads/movies
-      - movie_main_images:/usr/src/app/uploads/movieImages
+      - temp_uploads:/usr/src/app/uploads/temp           # Temporary file uploads
+      - user_images:/usr/src/app/uploads/usersImages    # User profile pictures
+      - movie_files:/usr/src/app/uploads/movies         # Uploaded movie files
+      - movie_main_images:/usr/src/app/uploads/movieImages  # Main movie images
     environment:
       CONNECTION_STRING: ${CONNECTION_STRING}
-      RECOMMENDATION_IP: recommendation_server
+      RECOMMENDATION_IP: recommendation_server  
       RECOMMENDATION_PORT: ${RECOMMENDATION_PORT:-5555}
-      PORT: ${CONTAINER_PORT:-3000}
+      PORT: ${CONTAINER_PORT:-3000} 
       JWT_SECRET: ${JWT_SECRET}
     command: ["npm", "start"]
 
-  web:
-    build:
-      context: ./Web/my-app
-      dockerfile: Dockerfile
-    container_name: web_client
-    ports:
-      - "3000:3000"
-    networks:
-      - app_network
-    environment:
-      - HOST=0.0.0.0
-
 volumes:
-  recommendation_database:
-  temp_uploads:
-  user_images:
-  movie_files:
-  movie_main_images:
-
+  recommendation_database:  # Persistent database for recommendation server
+  temp_uploads:             # Volume for temporary file uploads
+  user_images:              # Volume for user profile pictures
+  movie_files:              # Volume for uploaded movie files
+  movie_main_images:        # Volume for main movie images
 networks:
   app_network:
     driver: bridge
