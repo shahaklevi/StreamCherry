@@ -41,7 +41,7 @@ services:
       dockerfile: Dockerfile
     container_name: web_client
     ports:
-      - "3002:3000"
+      - "3000:3000"
     networks:
       - app_network
     environment:
