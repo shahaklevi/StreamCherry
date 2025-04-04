@@ -18,7 +18,9 @@ The **frontend** includes:
 - An **Android application** offering a mobile-friendly interface with similar features.
 
 Both platforms include support for **Dark and Light themes**, with user preferences stored persistently.
+
 <!-- Image Slider Start -->
+
 <div id="slider">
   <figure>
     <img width="600" src="https://github.com/user-attachments/assets/23631b37-142f-44bb-8c9a-3cbe4a1fc4b3" alt="Image 1">
@@ -137,7 +139,7 @@ Both platforms include support for **Dark and Light themes**, with user preferen
 
 Instructions for running and deploying the application (both server and clients) can be found in the  
 👉 [`RunningApp.md`](Wiki/RunningApp.md)
-## 📦 **Docomentation Web & Android**
+## 📦 **Documentation Web & Android**
 
 Instructions for running and deploying the application (both server and clients) can be found in the
 
