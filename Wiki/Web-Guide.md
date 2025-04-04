@@ -78,17 +78,18 @@ npm start
 
 ## 🎥 Viewing and Watching Movies
 
-1. After logging in, the **Home page** displays movies sorted by promoted categories.
+1. **Home page** displays movies sorted by promoted categories.
   ![image](https://github.com/user-attachments/assets/b353ec8c-bc48-4ac6-a513-0a8f0862da92)
 
 2. Move to **Movies page** to browse and filter by category.
-3. ![image](https://github.com/user-attachments/assets/bbdd6165-206d-4d17-bea2-43fd06f866fe)
+![image](https://github.com/user-attachments/assets/18383e34-ff36-4f71-b5f4-9d4bd6348dca)
 
-4. Click a movie to view details.
+
+3. Click a movie to view details.
 ![image](https://github.com/user-attachments/assets/57192e8f-e29c-469e-a237-e9710cef6aa1)
 
 
-5. Click **Play** to watch the movie.
+4. Click **Play** to watch the movie.
 ![image](https://github.com/user-attachments/assets/bed58dc3-e169-4b3d-aa5d-2ec8511def77)
 
 ---
