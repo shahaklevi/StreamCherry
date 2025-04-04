@@ -12,9 +12,7 @@ Before running any client, you need to start the backend server and recommendati
 2. Run the following commands:
 
 ```bash
-docker-compose --env-file .\WebServer\config\.env.local up --no-start
-docker-compose start app
-docker-compose start recommender
+docker-compose up
 ```
 
 These commands will initialize the containers for the web server (`app`) and the movie recommender.
