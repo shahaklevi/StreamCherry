@@ -126,23 +126,23 @@ npm start
 2. Open **MongoDB Compass**.  
 3. Change the manager field of your user to true.
 
-<img width="700" alt="mongodb-admin" src="https://github.com/user-attachments/assets/967d9a18-8af8-413a-bffb-68adf1d6c676" />
+<img width="700" alt="mongodb-admin" src="Assets/430145607-967d9a18-8af8-413a-bffb-68adf1d6c676.png" />
 
 4. Sign in again – the **Admin** button should now be visible.
 
-<img width="600" alt="admin-button" src="https://github.com/user-attachments/assets/2d18675f-d911-4c93-a5cc-67fdd8270ddd" />
+<img width="600" alt="admin-button" src="Assets/430150002-2d18675f-d911-4c93-a5cc-67fdd8270ddd-2.png" />
 
 ---
 
 ## 🗂 Category Management
 
-<img width="900" alt="categories" src="https://github.com/user-attachments/assets/a71d98ec-8abb-4f94-9a0b-b3aa0d378346" />
+<img width="900" alt="categories" src="Assets/430147020-a71d98ec-8abb-4f94-9a0b-b3aa0d378346-2.png" />
 
 1. Go to **Admin Zone** → **Add Category**.  
 2. Fill in name and description.  
 3. You can also edit or delete categories.
 
-<img width="700" alt="add-category" src="https://github.com/user-attachments/assets/70806482-e620-4cf1-bc5b-9d6452bd7e0e" />
+<img width="700" alt="add-category" src="Assets/430147020-a71d98ec-8abb-4f94-9a0b-b3aa0d378346-2.png" />
 
 ---
 
@@ -153,4 +153,4 @@ npm start
 3. Upload a poster, trailer, and movie file.  
 4. You can also edit or delete movies.
 
-<img width="800" alt="add-movie" src="https://github.com/user-attachments/assets/7ed27e4a-b63d-482c-b308-d0c2c5eae866" />
+<img width="800" alt="add-movie" src="Assets/430175122-7ed27e4a-b63d-482c-b308-d0c2c5eae866-2.png" />
