@@ -19,6 +19,9 @@ The **frontend** includes:
 
 Both platforms include support for **Dark and Light themes**, with user preferences stored persistently.
 
+![streamcherry_desktop_600x400_2sec](https://github.com/user-attachments/assets/f5325237-9732-4a38-a2e2-5fa903e20dee)
+![streamcherry_mobile](https://github.com/user-attachments/assets/d20ea808-2dbf-4beb-bb4f-6e990d5f4268)
+
 ---
 
 ## 🏛️ Architecture
@@ -99,7 +102,7 @@ Both platforms include support for **Dark and Light themes**, with user preferen
 
 Instructions for running and deploying the application (both server and clients) can be found in the  
 👉 [`RunningApp.md`](Wiki/RunningApp.md)
-## 📦 **Docomentation Web & Android**
+## 📦 **Documentation Web & Android**
 
 Instructions for running and deploying the application (both server and clients) can be found in the
 
