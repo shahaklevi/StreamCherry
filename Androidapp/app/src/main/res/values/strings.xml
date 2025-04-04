@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Android app</string>
+    <string name="Get_Started">Get Started</string>
+    <string name="password">password</string>
+    <string name="Signinbtn">Sign In</string>
+    <string name="LoginNewToNetflix">new to netflix?</string>
+    <string name="LoginSignUp">sign up</string>
+    <string name="BaseUrl">http://10.0.2.2:3000/api/</string>
+    <string name="Email">Email\n</string>
+    <string name="Username">Username\n</string>
+    <string name="Nickname">Nickname\n</string>
+    <string name="Confirm_Password">Password</string>
+    <string name="Password">Password\n</string>
+    <string name="choose_pic">choose picture\n</string>
+    <string name="login_backbuttom">backbtn</string>
+    <string name="btn_sign_in">sign in</string>
+    <string name="Phone">Phone</string>
+    <string name="movie_title">Movie title</string>
+    <string name="movie_year">Movie year\n</string>
+    <string name="age">Age</string>
+    <string name="movie_time">Duration\n</string>
+    <string name="movie_play">Play</string>
+    <string name="trailer">Trailer</string>
+    <string name="more_like_this">more like this</string>
+    <string name="title_activity_add_category">AddCategoryActivity</string>
+    <string name="admin_icon_description">Admin Icon</string>
+    <string name="admin_zone">Admin Zone</string>
+    <string name="admin_welcome">Welcome to the admin zone! Perform your actions here.</string>
+    <string name="show_actions">Show Actions</string>
+    <string name="hide_actions">Hide Actions</string>
+    <string name="category_name">New Category Name</string>
+    <string name="promoted">Promoted:</string>
+    <string name="add_new_category">Add New Category</string>
+    <string name="add_category">Add Category</string>
+    <string name="delete">delete</string>
+    <string name="edit">edit</string>
+    <string name="edit_category">Edit Category</string>
+    <string name="save_changes">Save Changes</string>
+    <string name = "welcome_text">Welcome to StreamCherry</string>
+    <string-array name="promoted_options">
+        <item>True</item>
+        <item>False</item>
+    </string-array>
+</resources>
