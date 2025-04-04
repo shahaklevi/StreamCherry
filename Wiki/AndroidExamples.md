@@ -18,7 +18,7 @@ Pressing **"Get Started"** leads the user to the login screen.
 The login screen allows existing users to enter their **username** and **password**.  
 A **"sign up"** button is provided for new users at the bottom.
 
-![Sign In Screen](../AndroidImages/signin.png)
+![Sign In Screen](../AndroidImages/login.png)
 
 ---
 
@@ -86,7 +86,7 @@ When the logged-in user is an admin, they gain access to this special screen, wh
 
 
 
-![Image1](../AndroidImages/10CategoryManagmentAddCategory.png) ![Image2](../AndroidImages/managecategories.png) ![Image3] (../AndroidImages/editcategory.png)
+![Image1](../AndroidImages/10CategoryManagmentAddCategory.png) ![Image2](../AndroidImages/managecategories.png) ![Image3](../AndroidImages/editcategory.png)
 
 
 
