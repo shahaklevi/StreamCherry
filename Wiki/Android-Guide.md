@@ -1,4 +1,4 @@
-# 📱 Android App – UI Examples
+# 📱 Android App – Guide
 
 This document presents a visual walkthrough of the Android application's main screens and features, arranged in the typical user flow.
 
