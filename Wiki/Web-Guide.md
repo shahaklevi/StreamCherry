@@ -27,7 +27,7 @@
 2. Run:
 
 ```powershell
-docker-compose --env-file ./WebServer/config/.env.local up --build
+docker-compose up
 ```
 
 ---
@@ -42,6 +42,7 @@ cd Web/my-app
 2. Run:
 
 ```bash
+npm install
 npm start
 ```
 
