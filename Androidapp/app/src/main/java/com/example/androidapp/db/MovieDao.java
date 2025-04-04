@@ -20,7 +20,8 @@ public interface MovieDao {
 
     @Query("DELETE FROM movies WHERE _id = :movieId")
     void deleteMovie(String movieId);
-
+    @Query("SELECT * FROM movies WHERE title LIKE :query")
+    LiveData<List<Movie>> searchMovies(String query);
     @Query("SELECT * FROM movies")
     LiveData<List<Movie>> getAllMovies();
 }

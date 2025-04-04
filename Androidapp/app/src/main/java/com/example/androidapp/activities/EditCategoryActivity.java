@@ -1,6 +1,7 @@
 package com.example.androidapp.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -41,6 +42,10 @@ public class EditCategoryActivity extends AppCompatActivity {
         boolean isPromoted = getIntent().getBooleanExtra("isPromoted", false);
         etItem.setText(categoryName);
         cbIsActive.setChecked(isPromoted);
+
+        Log.d("EditCategoryActivity", "Category id: " + getIntent().getStringExtra("id"));
+        Log.d("EditCategoryActivity", "Category name: " + categoryName);
+        Log.d("EditCategoryActivity", "Is promoted: " + isPromoted);
 
         // Get the category from ViewModel
         categoryViewModel.getCategoryByName(categoryName).observe(this, category -> {

@@ -36,6 +36,7 @@
     <string name="edit">edit</string>
     <string name="edit_category">Edit Category</string>
     <string name="save_changes">Save Changes</string>
+    <string name = "welcome_text">Welcome to StreamCherry</string>
     <string-array name="promoted_options">
         <item>True</item>
         <item>False</item>

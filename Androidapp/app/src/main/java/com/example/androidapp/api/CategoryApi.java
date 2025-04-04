@@ -26,6 +26,9 @@ public class CategoryApi {
     ApiService apiService;
     Retrofit retrofit;
 
+    MyApplication application = MyApplication.getInstance();
+
+
     public CategoryApi() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new TokenInterceptor(getAuthToken()))
@@ -41,11 +44,9 @@ public class CategoryApi {
     }
 
     private String getAuthToken() {
-        SharedPreferences prefs = MyApplication.getAppContext()
-                .getSharedPreferences("auth", Context.MODE_PRIVATE);
 
-        // Retrieve just the token value without "Bearer" prefix
-        String token = prefs.getString("authorization", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U3YzQ4ZmE0ZTIxNjZiNjQyNTdlOGUiLCJ1c2VyX25hbWUiOiJzaGFoYWsiLCJtYWlsIjoic2hhaGFrMzRAZ21haWwuY29tIiwicGhvbmUiOiIwNTI4MzAxMDAzIiwicHJvZmlsZVBpY3R1cmUiOiIvaW1hZ2VzL2F2YXRhcnMvYXZhdGFyMS53ZWJwIiwibWFuYWdlciI6dHJ1ZSwiaWF0IjoxNzQzNjA3ODU5LCJleHAiOjE3NDM2OTQyNTl9.SCVxQGM47l6j8_7vQcEedog-48Tu-bKa4GH2HtAGoEc");
+        SharedPreferences prefs = application.getSharedPreferences("auth", Context.MODE_PRIVATE);
+        String token = prefs.getString("jwt_token", MyApplication.getInstance().getToken());
         return token;
     }
 
@@ -134,11 +135,9 @@ public class CategoryApi {
             @Override
             public void onResponse(@NonNull Call<Category> call, @NonNull Response<Category> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Category updatedCategory = response.body();
                     callback.onResponse(call, response);
                 } else {
                     Log.e(TAG, "Request failed with code: " + response.code());
-
                     callback.onResponse(call, response);
                 }
             }

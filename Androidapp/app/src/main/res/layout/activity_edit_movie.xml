@@ -113,14 +113,16 @@
                 android:id="@+id/buttonSelectMovieFile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Movie File (MP4)" />
+                android:text="Select Movie File (MP4)"
+                android:backgroundTint="@color/netflix_red"/>
 
             <!-- בחירת תמונת סרט -->
             <Button
                 android:id="@+id/buttonSelectMovieImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Movie Image (JPG, PNG, JPEG)" />
+                android:text="Select Movie Image (JPG, PNG, JPEG)"
+                android:backgroundTint="@color/netflix_red"/>
 
             <!-- שדה קלט: רשימת שחקנים -->
             <EditText
@@ -176,7 +178,8 @@
                     android:id="@+id/buttonEditMovie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Save Changes" />
+                    android:text="Save Changes"
+                    android:backgroundTint="@color/netflix_red"/>
             </LinearLayout>
 
         </LinearLayout>

@@ -40,6 +40,31 @@
           <theme>@style/Theme.AndroidApp</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_login.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_main.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_movie.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_movies.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_register.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/category_item.xml">
         <config>
           <theme>@style/Theme.AndroidApp</theme>
@@ -50,54 +75,66 @@
           <theme>@style/Theme.AndroidApp</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/item_movie_delete.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/item_section.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/Androidapp/app/src/main/res/layout/menu_popup.xml">
+        <config>
+          <theme>@style/Theme.AndroidApp</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc104d85-cc38-4e57-8384-b7adb864c304" name="Changes" comment="category room deletion">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/migrations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AddCategoryActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AddMovieActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AdminActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/CategoryManagementActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/DeleteMovieActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/EditCategoryActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/EditMovieActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/adapters/CategoriesListAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/CategoryApi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/AppDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/CategoryDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/CategoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/CategoryViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MovieViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/drawable/ic_admin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_category.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_movie.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_admin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_category_management.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_delete_movie.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_category.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_movie.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/category_item.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/checkbox_category_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="dc104d85-cc38-4e57-8384-b7adb864c304" name="Changes" comment="synced Projects">
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/adapters/MovieListAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/drawable/srteam_cherry_wizard.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/drawable/streamcherry_login.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/drawable/streamcherry_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/item_movie_delete.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/menu_popup.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/AppDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/AppDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/MovieDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/MovieDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/ApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/MovieApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/MovieApiService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/ApiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/ApiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/TokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/TokenInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/CategoryManagementActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/CategoryManagementActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/DeleteMovieActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/DeleteMovieActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/EditCategoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/EditCategoryActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/MoviesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/MoviesActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/CategoryApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/CategoryApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/UserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/AppDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/AppDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/CategoryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/MovieDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/MovieDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/CategoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/MovieRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MainViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MovieViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MovieViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_category.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_category.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_movie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_movie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_admin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_admin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_delete_movie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_delete_movie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_category.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_category.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_movie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_movie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_movies.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_movies.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/category_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/category_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/values-v26/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/values-v26/themes.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/themes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/values/themes.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,8 +191,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="resourceFile" />
+        <option value="Class" />
         <option value="layoutResourceFile" />
       </list>
     </option>
@@ -214,11 +251,15 @@
     "com.google.services.firebase.aqiPopupShown": "true",
     "git-widget-placeholder": "shahak-android-copy-2",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/shaha/AndroidStudioProjects/Neetflix/Androidapp/settings.gradle.kts",
+    "last_directory_selection": "C:/Users/shaha/AndroidStudioProjects/Neetflix/Androidapp/app/src/main/res/drawable",
+    "last_opened_file_path": "C:/Users/shaha/AndroidStudioProjects/Neetflix/Androidapp/app/src/main/res/drawable",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\shaha\AndroidStudioProjects\Neetflix\Androidapp\app\src\main\res\drawable" />
+    </key>
     <key name="android.template.-2049009045">
       <recent name="com.example.androidapp.activities" />
     </key>
@@ -356,7 +397,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743693143833</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="synced Projects">
+      <option name="closed" value="true" />
+      <created>1743703789332</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743703789332</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -374,7 +423,8 @@
     <MESSAGE value="add movie , add category , delete category , &#10;edit category" />
     <MESSAGE value="copy" />
     <MESSAGE value="category room deletion" />
-    <option name="LAST_COMMIT_MESSAGE" value="category room deletion" />
+    <MESSAGE value="synced Projects" />
+    <option name="LAST_COMMIT_MESSAGE" value="synced Projects" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">

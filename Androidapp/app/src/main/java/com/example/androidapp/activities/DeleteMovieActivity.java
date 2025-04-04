@@ -1,26 +1,38 @@
 package com.example.androidapp.activities;
 
 import android.os.Bundle;
+import android.widget.ListView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.androidapp.R;
+import com.example.androidapp.adapters.MovieListAdapter;
+import com.example.androidapp.entities.Movie;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DeleteMovieActivity extends AppCompatActivity {
+
+    private ListView listViewDeleteMovies;
+    private MovieListAdapter adapter;
+    private List<Movie> movieList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_delete_movie);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Initialize the ListView
+        listViewDeleteMovies = findViewById(R.id.listViewDeleteMovies);
+
+        // Generate 10 sample movies
+        movieList = new ArrayList<>();
+        movieList.add(new Movie("Inception"));
+        movieList.add(new Movie("Interstellar"));
+
+        // Set up the adapter with the movie list and attach it to the ListView
+        adapter = new MovieListAdapter(this, movieList);
+        listViewDeleteMovies.setAdapter(adapter);
     }
 }

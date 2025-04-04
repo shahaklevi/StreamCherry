@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
@@ -19,7 +20,7 @@ public interface CategoryDao {
     List<Category> getAllCategories();
     @Query("SELECT * FROM category WHERE name = :name")
     LiveData<Category> getCategoryByName(String name);
-    @Query("UPDATE category SET isSelected = :isSelected WHERE id = :categoryId")
+    @Query("UPDATE category SET isSelected = :isSelected WHERE serverId = :categoryId")
     void updateSelection(int categoryId, boolean isSelected);
 
     @Query("SELECT * FROM category WHERE name = :name LIMIT 1")
@@ -28,8 +29,8 @@ public interface CategoryDao {
     @Query("SELECT * FROM category WHERE isSelected = 1")
     LiveData<List<Category>> getSelectedCategories();
 
-    @Insert
-    void insert(Category... categories);
+    @Insert(onConflict = OnConflictStrategy.REPLACE) // Replace existing entries
+    void insert(Category category);
 
     @Update
     void update(Category... categories);

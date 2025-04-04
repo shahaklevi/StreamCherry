@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -46,6 +47,7 @@ public class MovieRepository {
         // Get JWT token from SharedPreferences
         SharedPreferences prefs = application.getSharedPreferences("auth", Context.MODE_PRIVATE);
         String token = prefs.getString("jwt_token", MyApplication.getInstance().getToken());
+        Log.d("MovieRepository", "Token: " + token);
         //saved token after login , if not valid token then use default token
 
 
@@ -164,6 +166,10 @@ public class MovieRepository {
                 callback.onFailure(call, t);
             }
         });
+    }
+
+    public LiveData<List<Movie>> searchMovies(String query) {
+        return movieDao.searchMovies("%" + query + "%");
     }
 
     public void deleteMovie(Movie movie) {

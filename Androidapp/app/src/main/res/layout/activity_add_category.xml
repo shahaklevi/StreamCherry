@@ -83,10 +83,9 @@
             android:id="@+id/btnAddCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/netflix_red"
             android:text="@string/add_category"
             android:textColor="@color/netflix_light_text"
-            tools:ignore="TextContrastCheck" />
+            android:backgroundTint="@color/netflix_red" />
 
 
     </LinearLayout>

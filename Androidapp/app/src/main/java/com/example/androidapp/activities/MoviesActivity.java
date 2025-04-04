@@ -1,5 +1,6 @@
 package com.example.androidapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -111,7 +112,11 @@ public class MoviesActivity extends AppCompatActivity {
 
         menuHome.setOnClickListener(v -> updateRecyclerWithSections(originalSections));
         menuMovies.setOnClickListener(v -> filterByKeyword("movie"));
-        menuAdmin.setOnClickListener(v -> filterByKeyword("admin"));
+        menuAdmin.setOnClickListener(v -> {
+            Intent intent = new Intent(MoviesActivity.this, AdminActivity.class);
+            startActivity(intent);
+            // Navigate to admin activity
+        });
         menuLogout.setOnClickListener(v -> finish());
     }
 

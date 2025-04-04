@@ -2,6 +2,7 @@ package com.example.androidapp.viewmodels;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
 import com.example.androidapp.MyApplication;
@@ -17,6 +18,8 @@ public class MovieViewModel extends ViewModel {
 
     private MovieRepository movieRepository;
     private MutableLiveData<List<Movie>> movies;
+    private LiveData<List<Movie>> searchResults;
+    private MutableLiveData<String> searchQuery = new MutableLiveData<>();
     private MyApplication app = MyApplication.getInstance();
 
     public MovieViewModel() {
@@ -25,8 +28,19 @@ public class MovieViewModel extends ViewModel {
         movies = new MutableLiveData<>();
         // Set initial value from repository's LiveData
         movies.setValue(movieRepository.getAllMovies().getValue());
+        searchResults = Transformations.switchMap(searchQuery, query ->
+                movieRepository.searchMovies(query)
+        );
+    }
+    // Expose search results to the UI
+    public LiveData<List<Movie>> getSearchResults() {
+        return searchResults;
     }
 
+    // Update the search query (call this from your activity)
+    public void setSearchQuery(String query) {
+        searchQuery.setValue(query);
+    }
     // Expose the movies as immutable LiveData
     public LiveData<List<Movie>> getAllMovies() {
         return movieRepository.getAllMovies();

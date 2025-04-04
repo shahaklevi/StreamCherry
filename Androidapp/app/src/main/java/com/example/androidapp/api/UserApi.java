@@ -43,7 +43,6 @@ public class UserApi {
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
         retrofit = new Retrofit.Builder()
-//                .baseUrl("http://10.0.2.2:3000/api/")
                 .baseUrl(MyApplication.getAppContext().getString(R.string.BaseUrl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

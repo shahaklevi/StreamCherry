@@ -12,15 +12,18 @@ public class ApiClient {
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofit(String token) {
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(new TokenInterceptor(token))
-                .build();
+        if (retrofit == null) {
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(new TokenInterceptor(token))
+                    .build();
 
-        return new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+            return new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
     }
 
     public static MovieApiService getMovieService(String token) {

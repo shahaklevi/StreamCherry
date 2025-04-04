@@ -120,7 +120,7 @@ public class CategoryRepository {
                             categoryDao.insert(serverCat);
                         } else {
                             // 13. Existing category - update if needed
-                            serverCat.setId(localCat.getId()); // Keep same database ID
+                            serverCat.setServerId(localCat.getServerId()); // Keep same database ID
                             categoryDao.update(serverCat);
                         }
                     }
@@ -186,10 +186,10 @@ public class CategoryRepository {
             @Override
             public void onResponse(Call<Category> call, Response<Category> response) {
                 if(response.isSuccessful() && response.body() != null) {
-                    Category addedCategory = response.body();
+
                     // עדכון מסד הנתונים המקומי עם הקטגוריה שהתקבלה מהשרת
                     new Thread(() -> {
-                        categoryDao.insert(addedCategory);
+                        categoryDao.insert(category);
                         List<Category> updatedCategories = categoryDao.getAllCategories();
                         categoryListData.postValue(updatedCategories);
                     }).start();
@@ -209,18 +209,6 @@ public class CategoryRepository {
         categoryApi.updateCategory(category,new Callback<Category>() {
             @Override
             public void onResponse(@NonNull Call<Category> call, @NonNull Response<Category> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    Category updatedCategory = response.body();
-                    updatedCategory.setId(category.getId()); // Ensure we keep the same ID
-
-                    new Thread(() -> {
-                        categoryDao.update(updatedCategory);
-                        List<Category> updatedCategories = categoryDao.getAllCategories();
-                        categoryListData.postValue(updatedCategories);
-                    }).start();
-                } else {
-                    Log.e("CategoryRepo", "Failed to update category, code: " + response.code());
-                }
                 callback.onResponse(call, response);
             }
 

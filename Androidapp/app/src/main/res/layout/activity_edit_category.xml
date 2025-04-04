@@ -84,7 +84,7 @@
             android:id="@+id/btnEditCategorySave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/netflix_red"
+            android:backgroundTint="@color/netflix_red"
             android:text="@string/save_changes"
             android:textColor="@color/netflix_light_text"
             tools:ignore="TextContrastCheck" />

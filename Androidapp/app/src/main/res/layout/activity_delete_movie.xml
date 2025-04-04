@@ -43,13 +43,25 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchViewDeleteMovie"
+    <EditText
+        android:id="@+id/searchBarDeleteMovies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
+        android:background="#1e1e1e"
+        android:textColor="#FFFFFF"
+        android:hint="Search movies..."
+        android:textColorHint="@color/netflix_light_text"
         android:inputType="text"
-        android:queryHint="Search for a movie to delete..."
-        app:backgroundTint="#5E35B1" />
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:padding="10dp" />
+
+
+    <ListView
+        android:id="@+id/listViewDeleteMovies"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:divider="@color/netflix_red"
+        android:dividerHeight="1dp"/>
 
 </LinearLayout>

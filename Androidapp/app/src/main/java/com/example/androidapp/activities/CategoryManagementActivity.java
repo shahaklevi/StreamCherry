@@ -58,7 +58,7 @@ public class CategoryManagementActivity extends AppCompatActivity {
             });
         }, category -> {
             Intent intent = new Intent(CategoryManagementActivity.this, EditCategoryActivity.class);
-//            intent.putExtra("id",category.getId());
+            intent.putExtra("id",category.getServerId());
             intent.putExtra("category", category.getName());
             intent.putExtra("isPromoted", category.isPromoted());
             startActivity(intent);

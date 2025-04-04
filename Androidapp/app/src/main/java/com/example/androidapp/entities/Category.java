@@ -12,12 +12,11 @@ import java.util.List;
 @Entity
 public class Category {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
     @SerializedName("_id")
     private String ServerId;
     private String name;
-
     @Ignore
     private List<String> movies;
     private boolean promoted;
@@ -72,14 +71,6 @@ public class Category {
 
     public void setServerId(String serverId) {
         ServerId = serverId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public boolean isSelected() {

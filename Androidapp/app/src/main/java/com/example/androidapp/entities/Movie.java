@@ -24,6 +24,10 @@ public class Movie {
     private Date createdAt;
     private List<String> watchedBy;
 
+    public Movie(String title){
+        this.title = title;
+    }
+
     public Movie() {}
 
     // Getters
@@ -122,5 +126,8 @@ public class Movie {
 
     public void setWatchedBy(List<String> watchedBy) {
         this.watchedBy = watchedBy;
+    }
+    public String toString() {
+        return title;
     }
 }

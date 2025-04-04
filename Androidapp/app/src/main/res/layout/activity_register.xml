@@ -7,6 +7,22 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".activities.RegisterActivity">
+    <ImageView
+        android:id="@+id/netflixScreenshot"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="-10dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/srteam_cherry_wizard"
+        android:tint="@color/semiTransparentBlack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="UseAppTint" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -24,79 +40,84 @@
             android:layout_width="278dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:backgroundTint="#6B6868"
             android:ems="10"
             android:hint="@string/Email"
             android:padding="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B0B0B0" />
+            android:background="@color/semiTransparentWhite"
+            android:textColor="@color/netflix_dark_text"
+            android:textColorHint="@color/netflix_dark_text" />
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/UserName"
             android:layout_width="278dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:backgroundTint="#6B6868"
+            android:background="@color/semiTransparentWhite"
+            android:textColor="@color/netflix_dark_text"
             android:ems="10"
             android:hint="@string/Username"
             android:padding="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B0B0B0" />
+            android:textColorHint="@color/netflix_dark_text" />
 
 
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/Nickname"
             android:layout_width="279dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:backgroundTint="#6B6868"
             android:ems="10"
             android:hint="@string/Nickname"
             android:padding="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B0B0B0"
+            android:background="@color/semiTransparentWhite"
+            android:textColor="@color/netflix_dark_text"
+            android:textColorHint="@color/netflix_dark_text"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="281dp" />
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/Password"
             android:layout_width="279dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:backgroundTint="#6B6868"
             android:ems="10"
             android:hint="@string/Password"
             android:inputType="textPassword"
             android:padding="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B0B0B0"
+            android:background="@color/semiTransparentWhite"
+            android:textColor="@color/netflix_dark_text"
+            android:textColorHint="@color/netflix_dark_text"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="281dp" />
 
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/Confirm"
             android:layout_width="279dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:backgroundTint="#6B6868"
             android:ems="10"
             android:hint="@string/Confirm_Password"
             android:inputType="textPassword"
             android:padding="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B0B0B0"
+            android:background="@color/semiTransparentWhite"
+            android:textColor="@color/netflix_dark_text"
+            android:textColorHint="@color/netflix_dark_text"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="281dp" />
 
         <EditText
+            android:layout_marginTop="5dp"
             android:id="@+id/Phone"
             android:layout_width="279dp"
             android:layout_height="56dp"
             android:layout_weight="1"
-            android:backgroundTint="#6B6868"
             android:ems="10"
             android:hint="@string/Phone"
             android:padding="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#B0B0B0"
+            android:background="@color/semiTransparentWhite"
+            android:textColor="@color/netflix_dark_text"
+            android:textColorHint="@color/netflix_dark_text"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="281dp" />
 
@@ -106,19 +127,19 @@
             android:layout_width="94dp"
             android:layout_height="89dp"
             android:layout_marginTop="16dp"
-            android:contentDescription="Profile Picture" />
+            android:contentDescription="Profile Picture"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <Button
             android:id="@+id/btnChooseImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/netflix_red"
             android:text="@string/choose_pic"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:padding="0dp"
+            android:textSize="18sp"
             android:focusable="false"
             android:clickable="true" />
 
