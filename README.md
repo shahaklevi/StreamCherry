@@ -19,45 +19,13 @@ The **frontend** includes:
 
 Both platforms include support for **Dark and Light themes**, with user preferences stored persistently.
 
-<!-- Image Slider Start -->
+### Image Gallery
 
-<div id="slider">
-  <figure>
-    <img width="600" src="https://github.com/user-attachments/assets/23631b37-142f-44bb-8c9a-3cbe4a1fc4b3" alt="Image 1">
-    <img width="600" src="https://github.com/user-attachments/assets/421c5105-c674-4be0-a083-a9ce27e2bd79" alt="Image 2">
-    <img width="600" src="https://github.com/user-attachments/assets/b353ec8c-bc48-4ac6-a513-0a8f0862da92" alt="Image 3">
-    <img width="600" src="https://github.com/user-attachments/assets/18383e34-ff36-4f71-b5f4-9d4bd6348dca" alt="Image 4">
-    <img width="600" src="https://github.com/user-attachments/assets/07834871-4985-48db-a5ad-e0b5ab976dc7" alt="Image 5">
-  </figure>
-</div>
-
-<style>
-#slider {
-  overflow: hidden;
-  width: 100%;
-  margin: auto;
-}
-
-#slider figure {
-  display: flex;
-  width: 500%;
-  animation: slide 20s infinite;
-}
-
-#slider figure img {
-  width: 20%;
-}
-
-@keyframes slide {
-  0% { transform: translateX(0); }
-  20% { transform: translateX(-100%); }
-  40% { transform: translateX(-200%); }
-  60% { transform: translateX(-300%); }
-  80% { transform: translateX(-400%); }
-  100% { transform: translateX(-500%); }
-}
-</style>
-<!-- Image Slider End -->
+![Image 1](https://github.com/user-attachments/assets/23631b37-142f-44bb-8c9a-3cbe4a1fc4b3)
+![Image 2](https://github.com/user-attachments/assets/421c5105-c674-4be0-a083-a9ce27e2bd79)
+![Image 3](https://github.com/user-attachments/assets/b353ec8c-bc48-4ac6-a513-0a8f0862da92)
+![Image 4](https://github.com/user-attachments/assets/18383e34-ff36-4f71-b5f4-9d4bd6348dca)
+![Image 5](https://github.com/user-attachments/assets/07834871-4985-48db-a5ad-e0b5ab976dc7)
 
 ---
 
