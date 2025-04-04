@@ -90,7 +90,8 @@ npm start
 
 
 4. Click **Play** to watch the movie.
-![image](https://github.com/user-attachments/assets/bed58dc3-e169-4b3d-aa5d-2ec8511def77)
+![image](https://github.com/user-attachments/assets/07834871-4985-48db-a5ad-e0b5ab976dc7)
+
 
 ---
 
