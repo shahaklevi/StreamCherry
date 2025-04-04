@@ -98,13 +98,13 @@ Both platforms include support for **Dark and Light themes**, with user preferen
 ## 📦 **Setup & Deployment Instructions**
 
 Instructions for running and deploying the application (both server and clients) can be found in the  
-👉 [`RunningApp.md`](RunningApp.md)
+👉 [`RunningApp.md`](Wiki/RunningApp.md)
 ## 📦 **Docomentation Web & Android**
 
 Instructions for running and deploying the application (both server and clients) can be found in the
 
-👉 [`Web-Guide.md`](Wiki\Web-Guide.md)
+👉 [`Web-Guide.md`](Wiki/Web-Guide.md)
 
-👉 [`Android-Guide.md`](Wiki\Android-Guide.md)
+👉 [`Android-Guide.md`](Wiki/Android-Guide.md)
 
 ---
