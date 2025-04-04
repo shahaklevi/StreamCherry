@@ -55,7 +55,7 @@ npm start
 
 ### 📝 Register
 
-<img width="900" alt="register-step-1" src="https://github.com/user-attachments/assets/23631b37-142f-44bb-8c9a-3cbe4a1fc4b3" />
+<img width="900" alt="register-step-1" src="Wiki/Assets/23631b37-142f-44bb-8c9a-3cbe4a1fc4b3.png" />
 
 1. Click **Get Started**.
 
