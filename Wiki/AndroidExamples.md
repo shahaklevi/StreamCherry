@@ -9,7 +9,7 @@ This document presents a visual walkthrough of the Android application's main sc
 The app opens with a vibrant and playful welcome screen.  
 Pressing **"Get Started"** leads the user to the login screen.
 
-![Opening Screen](../AndroidImages/1open.png)
+![Opening Screen](../AndroidImages/welcome.png)
 
 ---
 
@@ -18,7 +18,7 @@ Pressing **"Get Started"** leads the user to the login screen.
 The login screen allows existing users to enter their **username** and **password**.  
 A **"sign up"** button is provided for new users at the bottom.
 
-![Sign In Screen](../AndroidImages/2signin.png)
+![Sign In Screen](../AndroidImages/signin.png)
 
 ---
 
@@ -26,7 +26,7 @@ A **"sign up"** button is provided for new users at the bottom.
 
 New users can register by entering their email, username, nickname, password (twice), phone number, and selecting a profile picture.
 
-![Sign Up Screen](../AndroidImages/3signup.png)
+![Sign Up Screen](../AndroidImages/signup.png)
 
 ---
 
@@ -62,8 +62,30 @@ Users can watch full movies with a built-in video player interface.
 
 ---
 
-## 8️⃣ Admin Zone – Entry
+# 8️⃣ Admin Zone – Entry
 
-If the logged-in user is an admin, they gain access to this special screen, allowing management actions.
+When the logged-in user is an admin, they gain access to this special screen, which enables various management actions.
 
-![Admin Zone](../AndroidImages/8adminzone.png
+![Admin Zone](../AndroidImages/8adminzone.png)
+
+## Movies Management
+
+- **Add Movies:** Admins can add new movies to the system.
+- **Delete Movies:** Admins can remove movies from the system.
+- **Edit Movies:** Admins can modify existing movie details.
+| Image 1 | Image 2 | Image 3 |
+|:-------:|:-------:|:-------:|
+| ![Image1](../AndroidImages/addmovie.png) | ![Image2](../AndroidImages/15adminzoneMovieDeletion.png) |  ![Image3](../AndroidImages/addm14adminzoneEditMovieovie.png) |
+
+
+## Category Management
+
+- **Add New Category:** Admins can introduce new categories to the system.
+- **Edit Categories:** Admins can update existing category information.
+- **Delete Categories:** Admins can remove categories from the system.
+| Image 1 | Image 2 | 
+|:-------:|:-------:|
+| ![Image1](../AndroidImages/10CategoryManagmentAddCategory.png) | ![Image2](../AndroidImages/managecategories.png) |
+
+
+
