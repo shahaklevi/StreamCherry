@@ -68,7 +68,7 @@ When the logged-in user is an admin, they gain access to this special screen, wh
 
 ![Admin Zone](../AndroidImages/8adminzone.png)
 
-## Movies Management
+## 🎬 Movies Management
 
 - **Add Movies:** Admins can add new movies to the system.
 - **Delete Movies:** Admins can remove movies from the system.
@@ -78,7 +78,7 @@ When the logged-in user is an admin, they gain access to this special screen, wh
 ![Image1](../AndroidImages/addmovie.png) ![Image2](../AndroidImages/deletemovie.png) ![Image3](../AndroidImages/14adminzoneEditMovie.png) |
 
 
-## Category Management
+## 🗂️ Category Management 
 
 - **Add New Category:** Admins can introduce new categories to the system.
 - **Edit Categories:** Admins can update existing category information.
