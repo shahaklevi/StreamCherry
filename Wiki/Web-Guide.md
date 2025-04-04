@@ -55,7 +55,8 @@ npm start
 
 
 <img width="1502" alt="image" src="https://github.com/user-attachments/assets/23631b37-142f-44bb-8c9a-3cbe4a1fc4b3" />
-1. Click **Get Started**. 
+
+1. Click **Get Started** . 
 
 <img width="1490" alt="image" src="https://github.com/user-attachments/assets/421c5105-c674-4be0-a083-a9ce27e2bd79" />
 
