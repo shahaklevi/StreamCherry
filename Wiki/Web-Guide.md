@@ -86,10 +86,11 @@ npm start
 
 
 3. Click a movie to view details.
+   
 ![image](https://github.com/user-attachments/assets/57192e8f-e29c-469e-a237-e9710cef6aa1)
 
 
-4. Click **Play** to watch the movie.
+5. Click **Play** to watch the movie.
 ![image](https://github.com/user-attachments/assets/07834871-4985-48db-a5ad-e0b5ab976dc7)
 
 
