@@ -55,18 +55,18 @@ npm start
 
 ### 📝 Register
 
-<img width="900" alt="register-step-1" src="Wiki/Assets/430138107-23631b37-142f-44bb-8c9a-3cbe4a1fc4b3.png" />
+<img width="900" alt="register-step-1" src="Assets/430138107-23631b37-142f-44bb-8c9a-3cbe4a1fc4b3.png" />
 
 1. Click **Get Started**.
 
-<img width="900" alt="register-step-2" src="Wiki/Assets/430139902-421c5105-c674-4be0-a083-a9ce27e2bd79.png" />
+<img width="900" alt="register-step-2" src="Assets/430139902-421c5105-c674-4be0-a083-a9ce27e2bd79.png" />
 
 2. Fill in the form and choose an avatar.  
 3. Click **Sign Up**.
 
 ### 🔓 Login & Logout
 
-<img width="900" alt="login" src="Wiki/Assets/430141590-68f812e7-0b8a-4119-961c-8a4ebe547db6.png" />
+<img width="900" alt="login" src="Assets/430141590-68f812e7-0b8a-4119-961c-8a4ebe547db6.png" />
 
 1. Enter your email and password to log in.  
 2. To log out, click the avatar icon → **LogOut**.
