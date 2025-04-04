@@ -16,9 +16,8 @@
 
 ### 🔐 Admin Features
 - [🔑 Granting Admin Privileges](#-granting-admin-privileges)
-- [🗂 Managing Categories](#-managing-categories)
-- [🎬 Adding Movies](#-adding-movies)
-- [✏️ Editing & Managing Movies](#-editing--managing-movies)
+- [🗂 Categories Manage](#-categories-manage)
+- [🎬 Movies Manage](#-movies-manage)
 
 ---
 
@@ -122,7 +121,7 @@ npm start
 
 ---
 
-## 🗂 Managing Categories
+## 🗂 Categories Manage
 
 <img width="1220" alt="image" src="https://github.com/user-attachments/assets/a71d98ec-8abb-4f94-9a0b-b3aa0d378346" />
 
@@ -130,29 +129,20 @@ npm start
 2. Choose **Add Category**.  
 3. Enter a name and description.  
 
-
+**Edit & Delete Categories**
 <img width="934" alt="image" src="https://github.com/user-attachments/assets/70806482-e620-4cf1-bc5b-9d6452bd7e0e" />
-
 4. Edit or delete categories if needed.
 
 ---
 
-## 🎬 Adding Movies
+## 🎬 Movies Manage
 
-1. Click **Edit** on a category.  
-2. Click **Add Movie**.  
+1. In **Admin-Zone**  
+2. Choose **Add Movie**.  
 3. Fill in movie details.  
 4. Upload poster, trailer, and movie file.  
-5. Click **Add Movie**.
+5. Edit or delete movies if needed.
 
-🖼️ **Screenshot idea:** Add movie form + new movie listed in the category.
+<img width="823" alt="image" src="https://github.com/user-attachments/assets/7ed27e4a-b63d-482c-b308-d0c2c5eae866" />
 
----
 
-## ✏️ Editing & Managing Movies
-
-1. Click a movie to view details.  
-2. Admins can click the ✏️ icon to edit.  
-3. You can also delete the movie.
-
-🖼️ **Screenshot idea:** Movie page with edit and delete buttons.
