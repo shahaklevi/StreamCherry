@@ -29,7 +29,6 @@ app.use("/uploads/usersImages", express.static(path.join(__dirname, "uploads/use
 app.use("/uploads/movies", express.static(path.join(__dirname, "uploads/movies")));
 app.use("/uploads/movieImages", express.static(path.join(__dirname, "uploads/movieImages")));
 
-
 app.listen(process.env.PORT, () => {
     console.log(`Server started on port ${process.env.PORT}`);
 });

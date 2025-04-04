@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import tokenVerification from "../tokenVerification/tokenVerification";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
@@ -52,7 +52,7 @@ export const UserProvider = ({ children }) => {
         if (token) {
             const user = await tokenVerification(token);
             const response = await fetch(
-                `http://localhost:3000/api/users/${user._id}`, // Use template literal for dynamic URL
+                `${API_BASE_URL}/api/users/${user._id}`, // Use template literal for dynamic URL
                 {
                   method: "GET", // GET request to the server
                   headers: {
@@ -73,7 +73,7 @@ export const UserProvider = ({ children }) => {
                 if (userData.manager) {
                     alert("Welcome admin!");
                     setCurrentUser(userData);
-                    navigate("/admin-zone"); // Navigate to admin zone
+                    navigate("/Admin"); // Navigate to admin zone
                     return true;
                 } else {
                     alert("Access restricted: Admins only.");

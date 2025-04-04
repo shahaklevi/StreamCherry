@@ -131,6 +131,8 @@ class movieController {
   }
 
   async update(req, res) {
+
+    console.log(req.body);
     // Temporary uploaded files
     const tempFiles = {
       movieImage: req.files?.movieImage?.[0]?.path || "",

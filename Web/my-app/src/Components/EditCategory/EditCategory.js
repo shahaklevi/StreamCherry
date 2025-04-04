@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./EditCategory.css";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function EditCategory({ category, onClose }) {
   const [formData, setFormData] = useState({
     name: category.name,
@@ -25,11 +25,11 @@ function EditCategory({ category, onClose }) {
         return;
       }
       const response = await fetch(
-        `http://localhost:3000/api/categories/${category._id}`,
+        `${API_BASE_URL}/api/categories/${category._id}`,
         {
           method: "PATCH",
           headers: {
-            Authorization: `Bearer ${token}`, 
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
@@ -39,8 +39,7 @@ function EditCategory({ category, onClose }) {
       if (response.ok) {
         alert("Category updated successfully!");
 
-        onClose(); 
-
+        onClose();
       } else {
         const data = await response.json();
         alert("Error updating category: " + data.error);
@@ -51,9 +50,7 @@ function EditCategory({ category, onClose }) {
   };
 
   return (
-    <div className="edit-category">
-      <div className="edit-category-modal">
-        <h2 className="glowing-title">Edit Category</h2>
+      <div className="edit-category">
         <form onSubmit={handleSubmit} className="edit-form">
           <div className="input-group">
             <label htmlFor="name">Category Name:</label>
@@ -87,7 +84,6 @@ function EditCategory({ category, onClose }) {
           </div>
         </form>
       </div>
-    </div>
   );
 }
 

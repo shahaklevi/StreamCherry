@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 100%;
 }
 
 .App-logo {
@@ -35,4 +36,7 @@
   to {
     transform: rotate(180deg);
   }
+}
+* {
+  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
 }

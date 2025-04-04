@@ -142,14 +142,17 @@ const isMovieExist = async (movieId) => {
 };
 const isValidJWT = async (req) => {
     try {
-        
         const authHeader = req.header("Authorization");
+        if (!authHeader) {
+            authHeader = req.header("authorization");
+        }
+        // console.log('authHeader: ', authHeader);
         
         if (!authHeader) {
             throw new Error("Server Error: Authorization header not provided");
         }
-
-        const token = authHeader.split(" ")[1];
+        const token = authHeader.split(" ")[1]?.trim();
+        // console.log('token:', token);
         if (!token) {
             throw new Error("Server Error: Token not provided");
         }
@@ -165,11 +168,6 @@ const isValidJWT = async (req) => {
         throw error;
     }
 };
-
-  
-
-
-
 
 module.exports = {
     validId,

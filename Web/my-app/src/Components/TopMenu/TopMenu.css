@@ -1,4 +1,8 @@
 /* TopMenu styling */
+.top-menu {
+  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+
+}
 .top-menu .navbar {
   position: fixed; /* Ensure the navbar stays at the top */
   top: 0;
@@ -125,3 +129,23 @@
   margin-left: 75px;
   margin-top: 0px;
 }
+
+/* איפוס מרווחים ב־navbar-collapse */
+.navbar-collapse {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* איפוס מרווחים בפריטי הרשימה */
+.navbar-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none; /* אם תרצה לבטל נקודות או סגנון רשימה */
+}
+
+/* אם תרצה לאפס מרווחים בפריטי ה־li עצמם */
+.navbar-nav > li {
+  margin: 0;
+  padding: 0;
+}
+
