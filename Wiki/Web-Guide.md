@@ -71,7 +71,7 @@ npm start
 1. Enter your email and password to log in.  
 2. To log out, click the avatar icon → **LogOut**.
 
-<img width="900" alt="logout" src="https://github.com/user-attachments/assets/512e4cef-043e-478d-9240-c503c2aab5d3" />
+<img width="900" alt="logout" src="Assets/430142608-512e4cef-043e-478d-9240-c503c2aab5d3.png" />
 
 ---
 
@@ -79,19 +79,19 @@ npm start
 
 ### Home Page
 
-<img width="900" alt="home" src="https://github.com/user-attachments/assets/b353ec8c-bc48-4ac6-a513-0a8f0862da92" />
+<img width="900" alt="home" src="Assets/430179018-b353ec8c-bc48-4ac6-a513-0a8f0862da92.png" />
 
 ### Browse Movies by Category
 
-<img width="900" alt="movies-page" src="https://github.com/user-attachments/assets/18383e34-ff36-4f71-b5f4-9d4bd6348dca" />
+<img width="900" alt="movies-page" src="Assets/430180943-18383e34-ff36-4f71-b5f4-9d4bd6348dca.png" />
 
 ### View Movie Details
 
-<img width="400" alt="movie-details" src="https://github.com/user-attachments/assets/57192e8f-e29c-469e-a237-e9710cef6aa1" />
+<img width="400" alt="movie-details" src="Assets/430179991-57192e8f-e29c-469e-a237-e9710cef6aa1.png" />
 
 ### Watch a Movie
 
-<img width="900" alt="movie-play" src="https://github.com/user-attachments/assets/07834871-4985-48db-a5ad-e0b5ab976dc7" />
+<img width="900" alt="movie-play" src="Assets/430181445-07834871-4985-48db-a5ad-e0b5ab976dc7.png" />
 
 ---
 
@@ -99,19 +99,19 @@ npm start
 
 ### Light/Dark Mode Toggle ☀️🌙
 
-<img width="900" alt="dark-mode" src="https://github.com/user-attachments/assets/d8980499-ef8f-46e4-83a2-5ace20bd5df3" />
+<img width="900" alt="dark-mode" src="Assets/430178911-d8980499-ef8f-46e4-83a2-5ace20bd5df3.png" />
 
 ### Smart Search 🔍
 
-<img width="900" alt="search" src="https://github.com/user-attachments/assets/812d93f4-22ad-4fb4-a8d0-90b992a43bf6" />
+<img width="900" alt="search" src="Assets/430178874-812d93f4-22ad-4fb4-a8d0-90b992a43bf6.png" />
 
 ### Personalized Recommendations 🤖
 
-<img width="300" alt="recommendation" src="https://github.com/user-attachments/assets/040060cc-aae2-4636-b01f-e68b6a273466" />
+<img width="300" alt="recommendation" src="Assets/430178539-040060cc-aae2-4636-b01f-e68b6a273466.png" />
 
 ### Recently Watched 🕒
 
-<img width="900" alt="recently-watched" src="https://github.com/user-attachments/assets/f309501e-3231-41cf-b12c-2b801d25ada4" />
+<img width="900" alt="recently-watched" src="Assets/430178798-f309501e-3231-41cf-b12c-2b801d25ada4.png" />
 
 ---
 
@@ -121,7 +121,7 @@ npm start
 
 1. Sign out.
 
-<img width="700" alt="signout" src="https://github.com/user-attachments/assets/bdf0a44d-c83a-42cd-9c16-143e28aaaf2e" />
+<img width="700" alt="signout" src="Assets/430144939-bdf0a44d-c83a-42cd-9c16-143e28aaaf2e.png" />
 
 2. Open **MongoDB Compass**.  
 3. Change the manager field of your user to true.
