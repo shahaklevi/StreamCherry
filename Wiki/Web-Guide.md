@@ -93,6 +93,8 @@ npm start
 - **Light/Dark Mode** ☀️🌙 – Toggle at the top of the screen.  
 - **Search** 🔍 – Search by name, actors, language, and more.
 - **Recommendation System** 🤖 – Shows personalized suggestions based on users with similar tastes.
+- ![image](https://github.com/user-attachments/assets/9d857818-9fca-4980-9f58-40fca792d52d)
+
 - **Recently Watched** 🕒 – Displays the last movies the user interacted with for quick access.
 
 🖼️ **Screenshot idea:** Recommendation section and recently watched carousel.
