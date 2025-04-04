@@ -78,26 +78,36 @@ npm start
 
 ## 🎥 Viewing and Watching Movies
 
-1. After logging in, the **main page** displays movies sorted by promoted categories.
-2. Click a category to view all related movies.
-3. Use the **movies page** to browse and filter by selected category.
-4. Click a movie to view details.
-5. Click **Play** to watch the movie.
+1. After logging in, the **Home page** displays movies sorted by promoted categories.
+  ![image](https://github.com/user-attachments/assets/b353ec8c-bc48-4ac6-a513-0a8f0862da92)
 
-🖼️ **Screenshot idea:** Main page showing categories + filtered movies by category.
+2. Move to **Movies page** to browse and filter by category.
+3. ![image](https://github.com/user-attachments/assets/bbdd6165-206d-4d17-bea2-43fd06f866fe)
+
+4. Click a movie to view details.
+![image](https://github.com/user-attachments/assets/57192e8f-e29c-469e-a237-e9710cef6aa1)
+
+
+5. Click **Play** to watch the movie.
+![image](https://github.com/user-attachments/assets/bed58dc3-e169-4b3d-aa5d-2ec8511def77)
 
 ---
 
 ## 🌈 Extra Features for All Users
 
-- **Light/Dark Mode** ☀️🌙 – Toggle at the top of the screen.  
+- **Light/Dark Mode** ☀️🌙 – Toggle at the top of the screen.
+![image](https://github.com/user-attachments/assets/d8980499-ef8f-46e4-83a2-5ace20bd5df3)
+
+
 - **Search** 🔍 – Search by name, actors, language, and more.
+![image](https://github.com/user-attachments/assets/812d93f4-22ad-4fb4-a8d0-90b992a43bf6)
+
+
 - **Recommendation System** 🤖 – Shows personalized suggestions based on users with similar tastes.
-- ![image](https://github.com/user-attachments/assets/9d857818-9fca-4980-9f58-40fca792d52d)
+![image](https://github.com/user-attachments/assets/040060cc-aae2-4636-b01f-e68b6a273466)
 
 - **Recently Watched** 🕒 – Displays the last movies the user interacted with for quick access.
-
-🖼️ **Screenshot idea:** Recommendation section and recently watched carousel.
+![image](https://github.com/user-attachments/assets/f309501e-3231-41cf-b12c-2b801d25ada4)
 
 ---
 
