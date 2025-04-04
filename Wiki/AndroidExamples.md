@@ -75,8 +75,7 @@ When the logged-in user is an admin, they gain access to this special screen, wh
 - **Edit Movies:** Admins can modify existing movie details.
 
 
-
-| ![Image1](../AndroidImages/addmovie.png) | ![Image2](../AndroidImages/15adminzoneMovieDeletion.png) |  ![Image3](../AndroidImages/14adminzoneEditMovie.png) |
+![Image1](../AndroidImages/addmovie.png) ![Image2](../AndroidImages/15adminzoneMovieDeletion.png) ![Image3](../AndroidImages/14adminzoneEditMovie.png) |
 
 
 ## Category Management
@@ -87,7 +86,7 @@ When the logged-in user is an admin, they gain access to this special screen, wh
 
 
 
-| ![Image1](../AndroidImages/10CategoryManagmentAddCategory.png) | ![Image2](../AndroidImages/managecategories.png) |
+![Image1](../AndroidImages/10CategoryManagmentAddCategory.png) ![Image2](../AndroidImages/managecategories.png) ![Image3] (../AndroidImages/editcategory.png)
 
 
 
