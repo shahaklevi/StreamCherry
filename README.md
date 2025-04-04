@@ -103,8 +103,8 @@ Instructions for running and deploying the application (both server and clients)
 
 Instructions for running and deploying the application (both server and clients) can be found in the
 
-👉 [`Web-Guide.md`](Web-Guide.md)
+👉 [`Web-Guide.md`](Wiki\Web-Guide.md)
 
-👉 [`Android-Guide.md`](Android-Guide.md)
+👉 [`Android-Guide.md`](Wiki\Android-Guide.md)
 
 ---
