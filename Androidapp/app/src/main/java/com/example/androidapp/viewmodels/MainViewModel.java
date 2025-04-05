@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -127,10 +128,14 @@ public class MainViewModel extends AndroidViewModel {
         movie.setReleaseYear(2024);
         movie.setDuration(90);
         movie.setRating(8.5);
-        movie.setCast(Arrays.asList("Test Actor", "Mock Star"));
+        movie.setCast("Test Actor , Mock Star");
         movie.setMovieFile("https://example.com/mockvideo.mp4");
         movie.setMovieImage(imageUrl);
         movie.setCategories(categories);
         return movie;
+    }
+
+    public void deleteMovie(Movie movie,Callback<ResponseBody> callback) {
+        repository.deleteMovie(movie,callback);
     }
 }

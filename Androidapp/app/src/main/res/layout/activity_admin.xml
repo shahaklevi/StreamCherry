@@ -94,20 +94,12 @@
                         android:textColor="@color/netflix_red"
                         style="@style/Widget.MaterialComponents.Button.TextButton" />
 
-                    <Button
-                        android:id="@+id/editMovieButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Edit Movie"
-                        android:layout_marginTop="4dp"
-                        android:textColor="@color/netflix_red"
-                        style="@style/Widget.MaterialComponents.Button.TextButton" />
 
                     <Button
                         android:id="@+id/deleteMovieButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Delete Movie"
+                        android:text="Edit/Delete Movie"
                         android:layout_marginTop="4dp"
                         android:textColor="@color/netflix_red"
                         style="@style/Widget.MaterialComponents.Button.TextButton" />

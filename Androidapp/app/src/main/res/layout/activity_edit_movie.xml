@@ -63,8 +63,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
                 app:queryHint="Search Movie to Edit"
-                app:defaultQueryHint="Search Movie to Edit" />
+                app:defaultQueryHint="Search Movie to Edit"
+                app:searchHintIcon="@null"/>
+            <!-- תצוגת רשימה של סרטים -->
+            <ListView
+                android:id="@+id/moviesListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:divider="@color/netflix_red"
+                android:dividerHeight="1dp"
+                android:visibility="gone"
+                android:animationCache="true"
+                android:scrollingCache="true"
+                android:smoothScrollbar="true"/>
 
             <EditText
                 android:id="@+id/editTextTitle"
@@ -96,7 +110,8 @@
                 android:hint="Release Year"
                 android:inputType="number"
                 android:minHeight="48dp"
-                android:textColorHint="@color/netflix_light_text" />
+                android:textColorHint="@color/netflix_light_text"
+                android:textColor="@color/netflix_light_text"/>
 
             <!-- שדה קלט: משך הסרט בדקות -->
             <EditText
@@ -106,7 +121,8 @@
                 android:hint="Duration (minutes)"
                 android:inputType="number"
                 android:minHeight="48dp"
-                android:textColorHint="@color/netflix_light_text" />
+                android:textColorHint="@color/netflix_light_text"
+                android:textColor="@color/netflix_light_text"/>
 
             <!-- בחירת קובץ סרט -->
             <Button
@@ -161,6 +177,7 @@
                 style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/netflix_light_text"
                 android:orientation="vertical">
                 <!-- כאן ניתן להוסיף דינמית CheckBox עבור כל קטגוריה -->
             </LinearLayout>

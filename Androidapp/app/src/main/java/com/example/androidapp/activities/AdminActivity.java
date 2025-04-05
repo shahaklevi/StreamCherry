@@ -49,12 +49,6 @@ public class AdminActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Edit movie button
-        Button editMovieButton = findViewById(R.id.editMovieButton);
-        editMovieButton.setOnClickListener(v -> {
-            Intent intent = new Intent(AdminActivity.this, EditMovieActivity.class);
-            startActivity(intent);
-        });
 
         // Delete movie button
         Button deleteMovieButton = findViewById(R.id.deleteMovieButton);

@@ -109,11 +109,7 @@ public class AddMovieActivity extends AppCompatActivity {
         int releaseYear = Integer.parseInt(releaseYearStr);
         int duration = Integer.parseInt(durationStr);
 
-        // המרת שדה "cast" לרשימה - מניחים שהמשתמש מפריד בין שחקנים באמצעות פסיק
-        List<String> castList = new ArrayList<>();
-        if (!castStr.isEmpty()) {
-            castList = Arrays.asList(castStr.split("\\s*,\\s*"));
-        }
+
 
 
         Movie movie = new Movie();
@@ -121,7 +117,7 @@ public class AddMovieActivity extends AppCompatActivity {
         movie.setDescription(description);
         movie.setReleaseYear(releaseYear);
         movie.setDuration(duration);
-        movie.setCast(castList);
+        movie.setCast(castStr);
         movie.setCategories(selectedCategoryIds);
 
 

@@ -4,11 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity(tableName = "movies")
-public class Movie {
+public class Movie implements Serializable {
     @PrimaryKey(autoGenerate = false)
     @NonNull
     private String _id;
@@ -18,11 +19,12 @@ public class Movie {
     private int duration;
     private List<String> categories;
     private double rating;
-    private List<String> cast;
+    private String cast;
     private String movieFile;
     private String movieImage;
     private Date createdAt;
     private List<String> watchedBy;
+    private String director;
 
     public Movie(String title){
         this.title = title;
@@ -59,7 +61,7 @@ public class Movie {
         return rating;
     }
 
-    public List<String> getCast() {
+    public String getCast() {
         return cast;
     }
 
@@ -108,7 +110,7 @@ public class Movie {
         this.rating = rating;
     }
 
-    public void setCast(List<String> cast) {
+    public void setCast(String cast) {
         this.cast = cast;
     }
 
@@ -129,5 +131,13 @@ public class Movie {
     }
     public String toString() {
         return title;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
     }
 }

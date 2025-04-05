@@ -172,8 +172,32 @@ public class MovieRepository {
         return movieDao.searchMovies("%" + query + "%");
     }
 
-    public void deleteMovie(Movie movie) {
-        AsyncTask.execute(() -> movieDao.deleteMovie(movie.get_id()));
+    public void deleteMovie(Movie movie, Callback<ResponseBody> callback) {
+        // Create the API call
+        Call<ResponseBody> call = apiService.deleteMovie(
+                movie.get_id() // The movie ID to delete
+        );
+
+        // Execute the call asynchronously
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    // If server deletion was successful, delete from local DB
+                    AsyncTask.execute(() -> {
+                        movieDao.deleteMovie(movie.get_id());
+                    });
+                }
+                // Forward the response to the original callback
+                callback.onResponse(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Forward the failure to the original callback
+                callback.onFailure(call, t);
+            }
+        });
     }
 }
 

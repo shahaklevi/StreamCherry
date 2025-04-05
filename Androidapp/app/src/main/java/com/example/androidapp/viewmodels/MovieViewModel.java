@@ -55,7 +55,4 @@ public class MovieViewModel extends ViewModel {
         movieRepository.addMovie(movie, callback);
     }
 
-    public void deleteMovie(Movie movie) {
-        movieRepository.deleteMovie(movie);
-    }
 }

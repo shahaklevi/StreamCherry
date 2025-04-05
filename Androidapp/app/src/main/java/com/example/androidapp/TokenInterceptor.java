@@ -9,11 +9,15 @@ import okhttp3.Response;
 public class TokenInterceptor implements Interceptor {
 
     private final String token;
+    private MyApplication myApplication;
 
     public TokenInterceptor(String token) {
-        if (token.startsWith("Bearer")) {
-            this.token = token;
-        } else this.token = "Bearer" + token;
+        myApplication = MyApplication.getInstance();
+        if (token == null || token.trim().isEmpty()) {
+            this.token = myApplication.getToken(); // or set a default token if applicable
+        } else {
+            this.token = token.startsWith("Bearer ") ? token : "Bearer " + token;
+        }
     }
 
     @Override
