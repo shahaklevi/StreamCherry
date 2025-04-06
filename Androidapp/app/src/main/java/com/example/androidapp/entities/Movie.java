@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +22,7 @@ public class Movie implements Serializable {
     private int duration;
     private List<String> categories;
     private double rating;
-    private String cast;
+    private List<String> cast;
     private String movieFile;
     private String movieImage;
     private Date createdAt;
@@ -61,9 +64,7 @@ public class Movie implements Serializable {
         return rating;
     }
 
-    public String getCast() {
-        return cast;
-    }
+
 
     public String getMovieFile() {
         return movieFile;
@@ -110,9 +111,6 @@ public class Movie implements Serializable {
         this.rating = rating;
     }
 
-    public void setCast(String cast) {
-        this.cast = cast;
-    }
 
     public void setMovieFile(String movieFile) {
         this.movieFile = movieFile;
@@ -139,5 +137,13 @@ public class Movie implements Serializable {
 
     public void setDirector(String director) {
         this.director = director;
+    }
+
+    public List<String> getCast() {
+        return cast;
+    }
+
+    public void setCast(List<String> cast) {
+        this.cast = cast;
     }
 }

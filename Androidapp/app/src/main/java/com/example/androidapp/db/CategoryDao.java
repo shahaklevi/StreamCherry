@@ -32,10 +32,19 @@ public interface CategoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE) // Replace existing entries
     void insert(Category category);
 
-    @Update
-    void update(Category... categories);
+    @Query("UPDATE category SET name = :categoryName, promoted = :isPromoted WHERE serverId = :serverId")
+    void updateCategoryByServerId(String serverId, String categoryName, boolean isPromoted);
 
+    @Update
+    void update(Category... category);
     @Delete
     void delete(Category... categories);
+    @Query("SELECT name FROM category WHERE serverId = :serverId")
+    String getCategoryNameByServerId(String serverId);
+    @Query("SELECT * FROM category WHERE serverId = :serverId LIMIT 1")
+    Category getCategoryByServerId(String serverId);
 
+    // Add this for better update performance
+    @Query("DELETE FROM category WHERE serverId = :serverId")
+    void deleteByServerId(String serverId);
 }

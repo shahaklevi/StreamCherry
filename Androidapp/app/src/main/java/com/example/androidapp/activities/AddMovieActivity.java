@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.androidapp.MovieResponse;
 import com.example.androidapp.R;
 import com.example.androidapp.entities.Movie;
 import com.example.androidapp.viewmodels.MovieViewModel;
@@ -20,6 +21,7 @@ import com.example.androidapp.viewmodels.CategoryViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -33,7 +35,7 @@ public class AddMovieActivity extends AppCompatActivity {
     private EditText editTextTitle, editTextDescription, editTextReleaseYear,
             editTextDuration, editTextCast, editTextDirector;
     private GridLayout gridLayoutCategories;
-    private Button btnSaveMovie;
+    private Button btnSaveMovie,btnSelectImage,btnSelectVideoFile;
 
     // רשימת מזהי הקטגוריות שנבחרו (מעדכנים לפי בחירת המשתמש)
     private List<String> selectedCategoryIds = new ArrayList<>();
@@ -99,7 +101,7 @@ public class AddMovieActivity extends AppCompatActivity {
         String description = editTextDescription.getText().toString().trim();
         String releaseYearStr = editTextReleaseYear.getText().toString().trim();
         String durationStr = editTextDuration.getText().toString().trim();
-        String castStr = editTextCast.getText().toString().trim();
+        List<String> castStr = Collections.singletonList(editTextCast.getText().toString().trim());
 
         if(title.isEmpty() || releaseYearStr.isEmpty() || durationStr.isEmpty()){
             Toast.makeText(this, "Please fill required fields", Toast.LENGTH_SHORT).show();
@@ -121,9 +123,9 @@ public class AddMovieActivity extends AppCompatActivity {
         movie.setCategories(selectedCategoryIds);
 
 
-        movieViewModel.addMovie(movie, new Callback<ResponseBody>() {
+        movieViewModel.addMovie(movie, new Callback<MovieResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if(response.isSuccessful()){
                     runOnUiThread(() -> {
                         Toast.makeText(AddMovieActivity.this, "Movie added successfully", Toast.LENGTH_SHORT).show();
@@ -142,9 +144,10 @@ public class AddMovieActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
                 runOnUiThread(() -> {
                     Toast.makeText(AddMovieActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.e("AddMovieActivity", "Error: " + t.getMessage());
                 });
             }
         });

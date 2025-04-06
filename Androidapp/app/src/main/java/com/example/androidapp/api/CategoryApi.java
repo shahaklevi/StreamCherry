@@ -6,6 +6,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.androidapp.CategoryResponse;
 import com.example.androidapp.MyApplication;
 import com.example.androidapp.R;
 import com.example.androidapp.TokenInterceptor;
@@ -96,13 +97,13 @@ public class CategoryApi {
         });
     }
 
-    public void addCategory(Category category, Callback<Category> callback) {
-        Call<Category> call = apiService.addCategory(category);
-        call.enqueue(new Callback<Category>() {
+    public void addCategory(Category category, Callback<CategoryResponse> callback) {
+        Call<CategoryResponse> call = apiService.addCategory(category);
+        call.enqueue(new Callback<CategoryResponse>() {
             @Override
-            public void onResponse(@NonNull Call<Category> call, @NonNull Response<Category> response) {
+            public void onResponse(@NonNull Call<CategoryResponse> call, @NonNull Response<CategoryResponse> response) {
                 if (response.isSuccessful()) {
-                    Category addedCategory = response.body();
+                    Category addedCategory = response.body().getCategory();
                     if (addedCategory != null) {
                         callback.onResponse(call, response);
                     } else {
@@ -114,7 +115,7 @@ public class CategoryApi {
             }
 
             @Override
-            public void onFailure(@NonNull Call<Category> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<CategoryResponse> call, @NonNull Throwable t) {
                 Log.e(TAG, "Request failed: " + t.getMessage());
             }
         });

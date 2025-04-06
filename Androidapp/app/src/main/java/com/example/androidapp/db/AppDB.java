@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.androidapp.entities.Category;
 
-@Database(entities ={Category.class}, version = 5, exportSchema = false)
+@Database(entities ={Category.class}, version = 6, exportSchema = false)
 public abstract class AppDB extends RoomDatabase {
     private static AppDB instance;
 

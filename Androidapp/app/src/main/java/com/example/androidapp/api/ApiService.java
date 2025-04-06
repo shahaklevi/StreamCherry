@@ -1,5 +1,6 @@
 package com.example.androidapp.api;
 
+import com.example.androidapp.CategoryResponse;
 import com.example.androidapp.LoginResponse;
 import com.example.androidapp.entities.Category;
 import com.example.androidapp.entities.Movie;
@@ -46,7 +47,7 @@ public interface ApiService {
     Call<List<Category>> getCategories(@Header("userid") String userId);
 
     @POST("categories")
-    Call<Category> addCategory(@Body Category category);
+    Call<CategoryResponse> addCategory(@Body Category category);
 
     @DELETE("categories/{id}")
     Call<Void> deleteCategory(@Path("id") String serverId);

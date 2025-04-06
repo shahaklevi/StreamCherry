@@ -12,11 +12,13 @@ import java.util.List;
 @Entity
 public class Category {
 
-    @PrimaryKey
-    @NonNull
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private String name;
     @SerializedName("_id")
     private String ServerId;
-    private String name;
+
     @Ignore
     private List<String> movies;
     private boolean promoted;
@@ -79,5 +81,21 @@ public class Category {
 
     public void setSelected(boolean selected) {
         isSelected = selected;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    @Override
+    public String toString() {
+        return "Category{" +
+                "serverId=" + ServerId +
+                ", name='" + name + '\'' +
+                // include other relevant fields
+                '}';
     }
 }

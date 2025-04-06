@@ -57,16 +57,6 @@
                     app:srcCompat="@drawable/ic_admin" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- שדה קלט: שם הסרט -->
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"
-                app:queryHint="Search Movie to Edit"
-                app:defaultQueryHint="Search Movie to Edit"
-                app:searchHintIcon="@null"/>
             <!-- תצוגת רשימה של סרטים -->
             <ListView
                 android:id="@+id/moviesListView"
@@ -148,7 +138,8 @@
                 android:hint="Cast"
                 android:inputType="text"
                 android:minHeight="48dp"
-                android:textColorHint="@color/netflix_light_text" />
+                android:textColorHint="@color/netflix_light_text"
+                android:textColor="@color/netflix_light_text"/>
 
             <!-- שדה קלט: במאי -->
             <EditText
@@ -158,7 +149,8 @@
                 android:hint="Director"
                 android:inputType="text"
                 android:minHeight="48dp"
-                android:textColorHint="@color/netflix_light_text" />
+                android:textColorHint="@color/netflix_light_text"
+                android:textColor="@color/netflix_light_text"/>
 
             <!-- תווית לקטגוריות -->
             <TextView
@@ -178,6 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/netflix_light_text"
+                android:backgroundTint="@color/netflix_light_text"
                 android:orientation="vertical">
                 <!-- כאן ניתן להוסיף דינמית CheckBox עבור כל קטגוריה -->
             </LinearLayout>

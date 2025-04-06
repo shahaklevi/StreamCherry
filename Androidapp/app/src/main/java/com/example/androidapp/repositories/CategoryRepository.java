@@ -6,6 +6,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.androidapp.CategoryResponse;
 import com.example.androidapp.api.CategoryApi;
 import com.example.androidapp.db.AppDB;
 import com.example.androidapp.db.CategoryDao;
@@ -24,6 +26,7 @@ import retrofit2.Response;
 
 public class CategoryRepository {
 
+    static final String TAG = "CategoryRepository";
     private CategoryDao categoryDao;
     private CategoryListData categoryListData;
     private CategoryApi categoryApi;
@@ -121,7 +124,7 @@ public class CategoryRepository {
                         } else {
                             // 13. Existing category - update if needed
                             serverCat.setServerId(localCat.getServerId()); // Keep same database ID
-                            categoryDao.update(serverCat);
+                            categoryDao.updateCategoryByServerId(serverCat.getServerId(), serverCat.getName(), serverCat.isPromoted());
                         }
                     }
 
@@ -180,15 +183,20 @@ public class CategoryRepository {
         });
     }
 
-    public void addCategoryToServer(Category category, Callback<Category> callback) {
-        // קריאה לשרת להוספת קטגוריה
-        categoryApi.addCategory(category, new Callback<Category>() {
+    public void addCategoryToServer(Category category, Callback<CategoryResponse> callback) {
+        // קריאה לשרת להוספת קטגוריה באמצעות העוטף CategoryResponse
+        categoryApi.addCategory(category, new Callback<CategoryResponse>() {
             @Override
-            public void onResponse(Call<Category> call, Response<Category> response) {
+            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.isSuccessful() && response.body() != null) {
-
+                    Log.d(TAG, response.body().toString());
                     // עדכון מסד הנתונים המקומי עם הקטגוריה שהתקבלה מהשרת
                     new Thread(() -> {
+                        // חילוץ האובייקט Category מתוך העוטף
+                        Category returnedCategory = response.body().getCategory();
+                        if (returnedCategory != null) {
+                            category.setServerId(returnedCategory.getServerId());
+                        }
                         categoryDao.insert(category);
                         List<Category> updatedCategories = categoryDao.getAllCategories();
                         categoryListData.postValue(updatedCategories);
@@ -196,32 +204,62 @@ public class CategoryRepository {
                 }
                 callback.onResponse(call, response);
             }
+
             @Override
-            public void onFailure(Call<Category> call, Throwable t) {
+            public void onFailure(Call<CategoryResponse> call, Throwable t) {
                 callback.onFailure(call, t);
             }
         });
     }
+
 
 
     public void updateCategoryOnServer(Category category, Callback<Category> callback) {
+        // First get the current category from DB to ensure we have the correct ID
+        Executors.newSingleThreadExecutor().execute(() -> {
+            Category existingCategory = categoryDao.getCategoryByServerId(category.getServerId());
 
-        categoryApi.updateCategory(category,new Callback<Category>() {
-            @Override
-            public void onResponse(@NonNull Call<Category> call, @NonNull Response<Category> response) {
-                callback.onResponse(call, response);
-            }
+            if (existingCategory != null) {
+                // Delete the old version first
+                categoryDao.delete(existingCategory);
 
-            @Override
-            public void onFailure(@NonNull Call<Category> call, @NonNull Throwable t) {
-                Log.e("CategoryRepo", "Error updating category on server", t);
-                callback.onFailure(call, t);
+                // Now make the API call to update on server
+                categoryApi.updateCategory(category, new Callback<Category>() {
+                    @Override
+                    public void onResponse(@NonNull Call<Category> call, @NonNull Response<Category> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            // Insert the updated category
+                            Category updatedCategory = response.body();
+                            Executors.newSingleThreadExecutor().execute(() -> {
+                                categoryDao.insert(updatedCategory);
+                                List<Category> updatedCategories = categoryDao.getAllCategories();
+                                categoryListData.postValue(updatedCategories);
+                            });
+                        }
+                        callback.onResponse(call, response);
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<Category> call, @NonNull Throwable t) {
+                        // If update fails, restore the original category
+                        Executors.newSingleThreadExecutor().execute(() -> {
+                            categoryDao.insert(existingCategory);
+                            categoryListData.postValue(categoryDao.getAllCategories());
+                        });
+                        callback.onFailure(call, t);
+                    }
+                });
+            } else {
+                // Handle case where category doesn't exist
+                callback.onFailure(null, new Exception("Category not found in local database"));
             }
         });
     }
 
 
-
+    public String getCategoryNameByServerId(String serverId) {
+        return categoryDao.getCategoryNameByServerId(serverId);
+    }
     public LiveData<Category> getCategoryByName(String name) {
         return categoryDao.getCategoryByName(name);
     }
