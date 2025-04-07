@@ -94,27 +94,27 @@
 
 
         <Button
-            android:id="@+id/buttonSelectMovieFile"
+            android:id="@+id/btnSelectVideoFile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select Movie File (MP4)"
+            android:text="@string/select_movie_file_mp4"
             android:backgroundTint="@color/netflix_red"
             android:textColor="@color/netflix_light_text"
             />
 
 
         <Button
-            android:id="@+id/buttonSelectMovieImage"
+            android:id="@+id/btnSelectImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select Movie Image (JPG, PNG, JPEG)"
+            android:text="@string/select_movie_image_jpg_png_jpeg"
             android:backgroundTint="@color/netflix_red"
             android:textColor="@color/netflix_light_text" />
         <TextView
             android:id="@+id/textMovieFileSelected"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No movie file selected"
+            android:text="@string/no_movie_file_selected"
             android:textColor="@color/netflix_light_text"
             android:textSize="14sp"
             android:textStyle="italic"
@@ -125,7 +125,7 @@
             android:id="@+id/textMovieImageSelected"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="No image selected"
+            android:text="@string/no_image_selected"
             android:textColor="@color/netflix_light_text"
             android:textSize="14sp"
             android:textStyle="italic"

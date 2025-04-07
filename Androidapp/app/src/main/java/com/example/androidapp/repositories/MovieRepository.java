@@ -119,64 +119,14 @@ public class MovieRepository {
         });
     }
 
-    public void addMovie(Movie movie, Callback<MovieResponse> callback) {
+    // In MovieRepository
+    public void addMovie(RequestBody title, RequestBody description, RequestBody releaseYear,
+                         RequestBody duration, RequestBody cast,
+                         List<MultipartBody.Part> categories, MultipartBody.Part movieFile,
+                         MultipartBody.Part movieImage, Callback<MovieResponse> callback) {
 
-        RequestBody titleBody = RequestBody.create(movie.getTitle(), MediaType.parse("text/plain"));
-        RequestBody descriptionBody = RequestBody.create(movie.getDescription(), MediaType.parse("text/plain"));
-        RequestBody releaseYearBody = RequestBody.create(String.valueOf(movie.getReleaseYear()), MediaType.parse("text/plain"));
-        RequestBody durationBody = RequestBody.create(String.valueOf(movie.getDuration()), MediaType.parse("text/plain"));
-        RequestBody castBody = RequestBody.create(String.join(",", movie.getCast()), MediaType.parse("text/plain"));
-        List<MultipartBody.Part> categoryParts = new ArrayList<>();
-
-        for (String catId : movie.getCategories()) {
-            RequestBody catBody = RequestBody.create(catId, MediaType.parse("text/plain"));
-            MultipartBody.Part part = MultipartBody.Part.createFormData("categories[]", null, catBody);
-            categoryParts.add(part);
-        }
-
-        MultipartBody.Part movieFilePart = null;
-        if (movie.getMovieFile() != null) {
-            File movieFile = new File(movie.getMovieFile());
-            RequestBody fileBody = RequestBody.create(movieFile, MediaType.parse("video/mp4"));
-            movieFilePart = MultipartBody.Part.createFormData("movieFile", movieFile.getName(), fileBody);
-        }
-        MultipartBody.Part movieImagePart = null;
-        if (movie.getMovieImage() != null) {
-            File imageFile = new File(movie.getMovieImage());
-            RequestBody imageBody = RequestBody.create(imageFile, MediaType.parse("image/*"));
-            movieImagePart = MultipartBody.Part.createFormData("movieImage", imageFile.getName(), imageBody);
-        }
-
-        Call<MovieResponse> call = apiService.addMovie(
-                titleBody,
-                descriptionBody,
-                releaseYearBody,
-                durationBody,
-                castBody,
-                categoryParts,
-                movieFilePart,
-                movieImagePart
-        );
-
-
-        call.enqueue(new Callback<MovieResponse>() {
-            @Override
-            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
-                if (response.isSuccessful()) {
-                    Movie returnedMovie = response.body().getMovie();
-                    movie.set_id(returnedMovie.get_id());
-                    AsyncTask.execute(() -> {
-                        movieDao.insert(movie);
-                    });
-                }
-                callback.onResponse(call, response);
-            }
-
-            @Override
-            public void onFailure(Call<MovieResponse> call, Throwable t) {
-                callback.onFailure(call, t);
-            }
-        });
+        apiService.addMovie(title, description, releaseYear, duration, cast,
+                 categories, movieFile, movieImage).enqueue(callback);
     }
 
     public LiveData<List<Movie>> searchMovies(String query) {

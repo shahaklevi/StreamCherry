@@ -16,4 +16,5 @@
     <color name="semiTransparentRed">#80FF0000</color>
     <color name="semiTransparentWhite">#80FFFFFF</color>
     <color name="semiTransparentBlack">#80000000</color>
+    <color name="green_success">#4CAF50</color>
 </resources>

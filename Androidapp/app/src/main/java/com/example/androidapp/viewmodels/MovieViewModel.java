@@ -55,8 +55,13 @@ public class MovieViewModel extends ViewModel {
         movieRepository.fetchMoviesFromApi();
     }
 
-    public void addMovie(Movie movie, Callback <MovieResponse> callback) {
-        movieRepository.addMovie(movie, callback);
+    public void addMovie(RequestBody title, RequestBody description, RequestBody releaseYear,
+                         RequestBody duration, RequestBody cast,
+                         List<MultipartBody.Part> categories, MultipartBody.Part movieFile,
+                         MultipartBody.Part movieImage, Callback<MovieResponse> callback) {
+
+        movieRepository.addMovie(title, description, releaseYear, duration, cast,
+                 categories, movieFile, movieImage, callback);
     }
 
 
