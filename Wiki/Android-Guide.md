@@ -66,7 +66,7 @@ Users can watch full movies with a built-in video player interface.
 
 When the logged-in user is an admin, they gain access to this special screen, which enables various management actions.
 
-![Admin Zone](../AndroidImages/8adminzone.png)
+![Admin Zone](../AndroidImages/8adminzone.png) ![Image2](../AndroidImages/adminactions.png)
 
 ## 🎬 Movies Management
 
@@ -75,7 +75,7 @@ When the logged-in user is an admin, they gain access to this special screen, wh
 - **Edit Movies:** Admins can modify existing movie details.
 
 
-![Image1](../AndroidImages/addmovie2.0.png) ![Image2](../AndroidImages/deletemovie2.0.png) ![Image3](../AndroidImages/14adminzoneEditMovie.png) |
+![Image1](../AndroidImages/addmovie2.0.png) ![Image2](../AndroidImages/deletemovie2.0.png) ![Image3](../AndroidImages/editmovie2.0.png) |
 
 
 ## 🗂️ Category Management 
@@ -86,7 +86,7 @@ When the logged-in user is an admin, they gain access to this special screen, wh
 
 
 
-![Image1](../AndroidImages/10CategoryManagmentAddCategory.png) ![Image2](../AndroidImages/categoriesmanage2.0.png) ![Image3](../AndroidImages/editcategory.png)
+![Image1](../AndroidImages/addCategory2.0.png) ![Image2](../AndroidImages/categoriesmanage2.0.png) ![Image3](../AndroidImages/editcategory.png)
 
 
 
