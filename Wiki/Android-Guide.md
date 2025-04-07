@@ -42,7 +42,7 @@ After logging in, users are taken to the main movie screen, where they can explo
 
 Users can filter movies by categories using the search bar at the top.
 
-![Search](../AndroidImages/5search.png)
+![Search](../AndroidImages/filterbycategory.png) ![Image2](../AndroidImages/filterdropdown.png) ![Image3](../AndroidImages/searchformovies.png)
 
 ---
 
