@@ -57,14 +57,18 @@
                     app:srcCompat="@drawable/ic_admin" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- שדה קלט: שם הסרט -->
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
+            <!-- תצוגת רשימה של סרטים -->
+            <ListView
+                android:id="@+id/moviesListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:iconifiedByDefault="false"
-                app:queryHint="Search Movie to Edit"
-                app:defaultQueryHint="Search Movie to Edit" />
+                android:layout_marginTop="16dp"
+                android:divider="@color/netflix_red"
+                android:dividerHeight="1dp"
+                android:visibility="gone"
+                android:animationCache="true"
+                android:scrollingCache="true"
+                android:smoothScrollbar="true"/>
 
             <EditText
                 android:id="@+id/editTextTitle"
@@ -96,7 +100,8 @@
                 android:hint="Release Year"
                 android:inputType="number"
                 android:minHeight="48dp"
-                android:textColorHint="@color/netflix_light_text" />
+                android:textColorHint="@color/netflix_light_text"
+                android:textColor="@color/netflix_light_text"/>
 
             <!-- שדה קלט: משך הסרט בדקות -->
             <EditText
@@ -106,7 +111,8 @@
                 android:hint="Duration (minutes)"
                 android:inputType="number"
                 android:minHeight="48dp"
-                android:textColorHint="@color/netflix_light_text" />
+                android:textColorHint="@color/netflix_light_text"
+                android:textColor="@color/netflix_light_text"/>
 
             <!-- בחירת קובץ סרט -->
             <Button
@@ -132,7 +138,8 @@
                 android:hint="Cast"
                 android:inputType="text"
                 android:minHeight="48dp"
-                android:textColorHint="@color/netflix_light_text" />
+                android:textColorHint="@color/netflix_light_text"
+                android:textColor="@color/netflix_light_text"/>
 
             <!-- שדה קלט: במאי -->
             <EditText
@@ -142,7 +149,8 @@
                 android:hint="Director"
                 android:inputType="text"
                 android:minHeight="48dp"
-                android:textColorHint="@color/netflix_light_text" />
+                android:textColorHint="@color/netflix_light_text"
+                android:textColor="@color/netflix_light_text"/>
 
             <!-- תווית לקטגוריות -->
             <TextView
@@ -161,6 +169,8 @@
                 style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/netflix_light_text"
+                android:backgroundTint="@color/netflix_light_text"
                 android:orientation="vertical">
                 <!-- כאן ניתן להוסיף דינמית CheckBox עבור כל קטגוריה -->
             </LinearLayout>

@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.androidapp.CategoryResponse;
 import com.example.androidapp.R;
 import com.example.androidapp.entities.Category;
 import com.example.androidapp.viewmodels.CategoryViewModel;
@@ -47,9 +48,9 @@ public class AddCategoryActivity extends AppCompatActivity {
 
             Category category = new Category(categoryName, isPromoted);
 
-            categoryViewModel.addCategory(category, new Callback<Category>() {
+            categoryViewModel.addCategory(category, new Callback<CategoryResponse>() {
                 @Override
-                public void onResponse(Call<Category> call, Response<Category> response) {
+                public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                     if(response.isSuccessful() && response.body() != null){
                         runOnUiThread(() -> {
                             Toast.makeText(AddCategoryActivity.this, "Category added successfully", Toast.LENGTH_SHORT).show();
@@ -63,7 +64,7 @@ public class AddCategoryActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<Category> call, Throwable t) {
+                public void onFailure(Call<CategoryResponse> call, Throwable t) {
                     runOnUiThread(() -> {
                         Toast.makeText(AddCategoryActivity.this, "Error adding category: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     });

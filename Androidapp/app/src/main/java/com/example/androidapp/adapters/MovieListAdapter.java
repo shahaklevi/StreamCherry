@@ -11,19 +11,29 @@ import android.widget.TextView;
 import com.example.androidapp.R;
 import com.example.androidapp.entities.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MovieListAdapter extends BaseAdapter {
-    private List<Movie> movies;
-    private final LayoutInflater inflater;
 
-    public MovieListAdapter(Context context, List<Movie> movies) {
+    public interface OnMovieActionListener {
+        void onEditClicked(Movie movie);
+        void onDeleteClicked(Movie movie);
+    }
+
+    private List<Movie> movies = new ArrayList<>();
+    private final LayoutInflater inflater;
+    private final OnMovieActionListener actionListener;
+    private final boolean showEditButton;
+
+    public MovieListAdapter(Context context, OnMovieActionListener actionListener, boolean showEditButton) {
         this.inflater = LayoutInflater.from(context);
-        this.movies = movies;
+        this.actionListener = actionListener;
+        this.showEditButton = showEditButton;
     }
 
     public void updateMovies(List<Movie> movies) {
-        this.movies = movies;
+        this.movies = movies != null ? movies : new ArrayList<>();
         notifyDataSetChanged();
     }
 
@@ -39,28 +49,51 @@ public class MovieListAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return movies.get(position).get_id().hashCode();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        if (view == null) {
-            view = inflater.inflate(R.layout.item_movie_delete, parent, false);
+        ViewHolder holder;
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.item_movie_delete, parent, false);
+            holder = new ViewHolder();
+            holder.tvTitle = convertView.findViewById(R.id.tvMovieTitle);
+            holder.btnEdit = convertView.findViewById(R.id.btnEdit);
+            holder.btnDelete = convertView.findViewById(R.id.btnDelete);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
         Movie movie = getItem(position);
-        TextView tvTitle = view.findViewById(R.id.tvMovieTitle);
-        Button btnDelete = view.findViewById(R.id.btnDelete);
+        holder.tvTitle.setText(movie.getTitle());
 
-        tvTitle.setText(movie.getTitle());
+        // Set up edit button
+        if (showEditButton) {
+            holder.btnEdit.setVisibility(View.VISIBLE);
+            holder.btnEdit.setOnClickListener(v -> {
+                if (actionListener != null) {
+                    actionListener.onEditClicked(movie);
+                }
+            });
+        } else {
+            holder.btnEdit.setVisibility(View.GONE);
+        }
 
-        // Remove the movie from the list on button click and update the adapter.
-        btnDelete.setOnClickListener(v -> {
-            movies.remove(movie);
-            notifyDataSetChanged();
+        // Set up delete button
+        holder.btnDelete.setOnClickListener(v -> {
+            if (actionListener != null) {
+                actionListener.onDeleteClicked(movie);
+            }
         });
 
-        return view;
+        return convertView;
+    }
+
+    private static class ViewHolder {
+        TextView tvTitle;
+        Button btnEdit;
+        Button btnDelete;
     }
 }

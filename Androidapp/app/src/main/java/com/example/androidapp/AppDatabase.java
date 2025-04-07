@@ -10,7 +10,7 @@ import androidx.room.TypeConverters;
 import com.example.androidapp.db.MovieDao;
 import com.example.androidapp.entities.Movie;
 
-@Database(entities = {Movie.class}, version = 1)
+@Database(entities = {Movie.class}, version = 5)
 @TypeConverters(Converters.class)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract MovieDao movieDao();

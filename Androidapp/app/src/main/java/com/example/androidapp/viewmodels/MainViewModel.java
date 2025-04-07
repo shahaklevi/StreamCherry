@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,15 +40,15 @@ public class MainViewModel extends AndroidViewModel {
         this.application = application;
         repository = new MovieRepository(application);
 
-        if (USE_MOCK_DATA) {
-            mockMovies.setValue(generateMockMovies());
-        } else {
+//        if (USE_MOCK_DATA) {
+//            mockMovies.setValue(generateMockMovies());
+//        } else {
             fetchCategoriesThenMovies();
-        }
+//        }
     }
 
     public LiveData<List<Movie>> getAllMovies() {
-        return USE_MOCK_DATA ? mockMovies : allMovies;
+        return USE_MOCK_DATA ? mockMovies : repository.getAllMovies();
     }
 
     private void fetchCategoriesThenMovies() {
@@ -108,29 +109,36 @@ public class MainViewModel extends AndroidViewModel {
 
     }
 
-    private List<Movie> generateMockMovies() {
-        List<Movie> movies = new ArrayList<>();
+//    private List<Movie> generateMockMovies() {
+//        List<Movie> movies = new ArrayList<>();
+//
+//        movies.add(createMockMovie("Mock Movie 1", "https://picsum.photos/300/200?random=1", Arrays.asList("Action", "Drama")));
+//        movies.add(createMockMovie("Mock Movie 2", "https://picsum.photos/300/200?random=2", Arrays.asList("Comedy")));
+//        movies.add(createMockMovie("Mock Movie 3", "https://picsum.photos/300/200?random=3", Arrays.asList("Drama")));
+//        movies.add(createMockMovie("Mock Movie 4", "https://picsum.photos/300/200?random=4", Arrays.asList("Sci-Fi", "Thriller")));
+//
+//        return movies;
+//    }
 
-        movies.add(createMockMovie("Mock Movie 1", "https://picsum.photos/300/200?random=1", Arrays.asList("Action", "Drama")));
-        movies.add(createMockMovie("Mock Movie 2", "https://picsum.photos/300/200?random=2", Arrays.asList("Comedy")));
-        movies.add(createMockMovie("Mock Movie 3", "https://picsum.photos/300/200?random=3", Arrays.asList("Drama")));
-        movies.add(createMockMovie("Mock Movie 4", "https://picsum.photos/300/200?random=4", Arrays.asList("Sci-Fi", "Thriller")));
+//    private Movie createMockMovie(String title, String imageUrl, List<String> categories) {
+//        Movie movie = new Movie();
+//        movie.set_id(UUID.randomUUID().toString());
+//        movie.setTitle(title);
+//        movie.setDescription("This is a mock description for " + title);
+//        movie.setReleaseYear(2024);
+//        movie.setDuration(90);
+//        movie.setRating(8.5);
+//        movie.setCast(["Test Actor , Mock Star");
+//        movie.setMovieFile("https://example.com/mockvideo.mp4");
+//        movie.setMovieImage(imageUrl);
+//        movie.setCategories(categories);
+//        return movie;
+//    }
 
-        return movies;
+    public void deleteMovie(Movie movie,Callback<ResponseBody> callback) {
+        repository.deleteMovie(movie,callback);
     }
-
-    private Movie createMockMovie(String title, String imageUrl, List<String> categories) {
-        Movie movie = new Movie();
-        movie.set_id(UUID.randomUUID().toString());
-        movie.setTitle(title);
-        movie.setDescription("This is a mock description for " + title);
-        movie.setReleaseYear(2024);
-        movie.setDuration(90);
-        movie.setRating(8.5);
-        movie.setCast(Arrays.asList("Test Actor", "Mock Star"));
-        movie.setMovieFile("https://example.com/mockvideo.mp4");
-        movie.setMovieImage(imageUrl);
-        movie.setCategories(categories);
-        return movie;
+    public void updateMovie(Movie movie, Callback<ResponseBody> callback) {
+        repository.updateMovie(movie,callback);
     }
 }

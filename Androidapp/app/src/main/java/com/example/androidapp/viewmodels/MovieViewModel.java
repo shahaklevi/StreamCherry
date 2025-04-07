@@ -5,12 +5,16 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import com.example.androidapp.MovieResponse;
 import com.example.androidapp.MyApplication;
 import com.example.androidapp.entities.Movie;
 import com.example.androidapp.repositories.MovieRepository;
 
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Callback;
 
@@ -51,11 +55,9 @@ public class MovieViewModel extends ViewModel {
         movieRepository.fetchMoviesFromApi();
     }
 
-    public void addMovie(Movie movie, Callback <ResponseBody> callback) {
+    public void addMovie(Movie movie, Callback <MovieResponse> callback) {
         movieRepository.addMovie(movie, callback);
     }
 
-    public void deleteMovie(Movie movie) {
-        movieRepository.deleteMovie(movie);
-    }
+
 }

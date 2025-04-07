@@ -10,7 +10,9 @@ import androidx.lifecycle.LiveData;
 
 import com.example.androidapp.ApiClient;
 import com.example.androidapp.AppDatabase;
+import com.example.androidapp.MovieResponse;
 import com.example.androidapp.MyApplication;
+import com.example.androidapp.api.MovieApi;
 import com.example.androidapp.entities.Category;
 import com.example.androidapp.MovieCategoryResponse;
 import com.example.androidapp.db.MovieDao;
@@ -18,6 +20,7 @@ import com.example.androidapp.api.MovieApiService;
 import com.example.androidapp.entities.Movie;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,16 +36,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MovieRepository {
+
+    static final String TAG = "MovieRepository";
     private final MovieDao movieDao;
     private final MovieApiService apiService;
-    private final LiveData<List<Movie>> allMovies;
+    private  LiveData<List<Movie>> allMovies;
     private final Application application;
+
+    private final MovieApi movieApi;
 
     public MovieRepository(Application application) {
         this.application = application;
         AppDatabase db = AppDatabase.getInstance(application);
         movieDao = db.movieDao();
-        allMovies = movieDao.getAllMovies();
+
 
         // Get JWT token from SharedPreferences
         SharedPreferences prefs = application.getSharedPreferences("auth", Context.MODE_PRIVATE);
@@ -50,13 +57,17 @@ public class MovieRepository {
         Log.d("MovieRepository", "Token: " + token);
         //saved token after login , if not valid token then use default token
 
-
+        movieApi = new MovieApi();
         // Initialize authenticated API service
         apiService = ApiClient.getMovieService(token);
     }
 
     public LiveData<List<Movie>> getAllMovies() {
-        return allMovies;
+        // Get movies from the local DAO immediately.
+        LiveData<List<Movie>> localMovies = movieDao.getAllMovies();
+        // Trigger a background fetch from the API.
+        fetchMoviesFromApi();
+        return localMovies;
     }
 
     public void fetchMoviesFromApi() {
@@ -106,7 +117,7 @@ public class MovieRepository {
         AsyncTask.execute(() -> movieDao.insertMovies(movies));
     }
 
-    public void addMovie(Movie movie, Callback<ResponseBody> callback) {
+    public void addMovie(Movie movie, Callback<MovieResponse> callback) {
 
         RequestBody titleBody = RequestBody.create(movie.getTitle(), MediaType.parse("text/plain"));
         RequestBody descriptionBody = RequestBody.create(movie.getDescription(), MediaType.parse("text/plain"));
@@ -134,7 +145,7 @@ public class MovieRepository {
             movieImagePart = MultipartBody.Part.createFormData("movieImage", imageFile.getName(), imageBody);
         }
 
-        Call<ResponseBody> call = apiService.addMovie(
+        Call<MovieResponse> call = apiService.addMovie(
                 titleBody,
                 descriptionBody,
                 releaseYearBody,
@@ -146,23 +157,21 @@ public class MovieRepository {
         );
 
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<MovieResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if (response.isSuccessful()) {
-                    // לפני הכנסת הסרט ל־Room, אתחל את ה־_id אם הוא null
-                    if (movie.get_id() == null || movie.get_id().isEmpty()) {
-                        movie.set_id(UUID.randomUUID().toString());
-                    }
+                    Movie returnedMovie = response.body().getMovie();
+                        movie.set_id(returnedMovie.get_id());
                     AsyncTask.execute(() -> {
-                        movieDao.insertMovies(Collections.singletonList(movie));
+                        movieDao.insert(movie);
                     });
                 }
                 callback.onResponse(call, response);
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<MovieResponse> call, Throwable t) {
                 callback.onFailure(call, t);
             }
         });
@@ -172,8 +181,60 @@ public class MovieRepository {
         return movieDao.searchMovies("%" + query + "%");
     }
 
-    public void deleteMovie(Movie movie) {
-        AsyncTask.execute(() -> movieDao.deleteMovie(movie.get_id()));
+    public void deleteMovie(Movie movie, Callback<ResponseBody> callback) {
+
+        AsyncTask.execute(() -> {
+            movieDao.deleteMovie(movie.get_id());
+        });
+
+        // Create the API call
+        Call<ResponseBody> call = apiService.deleteMovie(
+                movie.get_id() // The movie ID to delete
+        );
+
+        // Execute the call asynchronously
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+
+                }
+                // Forward the response to the original callback
+                callback.onResponse(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Forward the failure to the original callback
+                callback.onFailure(call, t);
+            }
+        });
     }
+
+    public void updateMovie(Movie movie, Callback<ResponseBody> callback) {
+        Log.d(TAG, "Updating movie: " + movie.get_id());
+        apiService.updateMovie(movie.get_id(), movie).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    // Update movie in the local Room database
+                    new Thread(() -> {
+                        movieDao.updateMovie(movie);
+                    }).start();
+                    callback.onResponse(call, response);
+                } else {
+                    callback.onResponse(call, response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // Forward the failure to the original callback
+                callback.onFailure(call, t);
+            }
+        });
+    }
+
 }
+
 

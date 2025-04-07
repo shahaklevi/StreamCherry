@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidapp.viewmodels.CategoryViewModel;
 import com.example.androidapp.viewmodels.MainViewModel;
 import com.example.androidapp.entities.Movie;
 import com.example.androidapp.R;
@@ -40,6 +42,8 @@ public class MoviesActivity extends AppCompatActivity {
     private SectionAdapter sectionAdapter;
     private MainViewModel viewModel;
 
+    private CategoryViewModel categoryViewModel;
+
     private List<Movie> allMovies = new ArrayList<>();
     private List<Section> originalSections = new ArrayList<>();
     private Set<String> allCategories = new HashSet<>();
@@ -57,11 +61,14 @@ public class MoviesActivity extends AppCompatActivity {
         sectionRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        categoryViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
 
         viewModel.getAllMovies().observe(this, movies -> {
             this.allMovies = movies;
-            originalSections = groupMoviesByCategory(movies);
-            updateRecyclerWithSections(originalSections);
+            groupMoviesByCategory(movies, sections -> {
+                originalSections = sections;
+                updateRecyclerWithSections(originalSections);
+            });
             extractCategories(movies);
         });
 
@@ -185,22 +192,48 @@ public class MoviesActivity extends AppCompatActivity {
         updateRecyclerWithSections(sections);
     }
 
-    private List<Section> groupMoviesByCategory(List<Movie> movies) {
+    private void groupMoviesByCategory(List<Movie> movies, GroupCategoriesCallback callback) {
         Map<String, List<Movie>> categoryMap = new HashMap<>();
 
+        // First group movies by category ID
         for (Movie movie : movies) {
             if (movie.getCategories() != null) {
-                for (String category : movie.getCategories()) {
-                    categoryMap.computeIfAbsent(category, k -> new ArrayList<>()).add(movie);
+                for (String categoryId : movie.getCategories()) {
+                    categoryMap.computeIfAbsent(categoryId, k -> new ArrayList<>()).add(movie);
                 }
             }
         }
 
-        List<Section> sections = new ArrayList<>();
-        for (Map.Entry<String, List<Movie>> entry : categoryMap.entrySet()) {
-            sections.add(new Section(entry.getKey(), entry.getValue()));
+        // Track pending name lookups
+        final int[] pendingLookups = {categoryMap.size()};
+
+        if (pendingLookups[0] == 0) {
+            callback.onCategoriesGrouped(new ArrayList<>());
+            return;
         }
 
-        return sections;
+        List<Section> sections = new ArrayList<>();
+
+        // Get category names for each ID
+        for (Map.Entry<String, List<Movie>> entry : categoryMap.entrySet()) {
+            String categoryId = entry.getKey();
+            List<Movie> categoryMovies = entry.getValue();
+
+            // Get the category name instead of using the ID
+            categoryViewModel.getCategoryNameByServerId(categoryId, categoryName -> {
+                sections.add(new Section(categoryName, categoryMovies));
+
+                // If all categories processed, return result
+                pendingLookups[0]--;
+                if (pendingLookups[0] == 0) {
+                    callback.onCategoriesGrouped(sections);
+                }
+            });
+        }
+    }
+
+    // Callback interface
+    interface GroupCategoriesCallback {
+        void onCategoriesGrouped(List<Section> sections);
     }
 }

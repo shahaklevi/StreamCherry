@@ -110,6 +110,28 @@
             android:text="Select Movie Image (JPG, PNG, JPEG)"
             android:backgroundTint="@color/netflix_red"
             android:textColor="@color/netflix_light_text" />
+        <TextView
+            android:id="@+id/textMovieFileSelected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No movie file selected"
+            android:textColor="@color/netflix_light_text"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/textMovieImageSelected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No image selected"
+            android:textColor="@color/netflix_light_text"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp" />
+
 
 
         <EditText
