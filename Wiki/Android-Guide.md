@@ -34,7 +34,7 @@ New users can register by entering their email, username, nickname, password (tw
 
 After logging in, users are taken to the main movie screen, where they can explore categories visually.
 
-![Main Page](../AndroidImages/4mainpage.png)
+![Main Page](../AndroidImages/moviesscreen.png)
 
 ---
 
