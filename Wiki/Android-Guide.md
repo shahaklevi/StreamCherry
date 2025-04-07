@@ -89,7 +89,10 @@ When the logged-in user is an admin, they gain access to this special screen, wh
 ![Image1](../AndroidImages/addCategory2.0.png) ![Image2](../AndroidImages/categoriesmanage2.0.png) ![Image3](../AndroidImages/editcategory.png)
 
 # Overall App Performance 🚀✨
-[View the Video](../AndroidImages/freecompress-android_overall.mp4)
+
+Here is a video demonstration of the project:
+
+[Watch the video](https://github.com/hodayakashh/Neetflix/blob/main/AndroidImages/freecompress-android_overall.mp4)
 
 
 
