@@ -88,5 +88,8 @@ When the logged-in user is an admin, they gain access to this special screen, wh
 
 ![Image1](../AndroidImages/addCategory2.0.png) ![Image2](../AndroidImages/categoriesmanage2.0.png) ![Image3](../AndroidImages/editcategory.png)
 
+# Overall App Performance 🚀✨
+
+
 
 
