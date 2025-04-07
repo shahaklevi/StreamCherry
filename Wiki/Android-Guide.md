@@ -66,7 +66,7 @@ Users can watch full movies with a built-in video player interface.
 
 When the logged-in user is an admin, they gain access to this special screen, which enables various management actions.
 
-![Admin Zone](../AndroidImages/8adminzone.png) ![Image2](../AndroidImages/adminactions.png)
+![Admin Zone](../AndroidImages/adminzone2.0.png) ![Image2](../AndroidImages/adminactions.png)
 
 ## 🎬 Movies Management
 
