@@ -17,6 +17,7 @@
         android:background="#000000">
 
         <!-- Logo -->
+
         <TextView
             android:id="@+id/appName"
             android:layout_width="wrap_content"
@@ -37,6 +38,7 @@
             android:layout_marginEnd="16dp" />
 
         <!-- Menu Items -->
+
         <HorizontalScrollView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -70,6 +72,12 @@
                     android:text="Movies" />
 
 
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="CheckBox" />
 
                 <TextView
                     android:id="@+id/menuLogout"
@@ -89,13 +97,6 @@
             android:layout_marginHorizontal="8dp"
             app:tint="#FFFFFF" />
 
-        <!-- Profile Icon -->
-        <ImageView
-            android:src="@android:drawable/ic_menu_myplaces"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginHorizontal="8dp"
-            app:tint="#FFFFFF" />
     </LinearLayout>
 
     <!-- 🔍 Search Bar (Initially Hidden) -->
@@ -126,11 +127,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="#1e1e1e"
-        android:textColorHint="#FFFFFF"
+        android:background="@drawable/spinner_background"
+        android:textColorHint="@color/netflix_light_text"
         android:textAlignment="center"
         android:layout_marginBottom="6dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        />
 
     <!-- Main Content -->
     <androidx.recyclerview.widget.RecyclerView
@@ -140,4 +142,5 @@
         android:layout_weight="1"
         android:padding="8dp"
         android:background="#121212"/>
+
 </LinearLayout>

@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.androidapp.entities.Category;
@@ -34,7 +35,17 @@ public interface CategoryDao {
 
     @Query("UPDATE category SET name = :categoryName, promoted = :isPromoted WHERE serverId = :serverId")
     void updateCategoryByServerId(String serverId, String categoryName, boolean isPromoted);
+    @Query("DELETE FROM category") // Use your actual table name
+    void deleteAllCategories();
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<Category> categories);
+
+    @Transaction
+    default void clearAndInsertCategories(List<Category> categories) {
+        deleteAllCategories();
+        insertAll(categories);
+    }
     @Update
     void update(Category... category);
     @Delete

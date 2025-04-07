@@ -71,29 +71,22 @@ public class CategoryRepository {
         }
 
         private void fetchAndSyncWithApi() {
-            // 1. Log that we're starting the API call
             Log.d("API", "Starting to fetch categories from server");
 
-            // 2. Make the API call
             categoryApi.getCategories(new Callback<List<Category>>() {
-
-                // 3. This runs when we get a response from server
                 @Override
                 public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-
-                    // 4. Check if response was successful (HTTP 200-299)
                     if (response.isSuccessful() && response.body() != null) {
                         Log.d("API", "Got successful response with categories");
 
-                        // 5. Process the data we received
-                        processApiResponse(response.body());
+                        // Replace with transaction-based approach
+                        replaceLocalCategories(response.body());
                     } else {
-                        // 6. Handle unsuccessful responses (404, 500, etc.)
-                        Log.w("API", "Server response problem: " + response.body());
+                        Log.w("API", "Server response problem: " +
+                                (response.code() + " " + response.message()));
                     }
                 }
 
-                // 7. This runs if the request completely fails (no internet, etc.)
                 @Override
                 public void onFailure(Call<List<Category>> call, Throwable t) {
                     Log.e("API", "Failed to call API", t);
@@ -101,38 +94,18 @@ public class CategoryRepository {
             });
         }
 
-        private void processApiResponse(List<Category> serverCategories) {
-            // 8. Run this in background thread to avoid blocking UI
+        private void replaceLocalCategories(List<Category> serverCategories) {
             Executors.newSingleThreadExecutor().execute(() -> {
                 try {
-                    // 9. Get current categories from local database
-                    List<Category> localCategories = categoryDao.getAllCategories();
+                    // Use transaction to ensure atomicity
+                    categoryDao.clearAndInsertCategories(serverCategories);
 
-                    // 10. Create a map for quick lookup by name
-                    Map<String, Category> localMap = new HashMap<>();
-                    for (Category cat : localCategories) {
-                        localMap.put(cat.getName(), cat);
-                    }
-
-                    // 11. Compare server data with local data
-                    for (Category serverCat : serverCategories) {
-                        Category localCat = localMap.get(serverCat.getName());
-
-                        if (localCat == null) {
-                            // 12. New category - save to database
-                            categoryDao.insert(serverCat);
-                        } else {
-                            // 13. Existing category - update if needed
-                            serverCat.setServerId(localCat.getServerId()); // Keep same database ID
-                            categoryDao.updateCategoryByServerId(serverCat.getServerId(), serverCat.getName(), serverCat.isPromoted());
-                        }
-                    }
-
-                    // 14. Get fresh list from database and notify UI
-                    postValue(categoryDao.getAllCategories());
-
+                    // Get updated list and notify observers
+                    List<Category> updatedCategories = categoryDao.getAllCategories();
+                    postValue(updatedCategories);
+                    Log.d("API", "Updated local database with " + serverCategories.size() + " categories");
                 } catch (Exception e) {
-                    Log.e("DB", "Error saving categories", e);
+                    Log.e("DB", "Error replacing categories", e);
                 }
             });
         }
@@ -258,7 +231,9 @@ public class CategoryRepository {
 
 
     public String getCategoryNameByServerId(String serverId) {
-        return categoryDao.getCategoryNameByServerId(serverId);
+        String categoryName = categoryDao.getCategoryNameByServerId(serverId);
+        // Return a fallback value instead of null to prevent sorting issues
+        return categoryName != null ? categoryName : "Action1";
     }
     public LiveData<Category> getCategoryByName(String name) {
         return categoryDao.getCategoryByName(name);

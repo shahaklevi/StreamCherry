@@ -40,7 +40,7 @@ public class MovieRepository {
     static final String TAG = "MovieRepository";
     private final MovieDao movieDao;
     private final MovieApiService apiService;
-    private  LiveData<List<Movie>> allMovies;
+    private LiveData<List<Movie>> allMovies;
     private final Application application;
 
     private final MovieApi movieApi;
@@ -114,7 +114,9 @@ public class MovieRepository {
     }
 
     private void insertMovies(List<Movie> movies) {
-        AsyncTask.execute(() -> movieDao.insertMovies(movies));
+        AsyncTask.execute(() -> {
+            movieDao.clearAndInsertMovies(movies);
+        });
     }
 
     public void addMovie(Movie movie, Callback<MovieResponse> callback) {
@@ -162,7 +164,7 @@ public class MovieRepository {
             public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
                 if (response.isSuccessful()) {
                     Movie returnedMovie = response.body().getMovie();
-                        movie.set_id(returnedMovie.get_id());
+                    movie.set_id(returnedMovie.get_id());
                     AsyncTask.execute(() -> {
                         movieDao.insert(movie);
                     });
