@@ -2,7 +2,10 @@ package com.example.androidapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,6 +18,9 @@ import com.example.androidapp.adapters.MovieListAdapter;
 import com.example.androidapp.entities.Movie;
 import com.example.androidapp.viewmodels.MainViewModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +30,10 @@ public class DeleteMovieActivity extends AppCompatActivity {
     private static final String TAG = "DeleteMovieActivity";
     private ListView listViewDeleteMovies;
     private MovieListAdapter adapter;
+    private EditText searchMovies;
     private MainViewModel viewModel;
+
+    private List<Movie> allMovies = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,7 @@ public class DeleteMovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_delete_movie);
 
         listViewDeleteMovies = findViewById(R.id.listViewDeleteMovies);
+        searchMovies = findViewById(R.id.searchBarDeleteMovies);
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
         // Initialize adapter with both delete and edit listeners
@@ -52,11 +62,44 @@ public class DeleteMovieActivity extends AppCompatActivity {
 
         listViewDeleteMovies.setAdapter(adapter);
 
+        searchMovies.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterMovies(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
         // Observe movie data
         viewModel.getAllMovies().observe(this, movies -> {
             Log.d(TAG, "Received movies. Count: " + movies.size());
+            allMovies = movies;
             adapter.updateMovies(movies);
         });
+    }
+    private void filterMovies(String query) {
+        if (allMovies == null) return;
+
+        List<Movie> filteredList = new ArrayList<>();
+
+        if (query.isEmpty()) {
+            filteredList.addAll(allMovies);
+        } else {
+            String queryLower = query.toLowerCase();
+            for (Movie movie : allMovies) {
+                if (movie.getTitle() != null &&
+                        movie.getTitle().toLowerCase().contains(queryLower)) {
+                    filteredList.add(movie);
+                }
+            }
+        }
+
+        adapter.updateMovies(filteredList);
     }
 
     private void showDeleteConfirmationDialog(Movie movie) {

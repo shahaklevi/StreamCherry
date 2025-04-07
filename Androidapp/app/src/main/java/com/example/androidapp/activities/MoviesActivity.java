@@ -48,6 +48,11 @@ public class MoviesActivity extends AppCompatActivity {
     private List<Section> originalSections = new ArrayList<>();
     private Set<String> allCategories = new HashSet<>();
 
+    // Add these class fields
+    private Map<String, String> idToNameMap = new HashMap<>();
+    private Map<String, String> nameToIdMap = new HashMap<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,11 +101,15 @@ public class MoviesActivity extends AppCompatActivity {
         categoryFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedCategory = parent.getItemAtPosition(position).toString();
-                if (selectedCategory.equals("All Categories")) {
+                String selectedName = parent.getItemAtPosition(position).toString();
+                if (selectedName.equals("All Categories")) {
                     updateRecyclerWithSections(originalSections);
                 } else {
-                    filterByCategory(selectedCategory);
+                    // Get the ID for this name and filter by it
+                    String categoryId = nameToIdMap.get(selectedName);
+                    if (categoryId != null) {
+                        filterByCategory(categoryId);
+                    }
                 }
             }
 
@@ -160,9 +169,12 @@ public class MoviesActivity extends AppCompatActivity {
                 filtered.add(movie);
             }
         }
-        updateRecyclerWithMovies(filtered, category);
+        // Get category name asynchronously, then update UI
+        categoryViewModel.getCategoryNameByServerId(category, categoryName -> {
+            Log.d("MoviesActivity", "Category name: " + categoryName);
+            updateRecyclerWithMovies(filtered, categoryName);
+        });
     }
-
     private void extractCategories(List<Movie> movies) {
         allCategories.clear();
         for (Movie movie : movies) {
@@ -170,21 +182,89 @@ public class MoviesActivity extends AppCompatActivity {
                 allCategories.addAll(movie.getCategories());
             }
         }
-        List<String> categoryList = new ArrayList<>(allCategories);
-        Collections.sort(categoryList);
-        categoryList.add(0, "All Categories");
+
+        // Get the category IDs
+        List<String> categoryIds = new ArrayList<>(allCategories);
+        Collections.sort(categoryIds);
+
+        // Create maps to translate between ID and name in both directions
+        Map<String, String> idToNameMap = new HashMap<>();
+        Map<String, String> nameToIdMap = new HashMap<>();
+
+        // Counter to track when all lookups are complete
+        final int[] pendingLookups = {categoryIds.size()};
+        final List<String> categoryNamesList = new ArrayList<>();
+
+        if (pendingLookups[0] == 0) {
+            // No categories, just add "All Categories"
+            categoryNamesList.add("All Categories");
+            setupAdapter(categoryNamesList);
+            return;
+        }
+
+        // For each category ID, get the name
+        for (String categoryId : categoryIds) {
+            categoryViewModel.getCategoryNameByServerId(categoryId, categoryName -> {
+                // Store mappings
+                idToNameMap.put(categoryId, categoryName);
+                nameToIdMap.put(categoryName, categoryId);
+                categoryNamesList.add(categoryName);
+
+                // When all names retrieved, set up the adapter
+                pendingLookups[0]--;
+                if (pendingLookups[0] == 0) {
+                    // Sort by name and add "All Categories" at position 0
+                    Collections.sort(categoryNamesList);
+                    categoryNamesList.add(0, "All Categories");
+
+                    // Store these maps for use in filterByCategory
+                    this.idToNameMap = idToNameMap;
+                    this.nameToIdMap = nameToIdMap;
+
+                    setupAdapter(categoryNamesList);
+                }
+            });
+        }
+    }
+
+    private void setupAdapter(List<String> categoryNames) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_item,
-                categoryList
+                categoryNames
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categoryFilter.setAdapter(adapter);
+        runOnUiThread(() -> categoryFilter.setAdapter(adapter));
     }
+
+//    private void extractCategories(List<Movie> movies) {
+//        allCategories.clear();
+//        for (Movie movie : movies) {
+//            if (movie.getCategories() != null) {
+//                allCategories.addAll(movie.getCategories());
+//            }
+//        }
+//        List<String> categoryList = new ArrayList<>(allCategories);
+//        Collections.sort(categoryList);
+//        categoryList.add(0, "All Categories");
+//        // Set up the spinner with categories
+//
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+//                this,
+//                android.R.layout.simple_spinner_item,
+//                categoryList
+//        );
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        categoryFilter.setAdapter(adapter);
+//    }
 
     private void updateRecyclerWithSections(List<Section> sections) {
         sectionAdapter = new SectionAdapter(this, sections);
-        sectionRecyclerView.setAdapter(sectionAdapter);
+        runOnUiThread(() -> {
+            sectionRecyclerView.setAdapter(sectionAdapter);
+            sectionAdapter.notifyDataSetChanged();
+        });
+
     }
 
     private void updateRecyclerWithMovies(List<Movie> movies, String title) {

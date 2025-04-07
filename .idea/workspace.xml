@@ -101,34 +101,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc104d85-cc38-4e57-8384-b7adb864c304" name="Changes" comment="synced Projects">
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/CategoryResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/MovieResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="dc104d85-cc38-4e57-8384-b7adb864c304" name="Changes" comment="delete movie filter">
+      <change afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/drawable/theme_toggle.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/AppDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/AppDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/TokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/TokenInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AddCategoryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AddCategoryActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AddMovieActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/AddMovieActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/EditMovieActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/EditMovieActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/MoviesActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/activities/MoviesActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/ApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/ApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/CategoryApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/CategoryApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/MovieApiService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/api/MovieApiService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/AppDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/AppDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/CategoryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/CategoryDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/MovieDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/db/MovieDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/entities/Movie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/CategoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/repositories/MovieRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/CategoryViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/CategoryViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MainViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MovieViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/java/com/example/androidapp/viewmodels/MovieViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_movie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_add_movie.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_movie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_edit_movie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_movies.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Androidapp/app/src/main/res/layout/activity_movies.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,6 +231,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\shaha\AndroidStudioProjects\Neetflix\Androidapp\app\src\main\res\drawable" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\shaha\AndroidStudioProjects\Neetflix\Androidapp\app\src\main\res\drawable" />
     </key>
     <key name="android.template.-2049009045">
@@ -414,7 +397,31 @@
       <option name="project" value="LOCAL" />
       <updated>1743891938375</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="last fixes">
+      <option name="closed" value="true" />
+      <created>1743950215228</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743950215228</updated>
+    </task>
+    <task id="LOCAL-00010" summary="delete movie filter">
+      <option name="closed" value="true" />
+      <created>1744032447108</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1744032447108</updated>
+    </task>
+    <task id="LOCAL-00011" summary="delete movie filter">
+      <option name="closed" value="true" />
+      <created>1744032455959</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744032455959</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -433,19 +440,21 @@
     <MESSAGE value="copy" />
     <MESSAGE value="category room deletion" />
     <MESSAGE value="synced Projects" />
-    <option name="LAST_COMMIT_MESSAGE" value="synced Projects" />
+    <MESSAGE value="last fixes" />
+    <MESSAGE value="delete movie filter" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete movie filter" />
   </component>
   <component name="play_dynamic_filters_status">
     <option name="appIdToCheckInfo">
       <map>
         <entry key="com.example.androidapp">
           <value>
-            <CheckInfo lastCheckTimestamp="1743936508513" />
+            <CheckInfo lastCheckTimestamp="1744031011734" />
           </value>
         </entry>
         <entry key="com.example.androidapp.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1743936508514" />
+            <CheckInfo lastCheckTimestamp="1744031011735" />
           </value>
         </entry>
       </map>
