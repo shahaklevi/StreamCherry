@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./VideoItem.css";
-import PlayButton from "../PlayButton/PlayButton";
-import InfoButton from "../Common/InfoButton/InfoButton";
-import MoviePopup from "../MoviePopup/MoviePopup";
-import tokenVerification from "../../tokenVerification/tokenVerification";
+import PlayButton from "Components/MoviePage/PlayButton/PlayButton";
+import InfoButton from "Components/Common/InfoButton/InfoButton";
+import MoviePopup from "Components/MoviePage/MoviePopup/MoviePopup";
+import tokenVerification from "tokenVerification/tokenVerification";
 import { useNavigate } from "react-router-dom";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function VideoItem({ movieId }) {

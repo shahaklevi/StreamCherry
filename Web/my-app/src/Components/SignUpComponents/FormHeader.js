@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NetflixLogo from "../NetflixLogo/NetflixLogo";
+import NetflixLogo from "../Common/NetflixLogo/NetflixLogo";
 
 const FormHeader = () => {
   return (
