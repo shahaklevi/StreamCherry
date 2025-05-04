@@ -11,13 +11,11 @@ const SmallMovieInfo = ({ movies }) => {
       const canvas = canvasRefs.current[index];
 
       if (video && canvas) {
-        // לוודא שהווידאו נטען
         video.addEventListener("canplay", () => {
           console.log(`Video "${movie.title}" is ready to play.`);
 
           const context = canvas.getContext("2d");
           if (context) {
-            // ציור הפריים הראשון
             try {
               context.drawImage(video, 0, 0, canvas.width, canvas.height);
               console.log(`Frame drawn for movie: "${movie.title}".`);
@@ -28,8 +26,6 @@ const SmallMovieInfo = ({ movies }) => {
             console.error(`Canvas context for movie "${movie.title}" is not available.`);
           }
         });
-
-        // נוודא שהווידאו מתחיל לטעון
         video.load();
       }
     });
@@ -39,14 +35,12 @@ const SmallMovieInfo = ({ movies }) => {
     <div className="movie-grid">
       {movies.map((movie, index) => (
         <div key={index} className="movie-card">
-          {/* רכיב וידאו חבוי */}
           <video
             ref={(el) => (videoRefs.current[index] = el)}
             src={`${API_BASE_URL}/${movie.movieFile}`}
-            style={{ display: "none" }} // הסתרת הווידאו
-            preload="metadata" // טוען רק את המידע של הסרטון
+            style={{ display: "none" }} 
+            preload="metadata" 
           />
-          {/* Canvas להצגת תמונה קפואה */}
           <canvas
             ref={(el) => (canvasRefs.current[index] = el)}
             width="230"

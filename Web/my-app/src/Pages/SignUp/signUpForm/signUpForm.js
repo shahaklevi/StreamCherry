@@ -9,12 +9,12 @@ import FormInput from "Components/SignUpComponents/FormInput";
 import ThemeToggle from "Components/ThemeToggle/ThemeToggle";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 const defaultAvatars = [
-  "/media/images/avatars/avatar1.webp",
-  "/media/images/avatars/avatar2.webp",
-  "/media/images/avatars/avatar3.webp",
-  "/media/images/avatars/avatar4.webp",
-  "/media/images/avatars/avatar5.webp",
-  "/media/images/avatars/avatar6.webp",
+  "images/avatars/avatar1.webp",
+  "images/avatars/avatar2.webp",
+  "images/avatars/avatar3.webp",
+  "images/avatars/avatar4.webp",
+  "images/avatars/avatar5.webp",
+  "images/avatars/avatar6.webp",
 ];
 
 const SignUpForm = () => {
