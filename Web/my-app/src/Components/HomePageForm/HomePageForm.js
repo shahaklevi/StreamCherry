@@ -1,6 +1,6 @@
 import {  Link } from 'react-router-dom';
 import { useState } from 'react';
-import NetflixLogo from '../NetflixLogo/NetflixLogo';
+import NetflixLogo from 'Components/Common/NetflixLogo/NetflixLogo';
 
 function HomePageForm() {
     const [email, setEmail] = useState("");

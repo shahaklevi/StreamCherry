@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './MovieCard.css';
 import { useNavigate } from 'react-router-dom';
-import MoviePopup from '../../MoviePopup/MoviePopup';
-import tokenVerification from '../../../tokenVerification/tokenVerification';
+import MoviePopup from 'Components/MoviePage/MoviePopup/MoviePopup';
+import tokenVerification from 'tokenVerification/tokenVerification';
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:3001';
 function MovieCard({ movie }) {
   const [imageError, setImageError] = useState(false);
@@ -10,7 +10,7 @@ function MovieCard({ movie }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [hoverTimer, setHoverTimer] = useState(null);
-  const defaultImage = "/images/avatars/avatar1.webp"; // Default image path
+  const defaultImage = "/media/images/avatars/avatar1.webp"; // Default image path
   const navigate = useNavigate();
 
   const getImageUrl = () => {
